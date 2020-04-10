@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Product() {
+function ProductList() {
   return (
     <>
       <h1>產品頁面</h1>
@@ -8,4 +8,4 @@ function Product() {
   )
 }
 
-export default Product
+export default ProductList

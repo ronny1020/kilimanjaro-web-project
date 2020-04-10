@@ -1,11 +1,11 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from './pages/Home'
 import About from './pages/About'
-import Product from './pages/Product'
+import productList from './pages/ProductList'
 
-import Navbar from './components/Navbar'
+import Header from './components/Header'
 import Footer from './components/Footer'
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <>
-          <Navbar />
+          <Header />
 
           <Switch>
             {/* react-router v5之後的寫法 */}
@@ -23,8 +23,8 @@ function App() {
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/product">
-              <Product />
+            <Route path="/productList">
+              <productList />
             </Route>
           </Switch>
 
