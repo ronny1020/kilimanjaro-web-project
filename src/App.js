@@ -5,14 +5,15 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Product from './pages/Product'
 
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
 function App() {
   return (
     <>
       <Router>
         <>
-          <Link to="/">首頁</Link>
-          <Link to="/about">關於我們</Link>
-          <Link to="/product">產品</Link>
+          <Navbar />
 
           <Switch>
             {/* react-router v5之後的寫法 */}
@@ -26,6 +27,8 @@ function App() {
               <Product />
             </Route>
           </Switch>
+
+          <Footer />
         </>
       </Router>
     </>
