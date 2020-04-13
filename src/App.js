@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import ProductList from './pages/ProductList'
 import Product from './pages/Product'
+import NotFoundPage from './pages/NotFoundPage'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/product/:id?">
               <Product />
+            </Route>
+            <Route path="*">
+              <NotFoundPage />
             </Route>
           </Switch>
 
