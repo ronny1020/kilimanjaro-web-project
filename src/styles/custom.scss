@@ -1,4 +1,15 @@
 @import './variables.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Noto Serif TC', serif;
+}
