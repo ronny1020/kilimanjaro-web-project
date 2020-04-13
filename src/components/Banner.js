@@ -5,7 +5,7 @@ function Banner(props) {
     <>
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <h1 className="display-4">{props.pagename}</h1>
+          <h1 className="display-4">{props.pageName}</h1>
         </div>
       </div>
     </>

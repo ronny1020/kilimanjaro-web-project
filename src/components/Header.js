@@ -10,9 +10,9 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">about</Nav.Link>
-              <Nav.Link href="/productList">product</Nav.Link>
+              <Nav.Link href="/">首頁</Nav.Link>
+              <Nav.Link href="/about">關於我們</Nav.Link>
+              <Nav.Link href="/productList">產品</Nav.Link>
             </Nav>
             <Form inline>
               <FormControl
