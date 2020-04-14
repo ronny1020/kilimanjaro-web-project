@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51">
+    <defs>
+        <style>.cls-1{isolation:isolate;}.cls-2,.cls-3{opacity:0.8;mix-blend-mode:multiply;}.cls-3,.cls-4{fill:#fff;}.cls-5{fill:none;stroke:#fff;stroke-miterlimit:10;}</style>
+    </defs>
+    <g class="cls-1">
+        <g id="圖層_2" data-name="圖層 2">
+            <g id="圖層_1-2" data-name="圖層 1">
+                <g class="cls-2">
+                    <path class="cls-3" d="M25.82,16.76a5.41,5.41,0,1,1-5.4,5.41,5.41,5.41,0,0,1,5.4-5.41"/>
+                    <path class="cls-3" d="M30.24,27.1a6.61,6.61,0,0,1-8.83,0,10.22,10.22,0,0,0-5.33,9H35.57A10.22,10.22,0,0,0,30.24,27.1Z"/>
+                </g>
+                <path class="cls-4" d="M25.17,16.11a5.41,5.41,0,1,1-5.4,5.41,5.41,5.41,0,0,1,5.4-5.41"/>
+                <path class="cls-4" d="M29.59,26.45a6.61,6.61,0,0,1-8.83,0,10.22,10.22,0,0,0-5.33,9H34.92A10.22,10.22,0,0,0,29.59,26.45Z"/>
+                <rect class="cls-5" x="0.5" y="0.5" width="50" height="50"/>
+            </g>
+        </g>
+    </g>
+</svg>
