@@ -1,9 +1,12 @@
 @import './variables.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
+@import './home.scss';
+
+
 body {
   font-family: 'Noto Sans TC', sans-serif;
-  min-height: 100vh;
+  min-height: 120vh;
 }
 
 h1,
