@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
 // import { Link } from 'react-router-dom'
 
