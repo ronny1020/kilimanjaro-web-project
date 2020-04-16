@@ -27,19 +27,23 @@ function Header() {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/">產品資訊</Nav.Link>
+              <Nav.Link href="/"> 首　頁 </Nav.Link>
               <Nav.Link href="#" className="divider" disabled>
                 |
               </Nav.Link>
-              <Nav.Link href="/about">店家介紹</Nav.Link>
+              <Nav.Link href="/productList">產品資訊</Nav.Link>
               <Nav.Link href="#" className="divider" disabled>
                 |
               </Nav.Link>
-              <Nav.Link href="/productList">優惠專區</Nav.Link>
+              <Nav.Link href="/sellers">店家介紹</Nav.Link>
               <Nav.Link href="#" className="divider" disabled>
                 |
               </Nav.Link>
-              <Nav.Link href="/productList">關於我們</Nav.Link>
+              <Nav.Link href="/onSale">優惠專區</Nav.Link>
+              <Nav.Link href="#" className="divider" disabled>
+                |
+              </Nav.Link>
+              <Nav.Link href="/about">關於我們</Nav.Link>
             </Nav>
 
             <Form inline>

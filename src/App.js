@@ -7,8 +7,11 @@ import {
 } from 'react-router-dom'
 
 import Home from './pages/Home'
-import About from './pages/About'
 import ProductList from './pages/ProductList'
+import Sellers from './pages/Sellers'
+import OnSale from './pages/OnSale'
+import About from './pages/About'
+
 import Product from './pages/Product'
 
 import Login from './pages/member/Login'
@@ -26,16 +29,22 @@ function App() {
           <Header />
 
           <Switch>
-            {/* react-router v5之後的寫法 */}
             <Route exact path="/">
               <Home />
-            </Route>
-            <Route path="/about">
-              <About />
             </Route>
             <Route path="/productList">
               <ProductList />
             </Route>
+            <Route path="/sellers">
+              <Sellers />
+            </Route>
+            <Route path="/onSale">
+              <OnSale />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+
             <Route path="/product/:id?">
               <Product />
             </Route>
