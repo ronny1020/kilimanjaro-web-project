@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 function Entrance(props) {
   return (
@@ -39,4 +39,4 @@ function Entrance(props) {
   )
 }
 
-export default Entrance
+export default withRouter(Entrance)
