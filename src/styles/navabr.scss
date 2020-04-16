@@ -1,0 +1,62 @@
+/*Navbar CSS:*/
+.navicon_web,
+.navicon_mob,
+.search_icon {
+  margin: 7px;
+  border: 0.5px solid #f7f7f7;
+  height: 40px;
+  width: 40px;
+}
+.navicon_web img,
+.navicon_mob img,
+.search_icon img {
+  width: 20px;
+  height: 20px;
+
+  position: relative;
+  right: 7px;
+  bottom: 3px;
+  // color: #f7f7f7;
+}
+
+.navbar input {
+  // color: #6e8080;
+  // opacity: 0.5;
+  background-color: transparent;
+  border-radius: unset;
+}
+
+.brand_web {
+  width: 300px;
+  // height: 100%;
+  position: absolute;
+  left: 750px;
+}
+.brand_mob,
+.navicon_mob {
+  display: none;
+}
+/*Navbar CSS:*/
+
+@media only screen and (max-width: 375px) {
+  /*Navbar CSS:*/
+  .divider {
+    display: none;
+  }
+  .brand_web {
+    display: none;
+  }
+  .brand_mob {
+    display: unset;
+    width: 170px;
+    float: left;
+  }
+
+  .navicon_web {
+    display: none;
+  }
+  .navicon_mob{
+    display: unset;
+  }
+  /*Navbar CSS:*/
+}

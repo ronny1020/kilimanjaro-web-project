@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import ProductList from './pages/ProductList'
 import Product from './pages/Product'
+
+import Login from './pages/member/Login'
 import NotFoundPage from './pages/NotFoundPage'
 
 import Header from './components/Header'
@@ -31,6 +33,11 @@ function App() {
             <Route path="/product/:id?">
               <Product />
             </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
             <Route path="*">
               <NotFoundPage />
             </Route>

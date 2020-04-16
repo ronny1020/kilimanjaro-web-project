@@ -17,7 +17,7 @@ function Header() {
           <Navbar.Brand href="#home" className="brand_mob">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
-          <Nav.Link className="navicon_mob" href="/product">
+          <Nav.Link className="navicon_mob" href="/login">
             <img src="../images/user.svg" alt="user"></img>
           </Nav.Link>
           <Nav.Link className="navicon_mob" href="/product">
@@ -58,7 +58,7 @@ function Header() {
           <Navbar.Brand href="#home" className="brand_web">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
-          <Nav.Link className="navicon_web" href="/product">
+          <Nav.Link className="navicon_web" href="/login">
             <img src="../images/user.svg" alt="user"></img>
           </Nav.Link>
           <Nav.Link className="navicon_web" href="/product">
