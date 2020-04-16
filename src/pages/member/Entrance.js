@@ -2,13 +2,17 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function Entrance() {
+function Entrance(props) {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
         <div className="col-sm-6 bg-secondary">
           <h1>會員登入</h1>
-          <Form>
+          <Form
+            onSubmit={() => {
+              props.history.push('/lobby')
+            }}
+          >
             <Form.Group controlId="formBasicEmail">
               <Form.Label>帳號</Form.Label>
               <Form.Control type="text" placeholder="請輸入帳號" />
@@ -26,7 +30,7 @@ function Entrance() {
             <Link to="/login/forget_pwd">忘記密碼?</Link>
 
             <Button variant="primary" type="submit">
-              Submit
+              登入
             </Button>
           </Form>
         </div>
