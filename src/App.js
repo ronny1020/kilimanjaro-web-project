@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 
 import Home from './pages/Home'
 import About from './pages/About'
@@ -35,6 +35,7 @@ function App() {
             </Route>
 
             <Route path="/login">
+            <Redirect from="/login" to="/login/entrance"></Redirect>
               <Login />
             </Route>
 

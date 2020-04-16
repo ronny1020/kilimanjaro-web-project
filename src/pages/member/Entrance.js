@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function Entrance(props) {
+function Entrance() {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
@@ -22,20 +22,8 @@ function Entrance(props) {
               <Form.Check type="checkbox" label="記得我" />
             </Form.Group>
 
-            <Link
-              onClick={() => {
-                props.history.push('/login/enroll')
-              }}
-            >
-              註冊新會員
-            </Link>
-            <Link
-              onClick={() => {
-                props.history.push('/login/forget_pwd')
-              }}
-            >
-              忘記密碼?
-            </Link>
+            <Link to="/login/enroll">註冊新會員</Link>
+            <Link to="/login/forget_pwd">忘記密碼?</Link>
 
             <Button variant="primary" type="submit">
               Submit
