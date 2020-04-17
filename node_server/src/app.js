@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-import users from './api/users.js'
+
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 //app.use('/products', products)
 //app.use('/orders', orders)
-app.use('/users', users)
+
 
 // 未找到的錯誤 - 404
 app.use((req, res, next) => {
