@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, withRouter, Redirect } from 'react-router-dom'
-import App from '../../App'
+import { Link, withRouter } from 'react-router-dom'
 
 function LobbyTitle(props) {
   console.log(props.string)
