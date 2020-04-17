@@ -1,6 +1,7 @@
 import React from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
+import Breadcrumb from '../../../components/Breadcrumb'
 function History() {
   const inputArray = {
     title: '會員中心',
@@ -23,6 +24,7 @@ function History() {
       <LobbyTitle string={'交易紀錄'} />
       <div className="container bg-secondary">
         <Sidebar input={inputArray} />
+        <Breadcrumb />
       </div>
     </>
   )

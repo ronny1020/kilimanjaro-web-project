@@ -6,6 +6,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
+import Breadcrumb from '../../../components/Breadcrumb'
 
 import Edit from './Edit'
 import Favorite from './Favorite'
@@ -14,6 +15,7 @@ import History from './History'
 
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Login from '../Login'
+import Home from '../../Home'
 import NotFoundPage from '../../NotFoundPage'
 
 function Member() {
@@ -27,7 +29,7 @@ function Member() {
               <div className="container bg-secondary">
                 <br />
                 <div className="row">
-                  <div className="col-8">123123</div>
+                  <div className="col-8"><Breadcrumb /></div>
                   <div className="col-4" align="center">
                     <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                     <br />
@@ -37,16 +39,17 @@ function Member() {
                 <br />
               </div>
             </Route>
-            <Route exact path="/lobby/edit">
+
+            <Route path="/lobby/edit">
               <Edit />
             </Route>
-            <Route exact path="/lobby/coupon">
+            <Route path="/lobby/coupon">
               <Coupon />
             </Route>
-            <Route exact path="/lobby/history">
+            <Route path="/lobby/history">
               <History />
             </Route>
-            <Route exact path="/lobby/favorite">
+            <Route path="/lobby/favorite">
               <Favorite />
             </Route>
 
@@ -54,6 +57,9 @@ function Member() {
             <Route path="/login">
               <Redirect from="/login" to="/login/entrance"></Redirect>
               <Login />
+            </Route>
+            <Route exact path="/">
+              <Home />
             </Route>
             <Route path="*">
               <NotFoundPage />
