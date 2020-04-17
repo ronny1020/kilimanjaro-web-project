@@ -65,7 +65,7 @@ function Header() {
           <Nav.Link className="navicon_web" href="/login">
             <img src="../images/user.svg" alt="user"></img>
           </Nav.Link>
-          <Nav.Link className="navicon_web" href="/product">
+          <Nav.Link className="navicon_web" href="/cart">
             <img src="../images/cart.svg" alt="cart"></img>
           </Nav.Link>
           {/* Appear when normal. */}
