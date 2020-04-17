@@ -24,6 +24,18 @@ function Member() {
           <Switch>
             <Route exact path="/lobby">
               <LobbyTitle string={'會員中心'} />
+              <div className="container bg-secondary">
+                <br />
+                <div className="row">
+                  <div className="col-8">123123</div>
+                  <div className="col-4" align="center">
+                    <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                    <br />
+                    <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                  </div>
+                </div>
+                <br />
+              </div>
             </Route>
             <Route exact path="/lobby/edit">
               <Edit />
@@ -37,6 +49,8 @@ function Member() {
             <Route exact path="/lobby/favorite">
               <Favorite />
             </Route>
+
+            {/* 原有的路由(想合併) */}
             <Route path="/login">
               <Redirect from="/login" to="/login/entrance"></Redirect>
               <Login />
