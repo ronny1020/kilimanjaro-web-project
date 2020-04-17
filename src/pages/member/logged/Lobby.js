@@ -1,34 +1,54 @@
 import React from 'react'
-import Sidebar from '../../../components/Sidebar'
+// import Sidebar from '../../../components/Sidebar'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
+
+import Edit from './Edit'
+import Favorite from './Favorite'
+import Coupon from './Coupon'
+import History from './History'
+
+import LobbyTitle from '../../../components/member/LobbyTitle'
+import Login from '../Login'
+import NotFoundPage from '../../NotFoundPage'
 
 function Member() {
-  const inputArray = {
-    title: '會員中心',
-    個人資料修改: {
-      link: '/test1',
-    },
-    訂閱資訊管理: {
-      link: '/test2',
-    },
-    折扣券: {
-      link: '/test3',
-    },
-    交易紀錄: {
-      link: '/test4',
-    },
-    喜好清單: {
-      link: '/test5',
-    },
-    訂單相關: {
-      link: '/test6',
-    },
-  }
   return (
     <>
-      <div className="container bg-secondary">
-        <h1>會員中心</h1>
-        <Sidebar input={inputArray} />
-      </div>
+      <Router>
+        <>
+          <div className="container bg-secondary">
+            <Switch>
+              <Route exact path="/lobby">
+                <LobbyTitle string={'會員中心'} />
+              </Route>
+              <Route exact path="/lobby/edit">
+                <Edit />
+              </Route>
+              <Route exact path="/lobby/coupon">
+                <Coupon />
+              </Route>
+              <Route exact path="/lobby/history">
+                <History />
+              </Route>
+              <Route exact path="/lobby/favorite">
+                <Favorite />
+              </Route>
+              <Route path="/login">
+                <Redirect from="/login" to="/login/entrance"></Redirect>
+                <Login />
+              </Route>
+              <Route path="*">
+                <NotFoundPage />
+              </Route>
+            </Switch>
+          </div>
+        </>
+      </Router>
     </>
   )
 }

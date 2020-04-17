@@ -5,9 +5,11 @@
 @import './login.scss';
 @import './navabr.scss';
 @import './sidebar.scss';
+@import './memebr/LobbyTitle.scss';
 
 body {
-  font-family: 'Noto Sans TC', sans-serif;
+  // font-family: 'Noto Sans TC', sans-serif;
+  font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
   min-height: 120vh;
 }
 
@@ -17,7 +19,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Noto Serif TC', serif;
+  // font-family: 'Noto Serif TC', serif;
+  font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;
 }
 
 footer {
