@@ -22,7 +22,9 @@ function Coupon() {
   return (
     <>
       <LobbyTitle string={'折扣券'} />
-      <Sidebar input={inputArray} />
+      <div className="container bg-secondary">
+        <Sidebar input={inputArray} />
+      </div>
     </>
   )
 }

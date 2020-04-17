@@ -12,10 +12,20 @@ function LobbyTitle(props) {
   }
   return (
     <>
-      <div className="container lobbytitle">
-        <h1>{title}</h1>
-        <Link to="/qna">常見問題</Link>
-        <Link to="/login">登出頁面</Link>
+      <div className="container mt-auto title_bg">
+        <div className="row lobbytitle">
+          <div className="col-3"></div>
+          <div className="col-6">
+            <h1>{title}</h1>
+          </div>
+          <div className="col-3">
+            <div className="title_link">
+              <Link to="/qna">常見問題</Link>
+              <span>|</span>
+              <Link to="/login">登出頁面</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

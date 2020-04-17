@@ -21,7 +21,9 @@ function Edit() {
   return (
     <>
       <LobbyTitle string={'個人資料修改'} />
-      <Sidebar input={inputArray} />
+      <div className="container bg-secondary">
+        <Sidebar input={inputArray} />
+      </div>
     </>
   )
 }
