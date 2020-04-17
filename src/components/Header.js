@@ -14,7 +14,7 @@ function Header() {
           </Navbar.Toggle>
 
           {/* Appear when max-width<=375px.(RWD) */}
-          <Navbar.Brand href="#home" className="brand_mob">
+          <Navbar.Brand href="/" className="brand_mob">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <Nav.Link className="navicon_mob" href="/login">
@@ -59,7 +59,7 @@ function Header() {
           </Navbar.Collapse>
 
           {/* Appear when normal. */}
-          <Navbar.Brand href="#home" className="brand_web">
+          <Navbar.Brand href="/" className="brand_web">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <Nav.Link className="navicon_web" href="/login">
