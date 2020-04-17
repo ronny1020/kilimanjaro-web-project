@@ -1,6 +1,8 @@
 import React from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
+import Breadcrumb from '../../../components/Breadcrumb'
+
 function Edit() {
   const inputArray = {
     title: '會員中心',
@@ -23,6 +25,7 @@ function Edit() {
       <LobbyTitle string={'個人資料修改'} />
       <div className="container bg-secondary">
         <Sidebar input={inputArray} />
+        <Breadcrumb />
       </div>
     </>
   )

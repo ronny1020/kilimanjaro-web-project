@@ -1,6 +1,7 @@
 import React from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
+import Breadcrumb from '../../../components/Breadcrumb'
 
 function Coupon() {
   const inputArray = {
@@ -24,6 +25,7 @@ function Coupon() {
       <LobbyTitle string={'折扣券'} />
       <div className="container bg-secondary">
         <Sidebar input={inputArray} />
+        <Breadcrumb />
       </div>
     </>
   )
