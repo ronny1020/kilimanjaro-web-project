@@ -43,10 +43,14 @@ function Footer() {
             </div>
           </div>
           <div className="row col-3 footer_icon">
-            <FaFacebookF />
-            <FaTwitter />
-            <FaInstagram />
-            <br />© Kilimanjaro 2020
+            <div className="col footer_subtitle"></div>
+            <div className="col">
+              <FaFacebookF />
+              <FaTwitter />
+              <FaInstagram />
+              <br />
+              <br />© Kilimanjaro 2020
+            </div>
           </div>
           {/* <p className="text-muted">版權所有</p> */}
         </div>
