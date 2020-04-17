@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "plugin:node/recommended-module"],
+  "env": {
+    "node": true,
+    "browser": false,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "spread": true,
+    "restParams": true
+  },
+  "plugins": ["import", "prettier"],
+
+  "rules": {
+    "prettier/prettier": "error",
+    "node/exports-style": ["error", "module.exports"],
+    "node/file-extension-in-import": ["error", "always"],
+    "node/prefer-global/buffer": ["error", "always"],
+    "node/prefer-global/console": ["error", "always"],
+    "node/prefer-global/process": ["error", "always"],
+    "node/prefer-global/url-search-params": ["error", "always"],
+    "node/prefer-global/url": ["error", "always"],
+    "node/prefer-promises/dns": "error",
+    "node/prefer-promises/fs": "error"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  }
+}
