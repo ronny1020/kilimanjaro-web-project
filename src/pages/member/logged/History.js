@@ -21,7 +21,9 @@ function History() {
   return (
     <>
       <LobbyTitle string={'交易紀錄'} />
-      <Sidebar input={inputArray} />
+      <div className="container bg-secondary">
+        <Sidebar input={inputArray} />
+      </div>
     </>
   )
 }

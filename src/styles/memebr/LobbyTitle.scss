@@ -1,12 +1,34 @@
-.lobbytitle{
-    background-color: white;
-    text-align: center;
-    font-size: 36px;
-    height: 210px;
-    border-bottom: 0.5px solid gray;
+.title_bg {
+  background-color: white;
+  text-align: center;
+
+  height: 210px;
+  border-bottom: 0.5px solid gray;
+
+  //   position: absolute;
+  //   top:200px;
+}
+.lobbytitle {
+  padding-top: 150px;
 }
 
-.lobbytitle h1{
-    margin: 0;
-    font-weight: 800;
+.lobbytitle h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.title_link{
+    position: absolute;
+    bottom: 0;
+    font-size: 18px;
+}
+.title_link a {
+  color: #1f71b8;
+  font-weight: 800;
+//   position: absolute;
+}
+.title_link span {
+  top: 5px;
+  margin: 5px;
 }

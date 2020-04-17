@@ -21,7 +21,9 @@ function Favorite() {
   return (
     <>
       <LobbyTitle string={'喜好清單'} />
-      <Sidebar input={inputArray} />
+      <div className="container bg-secondary">
+        <Sidebar input={inputArray} />
+      </div>
     </>
   )
 }
