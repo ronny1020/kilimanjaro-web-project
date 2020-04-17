@@ -31,12 +31,11 @@ function Sidebar(props) {
     <>
       <nav className="navbar sidebar">
         <ul className="navbar-nav">
-          <div className="row banner">
-            <div className="bg-dark banner_blackrim"></div>
-            <div className="col bg-primary">
+          <li>
+            <div className=" bg-primary banner">
               <p className="text-secondary">{props.input.title}</p>
             </div>
-          </div>
+          </li>
           {content}
         </ul>
       </nav>
