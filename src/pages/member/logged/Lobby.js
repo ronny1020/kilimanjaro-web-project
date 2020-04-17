@@ -29,7 +29,9 @@ function Member() {
               <div className="container bg-secondary">
                 <br />
                 <div className="row">
-                  <div className="col-8"><Breadcrumb /></div>
+                  <div className="col-8">
+                    <Breadcrumb />
+                  </div>
                   <div className="col-4" align="center">
                     <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                     <br />
