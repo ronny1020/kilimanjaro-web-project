@@ -13,11 +13,14 @@ function Sidebar(props) {
   // console.log(arrayKey[1])
   for (var i = 1; i < arrayKey.length; i++) {
     var appendToContent = (
-      <li className="nav-item">
-        <Link className="nav-link" to={arrayLink[i]}>
-          <p className="text-dark">>{arrayKey[i]}</p>
-        </Link>
-      </li>
+      <>
+        <li className="nav-item">
+          <Link className="nav-link" to={arrayLink[i]}>
+            <p className="text-dark">>{arrayKey[i]}</p>
+          </Link>
+          <hr />
+        </li>
+      </>
     )
     content.push(appendToContent)
     // content += appendToContent
