@@ -3,8 +3,10 @@ import React from 'react'
 function Sellers() {
   return (
     <>
-      <div class="container p-3 my-3 bg-primary text-white">
+      <div class="container">
         <h1>賣家介紹</h1>
+      </div>
+      <div class="container p-3 my-3 border">
         <p>This part is inside a .container class.</p>
         <p>The .container class provides a responsive fixed width container.</p>
         <p>
