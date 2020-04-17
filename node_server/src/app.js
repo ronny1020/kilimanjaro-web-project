@@ -1,5 +1,5 @@
 import express from 'express'
-import bodyparser from 'body-parser'
+import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import users from './api/users.js'
@@ -7,8 +7,8 @@ import users from './api/users.js'
 const app = express()
 
 app.use(cors())
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 //app.use('/products', products)
 //app.use('/orders', orders)
