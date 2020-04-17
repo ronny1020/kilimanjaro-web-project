@@ -28,9 +28,8 @@
 
 .brand_web {
   width: 300px;
-  // height: 100%;
   position: absolute;
-  left: 750px;
+  left: 42%;
 }
 .brand_mob,
 .navicon_mob {
@@ -38,8 +37,30 @@
 }
 /*Navbar CSS:*/
 
-@media only screen and (max-width: 375px) {
-  /*Navbar CSS:*/
+// @media only screen and (max-width: 375px) {
+//   /*Navbar CSS:*/
+//   .divider {
+//     display: none;
+//   }
+//   .brand_web {
+//     display: none;
+//   }
+//   .brand_mob {
+//     display: unset;
+//     width: 170px;
+//     float: left;
+//   }
+
+//   .navicon_web {
+//     display: none;
+//   }
+//   .navicon_mob {
+//     display: unset;
+//   }
+//   /*Navbar CSS:*/
+// }
+
+@media only screen and(max-width:1024px) {
   .divider {
     display: none;
   }
@@ -51,12 +72,32 @@
     width: 170px;
     float: left;
   }
-
   .navicon_web {
     display: none;
   }
-  .navicon_mob{
+  .navicon_mob {
     display: unset;
   }
-  /*Navbar CSS:*/
+}
+
+@media only screen and(max-width:360px) {
+  .navicon_mob {
+    width: 30px;
+    height: 30px;
+
+    margin: 2px;
+  }
+  .navicon_mob img {
+    width: 15px;
+    height: 15px;
+
+    position: relative;
+    right: 7px;
+    bottom: 6px;
+  }
+}
+@media only screen and(max-width:320px) {
+  .brand_mob {
+    width: 120px;
+  }
 }
