@@ -5,3 +5,5 @@ const port = process.env.port || 6001
 
 const server = http.createServer(app)
 server.listen(port)
+
+console.log('server start')
