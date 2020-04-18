@@ -2,9 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-
 import ProductListApi from './api/ProductListApi'
-
 
 const app = express()
 
@@ -14,11 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/ProductListApi', ProductListApi)
 
-app.use('/', (req, res)=>{
-  console.log('Request Home Page');
-  res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`);
-});
-
+app.get('/', (req, res) => {
+  console.log('Request Home Page')
+  res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`)
+})
 
 // error - 404
 app.use((req, res, next) => {
@@ -37,7 +34,5 @@ app.use((err, req, res, next) => {
     },
   })
 })
-
-
 
 export default app
