@@ -17,6 +17,7 @@ function Breadcrumb(props) {
   // console.log(pathname_Array)
   for (let i = 0; i < pathname_Array.length; i++) {
     switch (pathname_Array[i]) {
+      // add your route here!
       case 'lobby':
         path = '會員中心'
         break
