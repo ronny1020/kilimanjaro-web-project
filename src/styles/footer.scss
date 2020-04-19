@@ -1,5 +1,8 @@
 footer {
   color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer_bg {
@@ -18,4 +21,8 @@ footer {
 .footer_icon svg {
   width: 1.5em;
   height: 1.5em;
+}
+
+.footer_padding{
+ height: 200px; 
 }
