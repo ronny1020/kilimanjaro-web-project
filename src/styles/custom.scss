@@ -11,7 +11,8 @@
 body {
   // font-family: 'Noto Sans TC', sans-serif;
   font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
-  min-height: 120vh;
+  min-height: 100vh;
+  position: relative;
 }
 
 h1,
@@ -21,11 +22,11 @@ h4,
 h5,
 h6 {
   // font-family: 'Noto Serif TC', serif;
-  font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;
+  font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
 }
 
-footer {
-  // position: absolute;
-  bottom: 0;
-  width: 100%;
-}
+// footer {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+// }

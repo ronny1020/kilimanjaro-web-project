@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-
+import ProductListApi from './api/ProductListApi'
 
 const app = express()
 
@@ -10,18 +10,21 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-//app.use('/products', products)
-//app.use('/orders', orders)
+app.use('/ProductListApi', ProductListApi)
 
+app.get('/', (req, res) => {
+  console.log('Request Home Page')
+  res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`)
+})
 
-// 未找到的錯誤 - 404
+// error - 404
 app.use((req, res, next) => {
   const err = new Error('Not Found')
   err.status = 404
   next(err)
 })
 
-// 處理其它還未實作的要求 - 501
+// error - 501
 app.use((err, req, res, next) => {
   res.status(err.status || 501)
   res.json({
@@ -31,7 +34,5 @@ app.use((err, req, res, next) => {
     },
   })
 })
-
-
 
 export default app
