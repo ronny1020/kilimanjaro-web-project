@@ -91,9 +91,6 @@ function App() {
               <NotFoundPage />
             </Route>
           </Switch>
-
-          {/* to avoid absolute footer cover the bottom info */}
-          <div className="footer_padding"></div>
           <Footer />
         </>
       </Router>

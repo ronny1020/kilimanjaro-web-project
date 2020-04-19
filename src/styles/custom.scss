@@ -8,11 +8,14 @@
 @import './memebr/LobbyTitle.scss';
 @import './footer.scss';
 
+@import './react-spring-card.scss';
+
 body {
   // font-family: 'Noto Sans TC', sans-serif;
   font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
   min-height: 100vh;
   position: relative;
+  padding-bottom: 200px;
 }
 
 h1,
@@ -25,8 +28,4 @@ h6 {
   font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
 }
 
-// footer {
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-// }
+
