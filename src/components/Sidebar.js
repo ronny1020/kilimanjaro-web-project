@@ -29,6 +29,7 @@ function Sidebar(props) {
 
   return (
     <>
+      <br />
       <nav className="navbar sidebar">
         <ul className="navbar-nav">
           <li>

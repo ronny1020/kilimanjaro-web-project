@@ -33,11 +33,10 @@ function Member() {
             <Route exact path="/lobby">
               <LobbyTitle string={'會員中心'} />
               <div className="container bg-secondary">
-                <br />
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
-                    <div className="bg-white">你好, 會員???</div>
+                    <div className="bg-white">你好, 會員某某</div>
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/edit">
                         <FaUserEdit />
@@ -87,6 +86,7 @@ function Member() {
                     </div>
                   </div>
                   <div className="col-4" align="center">
+                    <br />
                     <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                     <br />
                     <img src="../../images/ad2.png" alt="ad2" width="80%"></img>

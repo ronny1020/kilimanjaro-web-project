@@ -51,6 +51,7 @@ function Breadcrumb(props) {
 
   return (
     <>
+      <br />
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">{breadcrumb_content}</ol>
       </nav>
