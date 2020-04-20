@@ -23,8 +23,14 @@ function History() {
     <>
       <LobbyTitle string={'交易紀錄'} />
       <div className="container bg-secondary">
-        <Sidebar input={inputArray} />
-        <Breadcrumb />
+        <div className="row">
+          <div className="col-3">
+            <Sidebar input={inputArray} />
+          </div>
+          <div className="col-9">
+            <Breadcrumb />
+          </div>
+        </div>
       </div>
     </>
   )

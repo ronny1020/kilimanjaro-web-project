@@ -33,7 +33,6 @@ function Member() {
             <Route exact path="/lobby">
               <LobbyTitle string={'會員中心'} />
               <div className="container bg-secondary">
-                <br />
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
@@ -41,34 +40,53 @@ function Member() {
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/edit">
                         <FaUserEdit />
+                        <br />
                         修改會員資料
+                        <br />
+                        修改信箱、住址、姓名等註冊資料。
                       </Link>
                       <div className="col-4 lobby_blocks">
                         <IoMdMail />
+                        <br />
                         同好會
+                        <br />
+                        查看您加入的同好會並 進行管理。
                       </div>
                       <Link className="col-4 lobby_blocks" to="/lobby/coupon">
                         <GiTicket />
+                        <br />
                         折扣券
+                        <br />
+                        確認目前擁有可以使用的折扣。
                       </Link>
                     </div>
 
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/history">
                         <FaCreditCard />
+                        <br />
                         交易紀錄
+                        <br />
+                        觀看過去在吉利馬札羅的消費紀錄。
                       </Link>
                       <Link className="col-4 lobby_blocks" to="/lobby/favorite">
                         <MdFavorite />
+                        <br />
                         喜好清單
+                        <br />
+                        過去引起您注目，並可 能進行購買的商品。
                       </Link>
                       <div className="col-4 lobby_blocks" to="/cart">
                         <FaCartArrowDown />
+                        <br />
                         查看購物車
+                        <br />
+                        查看您準備購買的商品
                       </div>
                     </div>
                   </div>
                   <div className="col-4" align="center">
+                    <br />
                     <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                     <br />
                     <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
