@@ -31,7 +31,7 @@ function Sellers() {
         <div className="row">
           <div className="col-8">
             <div className="row">
-              <div className="col-12" align="center">
+              <div className="col-12 " align="center">
                 <div class="container bg-white pt-3 m-6 ">
                   <h1>小農咖啡園1</h1>
                   <Carousel>
@@ -87,7 +87,39 @@ function Sellers() {
                 </div>
               </div>
             </div>
-            <div className=" card-deck">
+            <div className="row mt-3 ">
+              <div className="col-4">
+                <img
+                  className="d-block h-40 w-100 "
+                  src={img004}
+                  alt="slide 004"
+                />
+              </div>
+              <div className="col-4 ">
+                <img
+                  className="d-block h-40 w-100 "
+                  src={img004}
+                  alt="slide 004"
+                />
+              </div>
+              <div className="col-4">
+                <img
+                  className="d-block h-40 w-100 "
+                  src={img004}
+                  alt="slide 004"
+                />
+              </div>
+            </div>
+
+            <div className="row mt-3">
+              <div className="col-12" align="center">
+                <div class="container bg-white pt-3 m-6 ">
+                  <h1>簡介</h1>
+                </div>
+              </div>
+            </div>
+
+            <div className=" card-deck ">
               <ProductListItem>
                 <p>產 區:</p>
                 <p>肯亞 涅里</p>
