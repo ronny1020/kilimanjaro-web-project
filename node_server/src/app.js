@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import ProductListApi from './api/ProductListApi'
+import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
 
 const app = express()
@@ -12,7 +13,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/ProductListApi', ProductListApi)
+app.use('/ProductApi', ProductApi)
 app.use('/member', MemberListApi)
+
+
+
 
 app.get('/', (req, res) => {
   console.log('Request Home Page')
