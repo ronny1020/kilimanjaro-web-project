@@ -1,27 +1,119 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  Link,
+} from 'react-router-dom'
+import LobbyTitle from '../components/member/LobbyTitle'
+import Breadcrumb from '../components/Breadcrumb'
+import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
+import { MdFavorite } from 'react-icons/md'
+import { IoMdMail } from 'react-icons/io'
+import { GiTicket } from 'react-icons/gi'
+
+import { Carousel } from 'react-bootstrap'
+import ProductListItem from '../components/ProductList/productListItem'
+import img001 from '../img/home/carousel/001.jpg'
+import img002 from '../img/home/carousel/002.jpg'
+import img003 from '../img/home/carousel/003.jpg'
+import img004 from '../img/home/carousel/004.jpg'
+import img005 from '../img/home/carousel/005.jpg'
+import img006 from '../img/home/carousel/006.jpg'
 
 function Sellers() {
   return (
     <>
-      <div class="row justify-content-center align-items-center">
-        <div class="col-md-8 mt-3 ">
-          <h3>
-            賣家介紹
-            <Link to="/product/123">123</Link>
-          </h3>
-        </div>
-      </div>
+      <LobbyTitle string={'賣家介紹'} />
+      <div className="container bg-secondary">
+        <br />
+        <div className="row">
+          <div className="col-8">
+            <Breadcrumb />
 
-      <div class="row justify-content-center align-items-center">
-        <div class="col-md-8 ">
-          <div class="container p-3 my-3 border ">
-            <p>
-              Resize the browser window to see that its width (max-width) will
-              change at different breakpoints.
-            </p>
+            <div className="row">
+              <div className="col-12" align="center">
+                <div class="container bg-white pt-3 m-6 ">
+                  <h1>小農咖啡園1</h1>
+                  <Carousel>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img001}
+                        alt="slide 001"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img002}
+                        alt="slide 002"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>{' '}
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img003}
+                        alt="slide 003"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>{' '}
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img004}
+                        alt="slide 004"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>{' '}
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img005}
+                        alt="slide 005"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100 carouselImage"
+                        src={img006}
+                        alt="slide 006"
+                      />
+                      <Carousel.Caption>{/* text */}</Carousel.Caption>
+                    </Carousel.Item>
+                  </Carousel>
+                </div>
+              </div>
+            </div>
+            <div className=" card-deck">
+              <ProductListItem>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+              </ProductListItem>
+            </div>
+          </div>
+          <div className="col-4" align="center">
+            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+            <br />
+            <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
           </div>
         </div>
+        <br />
       </div>
     </>
   )
