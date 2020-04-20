@@ -24,8 +24,14 @@ function Coupon() {
     <>
       <LobbyTitle string={'折扣券'} />
       <div className="container bg-secondary">
-        <Sidebar input={inputArray} />
-        <Breadcrumb />
+        <div className="row">
+          <div className="col-3">
+            <Sidebar input={inputArray} />
+          </div>
+          <div className="col-9">
+            <Breadcrumb />
+          </div>
+        </div>
       </div>
     </>
   )

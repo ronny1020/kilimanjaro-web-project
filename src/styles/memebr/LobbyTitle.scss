@@ -36,13 +36,14 @@
 //Lobby blocks:
 
 .lobby_blocks {
-  width: 200px;
-  height: 166px;
+  // width: 200px;
+  // height: 166px;
   cursor: pointer;
   background-color: white;
   padding: 10px;
   border-bottom: 0.5px solid gray;
 }
 .lobby_blocks > svg {
+  width:100px;
   color: #fab5b5;
 }

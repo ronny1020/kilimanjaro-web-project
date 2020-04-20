@@ -37,34 +37,52 @@ function Member() {
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
-                    <div className="bg-white">你好, 會員某某</div>
+                    <div className="bg-white">你好, 會員???</div>
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/edit">
                         <FaUserEdit />
+                        <br />
                         修改會員資料
+                        <br />
+                        修改信箱、住址、姓名等註冊資料。
                       </Link>
                       <div className="col-4 lobby_blocks">
                         <IoMdMail />
+                        <br />
                         同好會
+                        <br />
+                        查看您加入的同好會並 進行管理。
                       </div>
                       <Link className="col-4 lobby_blocks" to="/lobby/coupon">
                         <GiTicket />
+                        <br />
                         折扣券
+                        <br />
+                        確認目前擁有可以使用的折扣。
                       </Link>
                     </div>
 
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/history">
                         <FaCreditCard />
+                        <br />
                         交易紀錄
+                        <br />
+                        觀看過去在吉利馬札羅的消費紀錄。
                       </Link>
                       <Link className="col-4 lobby_blocks" to="/lobby/favorite">
                         <MdFavorite />
+                        <br />
                         喜好清單
+                        <br />
+                        過去引起您注目，並可 能進行購買的商品。
                       </Link>
                       <div className="col-4 lobby_blocks" to="/cart">
                         <FaCartArrowDown />
+                        <br />
                         查看購物車
+                        <br />
+                        查看您準備購買的商品
                       </div>
                     </div>
                   </div>
