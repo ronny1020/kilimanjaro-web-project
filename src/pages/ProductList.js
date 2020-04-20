@@ -28,8 +28,8 @@ function ProductList(props) {
     )
   }
 
-  const productList = products.map((product) => (
-    <div key={product.id}>
+  const productList = products.map((product, i) => (
+    <div key={i}>
       <ProductListItem>
         <h3>{product.ProductName}</h3>
         <p>id:{product.productID}</p>
