@@ -219,6 +219,34 @@ function Sellers() {
                 </div>
               </div>
             </div>
+            <div className="row mt-3">
+              <div className="col-12" align="center">
+                <div class="container bg-white pt-3 m-6 ">
+                  <h1>特色商品</h1>
+                </div>
+              </div>
+            </div>
+            <div className=" card-deck ">
+              <ProductListItem>
+                <p>產 區:</p>
+                <p>肯亞 涅里</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>海 拔</p>
+                <p>1200-2300公尺</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>品 種</p>
+                <p>SL-28、SL-34</p>
+              </ProductListItem>
+            </div>
+            <div className="row mt-3">
+              <div className="col-12" align="center">
+                <button type="button" class="btn btn-primary">
+                  想看更多
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="col-4" align="center">
@@ -250,9 +278,12 @@ function Sellers() {
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
             <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+            <br />
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
             <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+            <br />
+            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
           </div>
         </div>
         <br />
