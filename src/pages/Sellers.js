@@ -30,8 +30,6 @@ function Sellers() {
         <br />
         <div className="row">
           <div className="col-8">
-            <Breadcrumb />
-
             <div className="row">
               <div className="col-12" align="center">
                 <div class="container bg-white pt-3 m-6 ">
@@ -92,7 +90,6 @@ function Sellers() {
             <div className=" card-deck">
               <ProductListItem>
                 <p>產 區:</p>
-                <p>非洲</p>
                 <p>肯亞 涅里</p>
               </ProductListItem>
               <ProductListItem>
@@ -106,21 +103,46 @@ function Sellers() {
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>產 區:</p>
-                <p>非洲</p>
-                <p>肯亞 涅里</p>
+                <p>等 級 </p>
+                <p>AA級以上</p>
               </ProductListItem>
               <ProductListItem>
-                <p>海 拔</p>
-                <p>1200-2300公尺</p>
+                <p>處 理</p>
+                <p>水洗法</p>
               </ProductListItem>
               <ProductListItem>
-                <p>品 種</p>
-                <p>SL-28、SL-34</p>
+                <p>特 色</p>
+                <p>蔗糖甜味帶出肯亞特有的烏梅酒香與黑醋栗般的尾韻。</p>
               </ProductListItem>
             </div>
           </div>
+
           <div className="col-4" align="center">
+            <li>
+              <a href="#" class="scroll-link" data-id="best-offer-section">
+                小農咖啡園1
+              </a>
+            </li>
+            <li>
+              <a href="#" class="scroll-link" data-id="events-section">
+                小農咖啡園1
+              </a>
+            </li>
+            <li>
+              <a href="#" class="scroll-link" data-id="testimonial-section">
+                小農咖啡園1
+              </a>
+            </li>
+            <li>
+              <a href="#" class="scroll-link" data-id="services-section">
+                小農咖啡園1
+              </a>
+            </li>
+            <li>
+              <a href="#" class="scroll-link" data-id="contact-section">
+                小農咖啡園1
+              </a>
+            </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
             <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
