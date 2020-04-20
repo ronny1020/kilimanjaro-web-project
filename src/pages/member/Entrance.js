@@ -1,10 +1,12 @@
 import React from 'react'
+import Lobby from '../member/logged/Lobby'
 import { Button, Form } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 // import bcrypt from 'bcrypt'
 
 function Entrance(props) {
+  console.log(props)
   return (
     <>
       <div className="col-sm-6 bg-secondary">
@@ -12,7 +14,14 @@ function Entrance(props) {
           <h1>會員登入</h1>
           <Form
             onSubmit={() => {
-              props.history.push('/lobby')
+              props.setIsAuth(true)
+              console.log(props.isAuth)
+              return (
+                <>
+                  {/* <Lobby isAuth={props.isAuth} setIsAuth={props.setIsAuth} />
+                  <Redirect to="/lobby"></Redirect> */}
+                </>
+              )
             }}
           >
             <Form.Group controlId="formBasicEmail">

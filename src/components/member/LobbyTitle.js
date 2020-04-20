@@ -21,7 +21,9 @@ function LobbyTitle(props) {
             <div className="title_link">
               <Link to="/qna">常見問題</Link>
               <span>|</span>
-              <Link to="/login">登出頁面</Link>
+              <Link to="/login" onClick={() => props.setIsAuth(false)}>
+                登出頁面
+              </Link>
             </div>
           </div>
         </div>

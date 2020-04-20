@@ -37,7 +37,7 @@ function Breadcrumb(props) {
     for (let m = 1; m <= i; m++) {
       url += '/' + pathname_Array[m]
     }
-    console.log(url)
+    // console.log(url)
 
     var appendToContent = (
       <>

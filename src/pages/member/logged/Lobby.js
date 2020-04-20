@@ -24,7 +24,8 @@ import { MdFavorite } from 'react-icons/md'
 import { IoMdMail } from 'react-icons/io'
 import { GiTicket } from 'react-icons/gi'
 
-function Member() {
+function Member(props) {
+  console.log(props)
   return (
     <>
       <Router>

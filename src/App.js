@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -34,11 +34,12 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false)
   return (
     <>
       <Router>
         <>
-          <Header />
+          <Header isAuth={isAuth} />
 
           <Switch>
             {/* navbar pages */}
@@ -65,11 +66,17 @@ function App() {
 
             {/* member pages */}
             <Route path="/login">
-              <Redirect from="/login" to="/login/entrance"></Redirect>
-              <Login />
-            </Route>
-            <Route path="/lobby">
-              <Lobby />
+              {isAuth ? (
+                <>
+                  <Redirect from="/login" to="/lobby"></Redirect>
+                  <Lobby isAuth={isAuth} setIsAuth={setIsAuth} />
+                </>
+              ) : (
+                <>
+                  <Redirect from="/login" to="/login/entrance"></Redirect>
+                  <Login isAuth={isAuth} setIsAuth={setIsAuth} />
+                </>
+              )}
             </Route>
 
             {/* purchase pages */}

@@ -7,6 +7,14 @@ import ForgetPwd from './ForgetPwd'
 import Entrance from './Entrance'
 
 function Login(props) {
+  // if (props.isAuth === true) {
+  //   return (
+  //     <>
+  //       <Redirect from="/login/entrance" to="/lobby"></Redirect>
+  //     </>
+  //   )
+  // }
+  console.log(props)
   return (
     <>
       <div className="container">
@@ -21,7 +29,7 @@ function Login(props) {
               <ForgetPwd />
             </Route>
             <Route path="/login/entrance">
-              <Entrance />
+              <Entrance isAuth={props.isAuth} setIsAuth={props.setIsAuth} />
             </Route>
           </Switch>
         </div>
