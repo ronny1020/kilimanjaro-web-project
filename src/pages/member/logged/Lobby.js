@@ -26,13 +26,24 @@ import { GiTicket } from 'react-icons/gi'
 
 function Member(props) {
   console.log(props)
+  if (props.isAuth === false) {
+    return (
+      <>
+        <Redirect to="/login" />
+      </>
+    )
+  }
   return (
     <>
       <Router>
         <>
           <Switch>
             <Route exact path="/lobby">
-              <LobbyTitle string={'會員中心'} />
+              <LobbyTitle
+                string={'會員中心'}
+                isAuth={props.isAuth}
+                setIsAuth={props.setIsAuth}
+              />
               <div className="container bg-secondary">
                 <div className="row">
                   <div className="col-8">
