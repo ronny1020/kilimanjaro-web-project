@@ -10,20 +10,38 @@ function ProductList(props) {
 
   useEffect(() => {
     getProductList()
-  }, [])
+  }, [getProductList])
+
+  console.log('products')
+  console.log(products)
+  if (products === undefined) {
+    return (
+      <>
+        <div className="container">
+          <h1>產品頁面</h1>
+
+          <Link to="/product/123">123</Link>
+          <br />
+          <Link to="/product/12345">12345</Link>
+        </div>
+      </>
+    )
+  }
 
   const productList = products.map((product) => (
-    <ProductListItem key={product.id}>
-      <h3>{product.id}</h3>
-      <p>{product.name}</p>
-    </ProductListItem>
+    <div key={product.id}>
+      <ProductListItem>
+        <h3>{product.ProductName}</h3>
+        <p>id:{product.productID}</p>
+      </ProductListItem>
+    </div>
   ))
 
   return (
     <>
       <div className="container">
         <h1>產品頁面</h1>
-        <div className=" card-deck">{productList}</div>
+        {productList}
         <Link to="/product/123">123</Link>
         <br />
         <Link to="/product/12345">12345</Link>
@@ -32,8 +50,8 @@ function ProductList(props) {
   )
 }
 
-const mapStateToProps = (state) => ({
-  products: state.items,
-})
+const mapStateToProps = (state) => {
+  return { products: state.ProductListReducer.items.ProductList }
+}
 
 export default connect(mapStateToProps, { getProductList })(ProductList)
