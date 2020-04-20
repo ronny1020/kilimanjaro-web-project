@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Sidebar(props) {
   var content = []
-  console.log(props)
+  // console.log(props)
 
   const inputArray = props.input
 

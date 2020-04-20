@@ -18,17 +18,31 @@
   font-weight: 800;
 }
 
-.title_link{
-    position: absolute;
-    bottom: 0;
-    font-size: 18px;
+.title_link {
+  position: absolute;
+  bottom: 0;
+  font-size: 18px;
 }
 .title_link a {
   color: #1f71b8;
   font-weight: 800;
-//   position: absolute;
+  //   position: absolute;
 }
 .title_link span {
   top: 5px;
   margin: 5px;
+}
+
+//Lobby blocks:
+
+.lobby_blocks {
+  width: 200px;
+  height: 166px;
+  cursor: pointer;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 0.5px solid gray;
+}
+.lobby_blocks > svg {
+  color: #fab5b5;
 }

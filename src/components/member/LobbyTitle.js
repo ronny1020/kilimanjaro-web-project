@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 function LobbyTitle(props) {
-  console.log(props.string)
+  // console.log(props.string)
   var title = ''
   if (!props.string) {
     title = '預設字串'

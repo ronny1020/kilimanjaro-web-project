@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
   Redirect,
+  Link,
 } from 'react-router-dom'
 import Breadcrumb from '../../../components/Breadcrumb'
 
@@ -17,6 +18,11 @@ import LobbyTitle from '../../../components/member/LobbyTitle'
 import Login from '../Login'
 import Home from '../../Home'
 import NotFoundPage from '../../NotFoundPage'
+
+import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
+import { MdFavorite } from 'react-icons/md'
+import { IoMdMail } from 'react-icons/io'
+import { GiTicket } from 'react-icons/gi'
 
 function Member() {
   return (
@@ -31,6 +37,36 @@ function Member() {
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
+                    <div className="bg-white">你好, 會員某某</div>
+                    <div className="row">
+                      <Link className="col-4 lobby_blocks" to="/lobby/edit">
+                        <FaUserEdit />
+                        修改會員資料
+                      </Link>
+                      <div className="col-4 lobby_blocks">
+                        <IoMdMail />
+                        同好會
+                      </div>
+                      <Link className="col-4 lobby_blocks" to="/lobby/coupon">
+                        <GiTicket />
+                        折扣券
+                      </Link>
+                    </div>
+
+                    <div className="row">
+                      <Link className="col-4 lobby_blocks" to="/lobby/history">
+                        <FaCreditCard />
+                        交易紀錄
+                      </Link>
+                      <Link className="col-4 lobby_blocks" to="/lobby/favorite">
+                        <MdFavorite />
+                        喜好清單
+                      </Link>
+                      <div className="col-4 lobby_blocks" to="/cart">
+                        <FaCartArrowDown />
+                        查看購物車
+                      </div>
+                    </div>
                   </div>
                   <div className="col-4" align="center">
                     <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
