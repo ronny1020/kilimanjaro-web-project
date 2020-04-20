@@ -36,7 +36,7 @@ async function executeSQL(
         {
           if (multirows) {
             res.status(200).json({
-              ProductList: rows,
+              MemberList: rows,
             })
           } else {
             let result = {}
