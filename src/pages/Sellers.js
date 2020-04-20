@@ -1,17 +1,7 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-  Link,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LobbyTitle from '../components/member/LobbyTitle'
-import Breadcrumb from '../components/Breadcrumb'
-import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
-import { MdFavorite } from 'react-icons/md'
-import { IoMdMail } from 'react-icons/io'
-import { GiTicket } from 'react-icons/gi'
+
 import { FaWikipediaW } from 'react-icons/fa'
 
 import { Carousel } from 'react-bootstrap'
@@ -251,29 +241,19 @@ function Sellers() {
 
           <div className="col-4" align="center">
             <li>
-              <a href="#" class="scroll-link" data-id="best-offer-section">
-                小農咖啡園1
-              </a>
+              <Link to="/product/123">小農咖啡園1</Link>
             </li>
             <li>
-              <a href="#" class="scroll-link" data-id="events-section">
-                小農咖啡園1
-              </a>
+              <Link to="/product/123">小農咖啡園1</Link>
             </li>
             <li>
-              <a href="#" class="scroll-link" data-id="testimonial-section">
-                小農咖啡園1
-              </a>
+              <Link to="/product/123">小農咖啡園1</Link>
             </li>
             <li>
-              <a href="#" class="scroll-link" data-id="services-section">
-                小農咖啡園1
-              </a>
+              <Link to="/product/123">小農咖啡園1</Link>
             </li>
             <li>
-              <a href="#" class="scroll-link" data-id="contact-section">
-                小農咖啡園1
-              </a>
+              <Link to="/product/123">小農咖啡園1</Link>
             </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
