@@ -58,7 +58,7 @@ async function executeSQL(
 
 router.get('/:id', (req, res, next) => {
   console.log('Product get request where id ='+req.params.id)
-  executeSQL(Product.getProduct(req.query), res, [req.params.id])
+  executeSQL(Product.getProduct(req.query), res, [req.params.id],'get',false)
 })
 
 export default router
