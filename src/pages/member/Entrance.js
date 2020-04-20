@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 
+// import bcrypt from 'bcrypt'
+
 function Entrance(props) {
   return (
     <>
@@ -15,12 +17,12 @@ function Entrance(props) {
           >
             <Form.Group controlId="formBasicEmail">
               <Form.Label>帳號</Form.Label>
-              <Form.Control type="text" placeholder="請輸入帳號" />
+              <Form.Control type="text" placeholder="請輸入帳號" required />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>密碼</Form.Label>
-              <Form.Control type="password" placeholder="請輸入密碼" />
+              <Form.Control type="password" placeholder="請輸入密碼" required />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="記得我" />
