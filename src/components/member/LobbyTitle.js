@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 function LobbyTitle(props) {
-  console.log(props)
+  // console.log(props)
   var title = ''
   if (!props.string) {
     title = '預設字串'
@@ -21,7 +21,10 @@ function LobbyTitle(props) {
             <div className="title_link">
               <Link to="/qna">常見問題</Link>
               <span>|</span>
-              <Link to="/login" onClick={() => props.setIsAuth(false)}>
+              <Link
+                to="/login"
+                onClick={() => localStorage.setItem('LoginValidate', false)}
+              >
                 登出頁面
               </Link>
             </div>

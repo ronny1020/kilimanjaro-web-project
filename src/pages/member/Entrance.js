@@ -1,11 +1,18 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 // import bcrypt from 'bcrypt'
 
 function Entrance(props) {
-  // console.log(props.isAuth)
+  var valid = localStorage.getItem('LoginValidate')
+  if (valid === 'true') {
+    return (
+      <>
+        <Redirect to="/lobby" />
+      </>
+    )
+  }
   return (
     <>
       <div className="col-sm-6 bg-secondary">
@@ -13,7 +20,8 @@ function Entrance(props) {
           <h1>會員登入</h1>
           <Form
             onSubmit={() => {
-              props.setIsAuth(true)
+              localStorage.setItem('LoginValidate', true)
+              // props.setIsAuth(true)
               props.history.push('/lobby')
             }}
           >

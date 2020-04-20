@@ -34,13 +34,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
-  // console.log(isAuth)
+  // const [isAuth, setIsAuth] = useState(false)
+  let valid = localStorage.getItem('LoginValidate')
+  console.log(valid)
   return (
     <>
       <Router>
         <>
-          <Header isAuth={isAuth} />
+          <Header />
 
           <Switch>
             {/* navbar pages */}
@@ -68,11 +69,11 @@ function App() {
             {/* member pages */}
             <Route path="/login">
               <Redirect from="/login" to="/login/entrance"></Redirect>
-              <Login isAuth={isAuth} setIsAuth={setIsAuth} />
+              <Login />
             </Route>
 
             <Route path="/lobby">
-              <Lobby isAuth={isAuth} setIsAuth={setIsAuth} />
+              <Lobby />
             </Route>
 
             {/* purchase pages */}

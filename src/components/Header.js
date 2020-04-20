@@ -3,7 +3,9 @@ import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
 // import { Link } from 'react-router-dom'
 
-function Header() {
+function Header(props) {
+  // props.setIsAuth(localStorage.getItem('LoginValidate'))
+  let valid = localStorage.getItem('LoginValidate')
   return (
     <header>
       <>
@@ -18,7 +20,11 @@ function Header() {
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <Nav.Link className="navicon_mob" href="/login">
-            <img src="../images/user.svg" alt="user"></img>
+            {valid === 'true' ? (
+              <img src="../images/dummy.jpg" alt="user"></img>
+            ) : (
+              <img src="../images/user.svg" alt="user"></img>
+            )}
           </Nav.Link>
           <Nav.Link className="navicon_mob" href="/product">
             <img src="../images/cart.svg" alt="cart"></img>
@@ -62,8 +68,13 @@ function Header() {
           <Navbar.Brand href="/" className="brand_web">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
+
           <Nav.Link className="navicon_web" href="/login">
-            <img src="../images/user.svg" alt="user"></img>
+            {valid === 'true' ? (
+              <img src="../images/dummy.jpg" alt="user"></img>
+            ) : (
+              <img src="../images/user.svg" alt="user"></img>
+            )}
           </Nav.Link>
           <Nav.Link className="navicon_web" href="/cart">
             <img src="../images/cart.svg" alt="cart"></img>

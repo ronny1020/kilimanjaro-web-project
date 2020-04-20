@@ -25,8 +25,10 @@ import { IoMdMail } from 'react-icons/io'
 import { GiTicket } from 'react-icons/gi'
 
 function Member(props) {
-  console.log(props)
-  if (props.isAuth === false) {
+  // localStorage.setItem('LoginValidate', props.isAuth)
+  var valid = localStorage.getItem('LoginValidate')
+  console.log(valid)
+  if (valid === 'false') {
     return (
       <>
         <Redirect to="/login" />
