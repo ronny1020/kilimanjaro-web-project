@@ -91,19 +91,32 @@ function Sellers() {
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
+                <p>產 區:</p>
+                <p>非洲</p>
+                <p>肯亞 涅里</p>
               </ProductListItem>
               <ProductListItem>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
+                <p>海 拔</p>
+                <p>1200-2300公尺</p>
               </ProductListItem>
               <ProductListItem>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
+                <p>品 種</p>
+                <p>SL-28、SL-34</p>
+              </ProductListItem>
+            </div>
+            <div className=" card-deck">
+              <ProductListItem>
+                <p>產 區:</p>
+                <p>非洲</p>
+                <p>肯亞 涅里</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>海 拔</p>
+                <p>1200-2300公尺</p>
+              </ProductListItem>
+              <ProductListItem>
+                <p>品 種</p>
+                <p>SL-28、SL-34</p>
               </ProductListItem>
             </div>
           </div>
