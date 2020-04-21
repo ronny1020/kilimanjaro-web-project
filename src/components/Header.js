@@ -8,12 +8,12 @@ import jwt from 'jsonwebtoken'
 function Header(props) {
   var valid = false
 
-  if (!localStorage.getItem('token')) {
-    valid = false
-  } else {
+  if (localStorage.getItem('token')) {
     const token = localStorage.getItem('token')
-    const decrypt = jwt.verify(token, 'himitsu')
-    valid = decrypt.isLogged
+    if (jwt.verify(token, 'himitsu')) {
+      const decrypt = jwt.verify(token, 'himitsu')
+      valid = decrypt.isLogged
+    }
   }
 
   return (

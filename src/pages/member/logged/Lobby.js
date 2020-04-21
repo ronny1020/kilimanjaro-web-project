@@ -30,17 +30,17 @@ function Member(props) {
   const [name, setName] = useState('')
   var valid = false
 
-  if (!localStorage.getItem('token')) {
-    valid = false
-  } else {
+  if (localStorage.getItem('token')) {
     const token = localStorage.getItem('token')
-    const decrypt = jwt.verify(token, 'himitsu')
-    valid = decrypt.isLogged
-    var memberID = decrypt.user_id
+    if (jwt.verify(token, 'himitsu')) {
+      const decrypt = jwt.verify(token, 'himitsu')
+      valid = decrypt.isLogged
+      var memberID = decrypt.user_id
+    }
   }
 
   // console.log(valid, memberID)
-  if (valid === 'false') {
+  if (valid === false) {
     return (
       <>
         <Redirect to="/login" />
