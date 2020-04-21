@@ -12,27 +12,10 @@ async function executeSQL(
   multirows = true,
   instance = {}
 ) {
-  console.log(id)
   try {
     const [rows, fields] = await database.promisePool.query(sql, [id])
 
     switch (method) {
-      case 'post': {
-        const insertId = { id: rows.insertId }
-        const result = { ...instance, ...insertId }
-        res.status(200).json(result)
-        break
-      }
-      case 'put': {
-        let result = {}
-        if (rows.affectedRows) result = { ...instance }
-        res.status(200).json(result)
-        break
-      }
-      case 'delete': {
-        res.status(200).json({})
-        break
-      }
       case 'get':
       default:
         {
@@ -57,8 +40,8 @@ async function executeSQL(
 }
 
 router.get('/:id', (req, res, next) => {
-  console.log('Product get request where id ='+req.params.id)
-  executeSQL(Product.getProduct(req.query), res, [req.params.id],'get',false)
+  console.log('Product get request where id = ' + req.params.id)
+  executeSQL(Product.getProduct(), res, [req.params.id], 'get', false)
 })
 
 export default router

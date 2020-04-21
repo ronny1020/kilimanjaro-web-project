@@ -16,7 +16,7 @@ function ProductListItem(props) {
   }))
   return (
     <animated.div
-      class="card spring-card m-3 p-3"
+      className="card spring-card m-3 p-3"
       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
       style={{ transform: springProps.xys.interpolate(trans) }}
