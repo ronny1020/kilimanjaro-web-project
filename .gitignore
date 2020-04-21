@@ -60,3 +60,5 @@ node_server/Network Trash Folder
 node_server/Temporary Items
 node_server/.apdisk
 node_server/dist
+
+src/components
