@@ -4,6 +4,7 @@ import { Link, withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 // var bcrypt = dcodeIO.bcrypt
 
 function Entrance(props) {
@@ -53,11 +54,20 @@ function Entrance(props) {
       })
       .then(function (allMemberList) {
         if (isLogged === true) {
+          //登入成功 JWT
           // console.log(isLogged)
-          localStorage.setItem('MemberId', customerID)
-          localStorage.setItem('LoginValidate', true)
+          const Validation = {
+            user_id: customerID,
+            isLogged: true,
+          }
+          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '1h' })
+          localStorage.setItem('token', token)
+
+          // localStorage.setItem('MemberId', customerID)
+          // localStorage.setItem('LoginValidate', true)
           props.history.push('/lobby')
         } else {
+          //登入失敗
           setBSAlert(true)
           console.log(isLogged)
         }
@@ -67,7 +77,15 @@ function Entrance(props) {
       })
   }
 
-  var valid = localStorage.getItem('LoginValidate')
+  var valid = false
+
+  if (!localStorage.getItem('token')) {
+    valid = false
+  } else {
+    const token = localStorage.getItem('token')
+    const decrypt = jwt.verify(token, 'himitsu')
+    valid = decrypt.isLogged
+  }
   if (valid === 'true') {
     return (
       <>

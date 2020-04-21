@@ -23,11 +23,7 @@ function LobbyTitle(props) {
               <span>|</span>
               <Link
                 to="/login"
-                onClick={() => (
-                  // eslint-disable-next-line no-sequences
-                  localStorage.setItem('LoginValidate', false),
-                  localStorage.removeItem('MemberId')
-                )}
+                onClick={() => localStorage.removeItem('token')}
               >
                 登出頁面
               </Link>
