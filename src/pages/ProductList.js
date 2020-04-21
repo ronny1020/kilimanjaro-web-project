@@ -12,8 +12,6 @@ function ProductList(props) {
     getProductList()
   }, [getProductList])
 
-  console.log('products')
-  console.log(products)
   if (products === undefined) {
     return (
       <>
@@ -51,7 +49,10 @@ function ProductList(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { products: state.ProductListReducer.items.ProductList }
+  return {
+    products: state.ProductListReducer.items.ProductList,
+    range: state.ProductListReducer.items.Range,
+  }
 }
 
 export default connect(mapStateToProps, { getProductList })(ProductList)

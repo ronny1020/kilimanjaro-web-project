@@ -39,7 +39,7 @@ async function executeSQL(
           if (multirows) {
             res.status(200).json({
               Range: output,
-              ProductList: rows,
+              ProductList: rows[0],
             })
           } else {
             let result = {}
