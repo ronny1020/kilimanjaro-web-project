@@ -35,8 +35,8 @@ import Footer from './components/Footer'
 
 function App() {
   // const [isAuth, setIsAuth] = useState(false)
-  let valid = localStorage.getItem('LoginValidate')
-  console.log(valid)
+  // let valid = localStorage.getItem('LoginValidate')
+  // console.log(valid)
   return (
     <>
       <Router>

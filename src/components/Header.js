@@ -1,11 +1,21 @@
 import React from 'react'
 import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
+
+import jwt from 'jsonwebtoken'
 // import { Link } from 'react-router-dom'
 
 function Header(props) {
-  // props.setIsAuth(localStorage.getItem('LoginValidate'))
-  let valid = localStorage.getItem('LoginValidate')
+  var valid = false
+
+  if (localStorage.getItem('token')) {
+    const token = localStorage.getItem('token')
+    if (jwt.verify(token, 'himitsu')) {
+      const decrypt = jwt.verify(token, 'himitsu')
+      valid = decrypt.isLogged
+    }
+  }
+
   return (
     <header>
       <>
@@ -20,7 +30,7 @@ function Header(props) {
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <Nav.Link className="navicon_mob" href="/login">
-            {valid === 'true' ? (
+            {valid ? (
               <img src="../images/dummy.jpg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>
@@ -70,7 +80,7 @@ function Header(props) {
           </Navbar.Brand>
 
           <Nav.Link className="navicon_web" href="/login">
-            {valid === 'true' ? (
+            {valid ? (
               <img src="../images/dummy.jpg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>

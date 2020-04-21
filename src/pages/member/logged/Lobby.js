@@ -24,14 +24,23 @@ import { MdFavorite } from 'react-icons/md'
 import { IoMdMail } from 'react-icons/io'
 import { GiTicket } from 'react-icons/gi'
 
+import jwt from 'jsonwebtoken'
+
 function Member(props) {
   const [name, setName] = useState('')
+  var valid = false
 
-  // localStorage.setItem('LoginValidate', props.isAuth)
-  var valid = localStorage.getItem('LoginValidate')
-  var memberID = localStorage.getItem('MemberId')
+  if (localStorage.getItem('token')) {
+    const token = localStorage.getItem('token')
+    if (jwt.verify(token, 'himitsu')) {
+      const decrypt = jwt.verify(token, 'himitsu')
+      valid = decrypt.isLogged
+      var memberID = decrypt.user_id
+    }
+  }
+
   // console.log(valid, memberID)
-  if (valid === 'false') {
+  if (valid === false) {
     return (
       <>
         <Redirect to="/login" />
