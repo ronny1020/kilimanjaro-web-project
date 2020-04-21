@@ -5,8 +5,10 @@ import ProductListItem from '../components/ProductList/productListItem'
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
 
+import Pagination from 'react-bootstrap/Pagination'
+
 function ProductList(props) {
-  const { products, getProductList } = props
+  const { products, range, getProductList } = props
 
   useEffect(() => {
     getProductList()
@@ -35,14 +37,68 @@ function ProductList(props) {
     </div>
   ))
 
+  // page selection
+  let pageList = []
+
+  for (let i = 1; i <= 3 && i <= range.totalPages; i++) {
+    pageList.push(i)
+  }
+
+  if (range.page <= 6) {
+    for (let i = 4; i <= range.page + 2 && i <= range.totalPages; i++) {
+      pageList.push(i)
+    }
+  } else {
+    pageList.push('ellipsis')
+
+    for (
+      let i = range.page - 2;
+      i <= range.page + 2 && i <= range.totalPages;
+      i++
+    ) {
+      pageList.push(i)
+    }
+  }
+
+  if (range.totalPages - range.page <= 5) {
+    for (let i = range.page + 3; i <= range.totalPages; i++) {
+      pageList.push(i)
+    }
+  } else {
+    pageList.push('ellipsis')
+    for (let i = range.totalPages - 2; i <= range.totalPages; i++) {
+      pageList.push(i)
+    }
+  }
+
+  const PageIndex = pageList.map((page, i) => {
+    switch (page) {
+      case range.page:
+        return (
+          <Pagination.Item key={i} active>
+            {page}
+          </Pagination.Item>
+        )
+      case 'ellipsis':
+        return <Pagination.Ellipsis key={i} />
+      default:
+        return <Pagination.Item key={i}>{page}</Pagination.Item>
+    }
+  })
+
   return (
     <>
       <div className="container">
         <h1>產品頁面</h1>
         {productList}
-        <Link to="/product/123">123</Link>
-        <br />
-        <Link to="/product/12345">12345</Link>
+
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Prev />
+          {PageIndex}
+          <Pagination.Next />
+          <Pagination.Last />
+        </Pagination>
       </div>
     </>
   )
