@@ -7,35 +7,38 @@ const router = express.Router()
 async function executeSQL(
   sql,
   res,
+  perPage,
+  page,
   method = 'get',
-  multirows = true,
-  instance = {}
+  multirows = true
 ) {
   try {
-    const [rows, fields] = await database.promisePool.query(sql)
+    const output = {
+      totalRows: 0,
+      perPage: perPage,
+      totalPages: 0,
+      page: page,
+      rows: 0,
+    }
+    const t_sql = 'SELECT COUNT(1) num FROM coffee.products'
+    const results_total = await database.promisePool.query(t_sql)
+    output.totalRows = results_total[0][0].num
+    output.totalPages = Math.ceil(output.totalRows / perPage)
+    if (output.page < 1) output.page = 1
+    if (output.page > output.totalPages) output.page = output.totalPages
+
+    const rows = await database.promisePool.query(sql, [
+      (output.page - 1) * output.perPage,
+      output.perPage,
+    ])
 
     switch (method) {
-      case 'post': {
-        const insertId = { id: rows.insertId }
-        const result = { ...instance, ...insertId }
-        res.status(200).json(result)
-        break
-      }
-      case 'put': {
-        let result = {}
-        if (rows.affectedRows) result = { ...instance }
-        res.status(200).json(result)
-        break
-      }
-      case 'delete': {
-        res.status(200).json({})
-        break
-      }
       case 'get':
       default:
         {
           if (multirows) {
             res.status(200).json({
+              Range: output,
               ProductList: rows,
             })
           } else {
@@ -54,9 +57,14 @@ async function executeSQL(
   }
 }
 
-router.get('/', (req, res, next) => {
-  console.log('ProductList get request')
-  executeSQL(ProductList.getProductList(req.query), res)
+router.get('/:perPage?/:page?', (req, res, next) => {
+  const perPage = req.params.perPage ? parseInt(req.params.perPage) : 20
+  const page = req.params.page ? parseInt(req.params.page) : 1
+
+  console.log(
+    'ProductList get request where' + ' perPage= ' + perPage + ' page= ' + page
+  )
+  executeSQL(ProductList.getProductList(), res, perPage, page)
 })
 
 export default router
