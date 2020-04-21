@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LobbyTitle from '../components/member/LobbyTitle'
+import { Carousel } from 'react-bootstrap'
 
+import ProductListItem from '../components/ProductList/productListItem'
+import LobbyTitle from '../components/member/LobbyTitle'
 import { FaWikipediaW } from 'react-icons/fa'
 
-import { Carousel } from 'react-bootstrap'
-import ProductListItem from '../components/ProductList/productListItem'
 import img001 from '../img/home/carousel/001.jpg'
 import img002 from '../img/home/carousel/002.jpg'
 import img003 from '../img/home/carousel/003.jpg'
@@ -232,7 +232,7 @@ function Sellers() {
             </div>
             <div className="row mt-3">
               <div className="col-12" align="center">
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-danger text-white">
                   想看更多
                 </button>
               </div>
@@ -240,9 +240,20 @@ function Sellers() {
           </div>
 
           <div className="col-4" align="center">
+            <nav className="navbar sidebar">
+              <ul className="navbar-nav">
+                <li>
+                  <div className=" bg-primary banner">
+                    <p className="text-secondary">請選擇賣家</p>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+
             <li>
               <Link to="/product/123">小農咖啡園1</Link>
             </li>
+
             <li>
               <Link to="/product/123">小農咖啡園1</Link>
             </li>
