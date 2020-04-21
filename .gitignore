@@ -61,4 +61,4 @@ node_server/Temporary Items
 node_server/.apdisk
 node_server/dist
 
-src/components
+src/components/member/Test.js
