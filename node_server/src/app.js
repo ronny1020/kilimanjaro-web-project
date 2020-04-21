@@ -6,6 +6,7 @@ import ProductListApi from './api/ProductListApi'
 import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
 import MemberApi from './api/MemberApi'
+import editMemberApi from './api/editMemberApi'
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
 app.use('/MemberList', MemberListApi)
 app.use('/Member', MemberApi)
+app.use('/editMember', editMemberApi)
 
 
 
