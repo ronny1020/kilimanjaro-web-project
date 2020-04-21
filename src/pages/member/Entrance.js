@@ -3,9 +3,13 @@ import { Button, Form } from 'react-bootstrap'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 
+import bcrypt from 'bcryptjs'
+// var bcrypt = dcodeIO.bcrypt
+
 function Entrance(props) {
   const [password, setPassword] = useState('')
   const [account, setAccount] = useState('')
+  const [bsAlert, setBSAlert] = useState(false)
 
   function validateForm() {
     return account.length > 0 && password.length > 0
@@ -13,10 +17,54 @@ function Entrance(props) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    //do login validation here!
 
-    localStorage.setItem('LoginValidate', true)
-    props.history.push('/lobby')
+    let isLogged = false
+
+    let customerID = ''
+    var inserted_acc = document.getElementById('formBasicEmail').value
+    var inserted_pwd = document.getElementById('formBasicPassword').value
+    setAccount(inserted_acc)
+    setPassword(inserted_pwd)
+    console.log(account, password)
+
+    fetch('http://localhost:6001/member')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (allMemberList) {
+        console.log(allMemberList)
+
+        //Do validation here
+        for (let i = 0; i < allMemberList.MemberList.length; i++) {
+          if (account === allMemberList.MemberList[i].cAccount)
+            if (
+              bcrypt.compareSync(
+                password,
+                allMemberList.MemberList[i].cPassword
+              )
+            ) {
+              return (
+                (isLogged = true),
+                (customerID = allMemberList.MemberList[i].customerID)
+              )
+            }
+        }
+        return (isLogged = false)
+      })
+      .then(function (allMemberList) {
+        if (isLogged === true) {
+          // console.log(isLogged)
+          localStorage.setItem('MemberId', customerID)
+          localStorage.setItem('LoginValidate', true)
+          props.history.push('/lobby')
+        } else {
+          setBSAlert(true)
+          console.log(isLogged)
+        }
+      })
+      .catch(function (error) {
+        console.log('Cannot fetch member data. ', error.message)
+      })
   }
 
   var valid = localStorage.getItem('LoginValidate')
@@ -33,7 +81,7 @@ function Entrance(props) {
       <div className="col-sm-6 bg-secondary">
         <div className="col-sm-6 bg-secondary">
           <h1>會員登入</h1>
-          <Alert id="warning_msg" variant="danger" show={0}>
+          <Alert id="warning_msg" variant="danger" show={bsAlert}>
             帳號或密碼錯誤!
           </Alert>
           <Form onSubmit={handleSubmit}>
