@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import ProductListItem from '../components/ProductList/productListItem'
+import { useParams } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
@@ -8,22 +8,18 @@ import { getProductList } from '../actions/getProductList'
 import Pagination from 'react-bootstrap/Pagination'
 
 function ProductList(props) {
+  let { page } = useParams()
+  page = page ? page : 1
   const { products, range, getProductList } = props
 
   useEffect(() => {
-    getProductList()
-  }, [getProductList])
+    getProductList(page)
+  }, [getProductList, page])
 
   if (products === undefined) {
     return (
       <>
-        <div className="container">
-          <h1>產品頁面</h1>
-
-          <Link to="/product/123">123</Link>
-          <br />
-          <Link to="/product/12345">12345</Link>
-        </div>
+        <div className="container">Loading...</div>
       </>
     )
   }
@@ -80,24 +76,43 @@ function ProductList(props) {
           </Pagination.Item>
         )
       case 'ellipsis':
-        return <Pagination.Ellipsis key={i} />
+        return <Pagination.Ellipsis disabled key={i} />
       default:
-        return <Pagination.Item key={i}>{page}</Pagination.Item>
+        return (
+          <Pagination.Item key={i} href={'../productList/' + page}>
+            {page}
+          </Pagination.Item>
+        )
     }
   })
+
+  const row_start = (range.page - 1) * range.perPage + 1
+  const row_end =
+    row_start + range.perPage < range.totalRows
+      ? row_start + range.perPage
+      : range.totalRows
 
   return (
     <>
       <div className="container">
         <h1>產品頁面</h1>
-        {productList}
-
-        <Pagination>
-          <Pagination.First />
-          <Pagination.Prev />
+        <p className="d-flex justify-content-end mb-5">
+          第 {range.page} 頁( {row_start} - {row_end} )，共 {range.totalPages}{' '}
+          頁 {range.totalRows} 項
+        </p>
+        <div>{productList}</div>
+        <Pagination className="justify-content-center mt-5">
+          <Pagination.First href="1" />
+          <Pagination.Prev href={(range.page > 1 ? range.page - 1 : 1) + ''} />
           {PageIndex}
-          <Pagination.Next />
-          <Pagination.Last />
+          <Pagination.Next
+            href={
+              (range.page < range.totalPages
+                ? range.page + 1
+                : range.totalPages) + ''
+            }
+          />
+          <Pagination.Last href={range.totalPages + ''} />
         </Pagination>
       </div>
     </>
