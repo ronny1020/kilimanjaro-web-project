@@ -86,7 +86,7 @@ function Entrance(props) {
       valid = decrypt.isLogged
     }
   }
-  if (valid === 'true') {
+  if (valid === true) {
     return (
       <>
         <Redirect to="/lobby" />
