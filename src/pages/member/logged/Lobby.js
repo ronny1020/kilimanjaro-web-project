@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Sidebar from '../../../components/Sidebar'
 import {
   BrowserRouter as Router,
@@ -25,9 +25,12 @@ import { IoMdMail } from 'react-icons/io'
 import { GiTicket } from 'react-icons/gi'
 
 function Member(props) {
+  const [name, setName] = useState('')
+
   // localStorage.setItem('LoginValidate', props.isAuth)
   var valid = localStorage.getItem('LoginValidate')
-  console.log(valid)
+  var memberID = localStorage.getItem('MemberId')
+  // console.log(valid, memberID)
   if (valid === 'false') {
     return (
       <>
@@ -35,6 +38,18 @@ function Member(props) {
       </>
     )
   }
+
+  var url = 'http://localhost:6001/Member/' + memberID
+  // console.log(url)
+  fetch(url)
+    .then(function (resopnse) {
+      return resopnse.json()
+    })
+    .then(function (userdata) {
+      setName(userdata.cName)
+      // console.log(userdata.cName)
+    })
+
   return (
     <>
       <Router>
@@ -50,7 +65,7 @@ function Member(props) {
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
-                    <div className="bg-white">你好, 會員某某</div>
+                    <div className="bg-white">你好, 會員{name}</div>
                     <div className="row">
                       <Link className="col-4 lobby_blocks" to="/lobby/edit">
                         <FaUserEdit />

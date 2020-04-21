@@ -5,6 +5,7 @@ import cors from 'cors'
 import ProductListApi from './api/ProductListApi'
 import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
+import MemberApi from './api/MemberApi'
 
 const app = express()
 
@@ -14,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
-app.use('/member', MemberListApi)
+app.use('/MemberList', MemberListApi)
+app.use('/Member', MemberApi)
 
 
 
