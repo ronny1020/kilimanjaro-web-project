@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import ProductListItem from '../components/ProductList/productListItem'
+import Loading from '../components/Loading'
 import { useParams } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -19,7 +20,9 @@ function ProductList(props) {
   if (products === undefined) {
     return (
       <>
-        <div className="container">Loading...</div>
+        <div className="d-flex justify-content-center">
+          <Loading />
+        </div>
       </>
     )
   }
