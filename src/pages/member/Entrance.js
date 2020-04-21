@@ -27,7 +27,7 @@ function Entrance(props) {
     setPassword(inserted_pwd)
     console.log(account, password)
 
-    fetch('http://localhost:6001/member')
+    fetch('http://localhost:6001/MemberList')
       .then(function (response) {
         return response.json()
       })
