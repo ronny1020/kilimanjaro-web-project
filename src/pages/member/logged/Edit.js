@@ -18,24 +18,32 @@ function Edit() {
   var decrypt = jwt.verify(localStorage.getItem('token'), 'himitsu')
   var url = 'http://localhost:6001/Member/' + decrypt.user_id
 
-  fetch(url)
-    .then(function (response) {
-      return response.json()
-    })
-    .then(function (userdata) {
-      // console.log(userdata)
-      setEditName(userdata.cName)
-      setEditAccount(userdata.cAccount)
-      setEditMail(userdata.cEmail)
-      console.log(userdata.cBirthDate.split('T')[0])
-      // var date_test = new Date(userdata.cBirthDate.split('T')[0])
-      // setEditBirth(date_test)
-      setEditBirth(userdata.cBirthDate.split('T')[0])
-      // console.log(editbirth)
-      setEditAddr(userdata.cAddress)
-      setEditMobile(userdata.cMobile)
-      setEditSex(userdata.cSex)
-    })
+  //初次載入時fetch 重整會reset至最新
+  if (editsex === '') {
+    fetch(url)
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (userdata) {
+        // console.log(userdata)
+        setEditName(userdata.cName)
+        setEditAccount(userdata.cAccount)
+        setEditMail(userdata.cEmail)
+        console.log(userdata.cBirthDate.split('T')[0])
+        // var date_test = new Date(userdata.cBirthDate.split('T')[0])
+        // setEditBirth(date_test)
+        setEditBirth(userdata.cBirthDate.split('T')[0])
+        // console.log(editbirth)
+        setEditAddr(userdata.cAddress)
+        setEditMobile(userdata.cMobile)
+        setEditSex(userdata.cSex)
+      })
+  }
+
+  function handleSubmit(event) {
+    //do POST here!(to node.js)
+    event.preventDefault()
+  }
 
   const inputArray = {
     title: '會員中心',
@@ -63,7 +71,7 @@ function Edit() {
           </div>
           <div className="col-9">
             <Breadcrumb />
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="edit_name">
                 <Form.Label>用戶姓名</Form.Label>
                 <Form.Control
