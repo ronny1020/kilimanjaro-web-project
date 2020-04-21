@@ -52,7 +52,7 @@ function Sellers() {
                 <div className="row mt-3">
                   <div className="col-12" align="center">
                     <button type="button" class="btn btn-danger text-white">
-                      想看更多
+                      我要領取
                     </button>
                   </div>
                 </div>
@@ -66,7 +66,7 @@ function Sellers() {
                 <div className="row mt-3">
                   <div className="col-12" align="center">
                     <button type="button" class="btn btn-danger text-white">
-                      想看更多
+                      我要領取
                     </button>
                   </div>
                 </div>
