@@ -11,7 +11,8 @@ function Enroll() {
   const [enrAcc, setEnrAcc] = useState('')
   const [enrEmail, setEnrEmail] = useState('')
   const [enrPwd, setEnrPwd] = useState('')
-  const [bsAlert, setBSAlert] = useState(false)
+  const [enrID, setEnrID] = useState('')
+  const [bsAlert, setBSAlert] = useState('')
 
   function validateForm() {
     return enrAcc.length > 0 && enrEmail.length > 0 && enrPwd.length > 0
@@ -30,19 +31,42 @@ function Enroll() {
             var arr_length = Object.keys(allMemberList).length
             var id_max = allMemberList[arr_length - 1].customerID
             let newID = 'C' + (parseInt(id_max.split('C')[1]) + 1)
+            setEnrID(newID)
+
             for (let i = 0; i < arr_length; i++) {
               if (allMemberList[i].cEmail === enrEmail) {
                 setBSAlert(true)
                 i = arr_length
               } else setBSAlert(false)
             }
-            console.log(newID, hash)
           })
-        // .then(function () {
-        //   if (bsAlert === true) {
-        //     fetch()
-        //   }
-        // })
+          .then(function (newID) {
+            if (bsAlert === false) {
+              let newMember = {
+                customerID: enrID,
+                cName: enrAcc,
+                cAccount: enrAcc,
+                cEmail: enrEmail,
+                cPassword: hash,
+                cSex: 'M',
+                cBirthDate: '',
+                cAddress: '',
+                cMobile: '',
+              }
+              console.log(JSON.stringify(newMember))
+
+              fetch('http://localhost:6001/api/member/', {
+                method: 'POST', // want to use PATCH
+                body: JSON.stringify(newMember),
+                headers: new Headers({
+                  'Content-Type': 'application/json',
+                }),
+              })
+                .then((res) => res.json())
+                .catch((error) => console.error('Error:', error))
+                .then((response) => console.log('Success:', response))
+            }
+          })
       })
     })
   }

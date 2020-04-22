@@ -14,11 +14,15 @@ exports.create = (req, res) => {
 
   // Create a Member
   const member = {
-    // Auto-gen cid (or generate at FRONT)
-    cName: req.body.name,
-    cAccount: req.body.account,
-    cEmail: req.body.email,
-    cPassword: req.body.password,
+    customerID: req.body.customerID,
+    cName: req.body.cName,
+    cAccount: req.body.cAccount,
+    cEmail: req.body.cEmail,
+    cPassword: req.body.cPassword,
+    cSex: req.body.cSex,
+    cBirthDate: req.body.cBirthDate,
+    cAddress: req.body.cAddress,
+    cMobile: req.body.cMobile,
   }
 
   // Save Tutorial in the database
@@ -28,8 +32,7 @@ exports.create = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || 'Some error occurred while creating Member.',
+        message: err.message || 'Some error occurred while creating Member.',
       })
     })
 }
@@ -37,7 +40,9 @@ exports.create = (req, res) => {
 // Retrieve all Members from the database.(DONE)
 exports.findAll = (req, res) => {
   const customerID = req.query.customerID
-  var condition = customerID ? { customerID: { [Op.like]: `%${customerID}%` } } : null
+  var condition = customerID
+    ? { customerID: { [Op.like]: `%${customerID}%` } }
+    : null
 
   Member.findAll({ where: condition })
     .then(data => {
