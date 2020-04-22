@@ -13,10 +13,10 @@ module.exports = app => {
     // router.get("/published", customers.findAllPublished);
   
     // Retrieve a single member with id 製作用戶憑證
-    router.get("/:id", member.findOne);
+    router.get("/:customerID", member.findOne);
   
     // Update a member with id 更改資料
-    router.put("/:id", member.update);
+    router.put("/:customerID", member.update);
   
     // Delete a member with id 刪除帳號
     // router.delete("/:id", member.delete);
