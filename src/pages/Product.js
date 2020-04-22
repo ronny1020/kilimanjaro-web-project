@@ -46,6 +46,7 @@ function Product(props) {
         <h2>產品名稱：{product.ProductName}</h2>
         <p>價格：{product.UnitPrice}</p>
         <p>庫存：{product.UnitsInStock}</p>
+        <p>人氣：{product.visitedTimes}</p>
         <p>Tags：{tagsLink}</p>
       </CardSecondary>
     </>
