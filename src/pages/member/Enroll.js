@@ -12,7 +12,11 @@ function Enroll() {
   const [enrEmail, setEnrEmail] = useState('')
   const [enrPwd, setEnrPwd] = useState('')
   const [enrID, setEnrID] = useState('')
-  const [bsAlert, setBSAlert] = useState('')
+
+  const [bsAlert, setBSAlert] = useState(false)
+  const [doneEnroll, setDoneEnroll] = useState(false)
+
+  let isVerified = false
 
   function validateForm() {
     return enrAcc.length > 0 && enrEmail.length > 0 && enrPwd.length > 0
@@ -28,20 +32,26 @@ function Enroll() {
             return response.json()
           })
           .then(function (allMemberList) {
+            //創造新ID
             var arr_length = Object.keys(allMemberList).length
             var id_max = allMemberList[arr_length - 1].customerID
             let newID = 'C' + (parseInt(id_max.split('C')[1]) + 1)
             setEnrID(newID)
 
+            //檢查信箱是否重複
             for (let i = 0; i < arr_length; i++) {
               if (allMemberList[i].cEmail === enrEmail) {
-                setBSAlert(true)
                 i = arr_length
-              } else setBSAlert(false)
+                setBSAlert(true)
+                return (isVerified = false)
+              }
             }
+            setBSAlert(false)
+            return (isVerified = true)
           })
-          .then(function (newID) {
-            if (bsAlert === false) {
+          .then(function () {
+            //確定符合格式:送件
+            if (isVerified === true) {
               let newMember = {
                 customerID: enrID,
                 cName: enrAcc,
@@ -64,7 +74,15 @@ function Enroll() {
               })
                 .then((res) => res.json())
                 .catch((error) => console.error('Error:', error))
-                .then((response) => console.log('Success:', response))
+                .then((response) => {
+                  setBSAlert(true)
+                  setDoneEnroll(true)
+                  console.log(
+                    'Success:',
+                    //送出時: 常常觸發sequelize內建檢查
+                    response
+                  )
+                })
             }
           })
       })
@@ -76,9 +94,16 @@ function Enroll() {
       <div className="col-sm-6 bg-secondary">
         <h1>註冊會員</h1>
         <Breadcrumb />
-        <Alert id="warning_msg" variant="danger" show={bsAlert}>
-          信箱已經被人使用
-        </Alert>
+        {doneEnroll ? (
+          <Alert id="warning_msg" variant="success" show={bsAlert}>
+            註冊成功
+          </Alert>
+        ) : (
+          <Alert id="warning_msg" variant="danger" show={bsAlert}>
+            信箱已經被人使用
+          </Alert>
+        )}
+
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicAccount">
             <Form.Label>帳號</Form.Label>

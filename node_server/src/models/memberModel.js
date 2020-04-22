@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
       },
       cName: {
-        type: Sequelize.STRING(5),
+        type: Sequelize.STRING(20),
       },
       cAccount: {
         type: Sequelize.STRING(20),
