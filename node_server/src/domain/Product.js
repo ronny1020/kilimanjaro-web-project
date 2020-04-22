@@ -12,6 +12,10 @@ class Product {
     return sql
   }
 
+  static getVisitedTimes() {
+    let sql =' SELECT count(0) num FROM coffee.product_visited Where productID= ? ;'
+    return sql
+  }
 }
 
 export default Product

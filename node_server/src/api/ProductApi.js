@@ -35,6 +35,12 @@ async function executeSQL(
               result.tags = []
               tagRows[0].forEach(item => result.tags.push(item.tagName))
             }
+            const visitedTimesRes = await database.promisePool.query(
+              Product.getVisitedTimes(),
+              [result.productID]
+            )
+            console.log(visitedTimesRes[0][0].num)
+            result = { ...result, visitedTimes: visitedTimesRes[0][0].num }
 
             res.status(200).json(result)
           }
