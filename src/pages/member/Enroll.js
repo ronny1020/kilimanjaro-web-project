@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-// import { Link, withRouter, Redirect } from 'react-router-dom'
+// import { withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 
 import bcrypt from 'bcryptjs'
@@ -85,9 +85,24 @@ function Enroll(props) {
                   // props.history.push('/login')
 
                   //0422: TODO
-                  //送完後轉跳! (可用alert)
+                  //送完後轉跳! (可用swal)
                   //解決F5載入問題
                   console.log('Success:', response)
+                  setTimeout(function () {
+                    props.history.push('/login/entrance', {
+                      acc: enrAcc,
+                      pwd: enrPwd,
+                    })
+                    // return (
+                    //   <>
+                    //     <Redirect
+                    //       to="/login/entrance"
+                    //       acc={enrAcc}
+                    //       pwd={enrPwd}
+                    //     />
+                    //   </>
+                    // )
+                  }, 3000)
                 })
             }
           })
@@ -102,7 +117,7 @@ function Enroll(props) {
         <Breadcrumb />
         {doneEnroll ? (
           <Alert id="warning_msg" variant="success" show={bsAlert}>
-            註冊成功
+            註冊成功, 三秒後跳轉
           </Alert>
         ) : (
           <Alert id="warning_msg" variant="danger" show={bsAlert}>
