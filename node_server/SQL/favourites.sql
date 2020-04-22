@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS coffee.favourites;
 CREATE TABLE coffee.favourites (
-  favourtieID int ZEROFILL AUTO_INCREMENT PRIMARY KEY
+  favourtieID int ZEROFILL AUTO_INCREMENT PRIMARY KEY,
   customerID varchar(5) NOT NULL,
   productID int(10) ZEROFILL NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
