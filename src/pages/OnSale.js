@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import LobbyTitle from '../components/member/LobbyTitle'
@@ -6,6 +6,9 @@ import ProductListItem from '../components/ProductList/productListItem'
 import disc1 from '../img/disc/disc1.jpg'
 
 function Sellers() {
+  const [total, setTotal] = useState(0)
+  console.log(total)
+
   return (
     <>
       <LobbyTitle string={'優惠專區'} />
@@ -15,7 +18,7 @@ function Sellers() {
           <div className="col-8">
             <div className="row">
               <div className="col-12 " align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <Link to="/product/123">一月&nbsp;&nbsp;&nbsp;</Link>
 
                   <Link to="/product/123">二月&nbsp;&nbsp;&nbsp;</Link>
@@ -56,8 +59,10 @@ function Sellers() {
                   <div className="col-12" align="center">
                     <button
                       type="button"
-                      class="btn btn-danger text-white"
-                      onClick={() => {}}
+                      className="btn btn-danger text-white"
+                      onClick={() => {
+                        setTotal(total + 1)
+                      }}
                     >
                       我要領取
                     </button>
@@ -74,7 +79,13 @@ function Sellers() {
                 </ProductListItem>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
-                    <button type="button" class="btn btn-danger text-white">
+                    <button
+                      type="button"
+                      className="btn btn-danger text-white"
+                      onClick={() => {
+                        setTotal(total + 1)
+                      }}
+                    >
                       我要領取
                     </button>
                   </div>

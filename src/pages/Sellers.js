@@ -23,7 +23,7 @@ function Sellers() {
           <div className="col-8">
             <div className="row">
               <div className="col-12 " align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <h1>小農咖啡園1</h1>
                   <Carousel>
                     <Carousel.Item>
@@ -104,7 +104,7 @@ function Sellers() {
 
             <div className="row mt-3">
               <div className="col-12" align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <h1>簡介</h1>
                 </div>
               </div>
@@ -140,14 +140,14 @@ function Sellers() {
             </div>
             <div className="row mt-3">
               <div className="col-12" align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <h1>賣家故事</h1>
                 </div>
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-4">
-                <div class="container bg-white pt-3 m-6 ">
+            <div className="row mt-3">
+              <div className="col-4">
+                <div className="container bg-white pt-3 m-6 ">
                   <h4>
                     <FaWikipediaW />
                     守護咖啡文化
@@ -159,8 +159,8 @@ function Sellers() {
                   </p>
                 </div>
               </div>
-              <div class="col-8">
-                <div class="container bg-white pt-3 m-6 ">
+              <div className="col-8">
+                <div className="container bg-white pt-3 m-6 ">
                   <h4>
                     <FaWikipediaW />
                     人生就差一杯咖啡的溫度
@@ -175,9 +175,9 @@ function Sellers() {
                 </div>
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-4">
-                <div class="container bg-white pt-3 m-6 ">
+            <div className="row mt-3">
+              <div className="col-4">
+                <div className="container bg-white pt-3 m-6 ">
                   <h4>
                     <FaWikipediaW />
                     有機種植
@@ -191,8 +191,8 @@ function Sellers() {
                   </p>
                 </div>
               </div>
-              <div class="col-8">
-                <div class="container bg-white pt-3 m-6 ">
+              <div className="col-8">
+                <div className="container bg-white pt-3 m-6 ">
                   <h4>
                     <FaWikipediaW />
                     烘培技術
@@ -211,7 +211,7 @@ function Sellers() {
             </div>
             <div className="row mt-3">
               <div className="col-12" align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <h1>特色商品</h1>
                 </div>
               </div>
@@ -232,7 +232,7 @@ function Sellers() {
             </div>
             <div className="row mt-3">
               <div className="col-12" align="center">
-                <button type="button" class="btn btn-danger text-white">
+                <button type="button" className="btn btn-danger text-white">
                   想看更多
                 </button>
               </div>

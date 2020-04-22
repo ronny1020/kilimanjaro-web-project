@@ -7,28 +7,35 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
       },
       cName: {
-        type: Sequelize.STRING(5),
+        type: Sequelize.STRING(20),
+        unique: false //可重複
       },
       cAccount: {
         type: Sequelize.STRING(20),
+        unique: false
       },
       cEmail: {
         type: Sequelize.STRING(20),
+        unique: true
       },
       cPassword: {
         type: Sequelize.STRING(100),
+        unique: false
       },
       cSex: {
         type: Sequelize.ENUM('F', 'M'),
       },
       cBirthDate: {
         type: Sequelize.DATE,
+        unique: false
       },
       cAddress: {
         type: Sequelize.STRING(60),
+        unique: false
       },
       cMobile: {
         type: Sequelize.STRING(24),
+        unique: false
       },
     },
     {
