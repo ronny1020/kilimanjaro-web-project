@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import LobbyTitle from '../components/member/LobbyTitle'
-
+import ProductListItem from '../components/ProductList/productListItem'
 import disc1 from '../img/disc/disc1.jpg'
 
 function Sellers() {
@@ -44,11 +44,14 @@ function Sellers() {
             </div>
             <div className="row mt-3 ">
               <div className="col-6 ">
-                <img
-                  className="d-block h-40 w-100 "
-                  src={disc1}
-                  alt="slide 004"
-                />
+                <ProductListItem>
+                  <img
+                    className="d-block h-40 w-100 "
+                    src={disc1}
+                    alt="slide 004"
+                  />
+                </ProductListItem>
+
                 <div className="row mt-3">
                   <div className="col-12" align="center">
                     <button type="button" class="btn btn-danger text-white">
@@ -58,11 +61,13 @@ function Sellers() {
                 </div>
               </div>
               <div className="col-6 ">
-                <img
-                  className="d-block h-40 w-100 "
-                  src={disc1}
-                  alt="slide 004"
-                />
+                <ProductListItem>
+                  <img
+                    className="d-block h-40 w-100 "
+                    src={disc1}
+                    alt="slide 004"
+                  />
+                </ProductListItem>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
                     <button type="button" class="btn btn-danger text-white">
