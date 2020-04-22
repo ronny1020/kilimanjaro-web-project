@@ -11,9 +11,11 @@
 @import './react-spring-card.scss';
 @import './loading.scss';
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
+
 body {
-  // font-family: 'Noto Sans TC', sans-serif;
-  font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
+  font-family: 'Noto Sans TC', sans-serif;
+  // font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
   min-height: 100vh;
   position: relative;
   padding-bottom: 200px;
@@ -25,8 +27,8 @@ h3,
 h4,
 h5,
 h6 {
-  // font-family: 'Noto Serif TC', serif;
-  font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
+  font-family: 'Noto Serif TC', serif;
+  // font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif !important;
 }
 
 
