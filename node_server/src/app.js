@@ -18,10 +18,6 @@ app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
 app.use('/MemberList', MemberListApi)
 app.use('/Member', MemberApi)
-app.use('/editMember', editMemberApi)
-
-
-
 
 app.get('/', (req, res) => {
   console.log('Request Home Page')
