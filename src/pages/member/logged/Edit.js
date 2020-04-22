@@ -19,7 +19,8 @@ function Edit() {
 
   var decrypt = jwt.verify(localStorage.getItem('token'), 'himitsu')
   var url = 'http://localhost:6001/Member/' + decrypt.user_id
-  var url_edit = 'http://localhost:6001/editMember/' + decrypt.user_id
+  var url_edit = 'http://localhost:6001/api/member/' + decrypt.user_id
+  // console.log(url_edit)
 
   //初次載入時fetch 重整會reset至最新
   if (editsex === '') {
@@ -42,35 +43,62 @@ function Edit() {
   function handleSubmit(event) {
     //do POST here!(to node.js)
     event.preventDefault()
+    if (editpwd === '') {
+      // 沒密碼: 直接送出
+      // Store hash in your password DB.
+      let editResult = {
+        // customerID: decrypt.user_id,
+        cName: editname,
+        cAccount: editaccount,
+        cEmail: editmail,
+        cSex: editsex,
+        cBirthDate: editbirth,
+        cAddress: editAddr,
+        cMobile: editmobile,
+      }
+      console.log(JSON.stringify(editResult))
 
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(editpwd, salt, function (err, hash) {
-        // Store hash in your password DB.
-        let editResult = {
-          // customerID: decrypt.user_id,
-          cName: editname,
-          cAccount: editaccount,
-          cEmail: editmail,
-          cPassword: hash,
-          cSex: editsex,
-          cBirthDate: editbirth,
-          cAddress: editAddr,
-          cMobile: editmobile,
-        }
-        console.log(JSON.stringify(editResult))
-
-        fetch(url_edit, {
-          method: 'POST', // want to use PATCH
-          body: JSON.stringify(editResult),
-          headers: new Headers({
-            'Content-Type': 'application/json',
-          }),
-        })
-          .then((res) => res.json())
-          .catch((error) => console.error('Error:', error))
-          .then((response) => console.log('Success:', response))
+      fetch(url_edit, {
+        method: 'PUT', // want to use PATCH
+        body: JSON.stringify(editResult),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }),
       })
-    })
+        .then((res) => res.json())
+        .catch((error) => console.error('Error:', error))
+        .then((response) => console.log('Success:', response))
+    } else {
+      //有密碼: 則加密後送出
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(editpwd, salt, function (err, hash) {
+          // Store hash in your password DB.
+          let editResult = {
+            // customerID: decrypt.user_id,
+            cName: editname,
+            cAccount: editaccount,
+            cEmail: editmail,
+            cPassword: hash,
+            cSex: editsex,
+            cBirthDate: editbirth,
+            cAddress: editAddr,
+            cMobile: editmobile,
+          }
+          console.log(JSON.stringify(editResult))
+
+          fetch(url_edit, {
+            method: 'PUT', // want to use PATCH
+            body: JSON.stringify(editResult),
+            headers: new Headers({
+              'Content-Type': 'application/json',
+            }),
+          })
+            .then((res) => res.json())
+            .catch((error) => console.error('Error:', error))
+            .then((response) => console.log('Success:', response))
+        })
+      })
+    }
   }
 
   const inputArray = {

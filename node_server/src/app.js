@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
   console.log('Request Home Page')
   res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`)
 })
+
+//https://bezkoder.com/node-js-express-sequelize-mysql/
+//RESTful API: (for members)
 require("./routes/memberRoutes")(app);
 
 // error - 404

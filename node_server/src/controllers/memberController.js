@@ -2,7 +2,7 @@ const db = require('../models')
 const Member = db.customers
 const Op = db.Sequelize.Op
 
-// Create and Save a new Tutorial
+// Create and Save a new MEMBER
 exports.create = (req, res) => {
   // Validate request
   // if (!req.body.title) {
@@ -34,7 +34,7 @@ exports.create = (req, res) => {
     })
 }
 
-// Retrieve all Members from the database.
+// Retrieve all Members from the database.(DONE)
 exports.findAll = (req, res) => {
   const customerID = req.query.customerID
   var condition = customerID ? { customerID: { [Op.like]: `%${customerID}%` } } : null
@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
     })
 }
 
-// Find a single member with an id
+// Find a single member with an id(DONE)
 exports.findOne = (req, res) => {
   const customerID = req.params.customerID
 
@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
     })
 }
 
-// Update a Tutorial by the id in the request
+// Update a member by the id in the request(DONE)
 exports.update = (req, res) => {
   const customerID = req.params.customerID
 
@@ -80,7 +80,7 @@ exports.update = (req, res) => {
         })
       } else {
         res.send({
-          message: `Cannot update Member with id=${customerID}. Maybe Tutorial was not found or req.body is empty!`,
+          message: `Cannot update Member with id=${customerID}. Maybe member was not found or req.body is empty!`,
         })
       }
     })
