@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ProductListItem from '../components/ProductList/productListItem'
 import Loading from '../components/Loading'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
@@ -29,10 +29,12 @@ function ProductList(props) {
 
   const productList = products.map((product, i) => (
     <div key={i}>
-      <ProductListItem>
-        <h3>{product.ProductName}</h3>
-        <p>id:{product.productID}</p>
-      </ProductListItem>
+      <Link to={'../product/' + product.productID}>
+        <ProductListItem>
+          <h3>{product.ProductName}</h3>
+          <p>id:{product.productID}</p>
+        </ProductListItem>
+      </Link>
     </div>
   ))
 

@@ -1,15 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Loading from '../components/Loading'
 import { useParams } from 'react-router-dom'
+
+import { connect } from 'react-redux'
+import { getProduct } from '../actions/getProduct'
 
 function Product(props) {
   let { id } = useParams()
 
+  const { product, getProduct } = props
+
+  useEffect(() => {
+    getProduct(id)
+  }, [getProduct, id])
+
+  if (product.productID === undefined) {
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <Loading />
+        </div>
+      </>
+    )
+  }
+
+  if (product.productID === 'not found') {
+    return (
+      <>
+        <div className="container m-5 p-5">
+          <h4>對不起，找不到該項商品</h4>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
-      <h1>產品頁面</h1>
-      <h2>目前的產品編號是(從網址得上得到)：{id}</h2>
+      <div className="container">
+        <h2>產品名稱：{product.ProductName}</h2>
+        <p>價格：{product.UnitPrice}</p>
+        <p>庫存：{product.UnitsInStock}</p>
+      </div>
     </>
   )
 }
 
-export default Product
+const mapStateToProps = (state) => {
+  return {
+    product: state.ProductReducer.item,
+  }
+}
+
+export default connect(mapStateToProps, { getProduct })(Product)
