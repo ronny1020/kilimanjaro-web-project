@@ -40,7 +40,10 @@ function Enroll() {
 
             //檢查信箱是否重複
             for (let i = 0; i < arr_length; i++) {
-              if (allMemberList[i].cEmail === enrEmail) {
+              if (
+                allMemberList[i].cEmail === enrEmail ||
+                allMemberList[i].cAccount === enrAcc
+              ) {
                 i = arr_length
                 setBSAlert(true)
                 return (isVerified = false)
