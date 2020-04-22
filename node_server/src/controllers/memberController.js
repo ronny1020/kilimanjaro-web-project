@@ -25,7 +25,7 @@ exports.create = (req, res) => {
     cMobile: req.body.cMobile,
   }
 
-  // Save Tutorial in the database
+  // Save Member in the database
   Member.create(member)
     .then(data => {
       res.send(data)
@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: 'Error retrieving Tutorial with id=' + customerID,
+        message: 'Error retrieving member with id=' + customerID,
       })
     })
 }
@@ -81,7 +81,7 @@ exports.update = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Tutorial was updated successfully.',
+          message: 'Member was updated successfully.',
         })
       } else {
         res.send({
@@ -106,29 +106,29 @@ exports.update = (req, res) => {
 //     .then(num => {
 //       if (num == 1) {
 //         res.send({
-//           message: 'Tutorial was deleted successfully!',
+//           message: 'Member was deleted successfully!',
 //         })
 //       } else {
 //         res.send({
-//           message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+//           message: `Cannot delete Member with id=${id}. Maybe Member was not found!`,
 //         })
 //       }
 //     })
 //     .catch(err => {
 //       res.status(500).send({
-//         message: 'Could not delete Tutorial with id=' + id,
+//         message: 'Could not delete Member with id=' + id,
 //       })
 //     })
 // }
 
-// Delete all Tutorials from the database.
+// Delete all Members from the database.
 // exports.deleteAll = (req, res) => {
 //   Member.destroy({
 //     where: {},
 //     truncate: false,
 //   })
 //     .then(nums => {
-//       res.send({ message: `${nums} Tutorials were deleted successfully!` })
+//       res.send({ message: `${nums} Members were deleted successfully!` })
 //     })
 //     .catch(err => {
 //       res.status(500).send({
@@ -138,7 +138,7 @@ exports.update = (req, res) => {
 //     })
 // }
 
-// find all published Tutorial
+// find all published Member
 // exports.findAllPublished = (req, res) => {
 //   Member.findAll({ where: { published: true } })
 //     .then(data => {
