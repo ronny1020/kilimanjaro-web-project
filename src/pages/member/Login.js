@@ -1,12 +1,13 @@
 import React from 'react'
 import LeftDiv from '../../components/member/LeftDiv'
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { withRouter, Route, Switch } from 'react-router-dom'
 
 import Enroll from './Enroll'
 import ForgetPwd from './ForgetPwd'
 import Entrance from './Entrance'
 
 function Login(props) {
+  // window.location.reload()
   // console.log(props.isAuth)
   // props.setIsAuth(localStorage.getItem('LoginValidate'))
   // if (props.isAuth === true) {
@@ -24,7 +25,7 @@ function Login(props) {
 
           <Switch>
             <Route path="/login/enroll">
-              <Enroll />
+              <Enroll history={props.history} />
             </Route>
             <Route path="/login/forget_pwd">
               <ForgetPwd />
@@ -34,10 +35,10 @@ function Login(props) {
             </Route>
 
             {/* 自動到入口 */}
-            <Route path="/login">
+            {/* <Route path="/login">
               <Redirect to="/login/entrance" />
               <Entrance />
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </div>

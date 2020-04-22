@@ -7,7 +7,8 @@ import bcrypt from 'bcryptjs'
 
 import Breadcrumb from '../../components/Breadcrumb'
 
-function Enroll() {
+function Enroll(props) {
+  // console.log(props)
   const [enrAcc, setEnrAcc] = useState('')
   const [enrEmail, setEnrEmail] = useState('')
   const [enrPwd, setEnrPwd] = useState('')
@@ -80,11 +81,12 @@ function Enroll() {
                 .then((response) => {
                   setBSAlert(true)
                   setDoneEnroll(true)
-                  console.log(
-                    'Success:',
-                    //送出時: 常常觸發sequelize內建檢查
-                    response
-                  )
+                  // props.history.push('/login')
+
+                  //0422: TODO
+                  //送完後轉跳! (可用alert)
+                  //解決F5載入問題
+                  console.log('Success:', response)
                 })
             }
           })
@@ -103,7 +105,7 @@ function Enroll() {
           </Alert>
         ) : (
           <Alert id="warning_msg" variant="danger" show={bsAlert}>
-            信箱已經被人使用
+            重複的帳號或信箱
           </Alert>
         )}
 
