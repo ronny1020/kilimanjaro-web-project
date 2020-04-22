@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import Loading from '../components/Loading'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getProduct } from '../actions/getProduct'
+import CardSecondary from '../components/CardSecondary'
 
 function Product(props) {
   let { id } = useParams()
@@ -33,14 +34,20 @@ function Product(props) {
       </>
     )
   }
-
+  console.log(product)
+  const tagsLink = product.tags.map((tag, i) => (
+    <Link className="mx-1" key={i} to="#">
+      {tag}
+    </Link>
+  ))
   return (
     <>
-      <div className="container">
+      <CardSecondary>
         <h2>產品名稱：{product.ProductName}</h2>
         <p>價格：{product.UnitPrice}</p>
         <p>庫存：{product.UnitsInStock}</p>
-      </div>
+        <p>Tags：{tagsLink}</p>
+      </CardSecondary>
     </>
   )
 }

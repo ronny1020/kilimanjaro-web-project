@@ -13,7 +13,7 @@ async function executeSQL(
   instance = {}
 ) {
   try {
-    const [rows, fields] = await database.promisePool.query(sql, [id])
+    const rows = await database.promisePool.query(sql, [id])
 
     switch (method) {
       case 'get':
@@ -25,8 +25,17 @@ async function executeSQL(
             })
           } else {
             let result = {}
-            if (rows.length) result = rows[0]
-            if (!result.productID) result = { productID: 'not found' }
+
+            if (rows[0][0].productID !== undefined) {
+              result = rows[0][0]
+              const tagRows = await database.promisePool.query(
+                Product.getProductTags(),
+                [result.productID]
+              )
+              result.tags = []
+              tagRows[0].forEach(item => result.tags.push(item.tagName))
+            }
+
             res.status(200).json(result)
           }
         }
@@ -34,9 +43,7 @@ async function executeSQL(
     }
   } catch (error) {
     console.log(error)
-    res.status(200).json({
-      message: error,
-    })
+    res.status(200).json({ productID: 'not found' })
   }
 }
 
