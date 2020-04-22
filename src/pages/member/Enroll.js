@@ -55,6 +55,7 @@ function Enroll(props) {
           })
           .then(function () {
             //確定符合格式:送件
+            // console.log(enrID)
             if (isVerified === true) {
               let newMember = {
                 customerID: enrID,
