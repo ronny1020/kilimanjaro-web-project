@@ -32,6 +32,8 @@ function Login(props) {
             <Route path="/login/entrance">
               <Entrance />
             </Route>
+
+            {/* 自動到入口 */}
             <Route path="/login">
               <Redirect to="/login/entrance" />
               <Entrance />

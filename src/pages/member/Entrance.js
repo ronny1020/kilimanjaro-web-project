@@ -56,7 +56,7 @@ function Entrance(props) {
       .then(function () {
         if (isLogged === true) {
           //登入成功 JWT
-          // console.log(isLogged)
+          setBSAlert(false)
           const Validation = {
             user_id: customerID,
             isLogged: true,
