@@ -6,6 +6,7 @@ import { Alert } from 'react-bootstrap'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 // var bcrypt = dcodeIO.bcrypt
+import Breadcrumb from '../../components/Breadcrumb'
 
 function Entrance(props) {
   const [password, setPassword] = useState('')
@@ -97,45 +98,44 @@ function Entrance(props) {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
-        <div className="col-sm-6 bg-secondary">
-          <h1>會員登入</h1>
-          <Alert id="warning_msg" variant="danger" show={bsAlert}>
-            帳號或密碼錯誤!
-          </Alert>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>帳號</Form.Label>
-              <Form.Control
-                type="text"
-                value={account}
-                onChange={(e) => setAccount(e.target.value)}
-                placeholder="請輸入帳號"
-                required
-              />
-            </Form.Group>
+        <h1>會員登入</h1>
+        <Breadcrumb />
+        <Alert id="warning_msg" variant="danger" show={bsAlert}>
+          帳號或密碼錯誤!
+        </Alert>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>帳號</Form.Label>
+            <Form.Control
+              type="text"
+              value={account}
+              onChange={(e) => setAccount(e.target.value)}
+              placeholder="請輸入帳號"
+              required
+            />
+          </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>密碼</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="請輸入密碼"
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="記得我" />
-            </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>密碼</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="請輸入密碼"
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="記得我" />
+          </Form.Group>
 
-            <Link to="/login/enroll">註冊新會員</Link>
-            <Link to="/login/forget_pwd">忘記密碼?</Link>
+          <Link to="/login/enroll">註冊新會員</Link>
+          <Link to="/login/forget_pwd">忘記密碼?</Link>
 
-            <Button variant="primary" disabled={!validateForm()} type="submit">
-              登入
-            </Button>
-          </Form>
-        </div>
+          <Button variant="primary" disabled={!validateForm()} type="submit">
+            登入
+          </Button>
+        </Form>
       </div>
     </>
   )

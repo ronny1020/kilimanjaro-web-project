@@ -15,6 +15,18 @@ function Breadcrumb(props) {
   for (let i = 0; i < pathname_Array.length; i++) {
     switch (pathname_Array[i]) {
       // add your route here!
+      case 'login':
+        path = '登入'
+        break
+      case 'entrance':
+        path = '登入入口'
+        break
+      case 'enroll':
+        path = '會員註冊'
+        break
+      case 'forget_pwd':
+        path = '忘記密碼'
+        break
       case 'lobby':
         path = '會員中心'
         break
