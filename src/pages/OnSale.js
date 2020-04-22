@@ -54,9 +54,11 @@ function Sellers() {
 
                 <div className="row mt-3">
                   <div className="col-12" align="center">
-                    <button type="button" class="btn btn-danger text-white">
-                      我要領取
-                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger text-white"
+                      onClick={() => {}}
+                    ></button>
                   </div>
                 </div>
               </div>
