@@ -13448,7 +13448,45 @@ INSERT INTO coffee.product_visited (productID, customerID,time_stamp) VALUES (16
 
 
 
+CREATE TABLE coffee.cart (
+  customerID varchar(5) NOT NULL,
+  productID int(10) ZEROFILL NOT NULL,
+  num int(10) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
+CREATE INDEX customerID ON coffee.Cart (productID);
+
+INSERT INTO coffee.Cart  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5);
+
+
+
+
+CREATE TABLE coffee.favourites (
+  customerID varchar(5) NOT NULL,
+  productID int(10) ZEROFILL NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
+CREATE INDEX productID ON coffee.favourites (productID);
+
+INSERT INTO coffee.favourites  VALUES ('C001',0000164413),('C001',0000164415),('C001',0000164513);
+
+
+
+
+DROP TABLE IF EXISTS coffee.comments;
+CREATE TABLE coffee.comments (
+  commentId INT AUTO_INCREMENT PRIMARY KEY,
+  productID int(10) ZEROFILL NOT NULL,
+  customerID varchar(5) NOT NULL,
+  rate int(1),
+  commentText MEDIUMTEXT,
+  CONSTRAINT pair UNIQUE (productID,customerID)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
+INSERT INTO coffee.comments  (productID , customerID ,rate, commentText) VALUES 
+(0000164413,'C001', 5 ,"great"),
+(0000164415,'C001', 4 ,"good"),
+(0000164513,'C001', 3 ,"It's OK...");
 
 -- PRESETS.
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
