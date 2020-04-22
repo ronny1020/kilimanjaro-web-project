@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `customerID` varchar(5) NOT NULL default '',-- Primary key:流水號
   `cName` varchar(20) collate utf8_unicode_ci NOT NULL, -- 買家姓名
-  `cAccount` varchar(20) NOT NULL unique, -- 買家帳號
+  `cAccount` varchar(20) NOT NULL, -- 買家帳號
   `cEmail` varchar(20) NOT NULL unique, -- 買家電郵
   `cPassword` varchar(100) NOT NULL, -- 買家密碼: 加密後可能加長故取60
   `cSex` enum('F','M') collate utf8_unicode_ci NOT NULL, -- 買家性別
