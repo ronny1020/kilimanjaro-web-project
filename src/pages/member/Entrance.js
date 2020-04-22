@@ -9,8 +9,18 @@ import jwt from 'jsonwebtoken'
 import Breadcrumb from '../../components/Breadcrumb'
 
 function Entrance(props) {
-  const [password, setPassword] = useState('')
-  const [account, setAccount] = useState('')
+  console.log(props)
+  var default_acc = ''
+  var default_pwd = ''
+  try {
+    default_pwd = props.location.state.pwd
+  } catch (err) {}
+  try {
+    default_acc = props.location.state.acc
+  } catch (err) {}
+
+  const [password, setPassword] = useState(default_pwd)
+  const [account, setAccount] = useState(default_acc)
   const [bsAlert, setBSAlert] = useState(false)
 
   function validateForm() {
@@ -61,7 +71,7 @@ function Entrance(props) {
             user_id: customerID,
             isLogged: true,
           }
-          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '1h' })
+          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '12h' })
           localStorage.setItem('token', token)
 
           // localStorage.setItem('MemberId', customerID)
