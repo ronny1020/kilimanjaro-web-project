@@ -6,7 +6,7 @@ import ProductListApi from './api/ProductListApi'
 import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
 import MemberApi from './api/MemberApi'
-import editMemberApi from './api/editMemberApi'
+// import editMemberApi from './api/editMemberApi'
 
 const app = express()
 
