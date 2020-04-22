@@ -10,8 +10,6 @@ function Product(props) {
 
   const { product, getProduct } = props
 
-  console.log(product)
-
   useEffect(() => {
     getProduct(id)
   }, [getProduct, id])

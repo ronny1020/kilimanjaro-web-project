@@ -26,7 +26,6 @@ async function executeSQL(
           } else {
             let result = {}
             if (rows.length) result = rows[0]
-            console.log(result.productID)
             if (!result.productID) result = { productID: 'not found' }
             res.status(200).json(result)
           }
