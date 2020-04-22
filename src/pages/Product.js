@@ -34,7 +34,7 @@ function Product(props) {
       </>
     )
   }
-  console.log(product)
+
   const tagsLink = product.tags.map((tag, i) => (
     <Link className="mx-1" key={i} to="#">
       {tag}
