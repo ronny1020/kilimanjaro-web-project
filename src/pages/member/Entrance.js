@@ -71,7 +71,7 @@ function Entrance(props) {
             user_id: customerID,
             isLogged: true,
           }
-          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '12h' })
+          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '1h' })
           localStorage.setItem('token', token)
 
           // localStorage.setItem('MemberId', customerID)
@@ -88,15 +88,25 @@ function Entrance(props) {
       })
   }
 
+  //登入驗證檢查:
   var valid = false
-
   if (localStorage.getItem('token')) {
     const token = localStorage.getItem('token')
+    //只要壞掉就給我滾
+    try {
+      var decrypt = jwt.verify(token, 'himitsu')
+    } catch (err) {
+      localStorage.removeItem('token')
+      window.location.reload()
+    }
+
     if (jwt.verify(token, 'himitsu')) {
-      const decrypt = jwt.verify(token, 'himitsu')
+      decrypt = jwt.verify(token, 'himitsu')
       valid = decrypt.isLogged
+      // var memberID = decrypt.user_id
     }
   }
+  //檢查結束
   if (valid === true) {
     return (
       <>

@@ -6,15 +6,25 @@ import jwt from 'jsonwebtoken'
 // import { Link } from 'react-router-dom'
 
 function Header(props) {
+  //登入驗證檢查:
   var valid = false
-
   if (localStorage.getItem('token')) {
     const token = localStorage.getItem('token')
+    //只要壞掉就給我滾
+    try {
+      var decrypt = jwt.verify(token, 'himitsu')
+    } catch (err) {
+      localStorage.removeItem('token')
+      window.location.reload()
+    }
+
     if (jwt.verify(token, 'himitsu')) {
-      const decrypt = jwt.verify(token, 'himitsu')
+      decrypt = jwt.verify(token, 'himitsu')
       valid = decrypt.isLogged
+      // var memberID = decrypt.user_id
     }
   }
+  //檢查結束
 
   return (
     <header>
