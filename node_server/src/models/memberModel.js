@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       cAccount: {
         type: Sequelize.STRING(20),
-        unique: false
+        unique: true //不可重複
       },
       cEmail: {
         type: Sequelize.STRING(20),
@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       cPassword: {
         type: Sequelize.STRING(100),
-        unique: false
+        unique: false 
       },
       cSex: {
         type: Sequelize.ENUM('F', 'M'),
