@@ -6,13 +6,15 @@ import ProductListApi from './api/ProductListApi'
 import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
 import MemberApi from './api/MemberApi'
-import editMemberApi from './api/editMemberApi'
 
 const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
+
+import db from "./models"
+db.sequelize.sync()
 
 app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
@@ -23,6 +25,7 @@ app.get('/', (req, res) => {
   console.log('Request Home Page')
   res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`)
 })
+require("./routes/memberRoutes")(app);
 
 // error - 404
 app.use((req, res, next) => {
