@@ -15,7 +15,7 @@ function Sellers() {
           <div className="col-8">
             <div className="row">
               <div className="col-12 " align="center">
-                <div class="container bg-white pt-3 m-6 ">
+                <div className="container bg-white pt-3 m-6 ">
                   <Link to="/product/123">一月&nbsp;&nbsp;&nbsp;</Link>
 
                   <Link to="/product/123">二月&nbsp;&nbsp;&nbsp;</Link>
@@ -56,7 +56,7 @@ function Sellers() {
                   <div className="col-12" align="center">
                     <button
                       type="button"
-                      class="btn btn-danger text-white"
+                      className="btn btn-danger text-white"
                       onClick={() => {}}
                     >
                       我要領取
@@ -74,7 +74,7 @@ function Sellers() {
                 </ProductListItem>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
-                    <button type="button" class="btn btn-danger text-white">
+                    <button type="button" className="btn btn-danger text-white">
                       我要領取
                     </button>
                   </div>
