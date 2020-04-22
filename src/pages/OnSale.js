@@ -58,7 +58,9 @@ function Sellers() {
                       type="button"
                       class="btn btn-danger text-white"
                       onClick={() => {}}
-                    ></button>
+                    >
+                      我要領取
+                    </button>
                   </div>
                 </div>
               </div>
