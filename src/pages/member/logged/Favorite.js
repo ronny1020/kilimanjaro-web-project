@@ -2,17 +2,51 @@ import React, { useState } from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
+import { Redirect } from 'react-router-dom'
+
+import FavList from '../../../components/member/FavList'
 
 import { Button, Form } from 'react-bootstrap'
 import jwt from 'jsonwebtoken'
 
 function Favorite() {
   const [favproductID, setFavProductID] = useState('')
+  const [genList, setGenList] = useState(false)
+  const [favlistInput, setfavlistInput] = useState({})
+
+  //登入驗證檢查:
+  var valid = false
+  if (localStorage.getItem('token')) {
+    const token = localStorage.getItem('token')
+    //只要壞掉就給我滾
+    try {
+      var decrypt = jwt.verify(token, 'himitsu')
+    } catch (err) {
+      localStorage.removeItem('token')
+      window.location.reload()
+    }
+
+    if (jwt.verify(token, 'himitsu')) {
+      decrypt = jwt.verify(token, 'himitsu')
+      valid = decrypt.isLogged
+      var cID = decrypt.user_id
+    }
+  }
+  //檢查結束
+  // console.log(valid, memberID)
+  if (valid === false) {
+    return (
+      <>
+        <Redirect to="/login" />
+      </>
+    )
+  }
+
   let isConfilcted = true
 
   function handleSubmit(event) {
     event.preventDefault()
-    const cID = jwt.verify(localStorage.getItem('token'), 'himitsu').user_id
+
     // console.log(cID)
 
     const fav_data = {
@@ -61,6 +95,33 @@ function Favorite() {
   }
   //檢查&送出至此結束
 
+  //讀取頁面時載入FavList
+  if (genList === false) {
+    fetch('http://localhost:6001/api/favourite/' + cID)
+      .then((res) => {
+        return res.json()
+      })
+      .then((favlist) => {
+        setfavlistInput(favlist)
+        setGenList(true)
+        // console.log(favlistInput)
+      })
+  }
+
+  //刪除全部favorite
+  function DelAll() {
+    alert('你真的要刪光?')
+    var url_del = 'http://localhost:6001/api/favourite/' + cID
+    fetch(url_del, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        window.location.reload()
+      })
+  }
+
   const inputArray = {
     title: '會員中心',
     個人資料修改: {
@@ -77,6 +138,7 @@ function Favorite() {
       link: '/lobby/favorite',
     },
   }
+  // const numbers = [1, 2, 3, 4, 5]
   return (
     <>
       <LobbyTitle string={'喜好清單'} />
@@ -87,9 +149,12 @@ function Favorite() {
           </div>
           <div className="col-9">
             <Breadcrumb />
+            {genList === true ? (
+              <FavList input={favlistInput} id={cID} />
+            ) : null}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicAccount">
-                <Form.Label>productID</Form.Label>
+                <Form.Label>productID(dev only)</Form.Label>
                 <Form.Control
                   type="text"
                   value={favproductID}
@@ -101,6 +166,9 @@ function Favorite() {
 
               <Button variant="primary" type="submit">
                 送出資料
+              </Button>
+              <Button variant="primary" onClick={DelAll}>
+                全部刪光
               </Button>
             </Form>
           </div>
