@@ -1,2 +1,3 @@
 export const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST'
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL'
+export const GET_CART = 'GET_CART'
