@@ -2,7 +2,7 @@ const db = require('../models')
 const Favourite = db.favourites
 const Op = db.Sequelize.Op
 
-// Create and Save a new MEMBER
+// Create and Save a new FAVOURITE
 exports.create = (req, res) => {
   // Validate request
   // if (!req.body.title) {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   //   return;
   // }
 
-  // Create a Member
+  // Create a favourite
   const favourite = {
     // favourtieID: req.body.favourtieID,
     customerID: req.body.customerID,
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     
   }
 
-  // Save Member in the database
+  // Save favourite in the database
   Favourite.create(favourite)
     .then(data => {
       res.send(data)
@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
     })
 }
 
-// find specific Member favourites
+// find specific Member favourites(DONE)
 exports.findAllPublished = (req, res) => {
   Favourite.findAll({ where: { customerID: req.params.customerID } })
     .then(data => {

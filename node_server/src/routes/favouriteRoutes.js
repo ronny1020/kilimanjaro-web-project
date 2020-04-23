@@ -4,7 +4,7 @@ module.exports = app => {
     var router = require("express").Router();
   
     //新增喜好清單
-    // router.post("/", favourite.create);
+    router.post("/", favourite.create);
   
     //列出所有人的喜好清單
     router.get("/", favourite.findAll);

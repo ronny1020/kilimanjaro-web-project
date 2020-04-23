@@ -13,8 +13,8 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-import db from './models'
-db.sequelize.sync()
+// import db from './models'
+// db.sequelize.sync()
 
 app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
