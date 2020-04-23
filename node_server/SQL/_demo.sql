@@ -13460,7 +13460,7 @@ CREATE INDEX customerID ON coffee.Cart (productID);
 
 INSERT INTO coffee.Cart (customerID,productID,num)  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5);
 
-
+DROP TABLE IF EXISTS coffee.favourites;
 CREATE TABLE coffee.favourites (
   favourtieID int AUTO_INCREMENT PRIMARY KEY,
   customerID varchar(5) NOT NULL,
