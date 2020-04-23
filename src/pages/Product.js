@@ -3,17 +3,41 @@ import Loading from '../components/Loading'
 import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getProduct } from '../actions/getProduct'
+import { recordVisit, getProduct } from '../actions/getProduct'
+
 import CardSecondary from '../components/CardSecondary'
+
+import jwt from 'jsonwebtoken'
 
 function Product(props) {
   let { id } = useParams()
 
-  const { product, getProduct } = props
+  const { product, recordVisit, getProduct } = props
+
+  var memberID = null
+  if (localStorage.getItem('token')) {
+    const token = localStorage.getItem('token')
+
+    try {
+      var decrypt = jwt.verify(token, 'himitsu')
+    } catch (err) {
+      localStorage.removeItem('token')
+      window.location.reload()
+    }
+
+    if (jwt.verify(token, 'himitsu')) {
+      decrypt = jwt.verify(token, 'himitsu')
+      memberID = decrypt.user_id
+    }
+  }
 
   useEffect(() => {
-    getProduct(id)
-  }, [getProduct, id])
+    async function start() {
+      await recordVisit(id, memberID)
+      await getProduct(id)
+    }
+    start()
+  }, [getProduct, id, memberID, recordVisit])
 
   if (product.productID === undefined) {
     return (
@@ -59,4 +83,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getProduct })(Product)
+export default connect(mapStateToProps, { recordVisit, getProduct })(Product)

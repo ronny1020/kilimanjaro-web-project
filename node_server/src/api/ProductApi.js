@@ -39,7 +39,6 @@ async function executeSQL(
               Product.getVisitedTimes(),
               [result.productID]
             )
-            console.log(visitedTimesRes[0][0].num)
             result = { ...result, visitedTimes: visitedTimesRes[0][0].num }
 
             res.status(200).json(result)
