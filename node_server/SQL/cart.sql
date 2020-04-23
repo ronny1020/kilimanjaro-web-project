@@ -9,4 +9,4 @@ CREATE TABLE coffee.cart (
 
 CREATE INDEX customerID ON coffee.Cart (productID);
 
-INSERT INTO coffee.Cart (customerID,productID,num)  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5);
+INSERT INTO coffee.Cart (customerID,productID,num)  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5),('C002',0000164413,2),('C003',0000164415,1),('C004',0000164513,5);

@@ -1,8 +1,8 @@
 import { GET_PRODUCT_LIST } from './actionTypes'
 
-export const getProductList = (page) => {
+export const getProductList = (page, cid) => {
   return async (dispatch) => {
-    const url = 'http://localhost:6001/ProductListApi/20/' + page
+    const url = 'http://localhost:6001/ProductListApi/' + cid + '/20/' + page
     const response = await fetch(url)
     const list = await response.json()
     dispatch({

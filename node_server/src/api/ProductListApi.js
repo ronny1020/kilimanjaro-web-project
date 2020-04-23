@@ -4,14 +4,7 @@ import database from '../db/database.js'
 
 const router = express.Router()
 
-async function executeSQL(
-  sql,
-  res,
-  perPage,
-  page,
-  method = 'get',
-  multirows = true
-) {
+async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
   try {
     const output = {
       totalRows: 0,
@@ -28,24 +21,21 @@ async function executeSQL(
     if (output.page > output.totalPages) output.page = output.totalPages
 
     const rows = await database.promisePool.query(sql, [
+      cid,
       (output.page - 1) * output.perPage,
       output.perPage,
     ])
+
+    console.log(rows[0])
 
     switch (method) {
       case 'get':
       default:
         {
-          if (multirows) {
-            res.status(200).json({
-              Range: output,
-              ProductList: rows[0],
-            })
-          } else {
-            let result = {}
-            if (rows.length) result = rows[0]
-            res.status(200).json(result)
-          }
+          res.status(200).json({
+            Range: output,
+            ProductList: rows[0],
+          })
         }
         break
     }
@@ -57,14 +47,20 @@ async function executeSQL(
   }
 }
 
-router.get('/:perPage?/:page?', (req, res, next) => {
+router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
   const perPage = req.params.perPage ? parseInt(req.params.perPage) : 20
   const page = req.params.page ? parseInt(req.params.page) : 1
 
   console.log(
-    'ProductList get request where' + ' perPage= ' + perPage + ' page= ' + page
+    'ProductList get request where' +
+      ' perPage= ' +
+      perPage +
+      ' page= ' +
+      page +
+      ' by ' +
+      req.params.cid
   )
-  executeSQL(ProductList.getProductList(), res, perPage, page)
+  executeSQL(ProductList.getProductList(), res, perPage, page, req.params.cid)
 })
 
 export default router

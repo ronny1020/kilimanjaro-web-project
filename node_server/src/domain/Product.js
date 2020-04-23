@@ -1,6 +1,9 @@
 class Product {
   static getProduct() {
-    let sql = `SELECT * FROM coffee.products Where productID in ( ? ) ;`
+    let sql = `SELECT products.productID, ProductName, sellerID, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, customerID, num
+    FROM coffee.products 
+    left JOIN coffee.cart ON coffee.products.productID=coffee.cart.productID and customerID = ?
+    Where products.productID =  ?  ;`
     return sql
   }
 
@@ -13,7 +16,8 @@ class Product {
   }
 
   static getVisitedTimes() {
-    let sql =' SELECT count(0) num FROM coffee.product_visited Where productID= ? ;'
+    let sql =
+      ' SELECT count(0) num FROM coffee.product_visited Where productID= ? ;'
     return sql
   }
 }

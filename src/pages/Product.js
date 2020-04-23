@@ -33,7 +33,7 @@ function Product(props) {
   useEffect(() => {
     async function start() {
       await recordVisit(id, memberID)
-      await getProduct(id)
+      await getProduct(id, memberID)
     }
     start()
   }, [getProduct, id, memberID, recordVisit])

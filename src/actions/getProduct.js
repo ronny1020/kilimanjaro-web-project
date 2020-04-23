@@ -1,8 +1,8 @@
 import { GET_PRODUCT_DETAIL } from './actionTypes'
 
-export const getProduct = (id) => {
+export const getProduct = (id, cid) => {
   return async (dispatch) => {
-    const url = 'http://localhost:6001/ProductApi/' + id
+    const url = 'http://localhost:6001/ProductApi/' + id + '/' + cid
     const response = await fetch(url)
     const item = await response.json()
     dispatch({
@@ -12,10 +12,9 @@ export const getProduct = (id) => {
   }
 }
 
-export const recordVisit = (ProductId, MemberId) => {
+export const recordVisit = (pid, cid) => {
   return async () => {
-    const record = { productId: ProductId, memberId: MemberId }
-    console.log(record)
+    const record = { productId: pid, memberId: cid }
     const request = new Request('http://localhost:6001/RecordVisitApi/', {
       method: 'POST',
       body: JSON.stringify(record),
@@ -25,7 +24,6 @@ export const recordVisit = (ProductId, MemberId) => {
       }),
     })
 
-    const response = await fetch(request).catch(console.error())
-    console.log(response)
+    await fetch(request).catch(console.error())
   }
 }

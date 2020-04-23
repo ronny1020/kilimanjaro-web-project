@@ -7,13 +7,15 @@ const router = express.Router()
 async function executeSQL(
   sql,
   res,
-  id,
+  pid,
+  cid,
   method = 'get',
   multirows = true,
   instance = {}
 ) {
   try {
-    const [rows, fields]  = await database.promisePool.query(sql, [id])
+    const [rows, fields] = await database.promisePool.query(sql, [cid, pid])
+    console.log(rows)
 
     switch (method) {
       case 'get':
@@ -52,9 +54,18 @@ async function executeSQL(
   }
 }
 
-router.get('/:id', (req, res, next) => {
-  console.log('Product get request where id = ' + req.params.id)
-  executeSQL(Product.getProduct(), res, [req.params.id], 'get', false)
+router.get('/:pid/:cid', (req, res, next) => {
+  console.log(
+    'Product get request where id = ' + req.params.pid + '' + req.params.cid
+  )
+  executeSQL(
+    Product.getProduct(),
+    res,
+    req.params.pid,
+    req.params.cid,
+    'get',
+    false
+  )
 })
 
 export default router
