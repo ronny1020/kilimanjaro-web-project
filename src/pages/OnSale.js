@@ -1,13 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import LobbyTitle from '../components/member/LobbyTitle'
 import ProductListItem from '../components/ProductList/productListItem'
+
 import disc1 from '../img/disc/disc1.jpg'
 
 function Sellers() {
-  const [total, setTotal] = useState(0)
-  console.log(total)
+  const [Mycart, setMycart] = useState([])
+
+  async function updateCartToLocalStorage(value) {
+    // 開啟載入指示
+
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+
+    console.log('currentCart', currentCart)
+
+    const newCart = [...currentCart, value]
+    localStorage.setItem('cart', JSON.stringify(newCart))
+
+    console.log('newCart', newCart)
+    // 設定資料
+    setMycart(newCart)
+    console.log(Mycart)
+  }
+
+  useEffect(() => {
+    //getTotalFromLocalStorage()
+  }, [])
 
   return (
     <>
@@ -61,7 +81,12 @@ function Sellers() {
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={() => {
-                        setTotal(total + 1)
+                        updateCartToLocalStorage({
+                          id: 1,
+                          name: 'iphone x',
+                          amount: 1,
+                          price: 15000,
+                        })
                       }}
                     >
                       我要領取
@@ -83,7 +108,12 @@ function Sellers() {
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={() => {
-                        setTotal(total + 1)
+                        updateCartToLocalStorage({
+                          id: 1,
+                          name: 'iphone x',
+                          amount: 1,
+                          price: 15000,
+                        })
                       }}
                     >
                       我要領取
