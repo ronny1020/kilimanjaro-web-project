@@ -102,7 +102,7 @@ function Enroll(props) {
                     //     />
                     //   </>
                     // )
-                  }, 3000)
+                  }, 2000)
                 })
             }
           })
@@ -117,7 +117,7 @@ function Enroll(props) {
         <Breadcrumb />
         {doneEnroll ? (
           <Alert id="warning_msg" variant="success" show={bsAlert}>
-            註冊成功, 三秒後跳轉
+            註冊成功, 2秒後跳轉
           </Alert>
         ) : (
           <Alert id="warning_msg" variant="danger" show={bsAlert}>
