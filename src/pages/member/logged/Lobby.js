@@ -24,38 +24,20 @@ import { MdFavorite } from 'react-icons/md'
 import { IoMdMail } from 'react-icons/io'
 import { GiTicket } from 'react-icons/gi'
 
-import jwt from 'jsonwebtoken'
+import LoginValidate from '../../../components/LoginValidate'
 
 function Member(props) {
   const [name, setName] = useState('')
-
-  //登入驗證檢查:
-  var valid = false
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    //只要壞掉就給我滾
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      valid = decrypt.isLogged
-      var memberID = decrypt.user_id
-    }
-  }
-  //檢查結束
-
-  // console.log(valid, memberID)
-  if (valid === false) {
+  if (LoginValidate() === false) {
     return (
       <>
         <Redirect to="/login" />
       </>
     )
+  } else {
+    console.log(LoginValidate())
+    var memberID = LoginValidate().userID
+    // var valid = LoginValidate.isLogged
   }
 
   var url = 'http://localhost:6001/Member/' + memberID
