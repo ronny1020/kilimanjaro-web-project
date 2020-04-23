@@ -35,7 +35,6 @@ function Member(props) {
       </>
     )
   } else {
-    console.log(LoginValidate())
     var memberID = LoginValidate().userID
     // var valid = LoginValidate.isLogged
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import LeftDiv from '../../components/member/LeftDiv'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 import Enroll from './Enroll'
 import ForgetPwd from './ForgetPwd'
@@ -35,10 +35,10 @@ function Login(props) {
             </Route>
 
             {/* 自動到入口 */}
-            {/* <Route path="/login">
+            <Route exact path="/login">
               <Redirect to="/login/entrance" />
               <Entrance />
-            </Route> */}
+            </Route>
           </Switch>
         </div>
       </div>

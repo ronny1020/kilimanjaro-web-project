@@ -1,6 +1,6 @@
 class Product {
   static getProduct() {
-    let sql = `SELECT * FROM coffee.products Where productID= ? ;`
+    let sql = `SELECT * FROM coffee.products Where productID in ( ? ) ;`
     return sql
   }
 

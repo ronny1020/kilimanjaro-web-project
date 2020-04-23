@@ -33,7 +33,17 @@ function Edit() {
         setEditName(userdata.cName)
         setEditAccount(userdata.cAccount)
         setEditMail(userdata.cEmail)
-        setEditBirth(userdata.cBirthDate.split('T')[0])
+
+        //處理時差問題:
+        //伺服器端儲存 UTC 本地端為UTC - 時差
+        var tz = new Date()
+        tz = tz.getTimezoneOffset() / 60
+        var date = new Date(userdata.cBirthDate)
+        date.setHours(date.getHours() - parseInt(tz))
+        date = date.toISOString().split('T')[0]
+        // console.log(date)
+
+        setEditBirth(date)
         setEditAddr(userdata.cAddress)
         setEditMobile(userdata.cMobile)
         setEditSex(userdata.cSex)
@@ -200,6 +210,7 @@ function Edit() {
                 </Form.Control>
               </Form.Group>
 
+              {/* 更改密碼: 輸入舊密碼-->輸入新密碼-->確認新密碼 */}
               <Form.Group>
                 <Form.Label>更改密碼</Form.Label>
                 <Form.Control
