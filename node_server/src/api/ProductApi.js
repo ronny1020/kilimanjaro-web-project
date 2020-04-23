@@ -13,7 +13,7 @@ async function executeSQL(
   instance = {}
 ) {
   try {
-    const rows = await database.promisePool.query(sql, [id])
+    const [rows, fields]  = await database.promisePool.query(sql, [id])
 
     switch (method) {
       case 'get':
@@ -26,8 +26,8 @@ async function executeSQL(
           } else {
             let result = {}
 
-            if (rows[0][0].productID !== undefined) {
-              result = rows[0][0]
+            if (rows[0].productID !== undefined) {
+              result = rows[0]
               const tagRows = await database.promisePool.query(
                 Product.getProductTags(),
                 [result.productID]

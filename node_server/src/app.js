@@ -7,6 +7,7 @@ import ProductApi from './api/ProductApi'
 import MemberListApi from './api/MemberListApi'
 import MemberApi from './api/MemberApi'
 import RecordVisitApi from './api/RecordVisitApi'
+import CartApi from './api/CartApi'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
 app.use('/RecordVisitApi', RecordVisitApi)
+app.use('/CartApi', CartApi)
 
 app.use('/MemberList', MemberListApi)
 app.use('/Member', MemberApi)
