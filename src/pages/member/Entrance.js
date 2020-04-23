@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 // var bcrypt = dcodeIO.bcrypt
 import Breadcrumb from '../../components/Breadcrumb'
+import LoginValidate from '../../components/LoginValidate'
 
 function Entrance(props) {
   // console.log(props)
@@ -88,26 +89,7 @@ function Entrance(props) {
       })
   }
 
-  //登入驗證檢查:
-  var valid = false
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    //只要壞掉就給我滾
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      valid = decrypt.isLogged
-      // var memberID = decrypt.user_id
-    }
-  }
-  //檢查結束
-  if (valid === true) {
+  if (LoginValidate() !== false) {
     return (
       <>
         <Redirect to="/lobby" />
