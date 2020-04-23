@@ -1,7 +1,7 @@
 import express from 'express'
 import Cart from '../domain/Cart.js'
 import database from '../db/database.js'
-import Product from '../domain/Product.js'
+
 
 const router = express.Router()
 
