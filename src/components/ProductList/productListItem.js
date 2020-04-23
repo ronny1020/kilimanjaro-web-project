@@ -2,9 +2,9 @@ import React from 'react'
 import { useSpring, animated } from 'react-spring'
 
 const calc = (x, y) => [
-  -(y - window.innerHeight / 2) / 50,
-  (x - window.innerWidth / 2) / 50,
-  1.05,
+  -(-y + window.innerHeight / 2) / 250,
+  (-x + window.innerWidth / 2) / 250,
+  1.03,
 ]
 const trans = (x, y, s) =>
   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
