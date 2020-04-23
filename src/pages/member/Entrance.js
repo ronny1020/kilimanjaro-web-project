@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken'
 import Breadcrumb from '../../components/Breadcrumb'
 
 function Entrance(props) {
-  console.log(props)
+  // console.log(props)
   var default_acc = ''
   var default_pwd = ''
   try {

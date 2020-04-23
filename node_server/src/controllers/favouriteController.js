@@ -16,8 +16,7 @@ exports.create = (req, res) => {
   const favourite = {
     // favourtieID: req.body.favourtieID,
     customerID: req.body.customerID,
-    productID: req.body.productID
-    
+    productID: req.body.productID,
   }
 
   // Save favourite in the database
@@ -39,7 +38,7 @@ exports.findAll = (req, res) => {
     ? { favourtieID: { [Op.like]: `%${favourtieID}%` } }
     : null
 
-    Favourite.findAll({ where: condition })
+  Favourite.findAll({ where: condition })
     .then(data => {
       res.send(data)
     })
@@ -104,46 +103,49 @@ exports.findAllPublished = (req, res) => {
 //     })
 // }
 
-// Delete a member with the specified id in the request
-// exports.delete = (req, res) => {
-//   const id = req.params.id
+// Delete a fav with the specified customer&productid in the request (DONE)
+exports.delete = (req, res) => {
+  const customerID = req.params.customerID
+  const productID = req.params.productID
 
-//   Member.destroy({
-//     where: { id: id },
-//   })
-//     .then(num => {
-//       if (num == 1) {
-//         res.send({
-//           message: 'Member was deleted successfully!',
-//         })
-//       } else {
-//         res.send({
-//           message: `Cannot delete Member with id=${id}. Maybe Member was not found!`,
-//         })
-//       }
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message: 'Could not delete Member with id=' + id,
-//       })
-//     })
-// }
+  // const customerID = req.body.customerID
+  // const productID = req.body.productID
 
-// Delete all Members from the database.
-// exports.deleteAll = (req, res) => {
-//   Member.destroy({
-//     where: {},
-//     truncate: false,
-//   })
-//     .then(nums => {
-//       res.send({ message: `${nums} Members were deleted successfully!` })
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message:
-//           err.message || 'Some error occurred while removing all tutorials.',
-//       })
-//     })
-// }
+  Favourite.destroy({
+    where: { customerID: customerID, productID: productID },
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: 'deleted successfully!',
+        })
+      } else {
+        res.send({
+          message: `Cannot delete favourite with id=${id}, product=${productID}.`,
+        })
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: 'Could not delete Member with id=' + id,
+      })
+    })
+}
 
-
+// Delete all FAVS from the CUSTOMER.
+exports.deleteAll = (req, res) => {
+  const customerID = req.params.customerID
+  Favourite.destroy({
+    where: { customerID: customerID },
+    truncate: false,
+  })
+    .then(nums => {
+      res.send({ message: `${nums} FAVS were deleted successfully!` })
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while removing all tutorials.',
+      })
+    })
+}
