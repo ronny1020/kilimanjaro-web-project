@@ -17,7 +17,7 @@ export const AddProductToCart = (pid, cid, number = 1) => {
     if (cid == null) {
       window.location.replace('http://localhost:3000/login/entrance')
     }
-    const PostToCart = { productId: pid, customerID: cid, num: number }
+    const PostToCart = { productID: pid, customerID: cid, num: number }
     const request = new Request('http://localhost:6001/CartApi/', {
       method: 'POST',
       body: JSON.stringify(PostToCart),
@@ -32,7 +32,7 @@ export const AddProductToCart = (pid, cid, number = 1) => {
 
 export const removeProductFromCart = (pid, cid) => {
   return async () => {
-    const deleteFromCart = { productId: pid, customerID: cid }
+    const deleteFromCart = { productID: pid, customerID: cid }
     const request = new Request('http://localhost:6001/CartApi/', {
       method: 'DELETE',
       body: JSON.stringify(deleteFromCart),

@@ -78,11 +78,11 @@ function ProductList(props) {
               className="btn btn-danger"
               onClick={(e) => {
                 e.preventDefault()
-                async function add() {
+                async function remove() {
                   await removeProductFromCart(product.productID, memberID)
                   await getProductList(page, memberID)
                 }
-                add()
+                remove()
               }}
             >
               remove({product.num})

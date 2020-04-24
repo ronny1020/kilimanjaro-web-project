@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
+import { removeProductFromCart } from '../actions/CartAction'
 
 import jwt from 'jsonwebtoken'
 
@@ -24,8 +25,11 @@ function Cart(props) {
       memberID = decrypt.user_id
     }
   }
+  if (memberID == null) {
+    window.location.replace('http://localhost:3000/login/entrance')
+  }
 
-  const { Cart, getCart } = props
+  const { Cart, getCart, removeProductFromCart } = props
 
   useEffect(() => {
     getCart(memberID)
@@ -47,6 +51,20 @@ function Cart(props) {
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
+
+          <button
+            className="btn btn-danger"
+            onClick={(e) => {
+              e.preventDefault()
+              async function remove() {
+                await removeProductFromCart(product.productID, memberID)
+                await getCart(memberID)
+              }
+              remove()
+            }}
+          >
+            remove({product.num})
+          </button>
         </ProductListItem>
       </Link>
     </div>
@@ -58,17 +76,31 @@ function Cart(props) {
         <h1>購物車</h1>
 
         <div>{productList}</div>
+
+        <button
+          className="btn btn-danger"
+          onClick={(e) => {
+            e.preventDefault()
+            async function remove() {
+              await removeProductFromCart('all', memberID)
+              await getCart(memberID)
+            }
+            remove()
+          }}
+        >
+          remove all
+        </button>
       </div>
     </>
   )
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  console.log(state.CartReducer.items.cart)
   return {
     Cart: state.CartReducer.items.cart,
   }
 }
 
-export default connect(mapStateToProps, { getCart })(Cart)
+export default connect(mapStateToProps, { getCart, removeProductFromCart })(
+  Cart
+)

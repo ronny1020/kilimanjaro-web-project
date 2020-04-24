@@ -15,6 +15,10 @@ class Cart {
     let sql = `DELETE FROM coffee.cart where customerID= ? and productID= ? ;`
     return sql
   }
+  static deleteAllCart() {
+    let sql = `DELETE FROM coffee.cart where customerID= ?;`
+    return sql
+  }
 }
 
 export default Cart

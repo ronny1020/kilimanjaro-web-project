@@ -17,23 +17,31 @@ async function executeSQL(
     switch (method) {
       case 'post': {
         console.log([cid, pid, num])
-        const [rows, fields] = await database.promisePool.query(sql, [
-          cid,
-          pid,
-          num,
-        ])
-        res.status(200).json(result)
+        const [rows, fields] = await database.promisePool
+          .query(sql, [cid, pid, num])
+          .catch(console.error())
+        res.status(200).json()
         break
       }
       case 'delete': {
-        const [rows, fields] = await database.promisePool.query(sql, [cid, pid])
-        res.status(200).json({})
+        if (pid == 'all') {
+          const [rows, fields] = await database.promisePool
+            .query(sql, [cid])
+            .catch(console.error())
+        } else {
+          const [rows, fields] = await database.promisePool
+            .query(sql, [cid, pid])
+            .catch(console.error())
+        }
+        res.status(200).json()
         break
       }
       case 'get':
       default:
         {
-          const [rows, fields] = await database.promisePool.query(sql, [cid])
+          const [rows, fields] = await database.promisePool
+            .query(sql, [cid])
+            .catch(console.error())
           res.status(200).json({
             cart: rows,
           })
@@ -57,8 +65,8 @@ router.post('/', (req, res, next) => {
   console.log(
     'Cart post request where customerID = ' +
       req.body.customerID +
-      ' productId = ' +
-      req.body.productId +
+      ' productID = ' +
+      req.body.productID +
       ' num = ' +
       req.body.num
   )
@@ -67,7 +75,7 @@ router.post('/', (req, res, next) => {
     res,
     'post',
     req.body.customerID,
-    req.body.productId,
+    req.body.productID,
     req.body.num
   )
 })
@@ -76,16 +84,26 @@ router.delete('/', (req, res, next) => {
   console.log(
     'Cart delete request where customerID = ' +
       req.body.customerID +
-      ' productId = ' +
-      req.body.productId
+      ' productID = ' +
+      req.body.productID
   )
-  executeSQL(
-    Cart.deleteCart(),
-    res,
-    'delete',
-    req.body.customerID,
-    req.body.productId
-  )
+  if (req.body.productID == 'all') {
+    executeSQL(
+      Cart.deleteAllCart(),
+      res,
+      'delete',
+      req.body.customerID,
+      req.body.productID
+    )
+  } else {
+    executeSQL(
+      Cart.deleteCart(),
+      res,
+      'delete',
+      req.body.customerID,
+      req.body.productID
+    )
+  }
 })
 
 export default router

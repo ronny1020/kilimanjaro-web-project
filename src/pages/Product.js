@@ -95,11 +95,11 @@ function Product(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              async function add() {
+              async function remove() {
                 await removeProductFromCart(product.productID, memberID)
                 await getProduct(id, memberID)
               }
-              add()
+              remove()
             }}
           >
             remove({product.num})
