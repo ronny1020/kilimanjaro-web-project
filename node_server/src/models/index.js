@@ -21,5 +21,9 @@ db.sequelize = sequelize;
 
 db.customers = require("./memberModel.js")(sequelize, Sequelize);
 db.favourites = require("./favouriteModel.js")(sequelize, Sequelize);
+db.products = require("./productModel.js")(sequelize, Sequelize);
+
+db.favourites.belongsTo(db.products)
+db.products.hasMany(db.favourites)
 
 module.exports = db;
