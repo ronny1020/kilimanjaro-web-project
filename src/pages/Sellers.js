@@ -14,6 +14,14 @@ import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
 
 function Sellers() {
+  fetch('http://localhost:6001/sellers_introListApi')
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (myJson) {
+      console.log(myJson)
+    })
+
   return (
     <>
       <LobbyTitle string={'賣家介紹'} />
