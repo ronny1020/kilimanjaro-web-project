@@ -4,8 +4,10 @@ import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
 import { Form, Button } from 'react-bootstrap'
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+
+import LoginValidate from '../../../components/LoginValidate'
+import { Redirect } from 'react-router-dom'
 
 function Edit() {
   const [editname, setEditName] = useState('')
@@ -17,9 +19,19 @@ function Edit() {
   const [editsex, setEditSex] = useState('')
   const [editpwd, setEditPwd] = useState('')
 
-  var decrypt = jwt.verify(localStorage.getItem('token'), 'himitsu')
-  var url = 'http://localhost:6001/Member/' + decrypt.user_id
-  var url_edit = 'http://localhost:6001/api/member/' + decrypt.user_id
+  if (LoginValidate() === false) {
+    return (
+      <>
+        <Redirect to="/login" />
+      </>
+    )
+  } else {
+    var memberID = LoginValidate().userID
+    // var valid = LoginValidate.isLogged
+  }
+
+  var url = 'http://localhost:6001/Member/' + memberID
+  var url_edit = 'http://localhost:6001/api/member/' + memberID
   // console.log(url_edit)
 
   //初次載入時fetch 重整會reset至最新

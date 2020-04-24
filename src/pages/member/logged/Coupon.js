@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
+import CoupList from '../../../components/member/CoupList'
+
+import LoginValidate from '../../../components/LoginValidate'
+import { Redirect } from 'react-router-dom'
+
 function Coupon() {
+  const [genList, setGenList] = useState(false)
+  const [couplistInput, setcouplistInput] = useState({})
+
+  if (LoginValidate() === false) {
+    return (
+      <>
+        <Redirect to="/login" />
+      </>
+    )
+  } else {
+    var memberID = LoginValidate().userID
+    // var valid = LoginValidate.isLogged
+  }
+  // console.log(memberID)
+  //讀取頁面時載入CoupList
+  if (genList === false) {
+    fetch('http://localhost:6001/api/coupon/' + memberID)
+      .then((res) => {
+        return res.json()
+      })
+      .then((couplist) => {
+        // console.log(couplist)
+        setcouplistInput(couplist)
+        setGenList(true)
+      })
+  }
+
   const inputArray = {
     title: '會員中心',
     個人資料修改: {
@@ -30,6 +62,9 @@ function Coupon() {
           </div>
           <div className="col-9">
             <Breadcrumb />
+            {genList === true ? (
+              <CoupList input={couplistInput} id={memberID} />
+            ) : null}
           </div>
         </div>
       </div>

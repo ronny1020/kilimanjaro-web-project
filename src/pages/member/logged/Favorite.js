@@ -7,39 +7,23 @@ import { Redirect } from 'react-router-dom'
 import FavList from '../../../components/member/FavList'
 
 import { Button, Form } from 'react-bootstrap'
-import jwt from 'jsonwebtoken'
+
+import LoginValidate from '../../../components/LoginValidate'
 
 function Favorite() {
   const [favproductID, setFavProductID] = useState('')
   const [genList, setGenList] = useState(false)
   const [favlistInput, setfavlistInput] = useState({})
 
-  //登入驗證檢查:
-  var valid = false
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    //只要壞掉就給我滾
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      valid = decrypt.isLogged
-      var cID = decrypt.user_id
-    }
-  }
-  //檢查結束
-  // console.log(valid, memberID)
-  if (valid === false) {
+  if (LoginValidate() === false) {
     return (
       <>
         <Redirect to="/login" />
       </>
     )
+  } else {
+    var memberID = LoginValidate().userID
+    // var valid = LoginValidate.isLogged
   }
 
   let isConfilcted = true
@@ -47,17 +31,17 @@ function Favorite() {
   function handleSubmit(event) {
     event.preventDefault()
 
-    // console.log(cID)
+    // console.log(memberID)
 
     const fav_data = {
-      customerID: cID,
+      customerID: memberID,
       productID: favproductID,
     }
     console.log(fav_data)
     //資料庫結構問題? customerID productID皆非unique
     //寫入前須檢查productID否則會有重複問題
     //可能會連帶影響delete(刪除單筆-->多筆)
-    fetch('http://localhost:6001/api/favourite/' + cID)
+    fetch('http://localhost:6001/api/favourite/' + memberID)
       .then(function (res) {
         return res.json()
       })
@@ -92,12 +76,12 @@ function Favorite() {
           alert('重複的產品!')
         }
       })
+    //檢查&送出至此結束
   }
-  //檢查&送出至此結束
 
   //讀取頁面時載入FavList
   if (genList === false) {
-    fetch('http://localhost:6001/api/favourite/' + cID)
+    fetch('http://localhost:6001/api/favourite/' + memberID)
       .then((res) => {
         return res.json()
       })
@@ -111,7 +95,7 @@ function Favorite() {
   //刪除全部favorite
   function DelAll() {
     alert('你真的要刪光?')
-    var url_del = 'http://localhost:6001/api/favourite/' + cID
+    var url_del = 'http://localhost:6001/api/favourite/' + memberID
     fetch(url_del, {
       method: 'DELETE',
     })
@@ -150,9 +134,14 @@ function Favorite() {
           <div className="col-9">
             <Breadcrumb />
             {genList === true ? (
-              <FavList input={favlistInput} id={cID} />
+              <FavList input={favlistInput} id={memberID} />
             ) : null}
-            <Form onSubmit={handleSubmit}>
+            <Button variant="primary" onClick={DelAll}>
+              全部刪光
+            </Button>
+
+            {/* DEV-ONLY */}
+            {/* <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicAccount">
                 <Form.Label>productID(dev only)</Form.Label>
                 <Form.Control
@@ -167,10 +156,9 @@ function Favorite() {
               <Button variant="primary" type="submit">
                 送出資料
               </Button>
-              <Button variant="primary" onClick={DelAll}>
-                全部刪光
-              </Button>
-            </Form>
+              
+            </Form> */}
+            {/* DEV-ONLY */}
           </div>
         </div>
       </div>
