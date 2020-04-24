@@ -26,8 +26,6 @@ async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
       output.perPage,
     ])
 
-    console.log(rows[0])
-
     switch (method) {
       case 'get':
       default:

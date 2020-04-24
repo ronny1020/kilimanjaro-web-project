@@ -15,7 +15,6 @@ async function executeSQL(
 ) {
   try {
     const [rows, fields] = await database.promisePool.query(sql, [cid, pid])
-    console.log(rows)
 
     switch (method) {
       case 'get':
@@ -56,7 +55,7 @@ async function executeSQL(
 
 router.get('/:pid/:cid', (req, res, next) => {
   console.log(
-    'Product get request where id = ' + req.params.pid + '' + req.params.cid
+    'Product get request where id = ' + req.params.pid + ' ' + req.params.cid
   )
   executeSQL(
     Product.getProduct(),

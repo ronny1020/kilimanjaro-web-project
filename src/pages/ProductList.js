@@ -6,6 +6,8 @@ import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
 
+import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
+
 import Pagination from 'react-bootstrap/Pagination'
 
 import jwt from 'jsonwebtoken'
@@ -13,7 +15,13 @@ import jwt from 'jsonwebtoken'
 function ProductList(props) {
   let { page } = useParams()
   page = page ? page : 1
-  const { products, range, getProductList } = props
+  const {
+    products,
+    range,
+    getProductList,
+    AddProductToCart,
+    removeProductFromCart,
+  } = props
 
   var memberID = null
   if (localStorage.getItem('token')) {
@@ -51,25 +59,33 @@ function ProductList(props) {
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
-          {products.num == null ? (
+          {product.num == null ? (
             <button
               className="btn btn-success"
               onClick={(e) => {
                 e.preventDefault()
-                console.log(product.productID)
+                async function add() {
+                  await AddProductToCart(product.productID, memberID)
+                  await getProductList(page, memberID)
+                }
+                add()
               }}
             >
               add
             </button>
           ) : (
             <button
-              className="btn btn-success"
+              className="btn btn-danger"
               onClick={(e) => {
                 e.preventDefault()
-                console.log(product.productID)
+                async function add() {
+                  await removeProductFromCart(product.productID, memberID)
+                  await getProductList(page, memberID)
+                }
+                add()
               }}
             >
-              remove
+              remove({product.num})
             </button>
           )}
         </ProductListItem>
@@ -171,4 +187,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getProductList })(ProductList)
+export default connect(mapStateToProps, {
+  getProductList,
+  AddProductToCart,
+  removeProductFromCart,
+})(ProductList)

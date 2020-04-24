@@ -4,7 +4,7 @@ import Loading from '../components/Loading'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getCart } from '../actions/getCart'
+import { getCart } from '../actions/CartAction'
 
 import jwt from 'jsonwebtoken'
 

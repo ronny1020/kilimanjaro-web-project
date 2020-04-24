@@ -2,7 +2,6 @@ import express from 'express'
 import Cart from '../domain/Cart.js'
 import database from '../db/database.js'
 
-
 const router = express.Router()
 
 async function executeSQL(
@@ -10,18 +9,24 @@ async function executeSQL(
   res,
   method = 'get',
   cid,
-  pid = null,
+  pid,
+  num = null,
   instance = {}
 ) {
   try {
     switch (method) {
       case 'post': {
-        const insertId = { id: rows.insertId }
-        const result = { ...instance, ...insertId }
+        console.log([cid, pid, num])
+        const [rows, fields] = await database.promisePool.query(sql, [
+          cid,
+          pid,
+          num,
+        ])
         res.status(200).json(result)
         break
       }
       case 'delete': {
+        const [rows, fields] = await database.promisePool.query(sql, [cid, pid])
         res.status(200).json({})
         break
       }
@@ -49,18 +54,38 @@ router.get('/:customerID', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let user = new User(
-    req.body.name,
-    req.body.username,
-    req.body.password,
-    req.body.email
+  console.log(
+    'Cart post request where customerID = ' +
+      req.body.customerID +
+      ' productId = ' +
+      req.body.productId +
+      ' num = ' +
+      req.body.num
   )
-
-  executeSQL(user.addUserSQL(), res, 'post', false, user)
+  executeSQL(
+    Cart.postCart(),
+    res,
+    'post',
+    req.body.customerID,
+    req.body.productId,
+    req.body.num
+  )
 })
 
-router.delete('/:userId', (req, res, next) => {
-  executeSQL(User.deleteUserByIdSQL(req.params.userId), res, 'delete', false)
+router.delete('/', (req, res, next) => {
+  console.log(
+    'Cart delete request where customerID = ' +
+      req.body.customerID +
+      ' productId = ' +
+      req.body.productId
+  )
+  executeSQL(
+    Cart.deleteCart(),
+    res,
+    'delete',
+    req.body.customerID,
+    req.body.productId
+  )
 })
 
 export default router
