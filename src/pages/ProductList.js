@@ -150,7 +150,7 @@ function ProductList(props) {
   const row_start = (range.page - 1) * range.perPage + 1
   const row_end =
     row_start + range.perPage < range.totalRows
-      ? row_start + range.perPage
+      ? row_start + range.perPage - 1
       : range.totalRows
 
   return (
