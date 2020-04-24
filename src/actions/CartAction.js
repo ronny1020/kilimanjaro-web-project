@@ -30,6 +30,24 @@ export const AddProductToCart = (pid, cid, number = 1) => {
   }
 }
 
+export const updateProductNumToCart = (pid, cid, number = 1) => {
+  return async () => {
+    if (cid == null) {
+      window.location.replace('http://localhost:3000/login/entrance')
+    }
+    const PostToCart = { productID: pid, customerID: cid, num: number }
+    const request = new Request('http://localhost:6001/CartApi/', {
+      method: 'put',
+      body: JSON.stringify(PostToCart),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    await fetch(request).catch(console.error())
+  }
+}
+
 export const removeProductFromCart = (pid, cid) => {
   return async () => {
     const deleteFromCart = { productID: pid, customerID: cid }

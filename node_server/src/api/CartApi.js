@@ -16,13 +16,20 @@ async function executeSQL(
   try {
     switch (method) {
       case 'post': {
-        console.log([cid, pid, num])
         const [rows, fields] = await database.promisePool
           .query(sql, [cid, pid, num])
           .catch(console.error())
         res.status(200).json()
         break
       }
+      case 'put': {
+        const [rows, fields] = await database.promisePool
+          .query(sql, [num, cid, pid])
+          .catch(console.error())
+        res.status(200).json()
+        break
+      }
+
       case 'delete': {
         if (pid == 'all') {
           const [rows, fields] = await database.promisePool
@@ -61,7 +68,7 @@ router.get('/:customerID', (req, res, next) => {
   executeSQL(Cart.getCart(), res, 'get', req.params.customerID)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   console.log(
     'Cart post request where customerID = ' +
       req.body.customerID +
@@ -70,17 +77,40 @@ router.post('/', (req, res, next) => {
       ' num = ' +
       req.body.num
   )
+  const num = req.body.num > 0 ? req.body.num : 1
+
   executeSQL(
     Cart.postCart(),
     res,
     'post',
     req.body.customerID,
     req.body.productID,
-    req.body.num
+    num
   )
 })
 
-router.delete('/', (req, res, next) => {
+router.put('/', (req, res) => {
+  console.log(
+    'Cart put request where customerID = ' +
+      req.body.customerID +
+      ' productID = ' +
+      req.body.productID +
+      ' num = ' +
+      req.body.num
+  )
+  const num = req.body.num > 0 ? req.body.num : 1
+
+  executeSQL(
+    Cart.putCart(),
+    res,
+    'put',
+    req.body.customerID,
+    req.body.productID,
+    num
+  )
+})
+
+router.delete('/', (req, res) => {
   console.log(
     'Cart delete request where customerID = ' +
       req.body.customerID +

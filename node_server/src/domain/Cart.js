@@ -19,6 +19,12 @@ class Cart {
     let sql = `DELETE FROM coffee.cart where customerID= ?;`
     return sql
   }
+
+  static putCart() {
+    let sql = `UPDATE coffee.cart SET num = ? where customerID= ? and productID = ? ;`
+    return sql
+  }
+
 }
 
 export default Cart
