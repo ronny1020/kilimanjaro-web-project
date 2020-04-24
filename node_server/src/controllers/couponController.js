@@ -13,51 +13,42 @@ exports.findAll = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving coupon.',
+        message: err.message || 'Some error occurred while retrieving coupon.',
       })
     })
 }
 
 exports.update = (req, res) => {
-  const customerID = req.params.customerID
+  const couponMapId = req.body.couponMapId
 
-  Coupon.update(req.body, {
-    where: { customerID: customerID },
+  ConponMap.update(req.body, {
+    where: { couponMapId: couponMapId },
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Member was updated successfully.',
+          message: 'coupon was updated successfully.',
         })
       } else {
         res.send({
-          message: `Cannot update Member with id=${customerID}. Maybe member was not found or req.body is empty!`,
+          message: `Cannot update coupon with id=${couponMapId}. Maybe coupon was not found or req.body is empty!`,
         })
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: `Error updating Member with id=${customerID}`,
+        message: `Error updating coupon with id=${couponMapId}`,
       })
     })
 }
 
 exports.findAllValid = (req, res) => {
-  Coupon.findAll({
-    where: { customerID: req.params.customerID },
-    include: [{ model: Product }],
+  ConponMap.findAll({
+    where: { customerID: req.params.customerID, valid: true },
+    include: [{ model: Coupon }],
   })
     .then(data => {
-      const resObj = data.map(Favourite => {
-        return Object.assign({
-          favouriteID: Favourite.favouriteID,
-          customerID: Favourite.customerID,
-          productID: Favourite.productID,
-          ProductName: Favourite.product.ProductName,
-        })
-      })
-      res.send(resObj)
+      res.send(data)
     })
     .catch(err => {
       res.status(500).send({

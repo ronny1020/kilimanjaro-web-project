@@ -14,7 +14,7 @@ module.exports = app => {
   router.get('/:customerID', coupon.findAllValid)
 
   //刪除OR新增單筆coupon(實為修改)
-  router.put("/:customerID", coupon.update)
+  router.put("/", coupon.update)
 
   
   // router.delete("/:customerID/:couponID", favourite.findAllPublished)
