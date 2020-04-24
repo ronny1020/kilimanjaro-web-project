@@ -36,9 +36,10 @@ app.get('/', (req, res) => {
 })
 
 //https://bezkoder.com/node-js-express-sequelize-mysql/
-//RESTful API: (for members)
+//RESTful API:
 require('./routes/memberRoutes')(app)
 require('./routes/favouriteRoutes')(app)
+require('./routes/couponRoutes')(app)
 
 // error - 404
 app.use((req, res, next) => {
