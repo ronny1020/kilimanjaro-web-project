@@ -12,11 +12,10 @@ function Enroll(props) {
   const [enrAcc, setEnrAcc] = useState('')
   const [enrEmail, setEnrEmail] = useState('')
   const [enrPwd, setEnrPwd] = useState('')
-  const [enrID, setEnrID] = useState('')
-
   const [bsAlert, setBSAlert] = useState(false)
   const [doneEnroll, setDoneEnroll] = useState(false)
 
+  let newID = ''
   let isVerified = false
 
   function validateForm() {
@@ -36,10 +35,9 @@ function Enroll(props) {
             //創造新ID
             var arr_length = Object.keys(allMemberList).length
             var id_max = allMemberList[arr_length - 1].customerID
-            let newID = 'C' + (parseInt(id_max.split('C')[1]) + 1)
-            setEnrID(newID)
-            //有時候會沒有ID!
-            console.log(enrID)
+            newID = 'C' + (parseInt(id_max.split('C')[1]) + 1)
+            //有時候會沒有ID! (移除hook後好像修復了)
+            console.log(newID)
 
             //檢查信箱是否重複
             for (let i = 0; i < arr_length; i++) {
@@ -60,7 +58,7 @@ function Enroll(props) {
             // console.log(enrID)
             if (isVerified === true) {
               let newMember = {
-                customerID: enrID,
+                customerID: newID,
                 cName: enrAcc,
                 cAccount: enrAcc,
                 cEmail: enrEmail,
