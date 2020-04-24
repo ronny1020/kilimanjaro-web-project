@@ -51,6 +51,27 @@ function ProductList(props) {
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
+          {products.num == null ? (
+            <button
+              className="btn btn-success"
+              onClick={(e) => {
+                e.preventDefault()
+                console.log(product.productID)
+              }}
+            >
+              add
+            </button>
+          ) : (
+            <button
+              className="btn btn-success"
+              onClick={(e) => {
+                e.preventDefault()
+                console.log(product.productID)
+              }}
+            >
+              remove
+            </button>
+          )}
         </ProductListItem>
       </Link>
     </div>
@@ -109,6 +130,7 @@ function ProductList(props) {
     }
   })
 
+  // calculate the date range
   const row_start = (range.page - 1) * range.perPage + 1
   const row_end =
     row_start + range.perPage < range.totalRows
