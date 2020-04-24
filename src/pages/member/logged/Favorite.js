@@ -41,41 +41,41 @@ function Favorite() {
     //資料庫結構問題? customerID productID皆非unique
     //寫入前須檢查productID否則會有重複問題
     //可能會連帶影響delete(刪除單筆-->多筆)
-    // fetch('http://localhost:6001/api/favourite/' + memberID)
-    //   .then(function (res) {
-    //     return res.json()
-    //   })
-    //   .then(function (favList) {
-    //     for (let i = 0; i < favList.length; i++) {
-    //       // console.log(typeof favList[i].productID, favList[i].productID)
-    //       // console.log(typeof parseInt(favproductID), parseInt(favproductID))
-    //       if (favList[i].productID === parseInt(favproductID)) {
-    //         // i = favList.length //中止迴圈
-    //         return
-    //       }
-    //     }
-    //     return (isConfilcted = false)
-    //   })
-    //   .then(function () {
-    //     console.log(isConfilcted)
-    //     if (isConfilcted === false) {
-    //       fetch('http://localhost:6001/api/favourite/', {
-    //         method: 'POST',
-    //         body: JSON.stringify(fav_data),
-    //         headers: new Headers({
-    //           'Content-Type': 'application/json',
-    //         }),
-    //       })
-    //         .then((res) => res.json())
-    //         .catch((error) => console.error('Error:', error))
-    //         .then((response) => {
-    //           console.log('Success:', response)
-    //           window.location.reload()
-    //         })
-    //     } else {
-    //       alert('重複的產品!')
-    //     }
-    //   })
+    fetch('http://localhost:6001/api/favourite/' + memberID)
+      .then(function (res) {
+        return res.json()
+      })
+      .then(function (favList) {
+        for (let i = 0; i < favList.length; i++) {
+          // console.log(typeof favList[i].productID, favList[i].productID)
+          // console.log(typeof parseInt(favproductID), parseInt(favproductID))
+          if (favList[i].productID === parseInt(favproductID)) {
+            // i = favList.length //中止迴圈
+            return
+          }
+        }
+        return (isConfilcted = false)
+      })
+      .then(function () {
+        console.log(isConfilcted)
+        if (isConfilcted === false) {
+          fetch('http://localhost:6001/api/favourite/', {
+            method: 'POST',
+            body: JSON.stringify(fav_data),
+            headers: new Headers({
+              'Content-Type': 'application/json',
+            }),
+          })
+            .then((res) => res.json())
+            .catch((error) => console.error('Error:', error))
+            .then((response) => {
+              console.log('Success:', response)
+              window.location.reload()
+            })
+        } else {
+          alert('重複的產品!')
+        }
+      })
     //檢查&送出至此結束
   }
 
@@ -139,6 +139,7 @@ function Favorite() {
             <Button variant="primary" onClick={DelAll}>
               全部刪光
             </Button>
+
             {/* DEV-ONLY */}
             {/* <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicAccount">
