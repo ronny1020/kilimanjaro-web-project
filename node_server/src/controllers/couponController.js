@@ -3,6 +3,26 @@ const Coupon = db.coupon
 const ConponMap = db.couponMap
 const Op = db.Sequelize.Op
 
+exports.create = (req, res) => {
+
+  const newCoupon = {
+    couponID: req.body.couponID,
+    customerID: req.body.customerID,
+    valid: req.body.valid,
+  }
+
+  // Save Member in the database
+  ConponMap.create(newCoupon)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || 'Some error occurred while creating Coupon.',
+      })
+    })
+}
+
 exports.findAll = (req, res) => {
   const couponID = req.query.couponID
   var condition = couponID ? { couponID: { [Op.like]: `%${couponID}%` } } : null

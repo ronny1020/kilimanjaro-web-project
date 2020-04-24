@@ -3,8 +3,6 @@ module.exports = app => {
 
   var router = require('express').Router()
 
-  // router.post('/', favourite.create)
-
   // router.get("/:customerID", favourite.findOne)
 
   //列出全部coupon列表(顯示於優惠專區)
@@ -13,8 +11,11 @@ module.exports = app => {
   //列出該顧客持有的有效coupon
   router.get('/:customerID', coupon.findAllValid)
 
-  //刪除OR新增單筆coupon(實為修改)
+  //刪除單筆coupon(實為修改)
   router.put("/", coupon.update)
+
+  //新增單筆coupon
+  router.post('/', coupon.create)
 
   
   // router.delete("/:customerID/:couponID", favourite.findAllPublished)
