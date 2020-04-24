@@ -85,13 +85,23 @@ function Product(props) {
         <p>Tags：{tagsLink}</p>
 
         <form className="form-inline">
-          <label htmlFor="order_num m-1">數量：</label>
+          <label htmlFor="order_num" className="m-1">
+            數量：
+          </label>
           <input
             type="number"
             className="form-control"
             placeholder="Enter Number"
             id="order_num"
-          ></input>
+            defaultValue={product.num}
+            onChange={() => {
+              const input_num = document.getElementById('order_num')
+              input_num.value = Math.round(input_num.value)
+              if (input_num.value < 1) {
+                input_num.value = 1
+              }
+            }}
+          />
 
           {product.num == null ? (
             <>

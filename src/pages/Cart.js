@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
-import { removeProductFromCart } from '../actions/CartAction'
+import {
+  removeProductFromCart,
+  updateProductNumToCart,
+} from '../actions/CartAction'
 
 import jwt from 'jsonwebtoken'
 
@@ -29,7 +32,7 @@ function Cart(props) {
     window.location.replace('http://localhost:3000/login/entrance')
   }
 
-  const { Cart, getCart, removeProductFromCart } = props
+  const { Cart, getCart, removeProductFromCart, updateProductNumToCart } = props
 
   useEffect(() => {
     getCart(memberID)
@@ -52,19 +55,55 @@ function Cart(props) {
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
 
-          <button
-            className="btn btn-danger"
-            onClick={(e) => {
-              e.preventDefault()
-              async function remove() {
-                await removeProductFromCart(product.productID, memberID)
-                await getCart(memberID)
-              }
-              remove()
-            }}
-          >
-            remove({product.num})
-          </button>
+          <form className="form-inline">
+            <label htmlFor={product.productID} className="m-1">
+              數量：
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Enter Number"
+              id={product.productID}
+              defaultValue={product.num}
+              onClick={(e) => {
+                e.preventDefault()
+              }}
+              onChange={() => {
+                const input_num = document.getElementById(product.productID)
+                input_num.value = Math.round(input_num.value)
+                if (input_num.value < 1) {
+                  input_num.value = 1
+                }
+              }}
+            />
+            <button
+              className="btn btn-success m-1"
+              onClick={(e) => {
+                e.preventDefault()
+                async function update() {
+                  const num = document.getElementById(product.productID).value
+                  await updateProductNumToCart(product.productID, memberID, num)
+                  await getCart(memberID)
+                }
+                update()
+              }}
+            >
+              update
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={(e) => {
+                e.preventDefault()
+                async function remove() {
+                  await removeProductFromCart(product.productID, memberID)
+                  await getCart(memberID)
+                }
+                remove()
+              }}
+            >
+              remove({product.num})
+            </button>
+          </form>
         </ProductListItem>
       </Link>
     </div>
@@ -101,6 +140,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getCart, removeProductFromCart })(
-  Cart
-)
+export default connect(mapStateToProps, {
+  getCart,
+  removeProductFromCart,
+  updateProductNumToCart,
+})(Cart)
