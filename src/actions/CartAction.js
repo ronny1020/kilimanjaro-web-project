@@ -14,8 +14,10 @@ export const getCart = (id) => {
 
 export const AddProductToCart = (pid, cid, number = 1) => {
   return async () => {
+    if (cid == null) {
+      window.location.replace('http://localhost:3000/login/entrance')
+    }
     const PostToCart = { productId: pid, customerID: cid, num: number }
-    console.log(PostToCart)
     const request = new Request('http://localhost:6001/CartApi/', {
       method: 'POST',
       body: JSON.stringify(PostToCart),

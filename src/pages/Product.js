@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { recordVisit, getProduct } from '../actions/getProduct'
+import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
 
 import CardSecondary from '../components/CardSecondary'
 
@@ -12,7 +13,13 @@ import jwt from 'jsonwebtoken'
 function Product(props) {
   let { id } = useParams()
 
-  const { product, recordVisit, getProduct } = props
+  const {
+    product,
+    recordVisit,
+    getProduct,
+    AddProductToCart,
+    removeProductFromCart,
+  } = props
 
   var memberID = null
   if (localStorage.getItem('token')) {
@@ -71,6 +78,33 @@ function Product(props) {
         <p>庫存：{product.UnitsInStock}</p>
         <p>人氣：{product.visitedTimes}</p>
         <p>Tags：{tagsLink}</p>
+        {product.num == null ? (
+          <button
+            className="btn btn-success"
+            onClick={() => {
+              async function add() {
+                await AddProductToCart(product.productID, memberID)
+                await getProduct(id, memberID)
+              }
+              add()
+            }}
+          >
+            add
+          </button>
+        ) : (
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              async function add() {
+                await removeProductFromCart(product.productID, memberID)
+                await getProduct(id, memberID)
+              }
+              add()
+            }}
+          >
+            remove({product.num})
+          </button>
+        )}
       </CardSecondary>
     </>
   )
@@ -82,4 +116,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { recordVisit, getProduct })(Product)
+export default connect(mapStateToProps, {
+  recordVisit,
+  getProduct,
+  AddProductToCart,
+  removeProductFromCart,
+})(Product)
