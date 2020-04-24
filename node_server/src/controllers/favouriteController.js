@@ -49,7 +49,7 @@ exports.findAll = (req, res) => {
           favouriteID: Favourite.favouriteID,
           customerID: Favourite.customerID,
           productID: Favourite.productID,
-          ProductName: Favourite.Product.ProductName,
+          ProductName: Favourite.product.ProductName,
         })
       })
       res.send(resObj)
@@ -64,9 +64,20 @@ exports.findAll = (req, res) => {
 
 // find specific Member favourites(DONE)
 exports.findAllPublished = (req, res) => {
-  Favourite.findAll({ where: { customerID: req.params.customerID } })
+  Favourite.findAll({
+    where: { customerID: req.params.customerID },
+    include: [{ model: Product }],
+  })
     .then(data => {
-      res.send(data)
+      const resObj = data.map(Favourite => {
+        return Object.assign({
+          favouriteID: Favourite.favouriteID,
+          customerID: Favourite.customerID,
+          productID: Favourite.productID,
+          ProductName: Favourite.product.ProductName,
+        })
+      })
+      res.send(resObj)
     })
     .catch(err => {
       res.status(500).send({

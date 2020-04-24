@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     'favourites',
     {
       favouriteID: {
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.INTEGER(10),
         primaryKey: true,
       },
       customerID: {
