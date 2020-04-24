@@ -61,7 +61,7 @@ function ProductList(props) {
           <p>id:{product.productID}</p>
           {product.num == null ? (
             <button
-              className="btn btn-success"
+              className="btn btn-primary"
               onClick={(e) => {
                 e.preventDefault()
                 async function add() {

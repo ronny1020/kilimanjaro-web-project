@@ -4,7 +4,11 @@ import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { recordVisit, getProduct } from '../actions/getProduct'
-import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
+import {
+  AddProductToCart,
+  removeProductFromCart,
+  updateProductNumToCart,
+} from '../actions/CartAction'
 
 import CardSecondary from '../components/CardSecondary'
 
@@ -19,6 +23,7 @@ function Product(props) {
     getProduct,
     AddProductToCart,
     removeProductFromCart,
+    updateProductNumToCart,
   } = props
 
   var memberID = null
@@ -78,33 +83,69 @@ function Product(props) {
         <p>庫存：{product.UnitsInStock}</p>
         <p>人氣：{product.visitedTimes}</p>
         <p>Tags：{tagsLink}</p>
-        {product.num == null ? (
-          <button
-            className="btn btn-success"
-            onClick={() => {
-              async function add() {
-                await AddProductToCart(product.productID, memberID)
-                await getProduct(id, memberID)
-              }
-              add()
-            }}
-          >
-            add
-          </button>
-        ) : (
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              async function remove() {
-                await removeProductFromCart(product.productID, memberID)
-                await getProduct(id, memberID)
-              }
-              remove()
-            }}
-          >
-            remove({product.num})
-          </button>
-        )}
+
+        <form className="form-inline">
+          <label htmlFor="order_num m-1">數量：</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Enter Number"
+            id="order_num"
+          ></input>
+
+          {product.num == null ? (
+            <>
+              <button
+                className="btn btn-primary m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const num = document.getElementById('order_num').value
+                  async function add() {
+                    await AddProductToCart(product.productID, memberID, num)
+                    await getProduct(id, memberID)
+                  }
+                  add()
+                }}
+              >
+                add
+              </button>{' '}
+            </>
+          ) : (
+            <>
+              <button
+                className="btn btn-success m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function update() {
+                    const num = document.getElementById('order_num').value
+                    await updateProductNumToCart(
+                      product.productID,
+                      memberID,
+                      num
+                    )
+                    await getProduct(id, memberID)
+                  }
+                  update()
+                }}
+              >
+                update
+              </button>
+              <button
+                className="btn btn-danger m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function remove() {
+                    await removeProductFromCart(product.productID, memberID)
+                    await getProduct(id, memberID)
+                  }
+                  remove()
+                }}
+              >
+                remove({product.num})
+              </button>
+            </>
+          )}
+        </form>
       </CardSecondary>
     </>
   )
@@ -121,4 +162,5 @@ export default connect(mapStateToProps, {
   getProduct,
   AddProductToCart,
   removeProductFromCart,
+  updateProductNumToCart,
 })(Product)
