@@ -1,8 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
-  const Customers = sequelize.define(
+  const Favourites = sequelize.define(
     'favourites',
     {
-      favourtieID: {
+      favouriteID: {
         type: Sequelize.INTEGER(10),
         primaryKey: true,
       },
@@ -17,8 +17,11 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       timestamps: false,
+    },
+    {
+      underscored: true,
     }
   )
 
-  return Customers
+  return Favourites
 }

@@ -17,6 +17,7 @@ import History from './History'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import Login from '../Login'
 import Home from '../../Home'
+import Product from '../../Product'
 import NotFoundPage from '../../NotFoundPage'
 
 import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
@@ -142,6 +143,9 @@ function Member(props) {
             <Route path="/login">
               <Redirect from="/login" to="/login/entrance"></Redirect>
               <Login />
+            </Route>
+            <Route path="/product/:id?">
+              <Product />
             </Route>
             <Route exact path="/">
               <Home />

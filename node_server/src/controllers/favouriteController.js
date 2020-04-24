@@ -1,5 +1,6 @@
 const db = require('../models')
 const Favourite = db.favourites
+const Product = db.products
 const Op = db.Sequelize.Op
 
 // Create and Save a new FAVOURITE
@@ -14,7 +15,7 @@ exports.create = (req, res) => {
 
   // Create a favourite
   const favourite = {
-    // favourtieID: req.body.favourtieID,
+    // favouriteID: req.body.favourtieID,
     customerID: req.body.customerID,
     productID: req.body.productID,
   }
@@ -33,14 +34,25 @@ exports.create = (req, res) => {
 
 // Retrieve all Members from the database.(DONE)
 exports.findAll = (req, res) => {
-  const favourtieID = req.query.favourtieID
-  var condition = favourtieID
-    ? { favourtieID: { [Op.like]: `%${favourtieID}%` } }
+  const favouriteID = req.query.favouriteID
+  var condition = favouriteID
+    ? { favouriteID: { [Op.like]: `%${favouriteID}%` } }
     : null
 
-  Favourite.findAll({ where: condition })
+  Favourite.findAll({
+    where: condition,
+    include: [{ model: Product }],
+  })
     .then(data => {
-      res.send(data)
+      const resObj = data.map(Favourite => {
+        return Object.assign({
+          favouriteID: Favourite.favouriteID,
+          customerID: Favourite.customerID,
+          productID: Favourite.productID,
+          ProductName: Favourite.product.ProductName,
+        })
+      })
+      res.send(resObj)
     })
     .catch(err => {
       res.status(500).send({
@@ -52,9 +64,20 @@ exports.findAll = (req, res) => {
 
 // find specific Member favourites(DONE)
 exports.findAllPublished = (req, res) => {
-  Favourite.findAll({ where: { customerID: req.params.customerID } })
+  Favourite.findAll({
+    where: { customerID: req.params.customerID },
+    include: [{ model: Product }],
+  })
     .then(data => {
-      res.send(data)
+      const resObj = data.map(Favourite => {
+        return Object.assign({
+          favouriteID: Favourite.favouriteID,
+          customerID: Favourite.customerID,
+          productID: Favourite.productID,
+          ProductName: Favourite.product.ProductName,
+        })
+      })
+      res.send(resObj)
     })
     .catch(err => {
       res.status(500).send({

@@ -1,21 +1,26 @@
 import React from 'react'
 import { ListGroup, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function FavList(props) {
   //   console.log(props)
   const favArray = props.input
   const listItems = favArray.map((item) => (
-    <ListGroup.Item action key={item.productID.toString()}>
-      產品編號：{item.productID}
-      <Button
-        variant="danger"
-        id={props.id + '/' + item.productID.toString()}
-        size="sm"
-        onClick={delItem}
-      >
-        刪除
-      </Button>
-    </ListGroup.Item>
+    <Link to={'/product/' + item.productID}>
+      <ListGroup.Item action key={item.productID.toString()}>
+        產品名稱：{item.ProductName}
+        <br />
+        產品編號：{item.productID}
+        <Button
+          variant="danger"
+          id={props.id + '/' + item.productID.toString()}
+          size="sm"
+          onClick={delItem}
+        >
+          刪除
+        </Button>
+      </ListGroup.Item>
+    </Link>
   ))
 
   //按下刪除時刪除該列
