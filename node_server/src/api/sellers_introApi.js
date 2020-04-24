@@ -41,7 +41,7 @@ async function executeSQL(
 
 router.get('/:id', (req, res, next) => {
   console.log('Sellers_intro get request where id = ' + req.params.id)
-  executeSQL(Sellers_intro.getMember(), res, [req.params.id], 'get', false)
+  executeSQL(Sellers_intro.getsellers_intro(), res, [req.params.id], 'get', false)
 })
 
 export default router

@@ -38,6 +38,8 @@ function Enroll(props) {
             var id_max = allMemberList[arr_length - 1].customerID
             let newID = 'C' + (parseInt(id_max.split('C')[1]) + 1)
             setEnrID(newID)
+            //有時候會沒有ID!
+            console.log(enrID)
 
             //檢查信箱是否重複
             for (let i = 0; i < arr_length; i++) {

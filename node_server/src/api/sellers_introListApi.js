@@ -56,7 +56,7 @@ async function executeSQL(
 
 router.get('/', (req, res, next) => {
   console.log('Sellers_introList get request')
-  executeSQL(Sellers_introList.getMemberList(req.query), res)
+  executeSQL(Sellers_introList.getSellers_introList(req.query), res)
 })
 
 export default router
