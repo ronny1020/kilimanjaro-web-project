@@ -5,12 +5,11 @@ import { useParams, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
+import { getMemberID } from '../actions/getMemberID'
 
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
 
 import Pagination from 'react-bootstrap/Pagination'
-
-import jwt from 'jsonwebtoken'
 
 function ProductList(props) {
   let { page } = useParams()
@@ -23,21 +22,7 @@ function ProductList(props) {
     removeProductFromCart,
   } = props
 
-  var memberID = null
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      memberID = decrypt.user_id
-    }
-  }
+  const memberID = getMemberID()
 
   useEffect(() => {
     getProductList(page, memberID)

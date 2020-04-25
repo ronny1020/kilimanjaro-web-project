@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Loading from '../components/Loading'
 import { useParams, Link } from 'react-router-dom'
+import { getMemberID } from '../actions/getMemberID'
 
 import { connect } from 'react-redux'
 import { recordVisit, getProduct } from '../actions/getProduct'
@@ -11,8 +12,6 @@ import {
 } from '../actions/CartAction'
 
 import CardSecondary from '../components/CardSecondary'
-
-import jwt from 'jsonwebtoken'
 
 function Product(props) {
   let { id } = useParams()
@@ -26,21 +25,7 @@ function Product(props) {
     updateProductNumToCart,
   } = props
 
-  var memberID = null
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      memberID = decrypt.user_id
-    }
-  }
+  const memberID = getMemberID()
 
   useEffect(() => {
     async function start() {

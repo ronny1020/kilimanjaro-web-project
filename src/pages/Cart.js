@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
+import { getMemberID } from '../actions/getMemberID'
+
 import {
   removeProductFromCart,
   updateProductNumToCart,
@@ -13,20 +15,8 @@ import {
 import jwt from 'jsonwebtoken'
 
 function Cart(props) {
-  var memberID = null
-  if (localStorage.getItem('token')) {
-    const token = localStorage.getItem('token')
-    try {
-      var decrypt = jwt.verify(token, 'himitsu')
-    } catch (err) {
-      localStorage.removeItem('token')
-      window.location.reload()
-    }
-
-    if (jwt.verify(token, 'himitsu')) {
-      decrypt = jwt.verify(token, 'himitsu')
-      memberID = decrypt.user_id
-    }
+  const memberID = getMemberID()
+  
   }
   if (memberID == null) {
     window.location.replace('http://localhost:3000/login/entrance')
