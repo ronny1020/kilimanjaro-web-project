@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
+    "favico.js": "^0.3.10",
     "jquery": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.13.1",

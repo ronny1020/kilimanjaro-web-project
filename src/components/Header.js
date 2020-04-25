@@ -7,16 +7,27 @@ import { getCartNum } from '../actions/CartAction'
 
 import { connect } from 'react-redux'
 
+// http://lab.ejci.net/favico.js/
+import Favico from 'favico.js'
+var favicon = new Favico({
+  animation: 'none',
+  bgColor: '#fab5b5',
+  textColor: '#000',
+})
+
 function Header(props) {
   const memberID = getMemberID()
 
   const { getCartNum, cartNum, product, products, Cart } = props
 
   useEffect(() => {
-    getCartNum(memberID)
-  }, [getCartNum, memberID, product, products, Cart])
-
-  document.title = cartNum ? '(' + cartNum + ') Kilimanjaro' : 'Kilimanjaro'
+    async function start() {
+      await getCartNum(memberID)
+      await favicon.badge(cartNum)
+    }
+    start()
+    document.title = cartNum ? '(' + cartNum + ') Kilimanjaro' : 'Kilimanjaro'
+  }, [getCartNum, memberID, product, products, Cart, cartNum])
 
   return (
     <>
