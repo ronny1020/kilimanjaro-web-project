@@ -43,6 +43,16 @@ async function executeSQL(
         res.status(200).json()
         break
       }
+      case 'getNum':
+        {
+          const [rows, fields] = await database.promisePool
+            .query(sql, [cid])
+            .catch(console.error())
+          res.status(200).json(
+            rows[0].num
+          )
+        }
+        break
       case 'get':
       default:
         {
@@ -62,6 +72,11 @@ async function executeSQL(
     })
   }
 }
+
+router.get('/cartNum/:customerID', (req, res, next) => {
+  console.log('Cart get cartNum request where customerID = ' + req.params.customerID)
+  executeSQL(Cart.getCartNum(), res, 'getNum', req.params.customerID)
+})
 
 router.get('/:customerID', (req, res, next) => {
   console.log('Cart get request where customerID = ' + req.params.customerID)

@@ -6,6 +6,12 @@ class Cart {
     return sql
   }
 
+  static getCartNum() {
+    let sql =
+      ' SELECT count(0) num FROM coffee.cart Where customerID = ? ;'
+    return sql
+  }
+
   static postCart() {
     let sql = `INSERT INTO coffee.Cart (customerID,productID,num)  VALUES (? , ? , ? );`
     return sql
