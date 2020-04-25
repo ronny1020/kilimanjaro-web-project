@@ -1,4 +1,4 @@
-import { GET_CART } from './actionTypes'
+import { GET_CART, GET_CART_NUM } from './actionTypes'
 
 export const getCart = (id) => {
   return async (dispatch) => {
@@ -8,6 +8,19 @@ export const getCart = (id) => {
     dispatch({
       type: GET_CART,
       payload: list,
+    })
+  }
+}
+
+export const getCartNum = (id) => {
+  return async (dispatch) => {
+    const url = 'http://localhost:6001/CartApi/cartNum/' + id
+    const response = await fetch(url)
+    const num = await response.json()
+
+    dispatch({
+      type: GET_CART_NUM,
+      payload: num,
     })
   }
 }

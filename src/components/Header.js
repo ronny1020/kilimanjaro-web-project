@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
-import LoginValidate from './LoginValidate'
+import { getMemberID } from '../actions/getMemberID'
+import { getCartNum } from '../actions/CartAction'
+
+import { connect } from 'react-redux'
 
 function Header(props) {
-  var valid = false
-  if (LoginValidate() === false) {
-    valid = false
-  } else {
-    valid = true
-  }
+  const memberID = getMemberID()
+
+  const { getCartNum, cartNum, state } = props
+
+  useEffect(() => {
+    getCartNum(memberID)
+  }, [getCartNum, memberID, state])
 
   return (
-    <header>
-      <>
+    <>
+      <header>
         <Navbar bg="dark" variant="dark" expand="lg">
           {/*  */}
           <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -26,7 +30,7 @@ function Header(props) {
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <Nav.Link className="navicon_mob" href="/login">
-            {valid ? (
+            {memberID ? (
               <img src="../images/dummy.jpg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>
@@ -34,6 +38,7 @@ function Header(props) {
           </Nav.Link>
           <Nav.Link className="navicon_mob" href="/product">
             <img src="../images/cart.svg" alt="cart"></img>
+            {cartNum ? <div className="cartDot">{cartNum}</div> : ''}
           </Nav.Link>
           {/* Appear when max-width<=375px.(RWD) */}
 
@@ -76,7 +81,7 @@ function Header(props) {
           </Navbar.Brand>
 
           <Nav.Link className="navicon_web" href="/login">
-            {valid ? (
+            {memberID ? (
               <img src="../images/dummy.jpg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>
@@ -84,12 +89,21 @@ function Header(props) {
           </Nav.Link>
           <Nav.Link className="navicon_web" href="/cart">
             <img src="../images/cart.svg" alt="cart"></img>
+            {cartNum ? <div className="cartDot">{cartNum}</div> : ''}
           </Nav.Link>
           {/* Appear when normal. */}
         </Navbar>
-      </>
-    </header>
+      </header>
+      <div className="headerSpace"></div>
+    </>
   )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    cartNum: state.CartNumReducer.cartNum,
+    state: state,
+  }
+}
+
+export default connect(mapStateToProps, { getCartNum })(Header)

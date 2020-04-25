@@ -1,3 +1,15 @@
+$headerHigh:100px;
+
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 42;
+  height: $headerHigh;
+}
+.headerSpace{
+  height: $headerHigh;
+}
+
 /*Navbar CSS:*/
 .navicon_web,
 .navicon_mob,
@@ -100,4 +112,17 @@
   .brand_mob {
     width: 120px;
   }
+}
+
+.cartDot {
+  position: absolute;
+  z-index: 87;
+  background-color: $danger;
+  color: black;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
 }
