@@ -1,14 +1,13 @@
-$headerHigh:100px;
+
 
 header{
   position: fixed;
   width: 100%;
   z-index: 42;
-  height: $headerHigh;
+  opacity: 0.8;
+
 }
-.headerSpace{
-  height: $headerHigh;
-}
+
 
 /*Navbar CSS:*/
 .navicon_web,

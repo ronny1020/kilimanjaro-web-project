@@ -98,6 +98,7 @@ function Cart(props) {
 
   return (
     <>
+      <div className="topSpace"></div>
       <div className="container">
         <h1>購物車</h1>
 

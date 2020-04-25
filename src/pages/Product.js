@@ -62,6 +62,7 @@ function Product(props) {
   ))
   return (
     <>
+      <div className="topSpace"></div>
       <CardSecondary>
         <h2>產品名稱：{product.ProductName}</h2>
         <p>價格：{product.UnitPrice}</p>
