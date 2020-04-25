@@ -10,11 +10,13 @@ import { connect } from 'react-redux'
 function Header(props) {
   const memberID = getMemberID()
 
-  const { getCartNum, cartNum, state } = props
+  const { getCartNum, cartNum, product, products, Cart } = props
 
   useEffect(() => {
     getCartNum(memberID)
-  }, [getCartNum, memberID, state])
+  }, [getCartNum, memberID, product, products, Cart])
+
+  document.title = cartNum ? '(' + cartNum + ') Kilimanjaro' : 'Kilimanjaro'
 
   return (
     <>
@@ -102,7 +104,9 @@ function Header(props) {
 const mapStateToProps = (state) => {
   return {
     cartNum: state.CartNumReducer.cartNum,
-    state: state,
+    product: state.ProductReducer.item,
+    products: state.ProductListReducer.items.ProductList,
+    Cart: state.CartReducer.items.cart,
   }
 }
 
