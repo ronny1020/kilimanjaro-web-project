@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
@@ -12,8 +12,10 @@ import img003 from '../img/home/carousel/003.jpg'
 import img004 from '../img/home/carousel/004.jpg'
 import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
+import { array } from 'prop-types'
 
 function Sellers() {
+  const [total, setTotal] = useState([])
   fetch('http://localhost:6001/sellers_introListApi')
     .then(function (response) {
       return response.json()
@@ -21,6 +23,33 @@ function Sellers() {
     .then(function (myJson) {
       console.log(myJson)
     })
+
+  async function getTotalFromServer() {
+    const request = new Request('http://localhost:6001/sellers_introListApi', {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    //console.log(data)
+    // 設定資料
+
+    setTotal(data)
+  }
+
+  useEffect(() => {
+    getTotalFromServer()
+  }, [])
+
+  console.log(total)
+
+  var a = total.MemberList
+
+  console.log(a[0])
 
   return (
     <>
