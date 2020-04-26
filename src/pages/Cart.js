@@ -42,7 +42,7 @@ function Cart(props) {
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
 
-          <form className="form-inline">
+          <div className="form-inline">
             <label htmlFor={product.productID} className="m-1">
               數量：
             </label>
@@ -58,9 +58,9 @@ function Cart(props) {
               onChange={() => {
                 const input_num = document.getElementById(product.productID)
                 input_num.value = Math.round(input_num.value)
-                if (input_num.value < 1) {
-                  input_num.value = 1
-                }
+                if (input_num.value < 1) input_num.value = 1
+                if (input_num.value > product.UnitsInStock)
+                  input_num.value = product.UnitsInStock
               }}
             />
             <button
@@ -90,7 +90,7 @@ function Cart(props) {
             >
               remove({product.num})
             </button>
-          </form>
+          </div>
         </ProductListItem>
       </Link>
     </div>

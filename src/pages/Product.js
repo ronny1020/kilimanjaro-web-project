@@ -60,6 +60,52 @@ function Product(props) {
       {tag}
     </Link>
   ))
+
+  // about comments
+
+  const averagedRate = (
+    product.comments.reduce((a, b) => a + b.rate, 0) / product.comments.length
+  ).toFixed(1)
+
+  const numOf5star = product.comments.filter((comment) => comment.rate === 5)
+    .length
+  const numOf4star = product.comments.filter((comment) => comment.rate === 4)
+    .length
+  const numOf3star = product.comments.filter((comment) => comment.rate === 3)
+    .length
+  const numOf2star = product.comments.filter((comment) => comment.rate === 2)
+    .length
+  const numOf1star = product.comments.filter((comment) => comment.rate === 1)
+    .length
+
+  const commentOfLoggedID = product.comments.map((comment) => {
+    return comment.customerID === memberID ? (
+      <CardSecondary>
+        <p>ID:{comment.customerID}</p>
+        <p>rate:{comment.rate}</p>
+        <p>comment:{comment.commentText}</p>
+        <div className="form-inline">
+          <button className="btn btn-success m-1">edit</button>
+          <button className="btn btn-danger m-1">delete</button>
+        </div>
+      </CardSecondary>
+    ) : (
+      <div></div>
+    )
+  })
+
+  const otherComments = product.comments.map((comment) => {
+    return comment.customerID !== memberID ? (
+      <CardSecondary>
+        <p>ID:{comment.customerID}</p>
+        <p>rate:{comment.rate}</p>
+        <p>comment:{comment.commentText}</p>
+      </CardSecondary>
+    ) : (
+      <div></div>
+    )
+  })
+
   return (
     <>
       <div className="topSpace"></div>
@@ -70,7 +116,7 @@ function Product(props) {
         <p>人氣：{product.visitedTimes}</p>
         <p>Tags：{tagsLink}</p>
 
-        <form className="form-inline">
+        <div className="form-inline">
           <label htmlFor="order_num" className="m-1">
             數量：
           </label>
@@ -83,9 +129,10 @@ function Product(props) {
             onChange={() => {
               const input_num = document.getElementById('order_num')
               input_num.value = Math.round(input_num.value)
-              if (input_num.value < 1) {
-                input_num.value = 1
-              }
+
+              if (input_num.value < 1) input_num.value = 1
+              if (input_num.value > product.UnitsInStock)
+                input_num.value = product.UnitsInStock
             }}
           />
 
@@ -141,8 +188,18 @@ function Product(props) {
               </button>
             </>
           )}
-        </form>
+        </div>
       </CardSecondary>
+      <CardSecondary>
+        <p>average of rate：{averagedRate}</p>
+        <p>5 star：{numOf5star}</p>
+        <p>4 star：{numOf4star}</p>
+        <p>3 star：{numOf3star}</p>
+        <p>2 star：{numOf2star}</p>
+        <p>1 star：{numOf1star}</p>
+      </CardSecondary>
+      {commentOfLoggedID}
+      {otherComments}
     </>
   )
 }
