@@ -45,7 +45,6 @@ async function executeSQL(
               Comments.getComments(),
               [result.productID]
             )
-            console.log(comments)
             result = { ...result, visitedTimes: visitedTimesRes[0][0].num, comments:comments}
 
             res.status(200).json(result)
