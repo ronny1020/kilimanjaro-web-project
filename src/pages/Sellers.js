@@ -48,8 +48,9 @@ function Sellers() {
   console.log(total)
 
   var a = total.MemberList
-
   console.log(a)
+
+  a !== undefined ?? console.log(a[0])
 
   return (
     <>
