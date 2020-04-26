@@ -1,6 +1,7 @@
 import express from 'express'
 import Product from '../domain/Product.js'
 import database from '../db/database.js'
+import Comments from '../domain/Comments.js'
 
 const router = express.Router()
 
@@ -40,7 +41,12 @@ async function executeSQL(
               Product.getVisitedTimes(),
               [result.productID]
             )
-            result = { ...result, visitedTimes: visitedTimesRes[0][0].num }
+            const [comments,fields ]=  await database.promisePool.query(
+              Comments.getComments(),
+              [result.productID]
+            )
+            console.log(comments)
+            result = { ...result, visitedTimes: visitedTimesRes[0][0].num, comments:comments}
 
             res.status(200).json(result)
           }
