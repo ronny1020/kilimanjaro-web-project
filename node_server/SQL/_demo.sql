@@ -13458,9 +13458,8 @@ CREATE TABLE coffee.cart (
 
 CREATE INDEX customerID ON coffee.Cart (productID);
 
-INSERT INTO coffee.Cart (customerID,productID,num)  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5);
+INSERT INTO coffee.Cart (customerID,productID,num)  VALUES ('C001',0000164413,2),('C001',0000164415,1),('C001',0000164513,5),('C002',0000164413,2),('C005',0000164415,1),('C002',0000164513,5);
 
-DROP TABLE IF EXISTS coffee.favourites;
 CREATE TABLE coffee.favourites (
   favouriteID int(10) AUTO_INCREMENT PRIMARY KEY,
   customerID varchar(5) NOT NULL,
@@ -13474,8 +13473,6 @@ INSERT INTO coffee.favourites (customerID,productID) VALUES ('C001',0000164413),
 
 
 
-
-DROP TABLE IF EXISTS coffee.comments;
 CREATE TABLE coffee.comments (
   commentId INT AUTO_INCREMENT PRIMARY KEY,
   productID int(10) ZEROFILL NOT NULL,
@@ -13488,14 +13485,17 @@ CREATE TABLE coffee.comments (
 INSERT INTO coffee.comments  (productID , customerID ,rate, commentText) VALUES 
 (0000164413,'C001', 5 ,"great"),
 (0000164415,'C001', 4 ,"good"),
-(0000164513,'C001', 3 ,"It's OK...");
+(0000164513,'C001', 3 ,"It's OK..."),
+(0000164513,'C003', 3 ,"It's fantastic"),
+(0000164513,'C004', 4 ,"It's OK..."),
+(0000164513,'C005', 3 ,"It's fine"),
+(0000164513,'C008', 5 ,"It's OK..."),
+(0000164513,'C010', 5 ,"Perfect"),
+(0000164513,'C012', 4 ,"good!!!"),
+(0000164513,'C018', 2 ,"It's OK..."),
+(0000164513,'C011', 1 ,"The Price is too high");
 
 
-
-
-
-
-DROP TABLE IF EXISTS coffee.coupon;
 CREATE TABLE coffee.coupon (
   couponID int AUTO_INCREMENT PRIMARY KEY,-- Primary key:庫碰編號
   couponName varchar(20) collate utf8_unicode_ci NOT NULL,-- 庫碰名稱
@@ -13512,8 +13512,6 @@ INSERT INTO coffee.coupon (couponName,minus,limitation,cpendDate)
 		('100元折抵',100,1000,'2020-06-30');
 
 
-
-DROP TABLE IF EXISTS coffee.couponMap;
 CREATE TABLE coffee.couponMap (
   couponMapId  int AUTO_INCREMENT PRIMARY KEY,-- Primary key:編號
   couponID int ,-- 庫碰編號
