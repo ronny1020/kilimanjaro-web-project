@@ -49,7 +49,7 @@ function Sellers() {
 
   var a = total.MemberList
 
-  console.log(a[0])
+  console.log(a)
 
   return (
     <>
