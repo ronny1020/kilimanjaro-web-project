@@ -25,6 +25,10 @@ import Cart from './pages/Cart'
 import Shipment from './pages/purchase/Shipment'
 import Payment from './pages/purchase/Payment'
 import PurchaseComplied from './pages/purchase/PurchaseComplied'
+import Sellers2 from './pages/seller/Sellers2'
+import Sellers3 from './pages/seller/Sellers3'
+import Sellers4 from './pages/seller/Sellers4'
+import Sellers5 from './pages/seller/Sellers5'
 
 // import not found
 import NotFoundPage from './pages/NotFoundPage'
@@ -54,6 +58,19 @@ function App() {
             <Route path="/sellers">
               <Sellers />
             </Route>
+            <Route path="/sellers2">
+              <Sellers2 />
+            </Route>
+            <Route path="/sellers3">
+              <Sellers3 />
+            </Route>
+            <Route path="/sellers4">
+              <Sellers4 />
+            </Route>
+            <Route path="/sellers5">
+              <Sellers5 />
+            </Route>
+
             <Route path="/onSale">
               <OnSale />
             </Route>

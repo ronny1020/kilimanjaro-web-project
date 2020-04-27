@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  Link,
+} from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
+
 import { FaWikipediaW } from 'react-icons/fa'
 
 import img001 from '../img/home/carousel/001.jpg'
@@ -12,7 +19,6 @@ import img003 from '../img/home/carousel/003.jpg'
 import img004 from '../img/home/carousel/004.jpg'
 import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
-import { array } from 'prop-types'
 
 function Sellers() {
   const [origin, setOrigin] = useState('')
@@ -156,25 +162,25 @@ function Sellers() {
                 <p>{origin}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>農 場 海 拔</p>
+                <p>農 場 海 拔:</p>
                 <p>{hight}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>種 植 品 種</p>
+                <p>種 植 品 種:</p>
                 <p>SL-28、SL-34</p>
               </ProductListItem>
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>農 場 等 級 </p>
+                <p>農 場 等 級: </p>
                 <p>AA級以上</p>
               </ProductListItem>
               <ProductListItem>
-                <p>處 理 方 是</p>
+                <p>處 理 方 式:</p>
                 <p>水洗法</p>
               </ProductListItem>
               <ProductListItem>
-                <p>特 色</p>
+                <p>品 種 特 色:</p>
                 <p>蔗糖甜味帶出肯亞特有的烏梅酒香與黑醋栗般的尾韻。</p>
               </ProductListItem>
             </div>
@@ -273,7 +279,9 @@ function Sellers() {
             <div className="row mt-3">
               <div className="col-12" align="center">
                 <button type="button" className="btn btn-danger text-white">
-                  想看更多
+                  <Link className="text-white" to="/productList">
+                    想看更多
+                  </Link>
                 </button>
               </div>
             </div>
@@ -295,16 +303,17 @@ function Sellers() {
             </li>
 
             <li>
-              <Link to="./sellers/sellers2.js">小農咖啡園2</Link>
+              <Link to="/sellers2">小農咖啡園2</Link>
+            </li>
+
+            <li>
+              <Link to="/sellers3">小農咖啡園3</Link>
             </li>
             <li>
-              <Link to="/sellers/123">小農咖啡園3</Link>
+              <Link to="/sellers4">小農咖啡園4</Link>
             </li>
             <li>
-              <Link to="/sellers/123">小農咖啡園4</Link>
-            </li>
-            <li>
-              <Link to="/sellers/123">小農咖啡園5</Link>
+              <Link to="/sellers5">小農咖啡園5</Link>
             </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
