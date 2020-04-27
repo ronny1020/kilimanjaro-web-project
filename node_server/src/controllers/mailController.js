@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import credentials from '../config/mailConfig'
 
+const hostAddr = 'kilimanjaro2020iii@gmail.com'
 var mailTransport = nodemailer.createTransport({
   service: 'Gmail',
   secure: 'true',
@@ -18,12 +19,16 @@ var mailTransport = nodemailer.createTransport({
 exports.sendMail = (req, res) => {
   const mailAddr = req.body.mail
   const mailDetail = req.body.content
+
   mailTransport.sendMail(
     {
-      from: 'Meadowlark Travel <' + mailAddr + '>',
-      to: 'Meadowlark Travel <' + mailAddr + '>',
-      subject: 'Hi :)',
-      html: '<h1>Hello</h1><p>' + mailDetail + '</p>',
+      from: 'Killimanjaro Dev <' + hostAddr + '>',
+      to: '<' + mailAddr + '>',
+      subject: '吉利馬札羅開發團隊',
+      html:
+        "<h1 style='background-color: black;color: white;'>Kilimanjaro</h1><p style='font-size: 20px;'>親愛的用戶, 您好：</p><p style='font-size: 20px;'>你的驗證碼為：<code style='background-color: lightgray;'>" +
+        mailDetail +
+        "</code></p><footer style='background-color: black;color: white;'> Klimanjaro dev team @2020</footer>",
     },
     function(err) {
       if (err) {
