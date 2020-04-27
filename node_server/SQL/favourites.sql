@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS coffee.favourites;
 CREATE TABLE coffee.favourites (
-  favourtieID int AUTO_INCREMENT PRIMARY KEY,
+  favouriteID int(10) AUTO_INCREMENT PRIMARY KEY,
   customerID varchar(5) NOT NULL,
   productID int(10) ZEROFILL NOT NULL,
   CONSTRAINT pair UNIQUE (productID,customerID)

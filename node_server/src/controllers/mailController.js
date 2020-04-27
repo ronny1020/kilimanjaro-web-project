@@ -1,3 +1,6 @@
+import nodemailer from 'nodemailer'
+import credentials from '../config/mailConfig'
+
 var mailTransport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -5,3 +8,7 @@ var mailTransport = nodemailer.createTransport({
         pass: credentials.gmail.pass
     }
 });
+
+exports.sendMail = (req,res) =>{
+    
+}
