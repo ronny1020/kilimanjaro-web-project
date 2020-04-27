@@ -40,6 +40,8 @@ app.get('/', (req, res) => {
 require('./routes/memberRoutes')(app)
 require('./routes/favouriteRoutes')(app)
 require('./routes/couponRoutes')(app)
+//Nodemailer api:
+// require('./routes/mailRoutes')(app)
 
 // error - 404
 app.use((req, res, next) => {
