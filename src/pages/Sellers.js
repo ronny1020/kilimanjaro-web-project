@@ -154,21 +154,21 @@ function Sellers() {
                 <p>{origin}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>海 拔</p>
+                <p>農 場 海 拔</p>
                 <p>1200-2300公尺</p>
               </ProductListItem>
               <ProductListItem>
-                <p>品 種</p>
+                <p>種 植 品 種</p>
                 <p>SL-28、SL-34</p>
               </ProductListItem>
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>等 級 </p>
+                <p>農 場 等 級 </p>
                 <p>AA級以上</p>
               </ProductListItem>
               <ProductListItem>
-                <p>處 理</p>
+                <p>處 理 方 是</p>
                 <p>水洗法</p>
               </ProductListItem>
               <ProductListItem>
