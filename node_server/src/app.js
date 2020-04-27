@@ -8,6 +8,8 @@ import MemberListApi from './api/MemberListApi'
 import MemberApi from './api/MemberApi'
 import RecordVisitApi from './api/RecordVisitApi'
 import CartApi from './api/CartApi'
+import CommentsApi from './api/CommentsApi'
+
 import Sellers_introListApi from './api/Sellers_introListApi'
 import Sellers_introApi from './api/Sellers_introApi'
 
@@ -24,6 +26,7 @@ app.use('/ProductListApi', ProductListApi)
 app.use('/ProductApi', ProductApi)
 app.use('/RecordVisitApi', RecordVisitApi)
 app.use('/CartApi', CartApi)
+app.use('/CommentsApi', CommentsApi)
 
 app.use('/MemberList', MemberListApi)
 app.use('/Member', MemberApi)

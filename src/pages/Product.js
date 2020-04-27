@@ -29,6 +29,9 @@ function Product(props) {
     AddProductToCart,
     removeProductFromCart,
     updateProductNumToCart,
+    AddComment,
+    UpdateComment,
+    RemoveComment,
   } = props
 
   const memberID = getMemberID()
@@ -333,4 +336,7 @@ export default connect(mapStateToProps, {
   AddProductToCart,
   removeProductFromCart,
   updateProductNumToCart,
+  AddComment,
+  UpdateComment,
+  RemoveComment,
 })(Product)
