@@ -16,12 +16,14 @@ import { array } from 'prop-types'
 
 function Sellers() {
   const [origin, setOrigin] = useState('')
+  const [hight, sethight] = useState('')
   fetch('http://localhost:6001/sellers_introListApi')
     .then(function (response) {
       return response.json()
     })
     .then(function (myJson) {
       setOrigin(myJson.MemberList[0].origin)
+      sethight(myJson.MemberList[0].hight)
     })
   // const [total, setTotal] = useState([])
 
@@ -155,7 +157,7 @@ function Sellers() {
               </ProductListItem>
               <ProductListItem>
                 <p>農 場 海 拔</p>
-                <p>1200-2300公尺</p>
+                <p>{hight}</p>
               </ProductListItem>
               <ProductListItem>
                 <p>種 植 品 種</p>
