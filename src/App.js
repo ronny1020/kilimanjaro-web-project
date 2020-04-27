@@ -25,7 +25,7 @@ import Cart from './pages/Cart'
 import Shipment from './pages/purchase/Shipment'
 import Payment from './pages/purchase/Payment'
 import PurchaseComplied from './pages/purchase/PurchaseComplied'
-
+import Sellers2 from './pages/Sellers2'
 // import not found
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -54,6 +54,10 @@ function App() {
             <Route path="/sellers">
               <Sellers />
             </Route>
+            <Route path="/sellers2">
+              <Sellers2 />
+            </Route>
+
             <Route path="/onSale">
               <OnSale />
             </Route>
