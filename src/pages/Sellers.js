@@ -15,42 +15,43 @@ import img006 from '../img/home/carousel/006.jpg'
 import { array } from 'prop-types'
 
 function Sellers() {
-  const [total, setTotal] = useState([])
+  const [origin, setOrigin] = useState('')
+  const [hight, sethight] = useState('')
   fetch('http://localhost:6001/sellers_introListApi')
     .then(function (response) {
       return response.json()
     })
     .then(function (myJson) {
-      console.log(myJson)
+      setOrigin(myJson.MemberList[0].origin)
+      sethight(myJson.MemberList[0].hight)
     })
+  // const [total, setTotal] = useState([])
 
-  async function getTotalFromServer() {
-    const request = new Request('http://localhost:6001/sellers_introListApi', {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
+  // async function getTotalFromServer() {
+  //   const request = new Request('http://localhost:6001/sellers_introListApi', {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'appliaction/json',
+  //     }),
+  //   })
 
-    const response = await fetch(request)
-    const data = await response.json()
-    //console.log(data)
-    // 設定資料
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+  //   //console.log(data)
+  //   // 設定資料
 
-    setTotal(data)
-  }
+  //   setTotal(data)
+  // }
 
-  useEffect(() => {
-    getTotalFromServer()
-  }, [])
+  // useEffect(() => {
+  //   getTotalFromServer()
+  // }, [])
 
-  console.log(total)
+  // var a = total.MemberList
+  // console.log(a)
 
-  var a = total.MemberList
-  console.log(a)
-
-  a !== undefined ?? console.log(a[0])
+  // a !== undefined ?? console.log(a[0])
 
   return (
     <>
@@ -63,6 +64,7 @@ function Sellers() {
               <div className="col-12 " align="center">
                 <div className="container bg-white pt-3 m-6 ">
                   <h1>小農咖啡園1</h1>
+
                   <Carousel>
                     <Carousel.Item>
                       <img
@@ -151,24 +153,24 @@ function Sellers() {
             <div className=" card-deck ">
               <ProductListItem>
                 <p>產 區:</p>
-                <p>肯亞 涅里</p>
+                <p>{origin}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>海 拔</p>
-                <p>1200-2300公尺</p>
+                <p>農 場 海 拔</p>
+                <p>{hight}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>品 種</p>
+                <p>種 植 品 種</p>
                 <p>SL-28、SL-34</p>
               </ProductListItem>
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>等 級 </p>
+                <p>農 場 等 級 </p>
                 <p>AA級以上</p>
               </ProductListItem>
               <ProductListItem>
-                <p>處 理</p>
+                <p>處 理 方 是</p>
                 <p>水洗法</p>
               </ProductListItem>
               <ProductListItem>
@@ -289,20 +291,20 @@ function Sellers() {
             </nav>
 
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers">小農咖啡園1</Link>
             </li>
 
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="./sellers/sellers2.js">小農咖啡園2</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園3</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園4</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園5</Link>
             </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />

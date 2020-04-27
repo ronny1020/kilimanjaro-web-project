@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col, Row, Alert } from 'react-bootstrap'
 import Breadcrumb from '../../components/Breadcrumb'
 
 import jwt from 'jsonwebtoken'
 // import bcrypt from 'bcryptjs'
 function ForgetPwd() {
   const [mail, setMail] = useState('')
+  const [validMail, setValidMail] = useState(false)
+  const [bsAlert, setBSAlert] = useState(false)
   //用戶輸入的答案
   const [Vcode, setVcode] = useState('')
   //實際上的答案
@@ -28,10 +30,16 @@ function ForgetPwd() {
     }
     return result
   }
+
+  //倒數計時
   function Countdown(max) {
     setInterval(() => {
       if (max <= 0) {
-        setTime('驗證碼已失效,請重新載入。')
+        setTime('驗證碼已失效,請重新取得驗證碼。')
+        setButtonPhase('GET')
+        setBSAlert(false)
+        setVcode('')
+        setAnswer('')
         // window.location.reload()
       } else {
         max -= 1
@@ -40,35 +48,62 @@ function ForgetPwd() {
     }, 1000)
   }
 
-  //寄出含有驗證碼的信
-  function getMail() {
-    let url_mail = 'http://localhost:6001/api/mail/verify'
-
-    //設置答案
-    let answer = randMaker(8)
-    setAnswer(
-      jwt.sign({ answer: answer }, 'himitsu', {
-        expiresIn: 30,
-      })
-    )
-    //倒計時開始
-    Countdown(30)
-    let mail_content = {
-      mail: mail,
-      content: answer,
-    }
-    answer = ''
-
-    //寄出驗證信
-    fetch(url_mail, {
-      method: 'POST', // want to use PATCH
-      body: JSON.stringify(mail_content),
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-    }).then((res) => {
-      return res.json()
+  //驗證信箱是否存在
+  let mailValidate = () => {
+    console.log('get emails now')
+    return new Promise((res, rej) => {
+      let url = 'http://localhost:6001/api/member/'
+      fetch(url)
+        .then((res) => {
+          return res.json()
+        })
+        .then((allMemList) => {
+          for (let i = 0; i < allMemList.length; i++) {
+            // console.log(allMemList[i].cEmail)
+            if (mail === allMemList[i].cEmail) res(false)
+          }
+          res(true)
+          // console.log(allMemList[1].cEmail)
+        })
     })
+  }
+
+  //寄出含有驗證碼的信
+  async function getMail() {
+    if ((await mailValidate()) === true) {
+      setBSAlert(true)
+      setValidMail(true)
+      let url_mail = 'http://localhost:6001/api/mail/verify'
+
+      //設置答案
+      let answer = randMaker(8)
+      setAnswer(
+        jwt.sign({ answer: answer }, 'himitsu', {
+          expiresIn: 60,
+        })
+      )
+      //倒計時開始: 60秒(同jwt期限)
+      Countdown(60)
+      let mail_content = {
+        mail: mail,
+        content: answer,
+      }
+      answer = ''
+
+      //寄出驗證信
+      fetch(url_mail, {
+        method: 'POST', // want to use PATCH
+        body: JSON.stringify(mail_content),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }),
+      }).then((res) => {
+        return res.json()
+      })
+    } else {
+      setBSAlert(true)
+      setValidMail(false)
+    }
   }
 
   //對答案
@@ -92,6 +127,15 @@ function ForgetPwd() {
       <div className="col-sm-6 bg-secondary">
         <h1>忘記密碼</h1>
         <Breadcrumb />
+        {validMail ? (
+          <Alert id="warning_msg" variant="success" show={bsAlert}>
+            合適的信箱!
+          </Alert>
+        ) : (
+          <Alert id="warning_msg" variant="danger" show={bsAlert}>
+            無效或不存在之信箱
+          </Alert>
+        )}
         <Form>
           {/* 寄信前應先檢查信箱存在與否 */}
           <Form.Group controlId="formBasicEmail">
