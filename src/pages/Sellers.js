@@ -289,20 +289,20 @@ function Sellers() {
             </nav>
 
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers">小農咖啡園1</Link>
             </li>
 
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="./sellers/sellers2.js">小農咖啡園2</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園3</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園4</Link>
             </li>
             <li>
-              <Link to="/product/123">小農咖啡園1</Link>
+              <Link to="/sellers/123">小農咖啡園5</Link>
             </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
