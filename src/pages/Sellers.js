@@ -162,25 +162,25 @@ function Sellers() {
                 <p>{origin}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>農 場 海 拔</p>
+                <p>農 場 海 拔:</p>
                 <p>{hight}</p>
               </ProductListItem>
               <ProductListItem>
-                <p>種 植 品 種</p>
+                <p>種 植 品 種:</p>
                 <p>SL-28、SL-34</p>
               </ProductListItem>
             </div>
             <div className=" card-deck">
               <ProductListItem>
-                <p>農 場 等 級 </p>
+                <p>農 場 等 級: </p>
                 <p>AA級以上</p>
               </ProductListItem>
               <ProductListItem>
-                <p>處 理 方 是</p>
+                <p>處 理 方 式:</p>
                 <p>水洗法</p>
               </ProductListItem>
               <ProductListItem>
-                <p>特 色</p>
+                <p>品 種 特 色:</p>
                 <p>蔗糖甜味帶出肯亞特有的烏梅酒香與黑醋栗般的尾韻。</p>
               </ProductListItem>
             </div>
@@ -307,13 +307,13 @@ function Sellers() {
             </li>
 
             <li>
-              <Link to="/sellers/123">小農咖啡園3</Link>
+              <Link to="/sellers3">小農咖啡園3</Link>
             </li>
             <li>
-              <Link to="/sellers/123">小農咖啡園4</Link>
+              <Link to="/sellers4">小農咖啡園4</Link>
             </li>
             <li>
-              <Link to="/sellers/123">小農咖啡園5</Link>
+              <Link to="/sellers5">小農咖啡園5</Link>
             </li>
             <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
             <br />
