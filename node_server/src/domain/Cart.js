@@ -1,7 +1,14 @@
 class Cart {
   static getCart() {
-    let sql = `SELECT * FROM coffee.cart 
+    let sql = `SELECT products.productID, ProductName, sellerID, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,
+    disID, discount, disName, disDescrip, startDate, overDate 
+    FROM coffee.cart 
     JOIN coffee.products ON coffee.products.productID=coffee.cart.productID
+    left JOIN
+    (SELECT discount_detail.disID, productID, max(disPrice) as discount, disName, disDescrip,  startDate, overDate 
+    FROM coffee.discount_detail 
+    JOIN coffee.discounts ON discount_detail.disID= discounts.disID and overDate > NOW() group by productID) d
+    on products.productID=d.productID
     where customerID = ? ;`
     return sql
   }
