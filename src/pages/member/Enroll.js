@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Col, Row } from 'react-bootstrap'
 // import { withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import bcrypt from 'bcryptjs'
 
@@ -14,6 +15,12 @@ function Enroll(props) {
   const [enrPwd, setEnrPwd] = useState('')
   const [bsAlert, setBSAlert] = useState(false)
   const [doneEnroll, setDoneEnroll] = useState(false)
+
+  const [Visible, setVisible] = useState(false)
+  function doVisible() {
+    if (Visible === true) setVisible(false)
+    if (Visible === false) setVisible(true)
+  }
 
   let newID = ''
   let isVerified = false
@@ -149,13 +156,24 @@ function Enroll(props) {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>密碼</Form.Label>
-            <Form.Control
-              type="password"
-              value={enrPwd}
-              onChange={(e) => setEnrPwd(e.target.value)}
-              placeholder="請輸入密碼"
-              required
-            />
+            <Row className="formRow">
+              <Col className="formPwd" sm="11">
+                <Form.Control
+                  type={Visible === false ? 'password' : 'text'}
+                  value={enrPwd}
+                  onChange={(e) => setEnrPwd(e.target.value)}
+                  placeholder="請輸入密碼"
+                  required
+                />
+              </Col>
+              <Col className="formEye" sm="1">
+                {Visible === false ? (
+                  <FaEye onClick={doVisible} />
+                ) : (
+                  <FaEyeSlash onClick={doVisible} />
+                )}
+              </Col>
+            </Row>
           </Form.Group>
           <Form.Group controlId="formBasicSecurePassword">
             <Form.Label>確認密碼:</Form.Label>
