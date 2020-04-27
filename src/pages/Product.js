@@ -11,6 +11,12 @@ import {
   updateProductNumToCart,
 } from '../actions/CartAction'
 
+import {
+  AddComment,
+  UpdateComment,
+  RemoveComment,
+} from '../actions/CommentsAction'
+
 import CardSecondary from '../components/CardSecondary'
 
 function Product(props) {
@@ -78,31 +84,139 @@ function Product(props) {
   const numOf1star = product.comments.filter((comment) => comment.rate === 1)
     .length
 
-  const commentOfLoggedID = product.comments.map((comment) => {
-    return comment.customerID === memberID ? (
-      <CardSecondary>
-        <p>ID:{comment.customerID}</p>
-        <p>rate:{comment.rate}</p>
-        <p>comment:{comment.commentText}</p>
-        <div className="form-inline">
-          <button className="btn btn-success m-1">edit</button>
-          <button className="btn btn-danger m-1">delete</button>
-        </div>
-      </CardSecondary>
-    ) : (
-      <div></div>
-    )
+  let checkCommented = false
+  product.comments.forEach((comment) => {
+    if (comment.customerID === memberID) checkCommented = true
   })
 
-  const otherComments = product.comments.map((comment) => {
-    return comment.customerID !== memberID ? (
+  const commentOfLoggedID = checkCommented ? (
+    product.comments.map((comment, i) => {
+      return comment.customerID === memberID ? (
+        <div key={i}>
+          <CardSecondary>
+            <p>ID:{comment.customerID}</p>
+
+            <div className="form-group">
+              <label htmlFor="rateInput">rate:</label>
+              <input
+                type="number"
+                className="form-control"
+                id="rateInput"
+                defaultValue={comment.rate}
+                onChange={() => {
+                  const input_num = document.getElementById('rateInput')
+                  input_num.value = Math.round(input_num.value)
+
+                  if (input_num.value < 1 && input_num.value !== null)
+                    input_num.value = 1
+                  if (input_num.value > 5 && input_num.value !== null)
+                    input_num.value = 5
+                }}
+              />
+
+              <label htmlFor="commentInput">Comment:</label>
+              <textarea
+                className="form-control"
+                rows="5"
+                id="commentInput"
+                defaultValue={comment.commentText}
+              ></textarea>
+            </div>
+            <div className="form-inline">
+              <button
+                className="btn btn-success m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const rate = document.getElementById('rateInput').value
+                  const comment = document.getElementById('commentInput').value
+                  async function Update() {
+                    UpdateComment(product.productID, memberID, rate, comment)
+                    await getProduct(id, memberID)
+                  }
+                  Update()
+                }}
+              >
+                edit
+              </button>
+              <button
+                className="btn btn-danger m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function Remove() {
+                    RemoveComment(product.productID, memberID)
+                    await getProduct(id, memberID)
+                  }
+                  Remove()
+                }}
+              >
+                delete
+              </button>
+            </div>
+          </CardSecondary>
+        </div>
+      ) : (
+        <div key={i}></div>
+      )
+    })
+  ) : (
+    <div>
       <CardSecondary>
-        <p>ID:{comment.customerID}</p>
-        <p>rate:{comment.rate}</p>
-        <p>comment:{comment.commentText}</p>
+        <div className="form-group">
+          <label htmlFor="rateInput">rate:</label>
+          <input
+            type="number"
+            className="form-control"
+            id="rateInput"
+            onChange={() => {
+              const input_num = document.getElementById('rateInput')
+              input_num.value = Math.round(input_num.value)
+
+              if (input_num.value < 1 && input_num.value !== null)
+                input_num.value = 1
+              if (input_num.value > 5 && input_num.value !== null)
+                input_num.value = 5
+            }}
+          />
+
+          <label htmlFor="commentInput">Comment:</label>
+          <textarea
+            className="form-control"
+            rows="5"
+            id="commentInput"
+          ></textarea>
+        </div>
+        <div className="form-inline">
+          <button
+            className="btn btn-primary m-1"
+            onClick={(e) => {
+              e.preventDefault()
+              const rate = document.getElementById('rateInput').value
+              const comment = document.getElementById('commentInput').value
+              async function add() {
+                AddComment(product.productID, memberID, rate, comment)
+                await getProduct(id, memberID)
+              }
+              add()
+            }}
+          >
+            add
+          </button>
+        </div>
       </CardSecondary>
+    </div>
+  )
+
+  const otherComments = product.comments.map((comment, i) => {
+    return comment.customerID !== memberID ? (
+      <div key={i}>
+        <CardSecondary>
+          <p>ID:{comment.customerID}</p>
+          <p>rate:{comment.rate}</p>
+          <p>comment:{comment.commentText}</p>
+        </CardSecondary>
+      </div>
     ) : (
-      <div></div>
+      <div key={i}></div>
     )
   })
 
@@ -191,7 +305,10 @@ function Product(props) {
         </div>
       </CardSecondary>
       <CardSecondary>
-        <p>average of rate：{averagedRate}</p>
+        <p>
+          average of rate：
+          {isNaN(averagedRate) ? '目前沒有評分' : averagedRate}
+        </p>
         <p>5 star：{numOf5star}</p>
         <p>4 star：{numOf4star}</p>
         <p>3 star：{numOf3star}</p>
