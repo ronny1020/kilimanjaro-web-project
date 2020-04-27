@@ -8,7 +8,7 @@ function FavList(props) {
   const listItems = favArray.map((item) => (
     <Link to={'/product/' + item.productID}>
       <ListGroup.Item action key={item.productID.toString()}>
-        產品名稱：{item.ProductName}
+        產品名稱：{item.product.ProductName}
         <br />
         產品編號：{item.productID}
         <Button
