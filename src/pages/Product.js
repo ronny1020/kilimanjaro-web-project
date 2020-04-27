@@ -275,7 +275,7 @@ function Product(props) {
                 }}
               >
                 add
-              </button>{' '}
+              </button>
             </>
           ) : (
             <>
