@@ -6,21 +6,21 @@ function FavList(props) {
   //   console.log(props)
   const favArray = props.input
   const listItems = favArray.map((item) => (
-    <Link to={'/product/' + item.productID}>
-      <ListGroup.Item action key={item.productID.toString()}>
+    <ListGroup.Item action key={item.productID.toString()}>
+      <Link to={'/product/' + item.productID}>
         產品名稱：{item.product.ProductName}
         <br />
         產品編號：{item.productID}
-        <Button
-          variant="danger"
-          id={props.id + '/' + item.productID.toString()}
-          size="sm"
-          onClick={delItem}
-        >
-          刪除
-        </Button>
-      </ListGroup.Item>
-    </Link>
+      </Link>
+      <Button
+        variant="danger"
+        id={props.id + '/' + item.productID.toString()}
+        size="sm"
+        onClick={delItem}
+      >
+        刪除
+      </Button>
+    </ListGroup.Item>
   ))
 
   //按下刪除時刪除該列

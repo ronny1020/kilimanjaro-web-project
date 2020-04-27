@@ -107,6 +107,7 @@ function Header(props) {
           {/* Appear when normal. */}
         </Navbar>
       </header>
+      <div className="pushBody"></div>
     </>
   )
 }
