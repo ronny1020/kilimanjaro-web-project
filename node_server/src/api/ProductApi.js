@@ -11,11 +11,14 @@ async function executeSQL(
   pid,
   cid,
   method = 'get',
-  multirows = true,
-  instance = {}
+  multirows = true
 ) {
   try {
-    const [rows, fields] = await database.promisePool.query(sql, [cid, pid])
+    const [rows, fields] = await database.promisePool.query(sql, [
+      cid,
+      cid,
+      pid,
+    ])
 
     switch (method) {
       case 'get':
@@ -41,11 +44,17 @@ async function executeSQL(
               Product.getVisitedTimes(),
               [result.productID]
             )
-            const [comments,fields ]=  await database.promisePool.query(
-              Comments.getComments(),
-              [result.productID]
-            )
-            result = { ...result, visitedTimes: visitedTimesRes[0][0].num, comments:comments}
+            const [
+              comments,
+              fields,
+            ] = await database.promisePool.query(Comments.getComments(), [
+              result.productID,
+            ])
+            result = {
+              ...result,
+              visitedTimes: visitedTimesRes[0][0].num,
+              comments: comments,
+            }
 
             res.status(200).json(result)
           }

@@ -1,8 +1,9 @@
 class Product {
   static getProduct() {
-    let sql = `SELECT products.productID, ProductName, sellerID, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, customerID, num
+    let sql = `SELECT products.productID, ProductName, sellerID, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,favouriteID
     FROM coffee.products 
-    left JOIN coffee.cart ON coffee.products.productID=coffee.cart.productID and customerID = ?
+    left JOIN coffee.cart ON coffee.products.productID=coffee.cart.productID and  cart.customerID = ?
+    left JOIN coffee.favourites ON coffee.products.productID=coffee.favourites.productID and  favourites.customerID = ?
     Where products.productID =  ?  ;`
     return sql
   }
