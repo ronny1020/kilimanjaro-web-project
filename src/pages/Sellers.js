@@ -279,7 +279,9 @@ function Sellers() {
             <div className="row mt-3">
               <div className="col-12" align="center">
                 <button type="button" className="btn btn-danger text-white">
-                  想看更多
+                  <Link className="text-white" to="/productList">
+                    想看更多
+                  </Link>
                 </button>
               </div>
             </div>
