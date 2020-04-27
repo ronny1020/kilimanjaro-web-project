@@ -15,7 +15,6 @@ import img006 from '../img/home/carousel/006.jpg'
 import { array } from 'prop-types'
 
 function Sellers() {
-  const [total, setTotal] = useState([])
   fetch('http://localhost:6001/sellers_introListApi')
     .then(function (response) {
       return response.json()
@@ -23,7 +22,7 @@ function Sellers() {
     .then(function (myJson) {
       console.log(myJson)
     })
-
+  const [total, setTotal] = useState([])
   async function getTotalFromServer() {
     const request = new Request('http://localhost:6001/sellers_introListApi', {
       method: 'GET',
@@ -45,8 +44,6 @@ function Sellers() {
     getTotalFromServer()
   }, [])
 
-  console.log(total)
-
   var a = total.MemberList
   console.log(a)
 
@@ -63,6 +60,7 @@ function Sellers() {
               <div className="col-12 " align="center">
                 <div className="container bg-white pt-3 m-6 ">
                   <h1>小農咖啡園1</h1>
+
                   <Carousel>
                     <Carousel.Item>
                       <img
