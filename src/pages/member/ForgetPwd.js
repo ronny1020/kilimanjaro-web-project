@@ -49,10 +49,10 @@ function ForgetPwd() {
   }
 
   //驗證信箱是否存在
-  let mailValidate = () => {
-    console.log('get emails now')
-    return new Promise((res, rej) => {
-      let url = 'http://localhost:6001/api/member/'
+  function mailValidate() {
+    let url = 'http://localhost:6001/api/member/'
+
+    return new Promise((resolve) => {
       fetch(url)
         .then((res) => {
           return res.json()
@@ -60,9 +60,11 @@ function ForgetPwd() {
         .then((allMemList) => {
           for (let i = 0; i < allMemList.length; i++) {
             // console.log(allMemList[i].cEmail)
-            if (mail === allMemList[i].cEmail) res(false)
+            if (mail === allMemList[i].cEmail) {
+              resolve(true)
+            }
           }
-          res(true)
+          resolve(false)
           // console.log(allMemList[1].cEmail)
         })
     })
@@ -71,6 +73,7 @@ function ForgetPwd() {
   //寄出含有驗證碼的信
   async function getMail() {
     if ((await mailValidate()) === true) {
+      console.log(mailValidate())
       setBSAlert(true)
       setValidMail(true)
       let url_mail = 'http://localhost:6001/api/mail/verify'
@@ -101,6 +104,7 @@ function ForgetPwd() {
         return res.json()
       })
     } else {
+      console.log(mailValidate())
       setBSAlert(true)
       setValidMail(false)
     }
