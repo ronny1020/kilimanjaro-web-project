@@ -15,39 +15,41 @@ import img006 from '../img/home/carousel/006.jpg'
 import { array } from 'prop-types'
 
 function Sellers() {
+  const [origin, setOrigin] = useState('')
   fetch('http://localhost:6001/sellers_introListApi')
     .then(function (response) {
       return response.json()
     })
     .then(function (myJson) {
-      console.log(myJson)
+      setOrigin(myJson.MemberList[0].origin)
     })
-  const [total, setTotal] = useState([])
-  async function getTotalFromServer() {
-    const request = new Request('http://localhost:6001/sellers_introListApi', {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
+  // const [total, setTotal] = useState([])
 
-    const response = await fetch(request)
-    const data = await response.json()
-    //console.log(data)
-    // 設定資料
+  // async function getTotalFromServer() {
+  //   const request = new Request('http://localhost:6001/sellers_introListApi', {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'appliaction/json',
+  //     }),
+  //   })
 
-    setTotal(data)
-  }
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+  //   //console.log(data)
+  //   // 設定資料
 
-  useEffect(() => {
-    getTotalFromServer()
-  }, [])
+  //   setTotal(data)
+  // }
 
-  var a = total.MemberList
-  console.log(a)
+  // useEffect(() => {
+  //   getTotalFromServer()
+  // }, [])
 
-  a !== undefined ?? console.log(a[0])
+  // var a = total.MemberList
+  // console.log(a)
+
+  // a !== undefined ?? console.log(a[0])
 
   return (
     <>
@@ -149,7 +151,7 @@ function Sellers() {
             <div className=" card-deck ">
               <ProductListItem>
                 <p>產 區:</p>
-                <p>肯亞 涅里</p>
+                <p>{origin}</p>
               </ProductListItem>
               <ProductListItem>
                 <p>海 拔</p>
