@@ -45,14 +45,14 @@ exports.findAll = (req, res) => {
   })
     .then(data => {
       const resObj = data.map(Favourite => {
-        return Object.assign({
-          favouriteID: Favourite.favouriteID,
-          customerID: Favourite.customerID,
-          productID: Favourite.productID,
-          ProductName: Favourite.product.ProductName,
-        })
+        // return Object.assign({
+        //   favouriteID: Favourite.favouriteID,
+        //   customerID: Favourite.customerID,
+        //   productID: Favourite.productID,
+        //   ProductName: Favourite.product.ProductName,
+        // })
       })
-      res.send(resObj)
+      res.send(data)
     })
     .catch(err => {
       res.status(500).send({
@@ -70,14 +70,14 @@ exports.findAllPublished = (req, res) => {
   })
     .then(data => {
       const resObj = data.map(Favourite => {
-        return Object.assign({
-          favouriteID: Favourite.favouriteID,
-          customerID: Favourite.customerID,
-          productID: Favourite.productID,
-          ProductName: Favourite.product.ProductName,
-        })
+        // return Object.assign({
+        //   favouriteID: Favourite.favouriteID,
+        //   customerID: Favourite.customerID,
+        //   productID: Favourite.productID,
+        //   ProductName: Favourite.product.ProductName,
+        // })
       })
-      res.send(resObj)
+      res.send(data)
     })
     .catch(err => {
       res.status(500).send({
