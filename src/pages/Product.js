@@ -17,6 +17,11 @@ import {
   RemoveComment,
 } from '../actions/CommentsAction'
 
+import {
+  AddProductToFavourite,
+  removeProductFromFavourite,
+} from '../actions/FavouriteAction'
+
 import CardSecondary from '../components/CardSecondary'
 
 function Product(props) {
@@ -32,6 +37,8 @@ function Product(props) {
     AddComment,
     UpdateComment,
     RemoveComment,
+    AddProductToFavourite,
+    removeProductFromFavourite,
   } = props
 
   const memberID = getMemberID()
@@ -299,11 +306,42 @@ function Product(props) {
                     await getProduct(id, memberID)
                   }
                   remove()
+                  document.getElementById('order_num').value = 1
                 }}
               >
                 remove({product.num})
               </button>
             </>
+          )}
+          {product.favouriteID === null ? (
+            <button
+              className="btn btn-primary m-1"
+              onClick={(e) => {
+                e.preventDefault()
+                async function add() {
+                  await AddProductToFavourite(product.productID, memberID)
+                  await getProduct(id, memberID)
+                }
+                add()
+              }}
+            >
+              add to favourite
+            </button>
+          ) : (
+            <button
+              className="btn btn-danger  m-1"
+              onClick={(e) => {
+                e.preventDefault()
+                async function remove() {
+                  await removeProductFromFavourite(product.productID, memberID)
+                  await getProduct(id, memberID)
+                }
+
+                remove()
+              }}
+            >
+              remove from favourite
+            </button>
           )}
         </div>
       </CardSecondary>
@@ -339,4 +377,6 @@ export default connect(mapStateToProps, {
   AddComment,
   UpdateComment,
   RemoveComment,
+  AddProductToFavourite,
+  removeProductFromFavourite,
 })(Product)

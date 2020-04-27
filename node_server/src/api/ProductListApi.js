@@ -22,6 +22,7 @@ async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
 
     const rows = await database.promisePool.query(sql, [
       cid,
+      cid,
       (output.page - 1) * output.perPage,
       output.perPage,
     ])

@@ -9,6 +9,11 @@ import { getMemberID } from '../actions/getMemberID'
 
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
 
+import {
+  AddProductToFavourite,
+  removeProductFromFavourite,
+} from '../actions/FavouriteAction'
+
 import Pagination from 'react-bootstrap/Pagination'
 
 function ProductList(props) {
@@ -20,6 +25,8 @@ function ProductList(props) {
     getProductList,
     AddProductToCart,
     removeProductFromCart,
+    AddProductToFavourite,
+    removeProductFromFavourite,
   } = props
 
   const memberID = getMemberID()
@@ -43,36 +50,73 @@ function ProductList(props) {
       <Link to={'../product/' + product.productID}>
         <ProductListItem>
           <h3>{product.ProductName}</h3>
-          <p>id:{product.productID}</p>
-          {product.num == null ? (
-            <button
-              className="btn btn-primary"
-              onClick={(e) => {
-                e.preventDefault()
-                async function add() {
-                  await AddProductToCart(product.productID, memberID)
-                  await getProductList(page, memberID)
-                }
-                add()
-              }}
-            >
-              add
-            </button>
-          ) : (
-            <button
-              className="btn btn-danger"
-              onClick={(e) => {
-                e.preventDefault()
-                async function remove() {
-                  await removeProductFromCart(product.productID, memberID)
-                  await getProductList(page, memberID)
-                }
-                remove()
-              }}
-            >
-              remove({product.num})
-            </button>
-          )}
+
+          <div className="form-inline">
+            {/* favourite button */}
+
+            {product.favouriteID === null ? (
+              <button
+                className="btn btn-primary m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function add() {
+                    await AddProductToFavourite(product.productID, memberID)
+                    await getProductList(page, memberID)
+                  }
+                  add()
+                }}
+              >
+                add to favourite
+              </button>
+            ) : (
+              <button
+                className="btn btn-danger  m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function remove() {
+                    await removeProductFromFavourite(
+                      product.productID,
+                      memberID
+                    )
+                    await getProductList(page, memberID)
+                  }
+                  remove()
+                }}
+              >
+                remove from favourite
+              </button>
+            )}
+            {/* cart button */}
+            {product.num == null ? (
+              <button
+                className="btn btn-primary  m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function add() {
+                    await AddProductToCart(product.productID, memberID)
+                    await getProductList(page, memberID)
+                  }
+                  add()
+                }}
+              >
+                add to cart
+              </button>
+            ) : (
+              <button
+                className="btn btn-danger  m-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  async function remove() {
+                    await removeProductFromCart(product.productID, memberID)
+                    await getProductList(page, memberID)
+                  }
+                  remove()
+                }}
+              >
+                remove({product.num}) from cart
+              </button>
+            )}
+          </div>
         </ProductListItem>
       </Link>
     </div>
@@ -177,4 +221,6 @@ export default connect(mapStateToProps, {
   getProductList,
   AddProductToCart,
   removeProductFromCart,
+  AddProductToFavourite,
+  removeProductFromFavourite,
 })(ProductList)
