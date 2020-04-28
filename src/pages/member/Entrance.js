@@ -77,12 +77,14 @@ function Entrance(props) {
 
           // localStorage.setItem('MemberId', customerID)
           // localStorage.setItem('LoginValidate', true)
-          props.history.push('/lobby')
         } else {
           //登入失敗
           setBSAlert(true)
           console.log(isLogged)
         }
+      })
+      .then(function () {
+        window.location.replace('/lobby')
       })
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)
@@ -127,10 +129,6 @@ function Entrance(props) {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="記得我" />
-          </Form.Group>
-
           <Link to="/login/enroll">註冊新會員</Link>
           <Link to="/login/forget_pwd">忘記密碼?</Link>
 
