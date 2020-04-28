@@ -23,12 +23,23 @@ function Enroll(props) {
     if (Visible === false) setVisible(true)
   }
 
+  //確認密碼
+  const [confirmedPWD, setConfirmedPWD] = useState(true)
+  function doConfirm(event) {
+    // setNewPwd(event.target.value)
+    var CONFIRMpwd = document.getElementById('formPassword').value
+    setEnrPwd(CONFIRMpwd)
+    var re_CONFIRMpwd = document.getElementById('formSecurePassword').value
+    if (CONFIRMpwd === re_CONFIRMpwd && CONFIRMpwd !== '') {
+      setConfirmedPWD(true)
+    } else {
+      setConfirmedPWD(false)
+    }
+  }
+
   let newID = ''
   let isVerified = false
 
-  function validateForm() {
-    return enrAcc.length > 0 && enrEmail.length > 0 && enrPwd.length > 0
-  }
   function handleSubmit(event) {
     event.preventDefault()
 
@@ -155,13 +166,14 @@ function Enroll(props) {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group controlId="formPassword">
             <Form.Label>密碼</Form.Label>
             <InputGroup>
               <Form.Control
                 type={Visible === false ? 'password' : 'text'}
+                style={confirmedPWD ? {} : { 'border-color': '#fab5b5' }}
                 value={enrPwd}
-                onChange={(e) => setEnrPwd(e.target.value)}
+                onChange={doConfirm}
                 placeholder="請輸入密碼"
                 required
               />
@@ -171,15 +183,22 @@ function Enroll(props) {
                 </InputGroup.Text>
               </InputGroup.Append>
             </InputGroup>
+            <Form.Control.Feedback
+              type="invalid"
+              style={confirmedPWD ? { display: 'none' } : { display: 'inline' }}
+            >
+              密碼為空或者與密碼確認不符
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group controlId="formBasicSecurePassword">
+          <Form.Group controlId="formSecurePassword">
             <Form.Label>確認密碼:</Form.Label>
 
             <InputGroup>
               <Form.Control
                 type={Visible === false ? 'password' : 'text'}
                 placeholder="請確認密碼"
+                onChange={doConfirm}
                 required
               />
               <InputGroup.Append>
@@ -190,7 +209,11 @@ function Enroll(props) {
             </InputGroup>
           </Form.Group>
 
-          <Button variant="primary" disabled={!validateForm()} type="submit">
+          <Button
+            variant="primary"
+            disabled={confirmedPWD ? false : true}
+            type="submit"
+          >
             送出資料
           </Button>
         </Form>
