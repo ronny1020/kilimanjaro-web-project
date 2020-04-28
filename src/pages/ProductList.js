@@ -50,7 +50,12 @@ function ProductList(props) {
       <Link to={'../product/' + product.productID}>
         <ProductListItem>
           <h3>{product.ProductName}</h3>
-
+          <p>price:{product.UnitPrice}</p>
+          {product.discount !== null ? (
+            <p>special price:{product.UnitPrice - product.discount}</p>
+          ) : (
+            <p></p>
+          )}
           <div className="form-inline">
             {/* favourite button */}
 

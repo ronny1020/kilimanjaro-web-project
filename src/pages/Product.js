@@ -236,6 +236,11 @@ function Product(props) {
       <CardSecondary>
         <h2>產品名稱：{product.ProductName}</h2>
         <p>價格：{product.UnitPrice}</p>
+        {product.discount !== null ? (
+          <p>special price:{product.UnitPrice - product.discount}</p>
+        ) : (
+          <p></p>
+        )}
         <p>庫存：{product.UnitsInStock}</p>
         <p>人氣：{product.visitedTimes}</p>
         <p>Tags：{tagsLink}</p>

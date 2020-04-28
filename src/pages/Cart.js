@@ -41,7 +41,12 @@ function Cart(props) {
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
-
+          <p>價格：{product.UnitPrice}</p>
+          {product.discount !== null ? (
+            <p>special price:{product.UnitPrice - product.discount}</p>
+          ) : (
+            <p></p>
+          )}
           <div className="form-inline">
             <label htmlFor={product.productID} className="m-1">
               數量：
