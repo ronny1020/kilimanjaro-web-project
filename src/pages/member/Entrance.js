@@ -77,12 +77,14 @@ function Entrance(props) {
 
           // localStorage.setItem('MemberId', customerID)
           // localStorage.setItem('LoginValidate', true)
-          props.history.push('/lobby')
         } else {
           //登入失敗
           setBSAlert(true)
           console.log(isLogged)
         }
+      })
+      .then(function () {
+        window.location.replace('/lobby')
       })
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)

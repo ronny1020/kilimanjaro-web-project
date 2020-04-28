@@ -22,8 +22,13 @@ function LobbyTitle(props) {
               <Link to="/qna">常見問題</Link>
               <span>|</span>
               <Link
-                to="/login"
-                onClick={() => localStorage.removeItem('token')}
+                onClick={() => {
+                  async function logout() {
+                    localStorage.removeItem('token')
+                    window.location.replace('/login')
+                  }
+                  logout()
+                }}
               >
                 登出頁面
               </Link>
