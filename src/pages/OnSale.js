@@ -35,9 +35,27 @@ function OnSale() {
     console.log(Coupon2)
   }
 
+  async function updateToServer() {
+    const request = new Request('http://localhost:6001/OnSale', {
+      method: 'PUT',
+      body: JSON.stringify(Coupon2),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    console.log(JSON.stringify(Coupon2))
+
+    const response = await fetch(request)
+    const data = await response.json()
+
+    console.log('伺服器回傳的json資料', data)
+  }
+
   useEffect(() => {
-    //getTotalFromLocalStorage()
-  }, [])
+    updateToServer()
+  }, [Coupon2])
 
   return (
     <>
