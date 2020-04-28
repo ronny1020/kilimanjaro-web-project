@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
         unique: true //不可重複
       },
       cEmail: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(40),
         unique: true
       },
       cPassword: {
