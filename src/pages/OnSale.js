@@ -37,7 +37,7 @@ function OnSale() {
 
   async function updateToServer() {
     const request = new Request('http://localhost:6001/OnSale', {
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify(Coupon2),
       headers: new Headers({
         Accept: 'application/json',
