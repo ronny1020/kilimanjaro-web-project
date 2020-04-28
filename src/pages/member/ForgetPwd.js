@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Form, Button, Col, Row, Alert } from 'react-bootstrap'
+import { Form, Button, Col, Row, Alert, InputGroup } from 'react-bootstrap'
 import Breadcrumb from '../../components/Breadcrumb'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
@@ -20,6 +21,27 @@ function ForgetPwd() {
 
   //是否完成驗證
   const [isFinished, setIsFinished] = useState(false)
+
+  //密碼可視化
+  const [Visible, setVisible] = useState(false)
+  function doVisible() {
+    if (Visible === true) setVisible(false)
+    if (Visible === false) setVisible(true)
+  }
+
+  //確認密碼
+  const [confirmedPWD, setConfirmedPWD] = useState(true)
+  function doConfirm(event) {
+    // setNewPwd(event.target.value)
+    var CONFIRMpwd = document.getElementById('formPassword').value
+    setNewPwd(CONFIRMpwd)
+    var re_CONFIRMpwd = document.getElementById('formSecurePassword').value
+    if (CONFIRMpwd === re_CONFIRMpwd && CONFIRMpwd !== '') {
+      setConfirmedPWD(true)
+    } else {
+      setConfirmedPWD(false)
+    }
+  }
 
   //產生隨機字串作為驗證碼
   function randMaker(length) {
@@ -219,29 +241,56 @@ function ForgetPwd() {
           </Form.Group>
 
           <Form.Group
-            controlId="formBasicPassword"
+            controlId="formPassword"
             style={isFinished === true ? {} : { display: 'none' }}
           >
             <Form.Label>輸入新密碼</Form.Label>
-            <Form.Control
-              type="password"
-              value={newPwd}
-              onChange={(e) => setNewPwd(e.target.value)}
-              placeholder="請輸入密碼"
-              required
-            />
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                style={confirmedPWD ? {} : { 'border-color': '#fab5b5' }}
+                value={newPwd}
+                onChange={doConfirm}
+                placeholder="請輸入密碼"
+                required
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
+            <Form.Control.Feedback
+              type="invalid"
+              style={confirmedPWD ? { display: 'none' } : { display: 'inline' }}
+            >
+              密碼為空或者與密碼確認不符
+            </Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group
-            controlId="formBasicSecurePassword"
+            controlId="formSecurePassword"
             style={isFinished === true ? {} : { display: 'none' }}
           >
             <Form.Label>確認新密碼:</Form.Label>
-            <Form.Control type="password" placeholder="請確認密碼" />
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                onChange={doConfirm}
+                placeholder="請確認密碼"
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
 
           <Button
             variant="primary"
             type="button"
+            disabled={confirmedPWD ? false : true}
             style={isFinished === true ? {} : { display: 'none' }}
             onClick={handleSubmit}
           >

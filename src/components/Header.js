@@ -33,7 +33,6 @@ function Header(props) {
     <>
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">
-          {/*  */}
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <GiHamburgerMenu />
           </Navbar.Toggle>
@@ -44,7 +43,7 @@ function Header(props) {
           </Navbar.Brand>
           <Nav.Link className="navicon_mob" href="/login">
             {memberID ? (
-              <img src="../images/dummy.jpg" alt="user"></img>
+              <img src="../images/home.svg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>
             )}
@@ -95,7 +94,7 @@ function Header(props) {
 
           <Nav.Link className="navicon_web" href="/login">
             {memberID ? (
-              <img src="../images/dummy.jpg" alt="user"></img>
+              <img src="../images/home.svg" alt="user"></img>
             ) : (
               <img src="../images/user.svg" alt="user"></img>
             )}

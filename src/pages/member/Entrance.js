@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -23,6 +24,13 @@ function Entrance(props) {
   const [password, setPassword] = useState(default_pwd)
   const [account, setAccount] = useState(default_acc)
   const [bsAlert, setBSAlert] = useState(false)
+
+  //密碼可視化
+  const [Visible, setVisible] = useState(false)
+  function doVisible() {
+    if (Visible === true) setVisible(false)
+    if (Visible === false) setVisible(true)
+  }
 
   function validateForm() {
     return account.length > 0 && password.length > 0
@@ -77,12 +85,14 @@ function Entrance(props) {
 
           // localStorage.setItem('MemberId', customerID)
           // localStorage.setItem('LoginValidate', true)
-          props.history.push('/lobby')
         } else {
           //登入失敗
           setBSAlert(true)
           console.log(isLogged)
         }
+      })
+      .then(function () {
+        window.location.replace('/lobby')
       })
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)
@@ -119,18 +129,21 @@ function Entrance(props) {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>密碼</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="請輸入密碼"
-              required
-            />
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="請輸入密碼"
+                required
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="記得我" />
-          </Form.Group>
-
           <Link to="/login/enroll">註冊新會員</Link>
           <Link to="/login/forget_pwd">忘記密碼?</Link>
 

@@ -1,5 +1,8 @@
 export const AddComment = (pid, cid, rate = null, comment = null) => {
   return async () => {
+    if (cid == null) {
+      window.location.replace('http://localhost:3000/login/entrance')
+    }
     const postToComments = {
       productID: pid,
       customerID: cid,
