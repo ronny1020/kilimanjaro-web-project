@@ -10,42 +10,34 @@ function OnSale() {
   const [Coupon, setCoupon] = useState('')
   const [Coupon2, setCoupon2] = useState('')
 
-  fetch('http://localhost:6001/OnSale')
-    .then(function (response) {
-      return response.json()
-    })
-    .then(function (myJson) {
-      setCoupon(myJson.MemberList)
-    })
-  // const [Mycart, setMycart] = useState([])
-
-  async function updateCartToLocalStorage(value) {
-    // 開啟載入指示
-
-    // const currentCart = JSON.parse(localStorage.getItem('cart')) || []
-
-    // console.log('currentCart', currentCart)
-
-    const newCoupon = [...Coupon, value]
-    localStorage.setItem('cart', JSON.stringify(newCoupon))
-
-    console.log('newCoupon', newCoupon)
-    // 設定資料
-    setCoupon2(newCoupon)
-    console.log(Coupon2)
+  function getData() {
+    fetch('http://localhost:6001/OnSale')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (myJson) {
+        setCoupon(myJson.MemberList)
+      })
+    // const [Mycart, setMycart] = useState([])
   }
+  // async function updateCartToLocalStorage(value) {
+  //   // 開啟載入指示
+  //   // const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+  //   // console.log('currentCart', currentCart)
+  //   // 設定資料
+  // }
 
-  async function updateToServer() {
+  async function addToServer(value) {
     const request = new Request('http://localhost:6001/OnSale', {
-      method: 'PUT',
-      body: JSON.stringify(Coupon2),
+      method: 'POST',
+      body: JSON.stringify(value),
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
     })
 
-    console.log(JSON.stringify(Coupon2))
+    console.log(JSON.stringify(value))
 
     const response = await fetch(request)
     const data = await response.json()
@@ -54,8 +46,8 @@ function OnSale() {
   }
 
   useEffect(() => {
-    updateToServer()
-  }, [Coupon2])
+    getData()
+  }, [])
 
   return (
     <>
@@ -109,7 +101,7 @@ function OnSale() {
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={() => {
-                        updateCartToLocalStorage({
+                        addToServer({
                           couponMapId: 1,
                           couponID: 1,
                           customerID: 'C008',

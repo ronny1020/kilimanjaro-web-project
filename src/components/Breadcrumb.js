@@ -42,6 +42,9 @@ function Breadcrumb(props) {
       case 'favorite':
         path = '喜好清單'
         break
+      case 'about':
+        path = '關於我們'
+        break
       default:
         path = '首頁'
     }

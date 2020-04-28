@@ -9,7 +9,7 @@ module.exports = app => {
   //     0428
 
   // complete forget pwd v
-  // enroll: mail verify ?
+  // enroll: mail verify (pend)
   // edit: change pwd =>輸入舊+改新+確認
 
   // //包成component

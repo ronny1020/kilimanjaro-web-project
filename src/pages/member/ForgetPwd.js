@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Form, Button, Col, Row, Alert } from 'react-bootstrap'
+import { Form, Button, Col, Row, Alert, InputGroup } from 'react-bootstrap'
 import Breadcrumb from '../../components/Breadcrumb'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
@@ -20,6 +21,13 @@ function ForgetPwd() {
 
   //是否完成驗證
   const [isFinished, setIsFinished] = useState(false)
+
+  //密碼可視化
+  const [Visible, setVisible] = useState(false)
+  function doVisible() {
+    if (Visible === true) setVisible(false)
+    if (Visible === false) setVisible(true)
+  }
 
   //產生隨機字串作為驗證碼
   function randMaker(length) {
@@ -223,13 +231,20 @@ function ForgetPwd() {
             style={isFinished === true ? {} : { display: 'none' }}
           >
             <Form.Label>輸入新密碼</Form.Label>
-            <Form.Control
-              type="password"
-              value={newPwd}
-              onChange={(e) => setNewPwd(e.target.value)}
-              placeholder="請輸入密碼"
-              required
-            />
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                value={newPwd}
+                onChange={(e) => setNewPwd(e.target.value)}
+                placeholder="請輸入密碼"
+                required
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
 
           <Form.Group
@@ -237,7 +252,17 @@ function ForgetPwd() {
             style={isFinished === true ? {} : { display: 'none' }}
           >
             <Form.Label>確認新密碼:</Form.Label>
-            <Form.Control type="password" placeholder="請確認密碼" />
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                placeholder="請確認密碼"
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
 
           <Button
