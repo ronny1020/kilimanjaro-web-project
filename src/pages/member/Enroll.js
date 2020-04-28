@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Col, Row } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
 // import { withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
@@ -16,6 +16,7 @@ function Enroll(props) {
   const [bsAlert, setBSAlert] = useState(false)
   const [doneEnroll, setDoneEnroll] = useState(false)
 
+  //密碼可視化
   const [Visible, setVisible] = useState(false)
   function doVisible() {
     if (Visible === true) setVisible(false)
@@ -156,28 +157,37 @@ function Enroll(props) {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>密碼</Form.Label>
-            <Row className="formRow">
-              <Col className="formPwd" sm="11">
-                <Form.Control
-                  type={Visible === false ? 'password' : 'text'}
-                  value={enrPwd}
-                  onChange={(e) => setEnrPwd(e.target.value)}
-                  placeholder="請輸入密碼"
-                  required
-                />
-              </Col>
-              <Col className="formEye" sm="1">
-                {Visible === false ? (
-                  <FaEye onClick={doVisible} />
-                ) : (
-                  <FaEyeSlash onClick={doVisible} />
-                )}
-              </Col>
-            </Row>
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                value={enrPwd}
+                onChange={(e) => setEnrPwd(e.target.value)}
+                placeholder="請輸入密碼"
+                required
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
+
           <Form.Group controlId="formBasicSecurePassword">
             <Form.Label>確認密碼:</Form.Label>
-            <Form.Control type="password" placeholder="請確認密碼" />
+
+            <InputGroup>
+              <Form.Control
+                type={Visible === false ? 'password' : 'text'}
+                placeholder="請確認密碼"
+                required
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id="inputGroupAppend" onClick={doVisible}>
+                  {Visible ? <FaEyeSlash /> : <FaEye />}
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
 
           <Button variant="primary" disabled={!validateForm()} type="submit">
