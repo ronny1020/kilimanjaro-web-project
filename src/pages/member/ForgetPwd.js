@@ -3,9 +3,12 @@ import { Form, Button, Col, Row, Alert } from 'react-bootstrap'
 import Breadcrumb from '../../components/Breadcrumb'
 
 import jwt from 'jsonwebtoken'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 function ForgetPwd() {
+  //比對信箱&抓之後要用的ID
   const [mail, setMail] = useState('')
+  const [CID, setCID] = useState('')
+  const [newPwd, setNewPwd] = useState('')
   const [validMail, setValidMail] = useState(false)
   const [bsAlert, setBSAlert] = useState(false)
   //用戶輸入的答案
@@ -33,19 +36,25 @@ function ForgetPwd() {
 
   //倒數計時
   function Countdown(max) {
-    setInterval(() => {
+    let counter = setInterval(() => {
       if (max <= 0) {
         setTime('驗證碼已失效,請重新取得驗證碼。')
         setButtonPhase('GET')
         setBSAlert(false)
         setVcode('')
         setAnswer('')
+        clearInterval(counter)
         // window.location.reload()
       } else {
         max -= 1
         setTime('驗證碼有效期限:剩餘' + max + '秒')
       }
     }, 1000)
+    //若完成驗證則停下計時
+    // if (isFinished === true) {
+    //   clearInterval(counter)
+    //   return
+    // }
   }
 
   //驗證信箱是否存在
@@ -61,6 +70,7 @@ function ForgetPwd() {
           for (let i = 0; i < allMemList.length; i++) {
             // console.log(allMemList[i].cEmail)
             if (mail === allMemList[i].cEmail) {
+              setCID(allMemList[i].customerID)
               resolve(true)
             }
           }
@@ -73,7 +83,6 @@ function ForgetPwd() {
   //寄出含有驗證碼的信
   async function getMail() {
     if ((await mailValidate()) === true) {
-      console.log(mailValidate())
       setBSAlert(true)
       setValidMail(true)
       let url_mail = 'http://localhost:6001/api/mail/verify'
@@ -104,7 +113,6 @@ function ForgetPwd() {
         return res.json()
       })
     } else {
-      console.log(mailValidate())
       setBSAlert(true)
       setValidMail(false)
     }
@@ -120,11 +128,42 @@ function ForgetPwd() {
     }
 
     if (jwt.verify(Answer, 'himitsu').answer === Vcode) {
-      alert('success!')
+      alert('驗證成功!')
       setIsFinished(true)
     } else {
-      alert('wrong!')
+      alert('錯誤的驗證碼!')
     }
+  }
+
+  //送出新密碼至資料庫
+  function handleSubmit() {
+    //要確認密碼欄位是否為空!
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(newPwd, salt, function (err, hash) {
+        let pwd_json = {
+          cPassword: hash,
+        }
+
+        //確定有此人後再丟
+        if (CID !== '') {
+          let url_submit = 'http://localhost:6001/api/member/' + CID
+          fetch(url_submit, {
+            method: 'PUT', // want to use PATCH
+            body: JSON.stringify(pwd_json),
+            headers: new Headers({
+              'Content-Type': 'application/json',
+            }),
+          })
+            .then((res) => res.json())
+            .catch((error) => console.error('Error:', error))
+            .then((response) => {
+              alert('變更成功!')
+              console.log('Success:', response)
+              window.location.reload()
+            })
+        }
+      })
+    })
   }
   return (
     <>
@@ -166,7 +205,6 @@ function ForgetPwd() {
                   placeholder="請輸入驗證碼"
                   value={Vcode}
                   onChange={(e) => setVcode(e.target.value)}
-                  // required
                 />
               </Col>
               <Col sm="4">
@@ -185,7 +223,13 @@ function ForgetPwd() {
             style={isFinished === true ? {} : { display: 'none' }}
           >
             <Form.Label>輸入新密碼</Form.Label>
-            <Form.Control type="password" placeholder="請輸入密碼" required />
+            <Form.Control
+              type="password"
+              value={newPwd}
+              onChange={(e) => setNewPwd(e.target.value)}
+              placeholder="請輸入密碼"
+              required
+            />
           </Form.Group>
           <Form.Group
             controlId="formBasicSecurePassword"
@@ -197,8 +241,9 @@ function ForgetPwd() {
 
           <Button
             variant="primary"
-            type="submit"
+            type="button"
             style={isFinished === true ? {} : { display: 'none' }}
+            onClick={handleSubmit}
           >
             更改密碼
           </Button>
