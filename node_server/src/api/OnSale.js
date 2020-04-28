@@ -59,4 +59,6 @@ router.get('/', (req, res, next) => {
   executeSQL(OnSale.getOnSale(req.query), res)
 })
 
+
+
 export default router
