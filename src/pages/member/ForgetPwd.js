@@ -231,6 +231,7 @@ function ForgetPwd() {
               required
             />
           </Form.Group>
+
           <Form.Group
             controlId="formBasicSecurePassword"
             style={isFinished === true ? {} : { display: 'none' }}
