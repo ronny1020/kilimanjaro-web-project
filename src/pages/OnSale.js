@@ -6,23 +6,33 @@ import ProductListItem from '../components/ProductList/productListItem'
 
 import disc1 from '../img/disc/disc1.jpg'
 
-function Sellers() {
-  const [Mycart, setMycart] = useState([])
+function OnSale() {
+  const [Coupon, setCoupon] = useState('')
+  const [Coupon2, setCoupon2] = useState('')
+
+  fetch('http://localhost:6001/OnSale')
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (myJson) {
+      setCoupon(myJson.MemberList)
+    })
+  // const [Mycart, setMycart] = useState([])
 
   async function updateCartToLocalStorage(value) {
     // 開啟載入指示
 
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+    // const currentCart = JSON.parse(localStorage.getItem('cart')) || []
 
-    console.log('currentCart', currentCart)
+    // console.log('currentCart', currentCart)
 
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
+    const newCoupon = [...Coupon, value]
+    localStorage.setItem('cart', JSON.stringify(newCoupon))
 
-    console.log('newCart', newCart)
+    console.log('newCoupon', newCoupon)
     // 設定資料
-    setMycart(newCart)
-    console.log(Mycart)
+    setCoupon2(newCoupon)
+    console.log(Coupon2)
   }
 
   useEffect(() => {
@@ -82,10 +92,10 @@ function Sellers() {
                       className="btn btn-danger text-white"
                       onClick={() => {
                         updateCartToLocalStorage({
-                          id: 1,
-                          name: 'iphone x',
-                          amount: 1,
-                          price: 15000,
+                          couponMapId: 1,
+                          couponID: 1,
+                          customerID: 'C008',
+                          valid: 1,
                         })
                       }}
                     >
@@ -104,18 +114,7 @@ function Sellers() {
                 </ProductListItem>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
-                    <button
-                      type="button"
-                      className="btn btn-danger text-white"
-                      onClick={() => {
-                        updateCartToLocalStorage({
-                          id: 1,
-                          name: 'iphone x',
-                          amount: 1,
-                          price: 15000,
-                        })
-                      }}
-                    >
+                    <button type="button" className="btn btn-danger text-white">
                       我要領取
                     </button>
                   </div>
@@ -168,4 +167,4 @@ function Sellers() {
   )
 }
 
-export default Sellers
+export default OnSale
