@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { rootReducer } from './reducers'
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -16,11 +16,33 @@ const store = createStore(
   /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))
 )
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#6e8080',
+    },
+    secondary: {
+      main: '#f7f7f7',
+    },
+    error: {
+      main: '#fab5b5',
+    },
+    success: {
+      main: '#a3d3d7',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  },
+})
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
