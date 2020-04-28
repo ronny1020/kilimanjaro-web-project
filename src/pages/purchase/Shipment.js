@@ -1,6 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-function Shipment() {
+function Shipment(props) {
+  const { Cart } = props
+
+  console.log(Cart)
+
   return (
     <>
       <h1>運送</h1>
@@ -8,4 +13,10 @@ function Shipment() {
   )
 }
 
-export default Shipment
+const mapStateToProps = (state) => {
+  return {
+    Cart: state.CartReducer.items.cart,
+  }
+}
+
+export default connect(mapStateToProps, {})(Shipment)

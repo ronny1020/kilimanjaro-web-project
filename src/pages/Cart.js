@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+
 import ProductListItem from '../components/ProductList/productListItem'
 import Loading from '../components/Loading'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
@@ -13,6 +14,7 @@ import {
 } from '../actions/CartAction'
 
 function Cart(props) {
+  let history = useHistory()
   const memberID = getMemberID()
 
   if (memberID == null) {
@@ -105,7 +107,7 @@ function Cart(props) {
         <div>{productList}</div>
 
         <button
-          className="btn btn-danger"
+          className="btn btn-danger m-1"
           onClick={(e) => {
             e.preventDefault()
             async function remove() {
@@ -116,6 +118,20 @@ function Cart(props) {
           }}
         >
           remove all
+        </button>
+
+        <button
+          className="btn btn-success m-1"
+          onClick={(e) => {
+            e.preventDefault()
+            async function next() {
+              await localStorage.setItem('Cart', JSON.stringify(Cart))
+              await history.push('/shipment')
+            }
+            next()
+          }}
+        >
+          NEXT
         </button>
       </div>
     </>
