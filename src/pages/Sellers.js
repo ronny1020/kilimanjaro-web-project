@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-  Link,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
 import ProductListItem from '../components/ProductList/productListItem'
