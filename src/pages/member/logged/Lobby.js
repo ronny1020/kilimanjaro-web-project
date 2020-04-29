@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
   Redirect,
-  Link,
 } from 'react-router-dom'
 import Breadcrumb from '../../../components/Breadcrumb'
 
@@ -15,15 +14,13 @@ import Coupon from './Coupon'
 import History from './History'
 
 import LobbyTitle from '../../../components/member/LobbyTitle'
+import LobbyCard from '../../../components/member/LobbyCard'
 import Login from '../Login'
 import Home from '../../Home'
 import Product from '../../Product'
 import NotFoundPage from '../../NotFoundPage'
 
-import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
-import { MdFavorite } from 'react-icons/md'
-import { IoMdMail } from 'react-icons/io'
-import { GiTicket } from 'react-icons/gi'
+import { CardGroup, Row, Col } from 'react-bootstrap'
 
 import LoginValidate from '../../../components/LoginValidate'
 
@@ -66,54 +63,73 @@ function Member(props) {
                 <div className="row">
                   <div className="col-8">
                     <Breadcrumb />
-                    <div className="bg-white">你好, 會員{name}</div>
-                    <div className="row">
-                      <Link className="col-4 lobby_blocks" to="/lobby/edit">
-                        <FaUserEdit />
-                        <br />
-                        修改會員資料
-                        <br />
-                        修改信箱、住址、姓名等註冊資料。
-                      </Link>
-                      <div className="col-4 lobby_blocks">
-                        <IoMdMail />
-                        <br />
-                        同好會
-                        <br />
-                        查看您加入的同好會並 進行管理。
-                      </div>
-                      <Link className="col-4 lobby_blocks" to="/lobby/coupon">
-                        <GiTicket />
-                        <br />
-                        折扣券
-                        <br />
-                        確認目前擁有可以使用的折扣。
-                      </Link>
-                    </div>
+                    <Row style={{ marginBottom: '1em' }}>
+                      <Col lg={8} className="pr-0">
+                        <div
+                          className="bg-white"
+                          style={{
+                            height: '50px',
+                            border: '0.5px solid lightgrey',
+                            borderRight: 0,
+                          }}
+                        >
+                          <h1>你好, 會員{name}</h1>
+                        </div>
+                      </Col>
+                      <Col lg={4} className="pl-0">
+                        <div
+                          className="bg-white"
+                          style={{
+                            height: '50px',
+                            border: '0.5px solid lightgrey',
+                            borderLeft: 0,
+                          }}
+                        >
+                          上傳頭像(做一個form再onclick(handlesubmit))
+                        </div>
+                      </Col>
+                    </Row>
+                    <CardGroup>
+                      <LobbyCard
+                        title="修改會員資料"
+                        content="修改信箱、住址、姓名等註冊資料。"
+                        to="/lobby/edit"
+                        img="FaUserEdit"
+                      />
+                      <LobbyCard
+                        title="同好會"
+                        content="查看您加入的同好會並進行管理。"
+                        to="#"
+                        img="IoMdMail"
+                      />
+                      <LobbyCard
+                        title="折扣券"
+                        content="確認目前擁有可以使用的折扣。"
+                        to="/lobby/coupon"
+                        img="GiTicket"
+                      />
+                    </CardGroup>
 
-                    <div className="row">
-                      <Link className="col-4 lobby_blocks" to="/lobby/history">
-                        <FaCreditCard />
-                        <br />
-                        交易紀錄
-                        <br />
-                        觀看過去在吉利馬札羅的消費紀錄。
-                      </Link>
-                      <Link className="col-4 lobby_blocks" to="/lobby/favorite">
-                        <MdFavorite />
-                        <br />
-                        喜好清單
-                        <br />
-                        過去引起您注目，並可 能進行購買的商品。
-                      </Link>
-                      <div className="col-4 lobby_blocks" to="/cart">
-                        <FaCartArrowDown />
-                        <br />
-                        查看購物車
-                        <br />
-                        查看您準備購買的商品
-                      </div>
-                    </div>
+                    <CardGroup>
+                      <LobbyCard
+                        title="交易紀錄"
+                        content="觀看過去在吉利馬札羅的消費紀錄。"
+                        to="/lobby/history"
+                        img="FaCreditCard"
+                      />
+                      <LobbyCard
+                        title="喜好清單"
+                        content="過去引起您注目，並可能進行購買的商品。"
+                        to="/lobby/favorite"
+                        img="MdFavorite"
+                      />
+                      <LobbyCard
+                        title="查看購物車"
+                        content="查看您準備購買的商品。"
+                        to="/cart"
+                        img="FaCartArrowDown"
+                      />
+                    </CardGroup>
                   </div>
                   <div className="col-4" align="center">
                     <br />

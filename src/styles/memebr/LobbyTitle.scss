@@ -33,17 +33,10 @@
   margin: 5px;
 }
 
-//Lobby blocks:
+//Lobby cards:
 
-.lobby_blocks {
-  // width: 200px;
-  // height: 166px;
-  cursor: pointer;
-  background-color: white;
-  padding: 10px;
-  border-bottom: 0.5px solid gray;
-}
-.lobby_blocks > svg {
-  width:100px;
+.LobbycardImg {
+  margin-top: 1em;
   color: #fab5b5;
+  font-size: 2.5em;
 }
