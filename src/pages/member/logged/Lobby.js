@@ -52,7 +52,8 @@ function Member(props) {
 
   //上傳頭像:
   function handleSubmit() {
-    alert('處理上傳')
+    // alert('處理上傳')
+    document.getElementById('upload_img').click()
   }
 
   return (
@@ -82,6 +83,8 @@ function Member(props) {
                           <h2>您好, 會員{name}</h2>
                         </div>
                       </Col>
+
+                      {/* 上傳頭像: 表單 */}
                       <Col lg={4} className="pl-0">
                         <div
                           className="bg-white"
@@ -91,6 +94,7 @@ function Member(props) {
                           }}
                         >
                           <Form>
+                            <input id="upload_img" type="file" hidden />
                             <div class="container">
                               <Image
                                 className="profile"
@@ -107,6 +111,7 @@ function Member(props) {
                           </Form>
                         </div>
                       </Col>
+                      {/* 上傳頭像: 表單(end) */}
                     </Row>
                     <CardGroup>
                       <LobbyCard
