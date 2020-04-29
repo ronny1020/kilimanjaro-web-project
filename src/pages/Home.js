@@ -2,6 +2,7 @@ import React from 'react'
 import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Card from 'react-bootstrap/Card'
 
 import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -17,7 +18,14 @@ function Home() {
           <div className="container">
             <div className="row ">
               <div className="col-md-4 mt-3">
-                <img className="d-block h-100 w-100 " src={img002} alt="" />
+                <Card style={{ width: '24rem' }}>
+                  <Card.Img variant="top" src={img002} />
+                  {/* <Card.Body>
+                    <Card.Title></Card.Title>
+                    <Card.Text></Card.Text>
+                  </Card.Body> */}
+                </Card>
+                {/* <img className="d-block h-100 w-100 " src={img002} alt="" /> */}
               </div>
 
               <div className="col-md-8 mt-3 bg-secondary">
