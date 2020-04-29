@@ -8,6 +8,7 @@ import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
 import disc1 from '../img/disc/disc1.jpg'
+import '../styles/my.scss'
 
 function Home() {
   return (
@@ -60,7 +61,11 @@ function Home() {
             </div>
           </div>
         </div> */}
-
+        <div className="qt-background mt-3">
+          <div className="text-white" align="center">
+            "最好的體驗，最好的香味，令人回味的滋味"
+          </div>
+        </div>
         <div className="menu-box ">
           <div className="container mt-3">
             <div className="row">
