@@ -32,11 +32,9 @@ function Sidebar(props) {
       <br />
       <nav className="navbar sidebar">
         <ul className="navbar-nav">
-          <li>
-            <div className=" bg-primary banner">
-              <p className="text-secondary">{props.input.title}</p>
-            </div>
-          </li>
+          <div className=" bg-primary titleLabel">
+            <h4 className="text-secondary">{props.input.title}</h4>
+          </div>
           {content}
         </ul>
       </nav>

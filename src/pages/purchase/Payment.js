@@ -11,7 +11,7 @@ function Payment(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="2" />
+      <PurchaseStepper activeStep="3" />
       <div className="container">
         <button
           className="btn btn-success m-1"

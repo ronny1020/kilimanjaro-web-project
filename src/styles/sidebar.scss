@@ -13,14 +13,14 @@ ul.navbar-nav hr {
   padding: 0;
   margin: 0;
 }
-.banner {
+.titleLabel {
   width: 270px;
   height: 47px;
   border-left: solid 10px black;
 }
 
-.banner p {
-  font-size: 18px;
+.titleLabel h4 {
   text-align: center;
   top: 10px;
+  line-height: 47px;
 }

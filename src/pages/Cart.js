@@ -8,10 +8,13 @@ import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
 import { getMemberID } from '../actions/getMemberID'
 
+import PurchaseStepper from '../components/purchase/PurchaseStepper'
+
 import {
   removeProductFromCart,
   updateProductNumToCart,
 } from '../actions/CartAction'
+import CardSecondary from '../components/CardSecondary'
 
 function Cart(props) {
   let history = useHistory()
@@ -22,6 +25,17 @@ function Cart(props) {
   }
 
   const { Cart, getCart, removeProductFromCart, updateProductNumToCart } = props
+
+  let totalPrice = Cart
+    ? Cart.reduce((a, product) => {
+        let price =
+          product.UnitPrice - product.discount >= 0
+            ? product.UnitPrice - product.discount
+            : 0
+        return a + price * product.num
+      }, 0)
+    : 0
+  totalPrice = new Intl.NumberFormat('en-IN').format(totalPrice)
 
   useEffect(() => {
     getCart(memberID)
@@ -39,7 +53,7 @@ function Cart(props) {
 
   const productList = Cart.map((product, i) => (
     <div key={i}>
-      <Link to={'../product/' + product.productID}>
+      <Link to={'../product/' + product.productID} className="linkNoUnderline">
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>id:{product.productID}</p>
@@ -106,11 +120,22 @@ function Cart(props) {
   return (
     <>
       <div className="topSpace"></div>
-      <div className="container">
-        <h1>購物車</h1>
-
+      <div className="container p-0">
+        <p>親愛的會員您好：</p>
+        <PurchaseStepper activeStep="1" />
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">購物車內商品</h4>
+        </div>
+      </div>
+      <div className="container p-0">
         <div>{productList}</div>
-
+      </div>
+      <CardSecondary>
+        <span>
+          共 {Cart.length} 項商品，總價 {totalPrice} 元
+        </span>
+      </CardSecondary>
+      <div className="container">
         <button
           className="btn btn-danger m-1"
           onClick={(e) => {

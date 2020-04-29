@@ -12,7 +12,7 @@ function Shipment(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="1" />
+      <PurchaseStepper activeStep="2" />
       <div className="container">
         <CardSecondary>
           <h3>訂購人資料</h3>

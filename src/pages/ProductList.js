@@ -47,7 +47,7 @@ function ProductList(props) {
 
   const productList = products.map((product, i) => (
     <div key={i}>
-      <Link to={'../product/' + product.productID}>
+      <Link to={'../product/' + product.productID} className="linkNoUnderline">
         <ProductListItem>
           <h3>{product.ProductName}</h3>
           <p>price:{product.UnitPrice}</p>

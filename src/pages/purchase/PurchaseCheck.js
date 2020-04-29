@@ -11,7 +11,7 @@ function PurchaseCheck(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="3" />
+      <PurchaseStepper activeStep="4" />
       <div className="container">
         <button
           className="btn btn-success m-1"
