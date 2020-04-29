@@ -1,6 +1,7 @@
 export const AddComment = (pid, cid, rate = null, comment = null) => {
   return async () => {
     if (cid == null) {
+      localStorage.setItem('siteBeforeLogin', window.location.pathname)
       window.location.replace('http://localhost:3000/login/entrance')
     }
     const postToComments = {

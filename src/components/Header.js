@@ -29,6 +29,11 @@ function Header(props) {
     document.title = cartNum ? '(' + cartNum + ') Kilimanjaro' : 'Kilimanjaro'
   }, [getCartNum, memberID, product, products, Cart, cartNum])
 
+  function login() {
+    localStorage.setItem('siteBeforeLogin', window.location.pathname)
+    window.location.replace('/login')
+  }
+
   return (
     <>
       <header>
@@ -41,7 +46,7 @@ function Header(props) {
           <Navbar.Brand href="/" className="brand_mob">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
-          <Nav.Link className="navicon_mob" href="/login">
+          <Nav.Link className="navicon_mob" onClick={login}>
             {memberID ? (
               <img src="../images/home.svg" alt="user"></img>
             ) : (
@@ -92,7 +97,7 @@ function Header(props) {
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
 
-          <Nav.Link className="navicon_web" href="/login">
+          <Nav.Link className="navicon_web" onClick={login}>
             {memberID ? (
               <img src="../images/home.svg" alt="user"></img>
             ) : (

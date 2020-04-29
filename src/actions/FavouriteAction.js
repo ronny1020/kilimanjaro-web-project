@@ -1,6 +1,7 @@
 export const AddProductToFavourite = (pid, cid) => {
   return async () => {
     if (cid == null) {
+      localStorage.setItem('siteBeforeLogin', window.location.pathname)
       window.location.replace('http://localhost:3000/login/entrance')
     }
     const PostToFavourite = { productID: pid, customerID: cid }

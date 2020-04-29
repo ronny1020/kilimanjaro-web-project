@@ -25,7 +25,7 @@ function LobbyTitle(props) {
                 to="#"
                 onClick={() => {
                   async function logout() {
-                    localStorage.removeItem('token')
+                    localStorage.clear()
                     window.location.replace('/login')
                   }
                   logout()
