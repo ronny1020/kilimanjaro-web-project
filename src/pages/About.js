@@ -41,6 +41,11 @@ function OnSale() {
           <div className="col-8">
             <Breadcrumb />
             <Question input={jsonInput} />
+            <Question input={jsonInput} />
+            <Question input={jsonInput} />
+            <Question input={jsonInput} />
+            <Question input={jsonInput} />
+            <Question input={jsonInput} />
           </div>
 
           <div className="col-4" align="center">
