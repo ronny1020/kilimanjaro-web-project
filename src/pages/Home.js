@@ -2,11 +2,13 @@ import React from 'react'
 import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Card from 'react-bootstrap/Card'
 
 import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
 import disc1 from '../img/disc/disc1.jpg'
+import '../styles/my.scss'
 
 function Home() {
   return (
@@ -17,10 +19,17 @@ function Home() {
           <div className="container">
             <div className="row ">
               <div className="col-md-4 mt-3">
-                <img className="d-block h-100 w-100 " src={img002} alt="" />
+                <Card style={{ width: '24rem' }}>
+                  <Card.Img variant="top" src={img002} />
+                  {/* <Card.Body>
+                    <Card.Title></Card.Title>
+                    <Card.Text></Card.Text>
+                  </Card.Body> */}
+                </Card>
+                {/* <img className="d-block h-100 w-100 " src={img002} alt="" /> */}
               </div>
 
-              <div className="col-md-8 mt-3">
+              <div className="col-md-8 mt-3 bg-secondary">
                 <h1 className="m-b-20 ">
                   <strong>
                     歡迎光臨 <br /> 吉利馬札羅
@@ -52,14 +61,18 @@ function Home() {
             </div>
           </div>
         </div> */}
-
+        <div className="qt-background mt-3">
+          <div className="text-white" align="center">
+            "最好的體驗，最好的香味，令人回味的滋味"
+          </div>
+        </div>
         <div className="menu-box ">
           <div className="container mt-3">
             <div className="row">
               <div className="col-lg-12">
                 <div className="heading-title text-center">
                   <h2>最新消息</h2>
-                  <p>關於產品或優惠的最新資訊，您能在此快速了解所有最新消息</p>
+                  <p>關於商品或站方的最新資訊，您能在此快速了解所有最新消息</p>
                 </div>
               </div>
             </div>
