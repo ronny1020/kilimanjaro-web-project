@@ -20,7 +20,7 @@ function Home() {
                 <img className="d-block h-100 w-100 " src={img002} alt="" />
               </div>
 
-              <div className="col-md-8 mt-3">
+              <div className="col-md-8 mt-3 bg-secondary">
                 <h1 className="m-b-20 ">
                   <strong>
                     歡迎光臨 <br /> 吉利馬札羅
