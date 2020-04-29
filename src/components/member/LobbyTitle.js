@@ -22,6 +22,7 @@ function LobbyTitle(props) {
               <Link to="/qna">常見問題</Link>
               <span>|</span>
               <Link
+                to="#"
                 onClick={() => {
                   async function logout() {
                     localStorage.removeItem('token')

@@ -95,7 +95,7 @@ function Member(props) {
                         >
                           <Form>
                             <input id="upload_img" type="file" hidden />
-                            <div class="container">
+                            <div className="container">
                               <Image
                                 className="profile"
                                 src="../../images/dummy.jpg"
