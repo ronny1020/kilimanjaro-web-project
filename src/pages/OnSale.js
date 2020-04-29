@@ -8,7 +8,6 @@ import disc1 from '../img/disc/disc1.jpg'
 
 function OnSale() {
   const [Coupon, setCoupon] = useState('')
-  const [Coupon2, setCoupon2] = useState('')
 
   function getData() {
     fetch('http://localhost:6001/OnSale')
@@ -47,7 +46,7 @@ function OnSale() {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [Coupon])
 
   return (
     <>

@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Question from '../components/seller/Question'
-import { Link } from 'react-router-dom'
 
 import LobbyTitle from '../components/member/LobbyTitle'
-import ProductListItem from '../components/ProductList/productListItem'
+
 import Breadcrumb from '../components/Breadcrumb'
 import Sidebar from '../components/Sidebar'
-import { FaWikipediaW } from 'react-icons/fa'
-
-import disc1 from '../img/disc/disc1.jpg'
 
 function OnSale() {
   const inputArray = {
