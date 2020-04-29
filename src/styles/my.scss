@@ -1,0 +1,23 @@
+.qt-background {
+    background: url(../img/disc/qt-bg.jpg) no-repeat;
+    background-size: cover;
+    padding: 100px 0;
+    background-attachment: fixed;
+    background-position: center center;
+    position: relative;
+}
+
+.qt-background p {
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 44px;
+    color: #fff;
+    font-family: 'Arbutus Slab', serif;
+    margin-bottom: 20px;
+}
+
+.qt-background span {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+}
