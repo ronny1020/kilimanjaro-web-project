@@ -198,17 +198,20 @@ function ProductList(props) {
         </p>
         <div>{productList}</div>
         <Pagination className="justify-content-center mt-5">
-          <Pagination.First href="1" />
-          <Pagination.Prev href={(range.page > 1 ? range.page - 1 : 1) + ''} />
+          <Pagination.First href="../productList/1" />
+          <Pagination.Prev
+            href={'../productList/' + (range.page > 1 ? range.page - 1 : 1)}
+          />
           {PageIndex}
           <Pagination.Next
             href={
+              '../productList/' +
               (range.page < range.totalPages
                 ? range.page + 1
-                : range.totalPages) + ''
+                : range.totalPages)
             }
           />
-          <Pagination.Last href={range.totalPages + ''} />
+          <Pagination.Last href={'../productList/' + range.totalPages} />
         </Pagination>
       </div>
     </>
