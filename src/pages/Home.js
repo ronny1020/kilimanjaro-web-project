@@ -59,7 +59,7 @@ function Home() {
               <div className="col-lg-12">
                 <div className="heading-title text-center">
                   <h2>最新消息</h2>
-                  <p>關於產品或優惠的最新資訊，您能在此快速了解所有最新消息</p>
+                  <p>關於商品或站方的最新資訊，您能在此快速了解所有最新消息</p>
                 </div>
               </div>
             </div>
