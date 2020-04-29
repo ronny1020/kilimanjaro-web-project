@@ -24,7 +24,9 @@ import Lobby from './pages/member/logged/Lobby'
 import Cart from './pages/Cart'
 import Shipment from './pages/purchase/Shipment'
 import Payment from './pages/purchase/Payment'
+import PurchaseCheck from './pages/purchase/PurchaseCheck'
 import PurchaseComplied from './pages/purchase/PurchaseComplied'
+
 import Sellers2 from './pages/seller/Sellers2'
 import Sellers3 from './pages/seller/Sellers3'
 import Sellers4 from './pages/seller/Sellers4'
@@ -105,6 +107,9 @@ function App() {
             </Route>
             <Route path="/purchaseComplied">
               <PurchaseComplied />
+            </Route>
+            <Route path="/purchaseCheck">
+              <PurchaseCheck />
             </Route>
 
             {/* not found */}
