@@ -194,7 +194,7 @@ function ProductList(props) {
         <h1>產品頁面</h1>
         <p className="d-flex justify-content-end mb-5">
           第 {range.page} 頁( {row_start} - {row_end} )，共 {range.totalPages}{' '}
-          頁 {range.totalRows} 項
+          頁{range.totalRows} 項
         </p>
         <div>{productList}</div>
         <Pagination className="justify-content-center mt-5">
