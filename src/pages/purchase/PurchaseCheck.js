@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
 import { useHistory } from 'react-router-dom'
 
-function Shipment(props) {
+function PurchaseCheck(props) {
   let history = useHistory()
   const { Cart } = props
 
@@ -11,13 +11,13 @@ function Shipment(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="1" />
+      <PurchaseStepper activeStep="3" />
       <div className="container">
         <button
           className="btn btn-success m-1"
           onClick={(e) => {
             e.preventDefault()
-            history.push('/payment')
+            history.push('/purchaseComplied')
           }}
         >
           NEXT
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(Shipment)
+export default connect(mapStateToProps, {})(PurchaseCheck)

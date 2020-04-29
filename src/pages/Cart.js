@@ -129,11 +129,8 @@ function Cart(props) {
           className="btn btn-success m-1"
           onClick={(e) => {
             e.preventDefault()
-            async function next() {
-              await localStorage.setItem('Cart', JSON.stringify(Cart))
-              await history.push('/shipment')
-            }
-            next()
+            localStorage.setItem('Cart', JSON.stringify(Cart))
+            history.push('/shipment')
           }}
         >
           NEXT
