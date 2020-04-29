@@ -20,7 +20,9 @@ import Home from '../../Home'
 import Product from '../../Product'
 import NotFoundPage from '../../NotFoundPage'
 
-import { CardGroup, Row, Col } from 'react-bootstrap'
+import { CardGroup, Row, Col, Form } from 'react-bootstrap'
+import Image from 'react-bootstrap/Image'
+import { FaEdit } from 'react-icons/fa'
 
 import LoginValidate from '../../../components/LoginValidate'
 
@@ -48,6 +50,11 @@ function Member(props) {
       // console.log(userdata.cName)
     })
 
+  //上傳頭像:
+  function handleSubmit() {
+    alert('處理上傳')
+  }
+
   return (
     <>
       <Router>
@@ -68,24 +75,36 @@ function Member(props) {
                         <div
                           className="bg-white"
                           style={{
-                            height: '50px',
                             border: '0.5px solid lightgrey',
                             borderRight: 0,
                           }}
                         >
-                          <h1>你好, 會員{name}</h1>
+                          <h2>您好, 會員{name}</h2>
                         </div>
                       </Col>
                       <Col lg={4} className="pl-0">
                         <div
                           className="bg-white"
                           style={{
-                            height: '50px',
                             border: '0.5px solid lightgrey',
                             borderLeft: 0,
                           }}
                         >
-                          上傳頭像(做一個form再onclick(handlesubmit))
+                          <Form>
+                            <div class="container">
+                              <Image
+                                className="profile"
+                                src="../../images/dummy.jpg"
+                                roundedCircle
+                                width="70%"
+                                onClick={handleSubmit}
+                              />
+                              <FaEdit
+                                className="profileEdit"
+                                onClick={handleSubmit}
+                              />
+                            </div>
+                          </Form>
                         </div>
                       </Col>
                     </Row>

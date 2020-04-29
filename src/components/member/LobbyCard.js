@@ -9,47 +9,52 @@ import { GiTicket } from 'react-icons/gi'
 
 function LobbyCard(props) {
   let cardImg = <></>
+  const svgStyle = {
+    marginTop: '1em',
+    color: '#fab5b5',
+    fontSize: '2.5em',
+  }
 
   switch (props.img) {
     case 'FaUserEdit':
       cardImg = (
         <>
-          <FaUserEdit className="LobbycardImg" />
+          <FaUserEdit style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'FaCartArrowDown':
       cardImg = (
         <>
-          <FaCartArrowDown className="LobbycardImg" />
+          <FaCartArrowDown style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'FaCreditCard':
       cardImg = (
         <>
-          <FaCreditCard className="LobbycardImg" />
+          <FaCreditCard style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'MdFavorite':
       cardImg = (
         <>
-          <MdFavorite className="LobbycardImg" />
+          <MdFavorite style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'IoMdMail':
       cardImg = (
         <>
-          <IoMdMail className="LobbycardImg" />
+          <IoMdMail style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'GiTicket':
       cardImg = (
         <>
-          <GiTicket className="LobbycardImg" />
+          <GiTicket style={svgStyle} className="card-img-top" />
         </>
       )
       break
@@ -58,11 +63,11 @@ function LobbyCard(props) {
   }
 
   //svg加上指定class
-  let cardSVG = document.getElementsByTagName('svg')
-  for (let i = 0; i < cardSVG.length; i++) {
-    cardSVG[i].classList.add('card-img-top')
-    cardSVG[i].classList.add('LobbycardImg')
-  }
+  //   let cardSVG = document.getElementsByTagName('svg')
+  //   for (let i = 0; i < cardSVG.length; i++) {
+  //     cardSVG[i].classList.add('card-img-top')
+  //     cardSVG[i].classList.add('LobbycardImg')
+  //   }
 
   return (
     <>

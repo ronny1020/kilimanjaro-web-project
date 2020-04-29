@@ -35,8 +35,25 @@
 
 //Lobby cards:
 
-.LobbycardImg {
-  margin-top: 1em;
-  color: #fab5b5;
-  font-size: 2.5em;
+// .LobbycardImg {
+//   margin-top: 1em;
+//   color: #fab5b5;
+//   font-size: 2.5em;
+// }
+
+.profileEdit {
+  font-size: 2em;
+  opacity: 0.2;
+  position: absolute;
+  top: 80%;
+  left: 37%;
+  transform: translate(-50%, -50%);
+}
+.profile:hover{
+  cursor: pointer;
+}
+.profile:hover + .profileEdit,
+.profileEdit:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
