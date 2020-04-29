@@ -80,7 +80,7 @@ function Entrance(props) {
             user_id: customerID,
             isLogged: true,
           }
-          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '1h' })
+          const token = jwt.sign(Validation, 'himitsu', { expiresIn: '3h' })
           localStorage.setItem('token', token)
 
           // localStorage.setItem('MemberId', customerID)
