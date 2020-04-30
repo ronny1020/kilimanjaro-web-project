@@ -65,3 +65,18 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
+//Edit: change password
+
+.passwordTitle {
+  cursor: pointer;
+  background-color: #fab5b5;
+}
+.passwordBody {
+  background-color: #f7f7f7;
+}
+//Password styling
+input[type='password'] {
+  font: small-caption;
+  font-size: 16px;
+}
