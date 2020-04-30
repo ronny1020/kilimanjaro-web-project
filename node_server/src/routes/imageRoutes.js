@@ -1,5 +1,6 @@
 module.exports = app => {
   //   const image = require('../controllers/imageController.js')
+  var path = require('path')
   var router = require('express').Router()
   var multer = require('multer')
   var upload = multer({ dest: 'public/avatar' })
@@ -9,13 +10,14 @@ module.exports = app => {
       cb(null, 'public/avatar')
     },
     filename: function(req, file, cb) {
-      cb(null, req.params.customerID+'.'+file.originalname.split('.')[1])
+      cb(null, req.params.customerID)
     },
   })
   var upload = multer({ storage: storage })
 
   //路由: 上傳圖片
   //avatar: 與上傳欄位的name相符
+  //filefilter (未完成)
   router.post('/:customerID', upload.single('avatar'), function(
     req,
     res,
@@ -30,7 +32,16 @@ module.exports = app => {
   })
 
   //路由: 載入圖片
-  //   router.get('/:customerID', image.downImage)
+  router.get('/:customerID', function(req, res, next) {
+    //無視副檔名為較好之作法
+    try {
+      res.download(
+        __dirname + '../../../public/avatar/' + req.params.customerID
+      )
+    } catch (err) {
+      res.send(400)
+    }
+  })
 
   app.use('/api/image', router)
 }

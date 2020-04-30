@@ -27,7 +27,7 @@ import LoginValidate from '../../../components/LoginValidate'
 
 function Member(props) {
   const [name, setName] = useState('')
-  // const [uploadImg, setUploadImg] = useState({})
+  const [uploadImg, setUploadImg] = useState('')
 
   if (LoginValidate() === false) {
     return (
@@ -51,12 +51,42 @@ function Member(props) {
       // console.log(userdata.cName)
     })
 
+  //處理圖檔:
+  function arrayBufferToBase64(buffer) {
+    var binary = ''
+    var bytes = [].slice.call(new Uint8Array(buffer))
+
+    bytes.forEach((b) => (binary += String.fromCharCode(b)))
+
+    return window.btoa(binary)
+  }
+  //獲得頭像:
+  fetch('http://localhost:6001/api/image/' + memberID, {
+    method: 'GET',
+  })
+    .catch((error) => console.error('Error:', error))
+    .then((response) => {
+      response.arrayBuffer().then((buffer) => {
+        var base64Flag = 'data:image/jpeg;base64,'
+        var imageStr = arrayBufferToBase64(buffer)
+        // console.log(base64Flag + imageStr)
+        setUploadImg(base64Flag + imageStr)
+
+        document.querySelector('img').src = base64Flag + imageStr
+      })
+    })
+  //預設頭像:
+  function addDefaultSRC(event) {
+    event.target.src = '../../images/dummy.jpg'
+  }
+
   //上傳頭像: 按鈕
   function handleClick() {
     // alert('處理上傳')
     document.getElementById('upload_img').click()
   }
   //上傳頭像: 讀取檔案
+  //檢查副檔名 (未完成)
   function handleUpload(event) {
     var formData = new FormData()
     formData.append('avatar', event.target.files[0])
@@ -117,10 +147,11 @@ function Member(props) {
                             <div className="container">
                               <Image
                                 className="profile"
-                                src="../../images/dummy.jpg"
+                                src={uploadImg}
                                 roundedCircle
                                 width="70%"
                                 onClick={handleClick}
+                                onError={addDefaultSRC} //Image fallback
                               />
                               <FaEdit
                                 className="profileEdit"
