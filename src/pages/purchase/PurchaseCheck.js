@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import ProductListItem from '../../components/ProductList/productListItem'
 import { getMemberID } from '../../actions/getMemberID'
 import CardSecondary from '../../components/CardSecondary'
@@ -31,18 +31,16 @@ function PurchaseCheck(props) {
 
   const productList = Cart.map((product, i) => (
     <div key={i}>
-      <Link to={'../product/' + product.productID} className="linkNoUnderline">
-        <ProductListItem>
-          <h3>{product.ProductName}</h3>
-          <p>id:{product.productID}</p>
-          <p>價格：{product.UnitPrice}</p>
-          {product.discount !== null ? (
-            <p>special price:{product.UnitPrice - product.discount}</p>
-          ) : (
-            <p></p>
-          )}
-        </ProductListItem>
-      </Link>
+      <ProductListItem>
+        <h3>{product.ProductName}</h3>
+        <p>id:{product.productID}</p>
+        <p>價格：{product.UnitPrice}</p>
+        {product.discount !== null ? (
+          <p>special price:{product.UnitPrice - product.discount}</p>
+        ) : (
+          <p></p>
+        )}
+      </ProductListItem>
     </div>
   ))
 
