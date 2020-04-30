@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
@@ -15,16 +15,16 @@ import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
 
 function Sellers() {
-  const [selID, setselID] = useState('')
-  const [sName, setsName] = useState('')
-  // const [sName2, setsName2] = useState('')
-  const [sPhone, setsPhone] = useState('')
-  const [sMail, setsMail] = useState('')
-  const [sAddress, setsAddress] = useState('')
-  const [sCountry, setsCountry] = useState('')
-
-  const [sellerList, setsellerList] = useState('')
-  const [i, seti] = useState(0)
+  const [origin, setOrigin] = useState('')
+  const [hight, sethight] = useState('')
+  fetch('http://localhost:6001/sellers_introListApi')
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (myJson) {
+      setOrigin(myJson.MemberList[0].origin)
+      sethight(myJson.MemberList[0].hight)
+    })
   // const [total, setTotal] = useState([])
 
   // async function getTotalFromServer() {
@@ -44,48 +44,10 @@ function Sellers() {
   //   setTotal(data)
   // }
 
-  // var x = 0
-  // switch (x) {
-  //   case 1:
-  //     i = 1
-  //     break
-  //   case 2:
-  //     i = 2
-  //     break
-  //   case 3:
-  //     i = 3
-  //     break
-  //   case 4:
-  //     i = 4
-  //     break
-  //   case 5:
-  //     i = 5
-  //     break
-  //   default:
-  //     break
-  // }
-  useEffect(() => {
-    fetch('http://localhost:6001/sellersApi')
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (myJson) {
-        //記得在JSX中使用JS變數要用花括號包著
-        // lists.push(<li>{arrLists[i]}</li>)
+  // useEffect(() => {
+  //   getTotalFromServer()
+  // }, [])
 
-        setselID(myJson.MemberList[i].sellerID)
-        setsName(myJson.MemberList[i].sName)
-
-        setsPhone(myJson.MemberList[i].sPhone)
-        setsMail(myJson.MemberList[i].sMail)
-        setsAddress(myJson.MemberList[i].sAddress)
-        setsCountry(myJson.MemberList[i].sCountry)
-
-        const list = myJson.MemberList.map((j) => j.sName)
-        setsellerList(list)
-      })
-  }, [i])
-  console.log(sellerList)
   // var a = total.MemberList
   // console.log(a)
 
@@ -131,7 +93,7 @@ function Sellers() {
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1>{sName}</h1>
+                      <h1>小農咖啡園1</h1>
 
                       <Carousel>
                         <Carousel.Item>
@@ -218,46 +180,42 @@ function Sellers() {
                   </div>
                 </div>
 
-                {/* <div className=" card-deck ">
+                <div className=" card-deck ">
                   <ProductListItem>
-                    <p>編 號:</p>
-                    <p>{selID}</p>
+                    <p>產 區:</p>
+                    <p>{origin}</p>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>名稱:</p>
-                    <p>{sName}</p>
+                    <p>農 場 海 拔:</p>
+                    <p>{hight}</p>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>地 址:</p>
-                    <p>{sAddress}</p>
-                  </ProductListItem>
-                </div> */}
-                <div className=" card-deck">
-                  <ProductListItem>
-                    <p>地 址:</p>
-                    <p>{sAddress}</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>電 話: </p>
-                    <p>{sPhone}</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>信 箱:</p>
-                    <p>{sMail}</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>國 家:</p>
-                    <p>{sCountry}</p>
+                    <p>種 植 品 種:</p>
+                    <p>SL-28、SL-34</p>
                   </ProductListItem>
                 </div>
-                {/* <div className="row mt-3">
+                <div className=" card-deck">
+                  <ProductListItem>
+                    <p>農 場 等 級: </p>
+                    <p>AA級以上</p>
+                  </ProductListItem>
+                  <ProductListItem>
+                    <p>處 理 方 式:</p>
+                    <p>水洗法</p>
+                  </ProductListItem>
+                  <ProductListItem>
+                    <p>品 種 特 色:</p>
+                    <p>蔗糖甜味帶出肯亞特有的烏梅酒香與黑醋栗般的尾韻。</p>
+                  </ProductListItem>
+                </div>
+                <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>賣家故事</h1>
                     </div>
                   </div>
-                </div> */}
-                {/* <div className="row mt-3">
+                </div>
+                <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -286,8 +244,8 @@ function Sellers() {
                       </p>
                     </div>
                   </div>
-                </div> */}
-                {/* <div className="row mt-3">
+                </div>
+                <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -320,7 +278,7 @@ function Sellers() {
                       </p>
                     </div>
                   </div>
-                </div> */}
+                </div>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
@@ -330,16 +288,16 @@ function Sellers() {
                 </div>
                 <div className=" card-deck ">
                   <ProductListItem>
-                    {/* <p>產 區:</p>
-                    <p>肯亞 涅里</p> */}
+                    <p>產 區:</p>
+                    <p>肯亞 涅里</p>
                   </ProductListItem>
                   <ProductListItem>
-                    {/* <p>海 拔</p>
-                    <p>1200-2300公尺</p> */}
+                    <p>海 拔</p>
+                    <p>1200-2300公尺</p>
                   </ProductListItem>
                   <ProductListItem>
-                    {/* <p>品 種</p>
-                    <p>SL-28、SL-34</p> */}
+                    <p>品 種</p>
+                    <p>SL-28、SL-34</p>
                   </ProductListItem>
                 </div>
                 <div className="row mt-3">
@@ -365,15 +323,11 @@ function Sellers() {
                 </nav>
 
                 <li>
-                  <Link to="/sellers">{sName}</Link>
+                  <Link to="/sellers">小農咖啡園1</Link>
                 </li>
 
-                <li
-                // onClick={() => {
-                //   x = 2
-                // }}
-                >
-                  <Link>小農咖啡園2</Link>
+                <li>
+                  <Link to="/sellers2">小農咖啡園2</Link>
                 </li>
 
                 <li>
