@@ -71,8 +71,6 @@ function Member(props) {
         var imageStr = arrayBufferToBase64(buffer)
         // console.log(base64Flag + imageStr)
         setUploadImg(base64Flag + imageStr)
-
-        document.querySelector('img').src = base64Flag + imageStr
       })
     })
   //預設頭像:
