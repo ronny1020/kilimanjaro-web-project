@@ -50,127 +50,140 @@ function OnSale() {
 
   return (
     <>
-      <LobbyTitle string={'優惠專區'} />
-      <div className="container bg-secondary">
-        <br />
-        <div className="row">
-          <div className="col-8">
-            <div className="row">
-              <div className="col-12 " align="center">
-                <div className="container bg-white pt-3 m-6 ">
-                  <Link to="/product/123">一月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">二月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">三月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">四月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">五月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">六月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">七月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">八月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">九月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">十月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">十一月&nbsp;&nbsp;&nbsp;</Link>
-
-                  <Link to="/product/123">十二月&nbsp;&nbsp;&nbsp;</Link>
-                </div>
-              </div>
-            </div>
-            <div className="row mt-3 ">
-              <div className="col-6 ">
-                <ProductListItem>
-                  <img
-                    className="d-block h-40 w-100 "
-                    src={disc1}
-                    alt="slide 004"
-                  />
-                </ProductListItem>
-
-                <div className="row mt-3">
-                  <div className="col-12" align="center">
-                    <button
-                      type="button"
-                      className="btn btn-danger text-white"
-                      onClick={() => {
-                        addToServer({
-                          couponMapId: 1,
-                          couponID: 1,
-                          customerID: 'C008',
-                          valid: 1,
-                        })
-                      }}
-                    >
-                      我要領取
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-6 ">
-                <ProductListItem>
-                  <img
-                    className="d-block h-40 w-100 "
-                    src={disc1}
-                    alt="slide 004"
-                  />
-                </ProductListItem>
-                <div className="row mt-3">
-                  <div className="col-12" align="center">
-                    <button type="button" className="btn btn-danger text-white">
-                      我要領取
-                    </button>
-                  </div>
-                </div>
-              </div>
+      <div className="all-page-title page-breadcrumb">
+        <div className="container text-center">
+          <div className="row">
+            <div className="col-lg-12 " align="center">
+              {/* <h1>賣家介紹</h1> */}
+              <p className="text-white">~享受高貴的品質，無須享受高昂的價格~</p>
             </div>
           </div>
+          <LobbyTitle string={'優惠專區'} />
+          <div className="container bg-secondary">
+            <br />
+            <div className="row">
+              <div className="col-8">
+                <div className="row">
+                  {/* <div className="col-12 " align="center">
+                    <div className="container bg-white pt-3 m-6 ">
+                      <Link to="/product/123">一月&nbsp;&nbsp;&nbsp;</Link>
 
-          <div className="col-4" align="center">
-            <nav className="navbar sidebar">
-              <ul className="navbar-nav">
-                <li>
-                  <div className=" bg-primary banner">
-                    <p className="text-secondary">請選擇賣家</p>
+                      <Link to="/product/123">二月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">三月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">四月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">五月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">六月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">七月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">八月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">九月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">十月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">十一月&nbsp;&nbsp;&nbsp;</Link>
+
+                      <Link to="/product/123">十二月&nbsp;&nbsp;&nbsp;</Link>
+                    </div>
+                  </div> */}
+                </div>
+                <div className="row mt-3 ">
+                  <div className="col-6 ">
+                    <ProductListItem>
+                      <img
+                        className="d-block h-40 w-100 "
+                        src={disc1}
+                        alt="slide 004"
+                      />
+                    </ProductListItem>
+
+                    <div className="row mt-3">
+                      <div className="col-12" align="center">
+                        <button
+                          type="button"
+                          className="btn btn-danger text-white"
+                          onClick={() => {
+                            addToServer({
+                              couponMapId: 1,
+                              couponID: 1,
+                              customerID: 'C008',
+                              valid: 1,
+                            })
+                          }}
+                        >
+                          我要領取
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                  <div className="col-6 ">
+                    <ProductListItem>
+                      <img
+                        className="d-block h-40 w-100 "
+                        src={disc1}
+                        alt="slide 004"
+                      />
+                    </ProductListItem>
+                    <div className="row mt-3">
+                      <div className="col-12" align="center">
+                        <button
+                          type="button"
+                          className="btn btn-danger text-white"
+                        >
+                          我要領取
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-4" align="center">
+                <nav className="navbar sidebar">
+                  <ul className="navbar-nav">
+                    <li>
+                      <div className=" bg-primary banner">
+                        <p className="text-secondary">請選擇賣家</p>
+                      </div>
+                    </li>
+                  </ul>
+                </nav>
+
+                <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
                 </li>
-              </ul>
-            </nav>
 
-            <li>
-              <Link to="/product/123">小農咖啡園1</Link>
-            </li>
-
-            <li>
-              <Link to="/product/123">小農咖啡園1</Link>
-            </li>
-            <li>
-              <Link to="/product/123">小農咖啡園1</Link>
-            </li>
-            <li>
-              <Link to="/product/123">小農咖啡園1</Link>
-            </li>
-            <li>
-              <Link to="/product/123">小農咖啡園1</Link>
-            </li>
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
+                </li>
+                <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
+                </li>
+                <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
+                </li>
+                <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
+                </li>
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+              </div>
+            </div>
             <br />
-            <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-            <br />
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-            <br />
-            <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-            <br />
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
           </div>
         </div>
-        <br />
       </div>
     </>
   )

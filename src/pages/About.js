@@ -32,37 +32,47 @@ function OnSale() {
   }
   return (
     <>
-      <LobbyTitle string={'關於我們'} />
-
-      <div className="container bg-secondary">
-        <br />
-
-        <div className="row">
-          <div className="col-8">
-            <Breadcrumb />
-            <Question input={jsonInput} />
-            <Question input={jsonInput} />
-            <Question input={jsonInput} />
-            <Question input={jsonInput} />
-            <Question input={jsonInput} />
-            <Question input={jsonInput} />
+      <div className="all-page-title page-breadcrumb">
+        <div className="container text-center">
+          <div className="row">
+            <div className="col-lg-12 " align="center">
+              {/* <h1>賣家介紹</h1> */}
+              <p className="text-white">~常見的問題，老實的回答~</p>
+            </div>
           </div>
+          <LobbyTitle string={'關於我們'} />
 
-          <div className="col-4" align="center">
-            <Sidebar input={inputArray} />
+          <div className="container bg-secondary">
+            <br />
 
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+            <div className="row">
+              <div className="col-8">
+                <Breadcrumb />
+                <Question input={jsonInput} />
+                <Question input={jsonInput} />
+                <Question input={jsonInput} />
+                <Question input={jsonInput} />
+                <Question input={jsonInput} />
+                <Question input={jsonInput} />
+              </div>
+
+              <div className="col-4" align="center">
+                <Sidebar input={inputArray} />
+
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+              </div>
+            </div>
             <br />
-            <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-            <br />
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-            <br />
-            <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-            <br />
-            <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
           </div>
         </div>
-        <br />
       </div>
     </>
   )
