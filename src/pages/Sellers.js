@@ -5,7 +5,7 @@ import { Carousel } from 'react-bootstrap'
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
 
-import { FaWikipediaW } from 'react-icons/fa'
+// import { FaWikipediaW } from 'react-icons/fa'
 
 import img001 from '../img/home/carousel/001.jpg'
 import img002 from '../img/home/carousel/002.jpg'
@@ -66,6 +66,7 @@ function Sellers() {
       })
   }, [i])
   console.log(sellerList)
+  console.log(selID)
   // var a = total.MemberList
   // console.log(a)
 
