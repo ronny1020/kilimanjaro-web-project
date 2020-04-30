@@ -44,26 +44,6 @@ function Sellers() {
   //   setTotal(data)
   // }
 
-  // var x = 0
-  // switch (x) {
-  //   case 1:
-  //     i = 1
-  //     break
-  //   case 2:
-  //     i = 2
-  //     break
-  //   case 3:
-  //     i = 3
-  //     break
-  //   case 4:
-  //     i = 4
-  //     break
-  //   case 5:
-  //     i = 5
-  //     break
-  //   default:
-  //     break
-  // }
   useEffect(() => {
     fetch('http://localhost:6001/sellersApi')
       .then(function (response) {
@@ -364,27 +344,57 @@ function Sellers() {
                   </ul>
                 </nav>
 
-                <li>
-                  <Link to="/sellers">{sName}</Link>
-                </li>
-
                 <li
-                // onClick={() => {
-                //   x = 2
-                // }}
+                  onClick={() => {
+                    seti(1)
+                  }}
                 >
-                  <Link>小農咖啡園2</Link>
+                  {sellerList[1]}
                 </li>
+                <li
+                  onClick={() => {
+                    seti(2)
+                  }}
+                >
+                  {sellerList[2]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(3)
+                  }}
+                >
+                  {sellerList[3]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(4)
+                  }}
+                >
+                  {sellerList[4]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(5)
+                  }}
+                >
+                  {sellerList[5]}
+                </li>
+                {/* <li>
+                  <Link to="/sellers">{sellerList[1]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[2]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[3]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[4]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[5]}</Link>
+                </li> */}
 
-                <li>
-                  <Link to="/sellers3">小農咖啡園3</Link>
-                </li>
-                <li>
-                  <Link to="/sellers4">小農咖啡園4</Link>
-                </li>
-                <li>
-                  <Link to="/sellers5">小農咖啡園5</Link>
-                </li>
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
