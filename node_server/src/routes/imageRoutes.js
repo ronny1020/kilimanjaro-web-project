@@ -1,6 +1,5 @@
 module.exports = app => {
   //   const image = require('../controllers/imageController.js')
-  var path = require('path')
   var router = require('express').Router()
   var multer = require('multer')
   var upload = multer({ dest: 'public/avatar' })
