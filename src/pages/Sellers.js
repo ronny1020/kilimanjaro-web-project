@@ -13,6 +13,7 @@ import img003 from '../img/home/carousel/003.jpg'
 import img004 from '../img/home/carousel/004.jpg'
 import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
+import disc1 from '../img/disc/coffee2.jpg'
 
 function Sellers() {
   const [selID, setselID] = useState('')
@@ -168,6 +169,51 @@ function Sellers() {
                   </div>
                 </div>
                 <div className="row mt-3 ">
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
                   <div className="col-4">
                     <img
                       className="d-block h-40 w-100 "
@@ -222,6 +268,8 @@ function Sellers() {
                     <p>電 話: </p>
                     <p>{sPhone}</p>
                   </ProductListItem>
+                </div>
+                <div className=" card-deck">
                   <ProductListItem>
                     <p>信 箱:</p>
                     <p>{sMail}</p>
@@ -309,19 +357,73 @@ function Sellers() {
                     </div>
                   </div>
                 </div>
-                <div className=" card-deck ">
-                  <ProductListItem>
-                    {/* <p>產 區:</p>
-                    <p>肯亞 涅里</p> */}
-                  </ProductListItem>
-                  <ProductListItem>
-                    {/* <p>海 拔</p>
-                    <p>1200-2300公尺</p> */}
-                  </ProductListItem>
-                  <ProductListItem>
-                    {/* <p>品 種</p>
-                    <p>SL-28、SL-34</p> */}
-                  </ProductListItem>
+                <div className="row mt-3 ">
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                  {/* <div className="col-4 ">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                  {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
                 </div>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
