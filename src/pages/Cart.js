@@ -21,7 +21,7 @@ function Cart(props) {
   const memberID = getMemberID()
 
   if (memberID == null) {
-    window.location.replace('http://localhost:3000/login/entrance')
+    window.location.replace('./login/entrance')
   }
 
   const { Cart, getCart, removeProductFromCart, updateProductNumToCart } = props

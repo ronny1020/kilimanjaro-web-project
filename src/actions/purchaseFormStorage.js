@@ -1,4 +1,4 @@
-import { STORE_SHIPMENT_FORM } from './actionTypes'
+import { STORE_SHIPMENT_FORM, STORE_PAYMENT_FORM } from './actionTypes'
 
 export const shipmentInfoStorage = (
   RecipientNameValue,
@@ -15,6 +15,23 @@ export const shipmentInfoStorage = (
       RecipientAddress: RecipientAddressValue,
       shippingMethod: shippingMethodValue,
       Freight: FreightValue,
+    },
+  }
+}
+
+export const paymentInfoStorage = (
+  couponValue,
+  rewordPointValue,
+  paymentMethodValue,
+  invoiceValue
+) => {
+  return {
+    type: STORE_PAYMENT_FORM,
+    payload: {
+      coupon: couponValue,
+      rewordPoint: rewordPointValue,
+      paymentMethod: paymentMethodValue,
+      invoice: invoiceValue,
     },
   }
 }

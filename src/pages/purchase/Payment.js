@@ -5,19 +5,20 @@ import { useHistory } from 'react-router-dom'
 import CardSecondary from '../../components/CardSecondary'
 import Radio from '@material-ui/core/Radio'
 
+import { paymentInfoStorage } from '../../actions/purchaseFormStorage'
+
 import { getMemberID } from '../../actions/getMemberID'
 
 function Payment(props) {
   const memberID = getMemberID()
   if (memberID == null) {
-    window.location.replace('http://localhost:3000/login/entrance')
+    window.location.replace('./login/entrance')
   }
   let history = useHistory()
-  const { Cart, ShipmentInfo } = props
+  const { Cart, ShipmentInfo, paymentInfoStorage } = props
 
-  console.log(Cart)
-  console.log('ShipmentInfo')
-  console.log(ShipmentInfo)
+  Cart || window.location.replace('./Cart')
+  ShipmentInfo || window.location.replace('./Cart')
 
   const [paymentMethodValue, setPaymentMethodValue] = React.useState('a')
   const paymentMethodVChange = (event) => {
@@ -28,8 +29,6 @@ function Payment(props) {
   const invoiceChange = (event) => {
     setInvoiceValue(event.target.value)
   }
-
-  console.log(Cart)
 
   return (
     <>
@@ -45,10 +44,10 @@ function Payment(props) {
           <div className="col-md-3 d-flex align-items-center">選擇折價券</div>
           <div className="col-md-9 d-flex align-items-center">
             <select className="form-control" id="coupon">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
           </div>
         </label>
@@ -182,6 +181,12 @@ function Payment(props) {
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
+            paymentInfoStorage(
+              document.getElementById('coupon').value,
+              document.getElementById('rewordPoint').value,
+              paymentMethodValue,
+              invoiceValue
+            )
             history.push('/purchaseCheck')
           }}
         >
@@ -199,4 +204,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(Payment)
+export default connect(mapStateToProps, { paymentInfoStorage })(Payment)

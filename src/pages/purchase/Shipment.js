@@ -13,7 +13,7 @@ import { getMemberID } from '../../actions/getMemberID'
 function Shipment(props) {
   const memberID = getMemberID()
   if (memberID == null) {
-    window.location.replace('http://localhost:3000/login/entrance')
+    window.location.replace('./login/entrance')
   }
 
   let history = useHistory()

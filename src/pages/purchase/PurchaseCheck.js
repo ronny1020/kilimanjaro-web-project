@@ -1,24 +1,62 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
-import { useHistory } from 'react-router-dom'
-
+import { Link, useHistory } from 'react-router-dom'
+import ProductListItem from '../../components/ProductList/productListItem'
 import { getMemberID } from '../../actions/getMemberID'
+import CardSecondary from '../../components/CardSecondary'
 
 function PurchaseCheck(props) {
   const memberID = getMemberID()
   if (memberID == null) {
-    window.location.replace('http://localhost:3000/login/entrance')
+    window.location.replace('./login/entrance')
   }
 
   let history = useHistory()
-  const { Cart } = props
+  const { Cart, ShipmentInfo } = props
 
-  console.log(Cart)
+  Cart || window.location.replace('./Cart')
+  ShipmentInfo || window.location.replace('./Cart')
+
+  let totalPrice = Cart
+    ? Cart.reduce((a, product) => {
+        let price =
+          product.UnitPrice - product.discount >= 0
+            ? product.UnitPrice - product.discount
+            : 0
+        return a + price * product.num
+      }, 0)
+    : 0
+  totalPrice = new Intl.NumberFormat('en-IN').format(totalPrice)
+
+  const productList = Cart.map((product, i) => (
+    <div key={i}>
+      <Link to={'../product/' + product.productID} className="linkNoUnderline">
+        <ProductListItem>
+          <h3>{product.ProductName}</h3>
+          <p>id:{product.productID}</p>
+          <p>價格：{product.UnitPrice}</p>
+          {product.discount !== null ? (
+            <p>special price:{product.UnitPrice - product.discount}</p>
+          ) : (
+            <p></p>
+          )}
+        </ProductListItem>
+      </Link>
+    </div>
+  ))
 
   return (
     <>
       <PurchaseStepper activeStep={4} />
+      <div className="container p-0">
+        <div>{productList}</div>
+      </div>
+      <CardSecondary>
+        <span>
+          共 {Cart.length} 項商品，總價 {totalPrice} 元
+        </span>
+      </CardSecondary>
 
       <div className="container p-0">
         <button
@@ -47,6 +85,7 @@ function PurchaseCheck(props) {
 const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
+    ShipmentInfo: state.PurchaseFormReducer.info,
   }
 }
 
