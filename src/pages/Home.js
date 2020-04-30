@@ -15,6 +15,7 @@ function Home() {
   return (
     <>
       <HomeCarousel />
+
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">
