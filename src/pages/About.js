@@ -5,6 +5,7 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import '../styles/my.scss'
 import Breadcrumb from '../components/Breadcrumb'
 import Sidebar from '../components/Sidebar'
+// import img004 from '../img/home/carousel/004.jpg'
 
 function OnSale() {
   const inputArray = {
