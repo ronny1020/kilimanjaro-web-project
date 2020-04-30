@@ -9,6 +9,7 @@ import ProductListItem from '../components/ProductList/productListItem'
 
 import disc1 from '../img/disc/coffee2.jpg'
 import '../styles/my.scss'
+import '../components/seller/Filter'
 
 function Home() {
   return (
@@ -63,7 +64,7 @@ function Home() {
         </div> */}
         <div className="qt-background mt-3">
           <div className="text-white" align="center">
-            "最好的體驗，最好的香味，"
+            "最好的體驗，最棒的香味，完美的午後時光"
           </div>
         </div>
         <div className="menu-box ">
@@ -79,6 +80,13 @@ function Home() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="special-menu text-center">
+                  {/* <button className="button-group filter-button-group">
+                    123
+                  </button> */}
+                  {/* <button className="btn btn-lg btn-circle btn-outline-new-white">
+                    123
+                  </button> */}
+
                   <ButtonGroup aria-label="Basic example">
                     <Button variant="secondary" href="#">
                       全部消息
@@ -103,7 +111,7 @@ function Home() {
               </div>
             </div>
             <div className="row special-list">
-              <div className="col-4 ">
+              {/* <div className="col-4 ">
                 <ProductListItem>
                   <img
                     className="d-block h-100 w-100 "
@@ -111,47 +119,92 @@ function Home() {
                     alt="slide 004"
                   />
                 </ProductListItem>
+
                 <div className="why-text" align="center">
                   <h4>新產品上市</h4>
                   <p>深烘培咖啡粉</p>
-                </div>
-              </div>
-              <div className="col-4 ">
-                <ProductListItem>
-                  <img
-                    className="d-block h-100 w-100 "
-                    src={disc1}
-                    alt="slide 004"
-                  />
-                </ProductListItem>
-                <div className="why-text" align="center">
-                  <h4>新產品上市</h4>
-                  <p>深烘培咖啡粉</p>
-                </div>
-              </div>
-              <div className="col-4 ">
-                <ProductListItem>
-                  <img
-                    className="d-block h-100 w-100 "
-                    src={disc1}
-                    alt="slide 004"
-                  />
-                </ProductListItem>
-                <div className="why-text" align="center">
-                  <h4>新產品上市</h4>
-                  <p>深烘培咖啡粉</p>
-                </div>
-              </div>
-              {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                <div className="gallery-single fix">
-                  <img src={img002} className="img-fluid" alt="Image" />
-                  <div className="why-text">
-                    <h4>新產品上市</h4>
-                    <p>Sed id magna vitae eros sagittis euismod.</p>
-                    <h5> $7.79</h5>
-                  </div>
                 </div>
               </div> */}
+              {/* <div className="col-4 ">
+                <ProductListItem>
+                  <img
+                    className="d-block h-100 w-100 "
+                    src={disc1}
+                    alt="slide 004"
+                  />
+                </ProductListItem>
+                <div className="why-text" align="center">
+                  <h4>新產品上市</h4>
+                  <p>深烘培咖啡粉</p>
+                </div>
+              </div> */}
+              {/* <div className="col-4 ">
+                <ProductListItem>
+                  <img
+                    className="d-block h-100 w-100 "
+                    src={disc1}
+                    alt="slide 004"
+                  />
+                </ProductListItem>
+                <div className="why-text" align="center">
+                  <h4>新產品上市</h4>
+                  <p>深烘培咖啡粉</p>
+                </div>
+              </div> */}
+              <div className="col-lg-4 col-md-6 special-grid drinks">
+                <div className="gallery-single fix">
+                  <ProductListItem>
+                    <img
+                      className="d-block h-100 w-100 "
+                      src={disc1}
+                      alt="slide 004"
+                    />
+                  </ProductListItem>
+                  <div className="why-text" align="center">
+                    <p>深烘培咖啡粉</p>
+                    <h5> 售價:NT.80</h5>
+                  </div>
+                </div>
+                <div>
+                  <h4 align="center">新產品上市</h4>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 special-grid drinks">
+                <div className="gallery-single fix">
+                  <ProductListItem>
+                    <img
+                      className="d-block h-100 w-100 "
+                      src={disc1}
+                      alt="slide 004"
+                    />
+                  </ProductListItem>
+                  <div className="why-text" align="center">
+                    <p>深烘培咖啡粉</p>
+                    <h5> 售價:NT.80</h5>
+                  </div>
+                </div>
+                <div>
+                  <h4 align="center">新產品上市</h4>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 special-grid drinks">
+                <div className="gallery-single fix">
+                  <ProductListItem>
+                    <img
+                      className="d-block h-100 w-100 "
+                      src={disc1}
+                      alt="slide 004"
+                    />
+                  </ProductListItem>
+                  <div className="why-text" align="center">
+                    <p>深烘培咖啡粉</p>
+                    <h5> 售價:NT.80</h5>
+                  </div>
+                </div>
+                <div>
+                  <h4 align="center">新產品上市</h4>
+                </div>
+              </div>
               {/* <div className="col-lg-4 col-md-6 special-grid drinks">
                 <div className="gallery-single fix">
                   <img src={img002} className="img-fluid" alt="Image" />
