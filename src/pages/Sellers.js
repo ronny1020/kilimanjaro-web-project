@@ -236,14 +236,18 @@ function Sellers() {
                     />
                   </div>
                 </div>
-
-                <div className="row mt-3">
+                <div className="qt-background mt-3">
+                  <div className="text-white " align="center">
+                    "賣家簡介"
+                  </div>
+                </div>
+                {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>簡介</h1>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 {/* <div className=" card-deck ">
                   <ProductListItem>
@@ -350,13 +354,18 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
-                <div className="row mt-3">
+                <div className="qt-background mt-3">
+                  <div className="text-white " align="center">
+                    "特色商品"
+                  </div>
+                </div>
+                {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>特色商品</h1>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="row mt-3 ">
                   <div className="col-lg-4 col-md-6 special-grid drinks">
                     <div className="gallery-single fix">
