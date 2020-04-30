@@ -5,9 +5,19 @@ import { useHistory } from 'react-router-dom'
 import CardSecondary from '../../components/CardSecondary'
 import Radio from '@material-ui/core/Radio'
 
+import { getMemberID } from '../../actions/getMemberID'
+
 function Payment(props) {
+  const memberID = getMemberID()
+  if (memberID == null) {
+    window.location.replace('http://localhost:3000/login/entrance')
+  }
   let history = useHistory()
-  const { Cart } = props
+  const { Cart, ShipmentInfo } = props
+
+  console.log(Cart)
+  console.log('ShipmentInfo')
+  console.log(ShipmentInfo)
 
   const [paymentMethodValue, setPaymentMethodValue] = React.useState('a')
   const paymentMethodVChange = (event) => {
@@ -23,7 +33,7 @@ function Payment(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="3" />
+      <PurchaseStepper activeStep={3} />
 
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
@@ -31,10 +41,10 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="coupon" class="row m-3">
+        <label htmlFor="coupon" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">選擇折價券</div>
           <div className="col-md-9 d-flex align-items-center">
-            <select class="form-control" id="coupon">
+            <select className="form-control" id="coupon">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -50,10 +60,10 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="rewordPoint" class="row m-3">
+        <label htmlFor="rewordPoint" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">點數折抵數量</div>
           <div className="col-md-9 d-flex align-items-center">
-            <input type="number" class="form-control" id="rewordPoint" />
+            <input type="number" className="form-control" id="rewordPoint" />
           </div>
         </label>
       </CardSecondary>
@@ -64,7 +74,7 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="by711" class="row">
+        <label htmlFor="by711" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={paymentMethodValue === '1'}
@@ -78,7 +88,7 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">7-11取貨付款</div>
         </label>
-        <label for="byATM" class="row">
+        <label htmlFor="byATM" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={paymentMethodValue === '2'}
@@ -92,7 +102,7 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">ATM付款</div>
         </label>
-        <label for="byOnline" class="row">
+        <label htmlFor="byOnline" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={paymentMethodValue === '3'}
@@ -114,7 +124,7 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="donate" class="row">
+        <label htmlFor="donate" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={invoiceValue === '1'}
@@ -128,7 +138,7 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">捐贈發票</div>
         </label>
-        <label for="duplicateUniform" class="row">
+        <label htmlFor="duplicateUniform" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={invoiceValue === '2'}
@@ -142,7 +152,7 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">二聯電子發票</div>
         </label>
-        <label for="triplicateUniform" class="row">
+        <label htmlFor="triplicateUniform" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={invoiceValue === '3'}
@@ -160,6 +170,15 @@ function Payment(props) {
 
       <div className="container p-0">
         <button
+          className="btn btn-success mt-5 mr-3"
+          onClick={(e) => {
+            e.preventDefault()
+            history.push('/shipment')
+          }}
+        >
+          上一步
+        </button>
+        <button
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
@@ -176,6 +195,7 @@ function Payment(props) {
 const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
+    ShipmentInfo: state.PurchaseFormReducer.info,
   }
 }
 

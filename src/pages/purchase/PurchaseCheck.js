@@ -3,7 +3,14 @@ import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
 import { useHistory } from 'react-router-dom'
 
+import { getMemberID } from '../../actions/getMemberID'
+
 function PurchaseCheck(props) {
+  const memberID = getMemberID()
+  if (memberID == null) {
+    window.location.replace('http://localhost:3000/login/entrance')
+  }
+
   let history = useHistory()
   const { Cart } = props
 
@@ -11,16 +18,26 @@ function PurchaseCheck(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep="4" />
-      <div className="container">
+      <PurchaseStepper activeStep={4} />
+
+      <div className="container p-0">
         <button
-          className="btn btn-success m-1"
+          className="btn btn-success mt-5 mr-3"
+          onClick={(e) => {
+            e.preventDefault()
+            history.push('/payment')
+          }}
+        >
+          上一步
+        </button>
+        <button
+          className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
             history.push('/purchaseComplied')
           }}
         >
-          NEXT
+          下一步
         </button>
       </div>
     </>

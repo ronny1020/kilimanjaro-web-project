@@ -6,21 +6,27 @@ import CardSecondary from '../../components/CardSecondary'
 
 import Radio from '@material-ui/core/Radio'
 import Checkbox from '@material-ui/core/Checkbox'
+import { shipmentInfoStorage } from '../../actions/purchaseFormStorage'
+
+import { getMemberID } from '../../actions/getMemberID'
 
 function Shipment(props) {
+  const memberID = getMemberID()
+  if (memberID == null) {
+    window.location.replace('http://localhost:3000/login/entrance')
+  }
+
   let history = useHistory()
-  const { Cart } = props
+  const { shipmentInfoStorage } = props
 
   const [shippingMethodValue, setShippingMethodValue] = React.useState('a')
   const shippingMethodVChange = (event) => {
     setShippingMethodValue(event.target.value)
   }
 
-  console.log(Cart)
-
   return (
     <>
-      <PurchaseStepper activeStep="2" />
+      <PurchaseStepper activeStep={2} />
 
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
@@ -28,7 +34,7 @@ function Shipment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="sameAsCustomer" class="row">
+        <label htmlFor="sameAsCustomer" className="row">
           <div className="col-md-3 d-flex align-items-center">同會員資料</div>
           <div className="col-md-9 d-flex align-items-center">
             <Checkbox
@@ -39,34 +45,34 @@ function Shipment(props) {
             />
           </div>
         </label>
-        <label for="RecipientName" class="row  my-3">
+        <label htmlFor="RecipientName" className="row  my-3">
           <div className="col-md-3 d-flex align-items-center">訂購人姓名：</div>
           <div className="col-md-9 d-flex align-items-center">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="RecipientName"
               required
             />
           </div>
         </label>
-        <label for="RecipientMobile" class="row  my-3">
+        <label htmlFor="RecipientMobile" className="row  my-3">
           <div className="col-md-3 d-flex align-items-center">訂購人電話：</div>
           <div className="col-md-9 d-flex align-items-center">
             <input
               type="number"
-              class="form-control"
+              className="form-control"
               id="RecipientMobile"
               required
             />
           </div>
         </label>
-        <label for="RecipientAddress" class="row my-3">
+        <label htmlFor="RecipientAddress" className="row my-3">
           <div className="col-md-3 d-flex align-items-center">訂購人地址：</div>
           <div className="col-md-9 d-flex align-items-center">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="RecipientAddress"
               required
             />
@@ -80,7 +86,7 @@ function Shipment(props) {
         </div>
       </div>
       <CardSecondary>
-        <label for="to711" class="row">
+        <label htmlFor="to711" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={shippingMethodValue === '1'}
@@ -94,7 +100,7 @@ function Shipment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">7-11取貨</div>
         </label>
-        <label for="toHome" class="row">
+        <label htmlFor="toHome" className="row">
           <div className="col-3 d-flex justify-content-center">
             <Radio
               checked={shippingMethodValue === '2'}
@@ -110,7 +116,7 @@ function Shipment(props) {
         </label>
       </CardSecondary>
       <CardSecondary>
-        <div class="row">
+        <div className="row">
           <div className="col-3 d-flex justify-content-center">運費小計</div>
           <div className="col-9 d-flex align-items-center">0 元</div>
         </div>
@@ -118,9 +124,24 @@ function Shipment(props) {
 
       <div className="container p-0">
         <button
+          className="btn btn-success mt-5 mr-3"
+          onClick={(e) => {
+            e.preventDefault()
+            history.push('/cart')
+          }}
+        >
+          上一步
+        </button>
+        <button
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
+            shipmentInfoStorage(
+              document.getElementById('RecipientName').value,
+              document.getElementById('RecipientMobile').value,
+              document.getElementById('RecipientAddress').value,
+              shippingMethodValue
+            )
             history.push('/payment')
           }}
         >
@@ -134,7 +155,8 @@ function Shipment(props) {
 const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
+    ShipmentInfo: state.PurchaseFormReducer.info,
   }
 }
 
-export default connect(mapStateToProps, {})(Shipment)
+export default connect(mapStateToProps, { shipmentInfoStorage })(Shipment)

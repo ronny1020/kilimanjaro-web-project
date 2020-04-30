@@ -1,9 +1,11 @@
 import React from 'react'
 import CardSecondary from '../../components/CardSecondary'
+import PurchaseStepper from '../../components/purchase/PurchaseStepper'
 
 function PurchaseComplied() {
   return (
     <>
+      <PurchaseStepper activeStep={5} />
       <CardSecondary>
         <h1>訂單完成</h1>
         <p>感謝您的訂購本產品，將於3秒後轉跳回首頁。</p>
