@@ -119,6 +119,7 @@ function Member(props) {
                           style={{
                             border: '0.5px solid lightgrey',
                             borderRight: 0,
+                            height: '170px',
                           }}
                         >
                           <h2>您好, 會員{name}</h2>
@@ -132,6 +133,7 @@ function Member(props) {
                           style={{
                             border: '0.5px solid lightgrey',
                             borderLeft: 0,
+                            height: '170px',
                           }}
                         >
                           <Form enctype="multipart/form-data">
@@ -142,12 +144,11 @@ function Member(props) {
                               hidden
                               onChange={handleUpload}
                             />
-                            <div className="container">
+                            <div className="container profileDiv">
                               <Image
                                 className="profile"
                                 src={uploadImg}
                                 roundedCircle
-                                width="70%"
                                 onClick={handleClick}
                                 onError={addDefaultSRC} //Image fallback
                               />

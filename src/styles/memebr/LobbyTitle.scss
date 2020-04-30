@@ -40,16 +40,24 @@
 //   color: #fab5b5;
 //   font-size: 2.5em;
 // }
-
+.profileDiv {
+  text-align: center;
+}
+.profile {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  border: 5px solid lightgrey;
+}
 .profileEdit {
   font-size: 2em;
   opacity: 0.2;
   position: absolute;
   top: 80%;
-  left: 37%;
+  left: 49%;
   transform: translate(-50%, -50%);
 }
-.profile:hover{
+.profile:hover {
   cursor: pointer;
 }
 .profile:hover + .profileEdit,
