@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 export default function PurchaseStepper(props) {
   const classes = useStyles()
 
-  const steps = ['購物車', '運送方式', '付款方式', '最後確認']
+  const steps = ['購物車', '運送方式', '付款方式', '最後確認', '訂單完成']
 
   return (
     <div className="container">

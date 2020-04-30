@@ -122,7 +122,7 @@ function Cart(props) {
       <div className="topSpace"></div>
       <div className="container p-0">
         <p>親愛的會員您好：</p>
-        <PurchaseStepper activeStep="1" />
+        <PurchaseStepper activeStep={1} />
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">購物車內商品</h4>
         </div>
@@ -160,28 +160,28 @@ function Cart(props) {
         >
           NEXT
         </button>
-        <div className="container p-0">
-          <div className=" bg-primary titleLabel mt-5">
-            <h4 className="text-secondary">重要訊息</h4>
-          </div>
+      </div>
+      <div className="container p-0">
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">重要訊息</h4>
         </div>
-        <CardSecondary>
-          <ul>
-            <li>選擇『7-11取貨』，單次實際付款金額未滿350元加收20元處理費</li>
-            <li>
-              選擇『宅配到府』，單次實際付款金額未滿490元加收65元處理費，490～999元加收50元處理費；滿1,000元免處理費。
-            </li>
-            <li>商品體積較大或多於15項，可能不適用『7-11取貨』。</li>
-            <li>無庫存商品調貨時間請參考「商品平均調貨時間」。</li>
-            <li>結帳選項若無出現「海外店取」，可能是購買商品不適用此服務。</li>
-            <li>海外郵資運費計算。</li>
-          </ul>
-        </CardSecondary>
-        <hr className="my-5" />
-        <div className="container p-0">
-          <div className=" bg-primary titleLabel mt-5">
-            <h4 className="text-secondary">推薦商品</h4>
-          </div>
+      </div>
+      <CardSecondary>
+        <ul>
+          <li>選擇『7-11取貨』，單次實際付款金額未滿350元加收20元處理費</li>
+          <li>
+            選擇『宅配到府』，單次實際付款金額未滿490元加收65元處理費，490～999元加收50元處理費；滿1,000元免處理費。
+          </li>
+          <li>商品體積較大或多於15項，可能不適用『7-11取貨』。</li>
+          <li>無庫存商品調貨時間請參考「商品平均調貨時間」。</li>
+          <li>結帳選項若無出現「海外店取」，可能是購買商品不適用此服務。</li>
+          <li>海外郵資運費計算。</li>
+        </ul>
+      </CardSecondary>
+      <hr className="my-5" />
+      <div className="container p-0">
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">推薦商品</h4>
         </div>
       </div>
     </>
