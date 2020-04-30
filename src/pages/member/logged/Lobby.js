@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import Sidebar from '../../../components/Sidebar'
 import {
   BrowserRouter as Router,
   Route,
@@ -28,6 +27,8 @@ import LoginValidate from '../../../components/LoginValidate'
 
 function Member(props) {
   const [name, setName] = useState('')
+  // const [uploadImg, setUploadImg] = useState({})
+
   if (LoginValidate() === false) {
     return (
       <>
@@ -50,12 +51,24 @@ function Member(props) {
       // console.log(userdata.cName)
     })
 
-  //上傳頭像:
-  function handleSubmit() {
+  //上傳頭像: 按鈕
+  function handleClick() {
     // alert('處理上傳')
     document.getElementById('upload_img').click()
   }
+  //上傳頭像: 讀取檔案
+  function handleUpload(event) {
+    var formData = new FormData()
+    formData.append('avatar', event.target.files[0])
 
+    fetch('http://localhost:6001/api/image/' + memberID, {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error('Error:', error))
+      .then((response) => console.log('Success:', response))
+  }
   return (
     <>
       <Router>
@@ -93,19 +106,25 @@ function Member(props) {
                             borderLeft: 0,
                           }}
                         >
-                          <Form>
-                            <input id="upload_img" type="file" hidden />
+                          <Form enctype="multipart/form-data">
+                            <input
+                              id="upload_img"
+                              type="file"
+                              name="avatar"
+                              hidden
+                              onChange={handleUpload}
+                            />
                             <div className="container">
                               <Image
                                 className="profile"
                                 src="../../images/dummy.jpg"
                                 roundedCircle
                                 width="70%"
-                                onClick={handleSubmit}
+                                onClick={handleClick}
                               />
                               <FaEdit
                                 className="profileEdit"
-                                onClick={handleSubmit}
+                                onClick={handleClick}
                               />
                             </div>
                           </Form>

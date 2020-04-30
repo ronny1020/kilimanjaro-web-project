@@ -47,6 +47,8 @@ require('./routes/favouriteRoutes')(app)
 require('./routes/couponRoutes')(app)
 //Nodemailer api:
 require('./routes/mailRoutes')(app)
+//Image upload api:
+require('./routes/imageRoutes')(app)
 
 // error - 404
 app.use((req, res, next) => {
