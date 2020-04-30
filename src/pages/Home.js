@@ -206,6 +206,7 @@ function Home() {
                   <h4 align="center">新產品上市</h4>
                 </div>
               </div>
+
               {/* <div className="col-lg-4 col-md-6 special-grid drinks">
                 <div className="gallery-single fix">
                   <img src={img002} className="img-fluid" alt="Image" />

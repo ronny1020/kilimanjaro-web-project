@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
-
+import '../styles/my.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
 import img001 from '../img/home/carousel/001.jpg'
@@ -215,25 +215,62 @@ function Sellers() {
                     </div>
                   </div> */}
                   <div className="col-4">
-                    <img
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
-                    />
+                    /> */}
+
+                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img
+                        className="d-block h-100 w-100 "
+                        src={img004}
+                        alt="slide 004"
+                      />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>實惠的價格</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-4 ">
-                    <img
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
-                    />
+                    /> */}
+                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img
+                        className="d-block h-100 w-100 "
+                        src={img004}
+                        alt="slide 004"
+                      />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>最棒的咖啡</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-4">
-                    <img
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
-                    />
+                    /> */}
+                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img
+                        className="d-block h-100 w-100 "
+                        src={img004}
+                        alt="slide 004"
+                      />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>最佳的氣氛</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="qt-background mt-3">

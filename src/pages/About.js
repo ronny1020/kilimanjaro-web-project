@@ -2,7 +2,7 @@ import React from 'react'
 import Question from '../components/seller/Question'
 
 import LobbyTitle from '../components/member/LobbyTitle'
-
+import '../styles/my.scss'
 import Breadcrumb from '../components/Breadcrumb'
 import Sidebar from '../components/Sidebar'
 

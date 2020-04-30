@@ -5,6 +5,7 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import ProductListItem from '../components/ProductList/productListItem'
 
 import disc1 from '../img/disc/disc1.jpg'
+import '../styles/my.scss'
 
 function OnSale() {
   const [Coupon, setCoupon] = useState('')
