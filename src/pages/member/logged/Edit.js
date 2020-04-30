@@ -3,7 +3,9 @@ import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Card, Accordion, InputGroup } from 'react-bootstrap'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+// import { AiOutlineCaretDown } from 'react-icons/ai'
 import bcrypt from 'bcryptjs'
 
 import LoginValidate from '../../../components/LoginValidate'
@@ -18,6 +20,39 @@ function Edit() {
   const [editmobile, setEditMobile] = useState('')
   const [editsex, setEditSex] = useState('')
   const [editpwd, setEditPwd] = useState('')
+
+  const [oldpwd, setOldPwd] = useState('')
+  //密碼可視化
+  const [Visible, setVisible] = useState(false)
+  function doVisible() {
+    if (Visible === true) setVisible(false)
+    if (Visible === false) setVisible(true)
+  }
+  //確認密碼
+  const [confirmedPWD, setConfirmedPWD] = useState(true)
+  function doConfirm(event) {
+    var CONFIRMpwd = document.getElementById('formPassword').value
+    setEditPwd(CONFIRMpwd)
+    var re_CONFIRMpwd = document.getElementById('formSecurePassword').value
+    if (CONFIRMpwd === re_CONFIRMpwd && CONFIRMpwd !== '') {
+      setConfirmedPWD(true)
+    } else {
+      setConfirmedPWD(false)
+    }
+  }
+
+  //若打開/關閉collapse(編輯密碼) 則啟用/取消required
+  const [PWDreq, setPWDreq] = useState(false)
+  function doRequire() {
+    if (PWDreq === true) {
+      //清空欄位+取消require
+      setOldPwd('')
+      setEditPwd('')
+      document.getElementById('formSecurePassword').value = ''
+      setPWDreq(false)
+    }
+    if (PWDreq === false) setPWDreq(true)
+  }
 
   if (LoginValidate() === false) {
     return (
@@ -62,9 +97,21 @@ function Edit() {
       })
   }
 
+  //舊密碼驗證:
+  function PasswordValidate(event) {
+    // event.preventDefault()
+    fetch('http://localhost:6001/Member/' + memberID)
+      .then((res) => res.json())
+      .then((details) => {
+        if (bcrypt.compareSync(oldpwd, details.cPassword) === true)
+          handleSubmit()
+        else alert('舊密碼與原密碼不符!')
+      })
+  }
+
   function handleSubmit(event) {
     //do POST here!(to node.js)
-    event.preventDefault()
+    // event.preventDefault()
     if (editpwd === '') {
       // 沒密碼: 直接送出
       // Store hash in your password DB.
@@ -149,7 +196,7 @@ function Edit() {
           </div>
           <div className="col-9">
             <Breadcrumb />
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={PWDreq ? PasswordValidate : handleSubmit}>
               <Form.Group controlId="edit_name">
                 <Form.Label>用戶姓名</Form.Label>
                 <Form.Control
@@ -223,22 +270,106 @@ function Edit() {
               </Form.Group>
 
               {/* 更改密碼: 輸入舊密碼-->輸入新密碼-->確認新密碼 */}
-              <Form.Group>
-                <Form.Label>更改密碼</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Password"
-                  value={editpwd}
-                  onChange={(e) => setEditPwd(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>確認密碼</Form.Label>
-                <Form.Control type="password" placeholder="Enter Password" />
-              </Form.Group>
+              <Accordion defaultActiveKey="0">
+                <Card>
+                  <Accordion.Toggle
+                    as={Card.Header}
+                    className="passwordTitle"
+                    eventKey="changePWD"
+                    onClick={doRequire}
+                  >
+                    {PWDreq ? '>取消更改' : 'V更改密碼'}
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="changePWD">
+                    <Card.Body className="passwordBody">
+                      {/* 密碼驗證欄位 */}
+                      {/* =====輸入舊密碼===== */}
+                      <Form.Group>
+                        <Form.Label>輸入舊密碼</Form.Label>
+                        <InputGroup>
+                          <Form.Control
+                            type={Visible === false ? 'password' : 'text'}
+                            placeholder="Enter old Password"
+                            value={oldpwd}
+                            onChange={(e) => setOldPwd(e.target.value)}
+                            required={PWDreq}
+                          />
+                          <InputGroup.Append>
+                            <InputGroup.Text
+                              id="inputGroupAppend"
+                              onClick={doVisible}
+                            >
+                              {Visible ? <FaEyeSlash /> : <FaEye />}
+                            </InputGroup.Text>
+                          </InputGroup.Append>
+                        </InputGroup>
+                      </Form.Group>
+                      {/* =====更改密碼===== */}
+                      <Form.Group controlId="formPassword">
+                        <Form.Label>更改密碼</Form.Label>
+                        <InputGroup>
+                          <Form.Control
+                            type={Visible === false ? 'password' : 'text'}
+                            style={
+                              confirmedPWD ? {} : { 'border-color': '#fab5b5' }
+                            }
+                            placeholder="Enter new Password"
+                            value={editpwd}
+                            onChange={doConfirm}
+                            required={PWDreq}
+                          />
+                          <InputGroup.Append>
+                            <InputGroup.Text
+                              id="inputGroupAppend"
+                              onClick={doVisible}
+                            >
+                              {Visible ? <FaEyeSlash /> : <FaEye />}
+                            </InputGroup.Text>
+                          </InputGroup.Append>
+                        </InputGroup>
+                        <Form.Control.Feedback
+                          type="invalid"
+                          style={
+                            confirmedPWD
+                              ? { display: 'none' }
+                              : { display: 'inline' }
+                          }
+                        >
+                          密碼為空或者與密碼確認不符
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      {/* =====確認密碼===== */}
+                      <Form.Group controlId="formSecurePassword">
+                        <Form.Label>確認密碼</Form.Label>
+                        <InputGroup>
+                          <Form.Control
+                            type={Visible === false ? 'password' : 'text'}
+                            placeholder="Ensure new Password"
+                            onChange={doConfirm}
+                            required={PWDreq}
+                          />
+                          <InputGroup.Append>
+                            <InputGroup.Text
+                              id="inputGroupAppend"
+                              onClick={doVisible}
+                            >
+                              {Visible ? <FaEyeSlash /> : <FaEye />}
+                            </InputGroup.Text>
+                          </InputGroup.Append>
+                        </InputGroup>
+                      </Form.Group>
+                      {/* 密碼驗證欄位 */}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
 
-              <Button variant="primary" type="submit">
-                Submit
+              <Button
+                variant="primary"
+                disabled={confirmedPWD ? false : true}
+                type="submit"
+              >
+                送出更改
               </Button>
             </Form>
           </div>
