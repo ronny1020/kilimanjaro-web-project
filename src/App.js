@@ -27,10 +27,10 @@ import Payment from './pages/purchase/Payment'
 import PurchaseCheck from './pages/purchase/PurchaseCheck'
 import PurchaseComplied from './pages/purchase/PurchaseComplied'
 
-import Sellers2 from './pages/seller/Sellers2'
-import Sellers3 from './pages/seller/Sellers3'
-import Sellers4 from './pages/seller/Sellers4'
-import Sellers5 from './pages/seller/Sellers5'
+// import Sellers2 from './pages/seller/Sellers2'
+// import Sellers3 from './pages/seller/Sellers3'
+// import Sellers4 from './pages/seller/Sellers4'
+// import Sellers5 from './pages/seller/Sellers5'
 
 // import not found
 import NotFoundPage from './pages/NotFoundPage'
@@ -60,7 +60,7 @@ function App() {
             <Route path="/sellers">
               <Sellers />
             </Route>
-            <Route path="/sellers2">
+            {/* <Route path="/sellers2">
               <Sellers2 />
             </Route>
             <Route path="/sellers3">
@@ -71,7 +71,7 @@ function App() {
             </Route>
             <Route path="/sellers5">
               <Sellers5 />
-            </Route>
+            </Route> */}
 
             <Route path="/onSale">
               <OnSale />
