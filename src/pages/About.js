@@ -39,7 +39,7 @@ function OnSale() {
           <div className="row">
             <div className="col-lg-12 " align="center">
               {/* <h1>賣家介紹</h1> */}
-              <p className="text-white">~常見的問題，老實的回答~</p>
+              <p className="text-white">~關於我們網站，與常見的問題~</p>
             </div>
           </div>
           <LobbyTitle string={'關於我們'} />
