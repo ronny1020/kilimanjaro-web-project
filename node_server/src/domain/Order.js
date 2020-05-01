@@ -9,7 +9,9 @@ class Order {
   }
 
   static getOrderDetail(){
-    let sql = `SELECT * FROM coffee.orders_detail where OrderID = ?  ;`
+    let sql = `SELECT * FROM coffee.orders_detail 
+    join coffee.products on orders_detail.productID = products.productID
+    where OrderID = ?  ;`
     return sql
   }
 
