@@ -16,9 +16,19 @@ class Order {
   }
 
   static postOrder() {
-    let sql = ``
+    let sql = `INSERT INTO coffee.orders (CustomerID, OrderDate, ShippingMethodID, Freight, PaymentMethodID, InvoiceMethodID,
+      RecipientName, RecipientAddress, RecipientMobile, couponMapId, rewardsPoints, valid) VALUES 
+      ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ,true );`
     return sql
   }
+
+
+  static postOrderDetail() {
+    let sql = `INSERT INTO coffee.orders_detail (orderID, productID, Quantity, OrderPrice) VALUES
+    (?, ?, ?, ?);`
+    return sql
+  }
+
 
   static CancelOrder() {
     let sql = ``

@@ -20,8 +20,8 @@ export const shipmentInfoStorage = (
 }
 
 export const paymentInfoStorage = (
-  couponValue,
-  rewordPointValue,
+  couponValue = null,
+  rewordPointValue = 0,
   paymentMethodValue,
   invoiceValue
 ) => {
@@ -31,7 +31,27 @@ export const paymentInfoStorage = (
       coupon: couponValue,
       rewordPoint: rewordPointValue,
       paymentMethod: paymentMethodValue,
-      invoice: invoiceValue,
+      InvoiceMethod: invoiceValue,
     },
+  }
+}
+
+export const createOrder = (CustomerID, Cart, ShipmentInfo) => {
+  return async () => {
+    console.log(ShipmentInfo)
+    const order = {
+      CustomerID: CustomerID,
+      ...ShipmentInfo,
+      product: Cart,
+    }
+    const request = new Request('http://localhost:6001/OrdersApi/', {
+      method: 'POST',
+      body: JSON.stringify(order),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    await fetch(request).catch(console.error())
   }
 }
