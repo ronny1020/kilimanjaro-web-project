@@ -5,6 +5,7 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import '../styles/my.scss'
 import Breadcrumb from '../components/Breadcrumb'
 import Sidebar from '../components/Sidebar'
+import img002 from '../img/disc/about-image.jpg'
 import img004 from '../img/disc/heart-icon.png'
 
 function OnSale() {
@@ -38,7 +39,7 @@ function OnSale() {
           <div className="row">
             <div className="col-lg-12 " align="center">
               {/* <h1>賣家介紹</h1> */}
-              <p className="text-white">~常見的問題，老實的回答~</p>
+              <p className="text-white">~關於我們網站，與常見的問題~</p>
             </div>
           </div>
           <LobbyTitle string={'關於我們'} />
@@ -49,8 +50,87 @@ function OnSale() {
             <div className="row">
               <div className="col-8">
                 <Breadcrumb />
+                <div className="row">
+                  <div className="col-12">
+                    {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
+
+                    {/* <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img src={img002} alt="slide 004" />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>實惠的價格</h4>
+                        </div>
+                      </div>
+                    </div> */}
+                    <div class="about-info">
+                      <div
+                        class="section-title wow fadeInUp"
+                        data-wow-delay="0.2s"
+                      >
+                        <h4>我們的故事</h4>
+                        <h2>~人生無法買到安全感，但可買到咖啡~</h2>
+                      </div>
+
+                      <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <p>
+                          咖啡愛好者即便處在一個陌生的城市裡，聞到咖啡香，心便感覺安定；走進咖啡店無數次，盯著價目表許久，最後還是會決定點那杯每天都在喝的咖啡。他們迷戀香氣，絲毫不厭倦。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
+
+                      <div
+                        class="team-thumb wow fadeInUp"
+                        data-wow-delay="0.2s"
+                      >
+                        <img src={img002} alt="slide 004" />
+                        <div class="team-hover">
+                          <div class="team-item text-white">
+                            <h4>您好，我是創辦人</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
+
+                      <div
+                        class="team-thumb wow fadeInUp"
+                        data-wow-delay="0.2s"
+                      >
+                        <img src={img002} alt="slide 004" />
+                        <div class="team-hover">
+                          <div class="team-item text-white">
+                            <h4>您好，我是副創辦人</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="qt-background mt-3">
+                  <div className="text-white " align="center">
+                    "常見問題"
+                  </div>
+                </div>
+
                 <div
-                  className="flip-container"
+                  className="flip-container mt-3"
                   ontouchstart="this.classList.toggle('hover');"
                 >
                   <div className="flipper second-service" align="center">
