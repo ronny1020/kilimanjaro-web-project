@@ -14,16 +14,17 @@ CREATE TABLE coffee.orders(
   RecipientAddress varchar(60) NOT NULL, -- 收件人地址
   RecipientMobile varchar(24) NOT NULL, -- 收件人手機
   couponMapId int, -- 使用的優惠券
-  rewardsPoints int -- 使用的紅利點數
+  rewardsPoints int, -- 使用的紅利點數
+  valid boolean -- 若被取消設為fault
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- 預設儲存引擎: InnoDB(after php5.5)
 
 -- add dummy datas:
 INSERT INTO coffee.orders (CustomerID, OrderDate, ShippedDate, ShippingMethodID, Freight, PaymentMethodID, InvoiceMethodID,
-RecipientName, RecipientAddress, RecipientMobile, couponMapId, rewardsPoints) VALUES 
-('C001', '2020-04-29', '2020-04-30',  1, 0, 1, 1, 'Tom', 'Taipei','0937200000',null ,0 ),
-('C002', '2020-04-30', '2020-05-01',  1, 0, 2, 1, 'Jhon', 'Taipei','0937200000',null ,0 ),
-('C002', '2020-04-29', '2020-05-01',  1, 0, 1, 2, 'Jhon', 'Taipei','0937200000',null ,0 );
+RecipientName, RecipientAddress, RecipientMobile, couponMapId, rewardsPoints, valid) VALUES 
+('C001', '2020-04-29', '2020-04-30',  1, 0, 1, 1, 'Tom', 'Taipei','0937200000',null ,0 ,true ),
+('C002', '2020-04-30', '2020-05-01',  1, 0, 2, 1, 'Jhon', 'Taipei','0937200000',null ,0 ,true ),
+('C002', '2020-04-29', '2020-05-01',  1, 0, 1, 2, 'Jhon', 'Taipei','0937200000',null ,0 ,true );
 
 
 
