@@ -1,11 +1,11 @@
 import React from 'react'
-import Question from '../components/seller/Question'
+// import Question from '../components/seller/Question'
 
 import LobbyTitle from '../components/member/LobbyTitle'
 import '../styles/my.scss'
 import Breadcrumb from '../components/Breadcrumb'
 import Sidebar from '../components/Sidebar'
-// import img004 from '../img/home/carousel/004.jpg'
+import img004 from '../img/disc/heart-icon.png'
 
 function OnSale() {
   const inputArray = {
@@ -24,13 +24,13 @@ function OnSale() {
       link: '/lobby/favorite',
     },
   }
-  let jsonInput = {
-    title: '網站定位',
-    content:
-      '本店致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使雙方達到最大的利益。',
-    color: 'primary',
-    id: 'seller01',
-  }
+  // let jsonInput = {
+  //   title: '網站定位',
+  //   content:
+  //     '本店致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使雙方達到最大的利益。',
+  //   color: 'primary',
+  //   id: 'seller01',
+  // }
   return (
     <>
       <div className="all-page-title page-breadcrumb">
@@ -49,12 +49,90 @@ function OnSale() {
             <div className="row">
               <div className="col-8">
                 <Breadcrumb />
+                <div
+                  className="flip-container"
+                  ontouchstart="this.classList.toggle('hover');"
+                >
+                  <div className="flipper second-service" align="center">
+                    <div className="front">
+                      <div className="icon">
+                        <img src={img004} alt=""></img>
+                      </div>
+                      <p>Q:吉利馬札羅是做甚麼的網站?</p>
+                    </div>
+
+                    <div className="back">
+                      <p>
+                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="flip-container mt-3"
+                  ontouchstart="this.classList.toggle('hover');"
+                >
+                  <div className="flipper third-service" align="center">
+                    <div className="front">
+                      <div className="icon">
+                        <img src={img004} alt=""></img>
+                      </div>
+                      <p>Q:吉利馬札羅是做甚麼的網站?</p>
+                    </div>
+
+                    <div className="back">
+                      <p>
+                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="flip-container mt-3"
+                  ontouchstart="this.classList.toggle('hover');"
+                >
+                  <div className="flipper fourth-service" align="center">
+                    <div className="front">
+                      <div className="icon">
+                        <img src={img004} alt=""></img>
+                      </div>
+                      <p>Q:吉利馬札羅是做甚麼的網站?</p>
+                    </div>
+
+                    <div className="back">
+                      <p>
+                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="flip-container mt-3"
+                  ontouchstart="this.classList.toggle('hover');"
+                >
+                  <div className="flipper first-service" align="center">
+                    <div className="front">
+                      <div className="icon">
+                        <img src={img004} alt=""></img>
+                      </div>
+                      <p>Q:吉利馬札羅是做甚麼的網站?</p>
+                    </div>
+
+                    <div className="back">
+                      <p>
+                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <Question input={jsonInput} />
                 <Question input={jsonInput} />
                 <Question input={jsonInput} />
                 <Question input={jsonInput} />
                 <Question input={jsonInput} />
-                <Question input={jsonInput} />
-                <Question input={jsonInput} />
+                <Question input={jsonInput} /> */}
               </div>
 
               <div className="col-4" align="center">

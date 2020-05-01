@@ -104,6 +104,7 @@ function Sellers() {
             </div>
           </div>
           <LobbyTitle string={'賣家介紹'} />
+
           <div className="row"></div>
 
           <div className="container bg-secondary">

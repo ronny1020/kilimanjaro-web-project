@@ -251,3 +251,118 @@
   transition-delay: 0.3s;
   transform: translateY(0);
 }
+
+.flip-container {
+  perspective: 1000;
+}
+
+/* turning on hover */
+
+.flip-container:hover .flipper {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.flip-container,
+.front,
+.back {
+  width: 100%;
+  height: 350px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.flipper {
+  -webkit-transition: 0.3s all;
+  -webkit-transition-delay: 0.3s;
+  -moz-transition: 0.3s all;
+  -moz-transition-delay: 5s;
+  -ms-transition: 0.3s all;
+  -ms-transition-delay: 5s;
+  -o-transition: 0.3s all;
+  -o-transition-delay: 5s;
+  transition: 0.3s all;
+  transition-delay: 0.3s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front side is in front of a back side */
+
+.front {
+  z-index: 2;
+  color: white;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back side */
+
+.front {
+  padding: 40px 30px;
+}
+
+.front .icon {
+  width: 140px;
+  height: 140px;
+  line-height: 140px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin: 30px auto;
+}
+
+.front h4 {
+  margin-top: 0px;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+// .first-service .front,
+// .first-service .back {
+//   background-color: rgba(244, 188, 81, 0.9);
+// }
+
+.first-service .front,
+.first-service .back {
+  background-color: rgba(180, 43, 146, 0.9);
+}
+
+.second-service .front,
+.second-service .back {
+  background-color: rgba(243, 158, 75, 0.9);
+}
+
+.third-service .front,
+.third-service .back {
+  background-color: rgba(185, 78, 94, 0.9);
+}
+
+.fourth-service .front,
+.fourth-service .back {
+  background-color: rgba(232, 104, 89, 0.9);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.back p {
+  color: #fff;
+  padding: 90px 30px;
+}
