@@ -1,8 +1,10 @@
 import React from 'react'
+// import $ from 'jquery'
 import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
+// import Filter from '../components/seller/Filter'
 
 import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -207,7 +209,7 @@ function Home() {
                 </div>
               </div>
 
-              {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+              {/* <div className="col-lg-4 col-md-6 special-grid drinks" id="qwe">
                 <div className="gallery-single fix">
                   <img src={img002} className="img-fluid" alt="Image" />
                   <div className="why-text">
@@ -217,7 +219,7 @@ function Home() {
                   </div>
                 </div>
               </div> */}
-              {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+              {/* <div className="col-lg-4 col-md-6 special-grid lunch">
                 <div className="gallery-single fix">
                   <img src={img002} className="img-fluid" alt="Image" />
                   <div className="why-text">
