@@ -44,7 +44,7 @@ function Payment(props) {
           <div className="col-md-3 d-flex align-items-center">選擇折價券</div>
           <div className="col-md-9 d-flex align-items-center">
             <select className="form-control" id="coupon">
-              <option value="1">1</option>
+              <option value="null">未選擇</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>

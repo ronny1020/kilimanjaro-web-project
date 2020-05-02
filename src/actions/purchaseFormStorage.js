@@ -29,7 +29,7 @@ export const paymentInfoStorage = (
     type: STORE_PAYMENT_FORM,
     payload: {
       coupon: couponValue,
-      rewordPoint: rewordPointValue,
+      rewordsPoints: rewordPointValue,
       paymentMethod: paymentMethodValue,
       InvoiceMethod: invoiceValue,
     },

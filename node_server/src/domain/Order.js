@@ -1,5 +1,5 @@
 class Order {
-  static getOrder() {
+  static getOrders() {
     let sql = `SELECT * FROM coffee.orders
     join coffee.shippingMethod on orders.ShippingMethodID = shippingMethod.ShippingMethodID
     join coffee.paymentMethod on orders.paymentMethodID = paymentMethod.paymentMethodID
@@ -8,7 +8,7 @@ class Order {
     return sql
   }
 
-  static getOrderDetail(){
+  static getOrderDetail() {
     let sql = `SELECT * FROM coffee.orders_detail 
     join coffee.products on orders_detail.productID = products.productID
     where OrderID = ?  ;`
@@ -22,18 +22,37 @@ class Order {
     return sql
   }
 
-
   static postOrderDetail() {
     let sql = `INSERT INTO coffee.orders_detail (orderID, productID, Quantity, OrderPrice) VALUES
     (?, ?, ?, ?);`
     return sql
   }
 
+  static UpdateProductStock() {
+    let sql = `UPDATE coffee.products SET UnitsInStock = UnitsInStock + ( ? )  where productID = ? ;`
+    return sql
+  }
+
+  static UpdateCouponValid() {
+    let sql = `UPDATE coffee.couponMap SET valid= ?  where couponMapId = ? ;`
+    return sql
+  }
+
+  static UpdateCustomerRewardsPoints() {
+    let sql = `UPDATE coffee.customers SET rewardsPoints = rewardsPoints + ( ? )  where customerID = ? ;`
+    return sql
+  }
 
   static CancelOrder() {
-    let sql = ``
+    let sql = `UPDATE coffee.orders SET valid= ?  where orderID = ? ;`
+    return sql
+  }
+
+  static getOrder() {
+    let sql = `SELECT * FROM coffee.orders where orderID = 1;`
     return sql
   }
 }
+
 
 export default Order

@@ -25,7 +25,7 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
             body.RecipientAddress,
             body.RecipientMobile,
             body.coupon,
-            body.rewordPoint,
+            body.rewordsPoints,
           ])
           .catch(console.error())
 
@@ -45,6 +45,25 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
               item.finalPrice,
             ])
             .catch(console.error())
+
+          await database.promisePool
+            .query(Order.UpdateProductStock(), [-item.num, item.productID])
+            .catch(console.error())
+        }
+
+        if (body.coupon > 0) {
+          await database.promisePool
+            .query(Order.UpdateCouponValid(), [0, body.coupon])
+            .catch(console.error())
+        }
+
+        if (body.rewordsPoints > 0) {
+          await database.promisePool
+            .query(Order.UpdateCustomerRewardsPoints(), [
+              -body.rewordsPoints,
+              cid,
+            ])
+            .catch(console.error())
         }
 
         res.status(200).json()
@@ -52,8 +71,44 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
       }
       case 'put': {
         const [rows, fields] = await database.promisePool
-          .query(sql, [])
+          .query(sql, [0, body.orderID])
           .catch(console.error())
+
+        const [
+          products,
+          fields3,
+        ] = await database.promisePool
+          .query(Order.getOrderDetail(), [body.orderID])
+          .catch(console.error())
+
+        for (const product of products) {
+          await database.promisePool
+            .query(Order.UpdateProductStock(), [product.num, product.productID])
+            .catch(console.error())
+        }
+
+        const [
+          order,
+          fields2,
+        ] = await database.promisePool
+          .query(Order.getOrder(), [body.orderID])
+          .catch(console.error())
+
+        if (order[0].couponMapId > 0) {
+          await database.promisePool
+            .query(Order.UpdateCouponValid(), [1, order[0].couponMapId])
+            .catch(console.error())
+        }
+
+        if (order[0].rewordsPoints > 0) {
+          await database.promisePool
+            .query(Order.UpdateCustomerRewardsPoints(), [
+              order[0].rewordsPoints,
+              order[0].CustomerID,
+            ])
+            .catch(console.error())
+        }
+
         res.status(200).json()
         break
       }
@@ -91,34 +146,18 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
 
 router.get('/:customerID', (req, res, next) => {
   console.log('Orders get request where customerID = ' + req.params.customerID)
-  executeSQL(Order.getOrder(), res, 'get', req.params.customerID)
+  executeSQL(Order.getOrders(), res, 'get', req.params.customerID)
 })
 
 router.post('/', (req, res) => {
   console.log('Orders post request ' + req.body.RecipientName + "'s order")
-
   executeSQL(Order.postOrder(), res, 'post', req.body.CustomerID, req.body)
 })
 
+//cancel order
 router.put('/', (req, res) => {
-  console.log(
-    'Orders put request where customerID = ' +
-      req.body.customerID +
-      ' productID = ' +
-      req.body.productID +
-      ' num = ' +
-      req.body.num
-  )
-  const num = req.body.num > 0 ? req.body.num : 1
-
-  executeSQL(
-    Order.putOrder(),
-    res,
-    'put',
-    req.body.customerID,
-    req.body.productID,
-    num
-  )
+  console.log('Orders put request where orderID = ' + req.body.orderID)
+  executeSQL(Order.CancelOrder(), res, 'put', undefined, req.body)
 })
 
 export default router

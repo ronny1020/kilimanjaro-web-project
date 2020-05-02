@@ -26,5 +26,5 @@ CREATE TABLE coffee.couponMap (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
 INSERT INTO coffee.couponMap (couponID,customerID,valid)
- VALUES (1,'C001',true),(2,'C001',true),(1,'C002',true),(3,'C001',true),(3,'C002',true),(1,'C005',true),(1,'C003',true);
+ VALUES (1,'C001',true),(2,'C001',true),(1,'C002',true),(3,'C001',true),(3,'C002',true),(1,'C005',true),(1,'C003',false);
 
