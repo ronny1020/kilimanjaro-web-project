@@ -68,6 +68,7 @@ function Sellers() {
   }, [i])
   console.log(sellerList)
   console.log(selID)
+  var a = String(i)
   // var a = total.MemberList
   // console.log(a)
 
@@ -166,6 +167,11 @@ function Sellers() {
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
                         </Carousel.Item>
                       </Carousel>
+                      <div className="qt-background mt-3">
+                        <div className="text-white " align="center">
+                          "賣家簡介"
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -215,27 +221,8 @@ function Sellers() {
                       </div>
                     </div>
                   </div> */}
-                  <div className="col-4">
-                    {/* <img
-                      className="d-block h-40 w-100 "
-                      src={img004}
-                      alt="slide 004"
-                    /> */}
 
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                      <img
-                        className="d-block h-100 w-100 "
-                        src={img004}
-                        alt="slide 004"
-                      />
-                      <div class="team-hover">
-                        <div class="team-item text-white">
-                          <h4>實惠的價格</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-4 ">
+                  <div className="col-6 ">
                     {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
@@ -243,8 +230,8 @@ function Sellers() {
                     /> */}
                     <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
                       <img
-                        className="d-block h-100 w-100 "
-                        src={img004}
+                        className="d-block h-100 w-100  "
+                        src={require('../img/disc/seller_1' + a + '1.jpg')}
                         alt="slide 004"
                       />
                       <div class="team-hover">
@@ -254,7 +241,7 @@ function Sellers() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-6">
                     {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
@@ -263,7 +250,7 @@ function Sellers() {
                     <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
                       <img
                         className="d-block h-100 w-100 "
-                        src={img004}
+                        src={require('../img/disc/seller_1' + a + '2.jpg')}
                         alt="slide 004"
                       />
                       <div class="team-hover">
@@ -274,11 +261,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div>
-                <div className="qt-background mt-3">
-                  <div className="text-white " align="center">
-                    "賣家簡介"
-                  </div>
-                </div>
+
                 {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
