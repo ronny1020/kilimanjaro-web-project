@@ -36,13 +36,12 @@ export const paymentInfoStorage = (
   }
 }
 
-export const createOrder = (CustomerID, Cart, ShipmentInfo) => {
+export const createOrder = (CustomerID, ShipmentInfo) => {
   return async () => {
     console.log(ShipmentInfo)
     const order = {
       CustomerID: CustomerID,
       ...ShipmentInfo,
-      product: Cart,
     }
     const request = new Request('http://localhost:6001/OrdersApi/', {
       method: 'POST',

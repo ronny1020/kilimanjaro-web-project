@@ -72,7 +72,7 @@ function PurchaseCheck(props) {
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
-            createOrder(memberID, Cart, ShipmentInfo)
+            createOrder(memberID, ShipmentInfo)
             history.push('/purchaseComplied')
           }}
         >

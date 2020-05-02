@@ -1,5 +1,6 @@
 import express from 'express'
 import Order from '../domain/Order.js'
+import Cart from '../domain/Cart.js'
 import database from '../db/database.js'
 
 const router = express.Router()
@@ -12,7 +13,7 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
         const time_stamp = `${d.getFullYear()}-${d.getMonth() +
           1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
 
-        const result = await database.promisePool
+        const [result, error] = await database.promisePool
           .query(sql, [
             cid,
             time_stamp,
@@ -28,7 +29,23 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
           ])
           .catch(console.error())
 
-          console.log(result.insertId)
+        const [
+          cartItems,
+          fields,
+        ] = await database.promisePool
+          .query(Cart.getCart(), [cid])
+          .catch(console.error())
+
+        for (const item of cartItems) {
+          await database.promisePool
+            .query(Order.postOrderDetail(), [
+              result.insertId,
+              item.productID,
+              item.num,
+              item.finalPrice,
+            ])
+            .catch(console.error())
+        }
 
         res.status(200).json()
         break
