@@ -15,26 +15,26 @@ function Payment(props) {
     window.location.replace('./login/entrance')
   }
   let history = useHistory()
-  const { Cart, ShipmentInfo, paymentInfoStorage } = props
+  const { Cart, ShipmentInfo, paymentInfoStorage, Member } = props
 
   Cart || window.location.replace('./Cart')
   ShipmentInfo || window.location.replace('./Cart')
 
-  const [paymentMethodValue, setPaymentMethodValue] = React.useState('a')
+  const [paymentMethodValue, setPaymentMethodValue] = React.useState('2')
   const paymentMethodVChange = (event) => {
     setPaymentMethodValue(event.target.value)
   }
 
-  const [invoiceValue, setInvoiceValue] = React.useState('a')
+  const [invoiceValue, setInvoiceValue] = React.useState('2')
   const invoiceChange = (event) => {
     setInvoiceValue(event.target.value)
   }
 
   return (
     <>
-      <PurchaseStepper activeStep={3} />
-
       <div className="container p-0">
+        <p>親愛的會員 {Member.cName} 您好：</p>
+        <PurchaseStepper activeStep={3} />
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">折價券</h4>
         </div>
@@ -62,7 +62,12 @@ function Payment(props) {
         <label htmlFor="rewordPoint" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">點數折抵數量</div>
           <div className="col-md-9 d-flex align-items-center">
-            <input type="number" className="form-control" id="rewordPoint" />
+            <input
+              type="number"
+              className="form-control"
+              id="rewordPoint"
+              defaultValue="0"
+            />
           </div>
         </label>
       </CardSecondary>
@@ -188,6 +193,8 @@ function Payment(props) {
               invoiceValue
             )
             history.push('/purchaseCheck')
+            document.body.scrollTop = 0 // For Safari
+            document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
           }}
         >
           下一步
@@ -201,6 +208,7 @@ const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
     ShipmentInfo: state.PurchaseFormReducer.info,
+    Member: state.MemberInfoReducer.member,
   }
 }
 

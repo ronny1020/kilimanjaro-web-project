@@ -15,6 +15,7 @@ import {
   updateProductNumToCart,
 } from '../actions/CartAction'
 import CardSecondary from '../components/CardSecondary'
+import { getMemberInfo } from '../actions/getMemberInfo'
 
 function Cart(props) {
   let history = useHistory()
@@ -24,7 +25,14 @@ function Cart(props) {
     window.location.replace('./login/entrance')
   }
 
-  const { Cart, getCart, removeProductFromCart, updateProductNumToCart } = props
+  const {
+    Cart,
+    getCart,
+    removeProductFromCart,
+    updateProductNumToCart,
+    getMemberInfo,
+    Member,
+  } = props
 
   let totalPrice = Cart
     ? Cart.reduce((a, product) => {
@@ -39,7 +47,8 @@ function Cart(props) {
 
   useEffect(() => {
     getCart(memberID)
-  }, [getCart, memberID])
+    getMemberInfo(memberID)
+  }, [getCart, getMemberInfo, memberID])
 
   if (Cart === undefined) {
     return (
@@ -121,7 +130,7 @@ function Cart(props) {
     <>
       <div className="topSpace"></div>
       <div className="container p-0">
-        <p>親愛的會員您好：</p>
+        <p>親愛的會員 {Member.cName} 您好：</p>
         <PurchaseStepper activeStep={1} />
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">購物車內商品</h4>
@@ -156,6 +165,8 @@ function Cart(props) {
             e.preventDefault()
             localStorage.setItem('Cart', JSON.stringify(Cart))
             history.push('/shipment')
+            document.body.scrollTop = 0 // For Safari
+            document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
           }}
         >
           NEXT
@@ -191,6 +202,7 @@ function Cart(props) {
 const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
+    Member: state.MemberInfoReducer.member,
   }
 }
 
@@ -198,4 +210,5 @@ export default connect(mapStateToProps, {
   getCart,
   removeProductFromCart,
   updateProductNumToCart,
+  getMemberInfo,
 })(Cart)

@@ -15,7 +15,7 @@ function PurchaseCheck(props) {
   }
 
   let history = useHistory()
-  const { Cart, ShipmentInfo, createOrder } = props
+  const { Cart, ShipmentInfo, createOrder, Member } = props
 
   Cart || window.location.replace('./Cart')
   ShipmentInfo || window.location.replace('./Cart')
@@ -48,8 +48,9 @@ function PurchaseCheck(props) {
 
   return (
     <>
-      <PurchaseStepper activeStep={4} />
       <div className="container p-0">
+        <p>親愛的會員 {Member.cName} 您好：</p>
+        <PurchaseStepper activeStep={4} />
         <div>{productList}</div>
       </div>
       <CardSecondary>
@@ -87,6 +88,7 @@ const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
     ShipmentInfo: state.PurchaseFormReducer.info,
+    Member: state.MemberInfoReducer.member,
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
 import { useHistory } from 'react-router-dom'
@@ -17,18 +17,52 @@ function Shipment(props) {
   }
 
   let history = useHistory()
-  const { shipmentInfoStorage } = props
+  const { shipmentInfoStorage, Member, Cart } = props
 
-  const [shippingMethodValue, setShippingMethodValue] = React.useState('a')
+  Cart || window.location.replace('./Cart')
+  Member || window.location.replace('./Cart')
+
+  let totalPrice = Cart
+    ? Cart.reduce((a, product) => {
+        let price =
+          product.UnitPrice - product.discount >= 0
+            ? product.UnitPrice - product.discount
+            : 0
+        return a + price * product.num
+      }, 0)
+    : 0
+
+  const [shippingMethodValue, setShippingMethodValue] = React.useState('1')
+
+  const [Freight, setFreight] = React.useState('0')
+
   const shippingMethodVChange = (event) => {
     setShippingMethodValue(event.target.value)
   }
 
+  useEffect(() => {
+    if (shippingMethodValue === '1') {
+      if (totalPrice < 350) {
+        setFreight(20)
+      } else {
+        setFreight(0)
+      }
+    } else {
+      if (totalPrice < 490) {
+        setFreight(65)
+      } else if (totalPrice < 1000) {
+        setFreight(50)
+      } else {
+        setFreight(0)
+      }
+    }
+  }, [shippingMethodValue, totalPrice])
+
   return (
     <>
-      <PurchaseStepper activeStep={2} />
-
       <div className="container p-0">
+        <p>親愛的會員 {Member.cName} 您好：</p>
+        <PurchaseStepper activeStep={2} />
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">訂購人資料</h4>
         </div>
@@ -38,10 +72,22 @@ function Shipment(props) {
           <div className="col-md-3 d-flex align-items-center">同會員資料</div>
           <div className="col-md-9 d-flex align-items-center">
             <Checkbox
-              defaultChecked
               color="primary"
               id="sameAsCustomer"
-              inputProps={{ 'aria-label': 'secondary checkbox' }}
+              onChange={(event) => {
+                const nameInput = document.getElementById('RecipientName')
+                const mobileInput = document.getElementById('RecipientMobile')
+                const addressInput = document.getElementById('RecipientAddress')
+                if (event.target.checked) {
+                  nameInput.value = Member.cName
+                  mobileInput.value = Member.cMobile
+                  addressInput.value = Member.cAddress
+                } else {
+                  nameInput.value = ''
+                  mobileInput.value = ''
+                  addressInput.value = ''
+                }
+              }}
             />
           </div>
         </label>
@@ -60,7 +106,7 @@ function Shipment(props) {
           <div className="col-md-3 d-flex align-items-center">訂購人電話：</div>
           <div className="col-md-9 d-flex align-items-center">
             <input
-              type="number"
+              type="text"
               className="form-control"
               id="RecipientMobile"
               required
@@ -95,7 +141,8 @@ function Shipment(props) {
               color="primary"
               name="shippingMethod"
               id="to711"
-              inputProps={{ 'aria-label': '1' }}
+              // inputProps={{ 'aria-label': '1' }}
+              selected
             />
           </div>
           <div className="col-9 d-flex align-items-center">7-11取貨</div>
@@ -109,7 +156,7 @@ function Shipment(props) {
               color="primary"
               name="shippingMethod"
               id="toHome"
-              inputProps={{ 'aria-label': '1' }}
+              // inputProps={{ 'aria-label': '1' }}
             />
           </div>
           <div className="col-9 d-flex align-items-center">宅配到府</div>
@@ -118,7 +165,7 @@ function Shipment(props) {
       <CardSecondary>
         <div className="row">
           <div className="col-3 d-flex justify-content-center">運費小計</div>
-          <div className="col-9 d-flex align-items-center">0 元</div>
+          <div className="col-9 d-flex align-items-center">{Freight} 元</div>
         </div>
       </CardSecondary>
 
@@ -140,9 +187,12 @@ function Shipment(props) {
               document.getElementById('RecipientName').value,
               document.getElementById('RecipientMobile').value,
               document.getElementById('RecipientAddress').value,
-              shippingMethodValue
+              shippingMethodValue,
+              Freight
             )
             history.push('/payment')
+            document.body.scrollTop = 0 // For Safari
+            document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
           }}
         >
           下一步
@@ -156,6 +206,7 @@ const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
     ShipmentInfo: state.PurchaseFormReducer.info,
+    Member: state.MemberInfoReducer.member,
   }
 }
 

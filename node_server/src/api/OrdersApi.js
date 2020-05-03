@@ -66,6 +66,10 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
             .catch(console.error())
         }
 
+        await database.promisePool
+          .query(Cart.deleteAllCart(), [cid])
+          .catch(console.error())
+
         res.status(200).json()
         break
       }
