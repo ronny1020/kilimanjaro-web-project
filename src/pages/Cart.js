@@ -85,12 +85,11 @@ function Cart(props) {
               onClick={(e) => {
                 e.preventDefault()
               }}
-              onChange={() => {
-                const input_num = document.getElementById(product.productID)
-                input_num.value = Math.round(input_num.value)
-                if (input_num.value < 1) input_num.value = 1
-                if (input_num.value > product.UnitsInStock)
-                  input_num.value = product.UnitsInStock
+              onChange={(event) => {
+                event.target.value = Math.round(event.target.value)
+                if (event.target.value < 1) event.target.value = 1
+                if (event.target.value > product.UnitsInStock)
+                  event.target.value = product.UnitsInStock
               }}
             />
             <button

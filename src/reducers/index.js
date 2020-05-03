@@ -4,6 +4,7 @@ import CartReducer from './CartReducer'
 import CartNumReducer from './CartNumReducer'
 import PurchaseFormReducer from './PurchaseFormReducer'
 import MemberInfoReducer from './MemberInfoReducer'
+import CouponReducer from './CouponReducer'
 
 import { combineReducers } from 'redux'
 
@@ -14,4 +15,5 @@ export const rootReducer = combineReducers({
   CartNumReducer,
   PurchaseFormReducer,
   MemberInfoReducer,
+  CouponReducer,
 })

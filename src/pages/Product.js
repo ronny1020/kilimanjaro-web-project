@@ -113,14 +113,12 @@ function Product(props) {
                 className="form-control"
                 id="rateInput"
                 defaultValue={comment.rate}
-                onChange={() => {
-                  const input_num = document.getElementById('rateInput')
-                  input_num.value = Math.round(input_num.value)
-
-                  if (input_num.value < 1 && input_num.value !== null)
-                    input_num.value = 1
-                  if (input_num.value > 5 && input_num.value !== null)
-                    input_num.value = 5
+                onChange={(event) => {
+                  event.target.value = Math.round(event.target.value)
+                  if (event.target.value < 1 && event.target.value !== null)
+                    event.target.value = 1
+                  if (event.target.value > 5 && event.target.value !== null)
+                    event.target.value = 5
                 }}
               />
 
@@ -177,14 +175,12 @@ function Product(props) {
             type="number"
             className="form-control"
             id="rateInput"
-            onChange={() => {
-              const input_num = document.getElementById('rateInput')
-              input_num.value = Math.round(input_num.value)
-
-              if (input_num.value < 1 && input_num.value !== null)
-                input_num.value = 1
-              if (input_num.value > 5 && input_num.value !== null)
-                input_num.value = 5
+            onChange={(event) => {
+              event.target.value = Math.round(event.target.value)
+              if (event.target.value < 1 && event.target.value !== null)
+                event.target.value = 1
+              if (event.target.value > 5 && event.target.value !== null)
+                event.target.value = 5
             }}
           />
 
@@ -255,13 +251,11 @@ function Product(props) {
             placeholder="Enter Number"
             id="order_num"
             defaultValue={product.num}
-            onChange={() => {
-              const input_num = document.getElementById('order_num')
-              input_num.value = Math.round(input_num.value)
-
-              if (input_num.value < 1) input_num.value = 1
-              if (input_num.value > product.UnitsInStock)
-                input_num.value = product.UnitsInStock
+            onChange={(event) => {
+              event.target.value = Math.round(event.target.value)
+              if (event.target.value < 1) event.target.value = 1
+              if (event.target.value > product.UnitsInStock)
+                event.target.value = product.UnitsInStock
             }}
           />
 

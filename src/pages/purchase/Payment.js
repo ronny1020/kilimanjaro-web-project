@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PurchaseStepper from '../../components/purchase/PurchaseStepper'
 import { useHistory } from 'react-router-dom'
@@ -8,6 +8,7 @@ import Radio from '@material-ui/core/Radio'
 import { paymentInfoStorage } from '../../actions/purchaseFormStorage'
 
 import { getMemberID } from '../../actions/getMemberID'
+import { getCoupon } from '../../actions/getCoupon'
 
 function Payment(props) {
   const memberID = getMemberID()
@@ -15,7 +16,24 @@ function Payment(props) {
     window.location.replace('./login/entrance')
   }
   let history = useHistory()
-  const { Cart, ShipmentInfo, paymentInfoStorage, Member } = props
+  const {
+    Cart,
+    ShipmentInfo,
+    paymentInfoStorage,
+    Member,
+    getCoupon,
+    Coupons,
+  } = props
+
+  let totalPrice = Cart
+    ? Cart.reduce((a, product) => {
+        let price =
+          product.UnitPrice - product.discount >= 0
+            ? product.UnitPrice - product.discount
+            : 0
+        return a + price * product.num
+      }, 0)
+    : 0
 
   Cart || window.location.replace('./Cart')
   ShipmentInfo || window.location.replace('./Cart')
@@ -29,6 +47,20 @@ function Payment(props) {
   const invoiceChange = (event) => {
     setInvoiceValue(event.target.value)
   }
+
+  useEffect(() => {
+    getCoupon(memberID)
+  }, [getCoupon, memberID])
+
+  const couponOptions = Coupons.map((Coupon) =>
+    Coupon.valid &&
+    Date.parse(Coupon.coupon.cpendDate) > Date.now() &&
+    totalPrice > Coupon.coupon.limitation ? (
+      <option value={Coupon.couponMapId}>{Coupon.coupon.couponName}</option>
+    ) : (
+      <></>
+    )
+  )
 
   return (
     <>
@@ -45,9 +77,7 @@ function Payment(props) {
           <div className="col-md-9 d-flex align-items-center">
             <select className="form-control" id="coupon">
               <option value="null">未選擇</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              {couponOptions}
             </select>
           </div>
         </label>
@@ -59,6 +89,9 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
+        <div className="row">
+          <p>您還可折抵 {Member.rewardsPoints} 點</p>
+        </div>
         <label htmlFor="rewordPoint" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">點數折抵數量</div>
           <div className="col-md-9 d-flex align-items-center">
@@ -67,6 +100,12 @@ function Payment(props) {
               className="form-control"
               id="rewordPoint"
               defaultValue="0"
+              onChange={(event) => {
+                if (event.target.value < 0) event.target.value = 0
+                if (event.target.value > Member.rewardsPoints)
+                  event.target.value = Member.rewardsPoints
+                event.target.value = Math.round(event.target.value)
+              }}
             />
           </div>
         </label>
@@ -209,7 +248,10 @@ const mapStateToProps = (state) => {
     Cart: state.CartReducer.items.cart,
     ShipmentInfo: state.PurchaseFormReducer.info,
     Member: state.MemberInfoReducer.member,
+    Coupons: state.CouponReducer.coupons,
   }
 }
 
-export default connect(mapStateToProps, { paymentInfoStorage })(Payment)
+export default connect(mapStateToProps, { paymentInfoStorage, getCoupon })(
+  Payment
+)
