@@ -16,7 +16,7 @@ import img006 from '../img/home/carousel/006.jpg'
 import disc1 from '../img/disc/coffee2.jpg'
 
 function Sellers() {
-  const [selID, setselID] = useState('')
+  const [sellerID, setsellerID] = useState('S001')
   const [sName, setsName] = useState('')
   // const [sName2, setsName2] = useState('')
   const [sPhone, setsPhone] = useState('')
@@ -25,6 +25,10 @@ function Sellers() {
   const [sCountry, setsCountry] = useState('')
 
   const [sellerList, setsellerList] = useState('')
+  const [sellerList2, setsellerList2] = useState('')
+  const [ProductName1, setProductName1] = useState('')
+  const [ProductName2, setProductName2] = useState('')
+  const [ProductName3, setProductName3] = useState('')
   const [i, seti] = useState(0)
   // const [total, setTotal] = useState([])
 
@@ -54,7 +58,7 @@ function Sellers() {
         //記得在JSX中使用JS變數要用花括號包著
         // lists.push(<li>{arrLists[i]}</li>)
 
-        setselID(myJson.MemberList[i].sellerID)
+        setsellerID(myJson.MemberList[i].sellerID)
         setsName(myJson.MemberList[i].sName)
 
         setsPhone(myJson.MemberList[i].sPhone)
@@ -64,10 +68,34 @@ function Sellers() {
 
         const list = myJson.MemberList.map((j) => j.sName)
         setsellerList(list)
+        const list2 = myJson.MemberList.map((k) => k.sellerID)
+        setsellerList2(list2)
       })
   }, [i])
+
+  useEffect(() => {
+    fetch('http://localhost:6001/sellersApi/' + [sellerID])
+      .then(function (response2) {
+        return response2.json()
+      })
+      .then(function (myJson2) {
+        //記得在JSX中使用JS變數要用花括號包著
+        // lists.push(<li>{arrLists[i]}</li>)
+
+        setProductName1(myJson2.MemberList[0].ProductName)
+        setProductName2(myJson2.MemberList[1].ProductName)
+        setProductName3(myJson2.MemberList[2].ProductName)
+        console.log(myJson2)
+      })
+  }, [sellerID])
+
   console.log(sellerList)
-  console.log(selID)
+  console.log(sellerList2)
+  console.log(sellerID)
+  console.log(ProductName1)
+  console.log(ProductName2)
+  console.log(ProductName3)
+
   var a = String(i)
   // var a = total.MemberList
   // console.log(a)

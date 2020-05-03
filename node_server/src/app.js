@@ -16,6 +16,7 @@ import Sellers_introApi from './api/Sellers_introApi'
 import OnSale from './api/OnSale'
 import SellersApi from './api/SellersApi'
 
+
 const app = express()
 
 app.use(cors())
@@ -38,6 +39,7 @@ app.use('/Sellers_introListApi', Sellers_introListApi)
 app.use('/Sellers_introApi', Sellers_introApi)
 app.use('/OnSale', OnSale)
 app.use('/SellersApi', SellersApi)
+
 
 app.get('/', (req, res) => {
   console.log('Request Home Page')
