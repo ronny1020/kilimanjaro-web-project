@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import $ from 'jquery'
 import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
@@ -9,11 +9,29 @@ import Card from 'react-bootstrap/Card'
 import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
-import disc1 from '../img/disc/coffee2.jpg'
+// import disc1 from '../img/disc/coffee2.jpg'
 import '../styles/my.scss'
 import '../components/seller/Filter'
 
 function Home() {
+  const [i, seti] = useState(1)
+  const [sName, setsName] = useState('新產品上市')
+  const [sCountry, setsCountry] = useState('深烘培咖啡粉')
+  const [sAddress, setsAddress] = useState('售價:NT.80')
+
+  useEffect(() => {
+    fetch('http://localhost:6001/sellersApi')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (myJson) {
+        //記得在JSX中使用JS變數要用花括號包著
+        // lists.push(<li>{arrLists[i]}</li>)
+      })
+  }, [i])
+
+  console.log(i)
+  var a = String(i)
   return (
     <>
       <HomeCarousel />
@@ -91,13 +109,31 @@ function Home() {
                   </button> */}
 
                   <ButtonGroup aria-label="Basic example">
-                    <Button variant="secondary" href="#">
+                    {/* <Button variant="secondary" href="#">
                       全部消息
-                    </Button>
-                    <Button variant="secondary" href="#">
+                    </Button> */}
+                    <Button
+                      variant="secondary"
+                      href="#"
+                      onClick={() => {
+                        seti(2)
+                        setsName('人員招募')
+                        setsCountry('儲備幹部')
+                        setsAddress('月薪35000元')
+                      }}
+                    >
                       關於吉利馬札羅
                     </Button>
-                    <Button variant="secondary" href="#">
+                    <Button
+                      variant="secondary"
+                      href="#"
+                      onClick={() => {
+                        seti(1)
+                        setsName('新產品上市')
+                        setsCountry('深烘培咖啡粉')
+                        setsAddress('售價:NT.80')
+                      }}
+                    >
                       關於商品
                     </Button>
                   </ButtonGroup>
@@ -159,17 +195,17 @@ function Home() {
                   <ProductListItem>
                     <img
                       className="d-block h-100 w-100 "
-                      src={disc1}
+                      src={require('../img/disc/coffee_1' + a + '.jpg')}
                       alt="slide 004"
                     />
                   </ProductListItem>
                   <div className="why-text" align="center">
-                    <p>深烘培咖啡粉</p>
-                    <h5> 售價:NT.80</h5>
+                    <p>{sCountry}</p>
+                    <h5> {sAddress}</h5>
                   </div>
                 </div>
                 <div>
-                  <h4 align="center">新產品上市</h4>
+                  <h4 align="center">{sName}</h4>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 special-grid drinks">
@@ -177,17 +213,17 @@ function Home() {
                   <ProductListItem>
                     <img
                       className="d-block h-100 w-100 "
-                      src={disc1}
+                      src={require('../img/disc/coffee_1' + a + '.jpg')}
                       alt="slide 004"
                     />
                   </ProductListItem>
                   <div className="why-text" align="center">
-                    <p>深烘培咖啡粉</p>
-                    <h5> 售價:NT.80</h5>
+                    <p>{sCountry}</p>
+                    <h5> {sAddress}</h5>
                   </div>
                 </div>
                 <div>
-                  <h4 align="center">新產品上市</h4>
+                  <h4 align="center">{sName}</h4>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 special-grid drinks">
@@ -195,17 +231,17 @@ function Home() {
                   <ProductListItem>
                     <img
                       className="d-block h-100 w-100 "
-                      src={disc1}
+                      src={require('../img/disc/coffee_1' + a + '.jpg')}
                       alt="slide 004"
                     />
                   </ProductListItem>
                   <div className="why-text" align="center">
-                    <p>深烘培咖啡粉</p>
-                    <h5> 售價:NT.80</h5>
+                    <p>{sCountry}</p>
+                    <h5> {sAddress}</h5>
                   </div>
                 </div>
                 <div>
-                  <h4 align="center">新產品上市</h4>
+                  <h4 align="center">{sName}</h4>
                 </div>
               </div>
 
