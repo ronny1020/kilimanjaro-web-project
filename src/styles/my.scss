@@ -429,3 +429,56 @@
   background-color: #fff;
   padding: 0px 10px;
 }
+
+.tab-item {
+  background: none repeat scroll 0 0 #fff;
+  display: none;
+  padding: 1.25rem 0;
+}
+
+.tab-item.tab-active {
+  display: block;
+}
+
+.tab-content>.tab-label {
+  display: none;
+}
+
+.tab-nav>.tab-label {
+  float: left;
+}
+
+a.tab-label,
+a.tab-label:link,
+a.tab-label:visited,
+a.tab-label:hover {
+  background: none repeat scroll 0 0 #262626;
+  color: #fff;
+  margin-right: 1px;
+  padding: 0.625rem 1.25rem;
+  transition: background 0.20s linear 0s;
+  -o-transition: background 0.20s linear 0s;
+  -ms-transition: background 0.20s linear 0s;
+  -moz-transition: background 0.20s linear 0s;
+  -webkit-transition: background 0.20s linear 0s;
+}
+
+a.tab-label:hover,
+a.tab-label.active-btn {
+  background: none repeat scroll 0 0 #999;
+}
+
+.tab-label.active-btn {
+  cursor: default;
+}
+
+.tab-content {
+  text-align: left;
+}
+
+@media screen and (max-width:768px) {
+  .tab-nav>.tab-label {
+    margin: 0.5px 0;
+    width: 100%;
+  }
+}
