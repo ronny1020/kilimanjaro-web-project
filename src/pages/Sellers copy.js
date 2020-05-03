@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
-
-import { FaWikipediaW } from 'react-icons/fa'
+import '../styles/my.scss'
+// import { FaWikipediaW } from 'react-icons/fa'
 
 import img001 from '../img/home/carousel/001.jpg'
 import img002 from '../img/home/carousel/002.jpg'
@@ -13,18 +13,19 @@ import img003 from '../img/home/carousel/003.jpg'
 import img004 from '../img/home/carousel/004.jpg'
 import img005 from '../img/home/carousel/005.jpg'
 import img006 from '../img/home/carousel/006.jpg'
+import disc1 from '../img/disc/coffee2.jpg'
 
 function Sellers() {
-  const [origin, setOrigin] = useState('')
-  const [hight, sethight] = useState('')
-  fetch('http://localhost:6001/sellers_introListApi')
-    .then(function (response) {
-      return response.json()
-    })
-    .then(function (myJson) {
-      setOrigin(myJson.MemberList[0].origin)
-      sethight(myJson.MemberList[0].hight)
-    })
+  const [selID, setselID] = useState('')
+  const [sName, setsName] = useState('')
+  // const [sName2, setsName2] = useState('')
+  const [sPhone, setsPhone] = useState('')
+  const [sMail, setsMail] = useState('')
+  const [sAddress, setsAddress] = useState('')
+  const [sCountry, setsCountry] = useState('')
+
+  const [sellerList, setsellerList] = useState('')
+  const [i, seti] = useState(0)
   // const [total, setTotal] = useState([])
 
   // async function getTotalFromServer() {
@@ -44,10 +45,30 @@ function Sellers() {
   //   setTotal(data)
   // }
 
-  // useEffect(() => {
-  //   getTotalFromServer()
-  // }, [])
+  useEffect(() => {
+    fetch('http://localhost:6001/sellersApi')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (myJson) {
+        //記得在JSX中使用JS變數要用花括號包著
+        // lists.push(<li>{arrLists[i]}</li>)
 
+        setselID(myJson.MemberList[i].sellerID)
+        setsName(myJson.MemberList[i].sName)
+
+        setsPhone(myJson.MemberList[i].sPhone)
+        setsMail(myJson.MemberList[i].sMail)
+        setsAddress(myJson.MemberList[i].sAddress)
+        setsCountry(myJson.MemberList[i].sCountry)
+
+        const list = myJson.MemberList.map((j) => j.sName)
+        setsellerList(list)
+      })
+  }, [i])
+  console.log(sellerList)
+  console.log(selID)
+  var a = String(i)
   // var a = total.MemberList
   // console.log(a)
 
@@ -84,6 +105,7 @@ function Sellers() {
             </div>
           </div>
           <LobbyTitle string={'賣家介紹'} />
+
           <div className="row"></div>
 
           <div className="container bg-secondary">
@@ -93,7 +115,7 @@ function Sellers() {
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1>小農咖啡園1</h1>
+                      <h1>{sName}</h1>
 
                       <Carousel>
                         <Carousel.Item>
@@ -145,77 +167,151 @@ function Sellers() {
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
                         </Carousel.Item>
                       </Carousel>
+                      <div className="qt-background mt-3">
+                        <div className="text-white " align="center">
+                          "賣家簡介"
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="row mt-3 ">
-                  <div className="col-4">
-                    <img
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  <div className="col-6 ">
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
-                    />
+                    /> */}
+                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img
+                        className="d-block h-100 w-100  "
+                        src={require('../img/disc/seller_1' + a + '1.jpg')}
+                        alt="slide 004"
+                      />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>最棒的咖啡</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-4 ">
-                    <img
+                  <div className="col-6">
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <img
-                      className="d-block h-40 w-100 "
-                      src={img004}
-                      alt="slide 004"
-                    />
+                    /> */}
+                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                      <img
+                        className="d-block h-100 w-100 "
+                        src={require('../img/disc/seller_1' + a + '2.jpg')}
+                        alt="slide 004"
+                      />
+                      <div class="team-hover">
+                        <div class="team-item text-white">
+                          <h4>最佳的氣氛</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="row mt-3">
+                {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>簡介</h1>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div className=" card-deck ">
+                {/* <div className=" card-deck ">
                   <ProductListItem>
-                    <p>產 區:</p>
-                    <p>{origin}</p>
+                    <p>編 號:</p>
+                    <p>{selID}</p>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>農 場 海 拔:</p>
-                    <p>{hight}</p>
+                    <p>名稱:</p>
+                    <p>{sName}</p>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>種 植 品 種:</p>
-                    <p>SL-28、SL-34</p>
+                    <p>地 址:</p>
+                    <p>{sAddress}</p>
+                  </ProductListItem>
+                </div> */}
+                <div className=" card-deck">
+                  <ProductListItem>
+                    <p>地 址:</p>
+                    <p>{sAddress}</p>
+                  </ProductListItem>
+                  <ProductListItem>
+                    <p>電 話: </p>
+                    <p>{sPhone}</p>
                   </ProductListItem>
                 </div>
                 <div className=" card-deck">
                   <ProductListItem>
-                    <p>農 場 等 級: </p>
-                    <p>AA級以上</p>
+                    <p>信 箱:</p>
+                    <p>{sMail}</p>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>處 理 方 式:</p>
-                    <p>水洗法</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>品 種 特 色:</p>
-                    <p>蔗糖甜味帶出肯亞特有的烏梅酒香與黑醋栗般的尾韻。</p>
+                    <p>國 家:</p>
+                    <p>{sCountry}</p>
                   </ProductListItem>
                 </div>
-                <div className="row mt-3">
+                {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>賣家故事</h1>
                     </div>
                   </div>
-                </div>
-                <div className="row mt-3">
+                </div> */}
+                {/* <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -244,8 +340,8 @@ function Sellers() {
                       </p>
                     </div>
                   </div>
-                </div>
-                <div className="row mt-3">
+                </div> */}
+                {/* <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -278,27 +374,86 @@ function Sellers() {
                       </p>
                     </div>
                   </div>
+                </div> */}
+                <div className="qt-background mt-3">
+                  <div className="text-white " align="center">
+                    "特色商品"
+                  </div>
                 </div>
-                <div className="row mt-3">
+                {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>特色商品</h1>
                     </div>
                   </div>
-                </div>
-                <div className=" card-deck ">
-                  <ProductListItem>
-                    <p>產 區:</p>
-                    <p>肯亞 涅里</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>海 拔</p>
-                    <p>1200-2300公尺</p>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p>品 種</p>
-                    <p>SL-28、SL-34</p>
-                  </ProductListItem>
+                </div> */}
+                <div className="row mt-3 ">
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                  {/* <div className="col-4 ">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                  {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
                 </div>
                 <div className="row mt-3">
                   <div className="col-12" align="center">
@@ -322,23 +477,57 @@ function Sellers() {
                   </ul>
                 </nav>
 
-                <li>
-                  <Link to="/sellers">小農咖啡園1</Link>
+                <li
+                  onClick={() => {
+                    seti(1)
+                  }}
+                >
+                  {sellerList[1]}
                 </li>
+                <li
+                  onClick={() => {
+                    seti(2)
+                  }}
+                >
+                  {sellerList[2]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(3)
+                  }}
+                >
+                  {sellerList[3]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(4)
+                  }}
+                >
+                  {sellerList[4]}
+                </li>
+                <li
+                  onClick={() => {
+                    seti(5)
+                  }}
+                >
+                  {sellerList[5]}
+                </li>
+                {/* <li>
+                  <Link to="/sellers">{sellerList[1]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[2]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[3]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[4]}</Link>
+                </li>
+                <li>
+                  <Link to="/sellers">{sellerList[5]}</Link>
+                </li> */}
 
-                <li>
-                  <Link to="/sellers2">小農咖啡園2</Link>
-                </li>
-
-                <li>
-                  <Link to="/sellers3">小農咖啡園3</Link>
-                </li>
-                <li>
-                  <Link to="/sellers4">小農咖啡園4</Link>
-                </li>
-                <li>
-                  <Link to="/sellers5">小農咖啡園5</Link>
-                </li>
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
