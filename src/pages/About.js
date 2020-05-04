@@ -311,7 +311,7 @@ function OnSale() {
                             type="email"
                             placeholder="Enter email"
                             onChange={(e) => setCramEmail(e.target.value)}
-                            // readOnly={checked ? true : false}
+                            readOnly={checked ? true : false}
                             required
                           />
                         </Col>
