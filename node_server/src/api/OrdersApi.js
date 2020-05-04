@@ -57,14 +57,22 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
             .catch(console.error())
         }
 
-        if (body.rewordsPoints > 0) {
-          await database.promisePool
-            .query(Order.UpdateCustomerRewardsPoints(), [
-              -body.rewordsPoints,
-              cid,
-            ])
-            .catch(console.error())
-        }
+        const totalPrice = cartItems.reduce((a, item) => {
+          let price =
+            item.UnitPrice - item.discount >= 0
+              ? item.UnitPrice - item.discount
+              : 0
+          return a + price * item.num
+        }, 0)
+
+        const addRewordsPoints = Math.round(totalPrice / 100)
+
+        await database.promisePool
+          .query(Order.UpdateCustomerRewardsPoints(), [
+            addRewordsPoints - body.rewordsPoints,
+            cid,
+          ])
+          .catch(console.error())
 
         await database.promisePool
           .query(Cart.deleteAllCart(), [cid])
@@ -104,14 +112,19 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
             .catch(console.error())
         }
 
-        if (order[0].rewordsPoints > 0) {
-          await database.promisePool
-            .query(Order.UpdateCustomerRewardsPoints(), [
-              order[0].rewordsPoints,
-              order[0].CustomerID,
-            ])
-            .catch(console.error())
-        }
+        const totalPrice = products.reduce(
+          (a, product) => a + product.num * product.OrderPrice,
+          0
+        )
+
+        const addedRewordsPoints = Math.round(totalPrice / 100)
+
+        await database.promisePool
+          .query(Order.UpdateCustomerRewardsPoints(), [
+            order[0].rewordsPoints - addedRewordsPoints,
+            order[0].CustomerID,
+          ])
+          .catch(console.error())
 
         res.status(200).json()
         break
