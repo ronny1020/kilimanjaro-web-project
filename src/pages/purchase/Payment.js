@@ -93,13 +93,13 @@ function Payment(props) {
         <div className="row ml-5">
           <p>您還可折抵 {Member.rewardsPoints} 點</p>
         </div>
-        <label htmlFor="rewordPoint" className="row m-3">
+        <label htmlFor="rewardPoint" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">點數折抵數量</div>
           <div className="col-md-9 d-flex align-items-center">
             <input
               type="number"
               className="form-control"
-              id="rewordPoint"
+              id="rewardPoint"
               defaultValue="0"
               onChange={(event) => {
                 if (event.target.value < 0) event.target.value = 0
@@ -238,7 +238,7 @@ function Payment(props) {
             e.preventDefault()
             paymentInfoStorage(
               document.getElementById('coupon').value,
-              document.getElementById('rewordPoint').value,
+              document.getElementById('rewardPoint').value,
               paymentMethodValue,
               invoiceValue
             )

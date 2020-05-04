@@ -44,7 +44,7 @@ class Order {
   }
 
   static CancelOrder() {
-    let sql = `UPDATE coffee.orders SET valid= ?  where orderID = ? ;`
+    let sql = `UPDATE coffee.orders SET valid= false  where orderID = ? ;`
     return sql
   }
 

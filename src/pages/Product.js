@@ -86,33 +86,42 @@ function Product(props) {
     product.comments.reduce((a, b) => a + b.rate, 0) / product.comments.length
   ).toFixed(1)
 
-  const numOf5star = product.comments.filter((comment) => comment.rate === 5)
-    .length
-  const numOf4star = product.comments.filter((comment) => comment.rate === 4)
-    .length
-  const numOf3star = product.comments.filter((comment) => comment.rate === 3)
-    .length
-  const numOf2star = product.comments.filter((comment) => comment.rate === 2)
-    .length
-  const numOf1star = product.comments.filter((comment) => comment.rate === 1)
-    .length
+  const dataArray = [
+    product.comments.filter((comment) => comment.rate === 5).length,
+    product.comments.filter((comment) => comment.rate === 4).length,
+    product.comments.filter((comment) => comment.rate === 3).length,
+    product.comments.filter((comment) => comment.rate === 2).length,
+    product.comments.filter((comment) => comment.rate === 1).length,
+  ]
 
   const chartData = {
     labels: ['5', '4', '3', '2', '1'],
     datasets: [
       {
-        label: 'Rate',
+        label: '評分',
         backgroundColor: '#6e8080',
         borderWidth: 0,
         hoverBackgroundColor: '#a3d3d7',
-        data: [numOf5star, numOf4star, numOf3star, numOf2star, numOf1star],
+        data: dataArray,
       },
     ],
   }
 
+  const xAxesMax = Math.max(...dataArray) + 1
   const chartOptions = {
     legend: { display: false },
     maintainAspectRatio: false,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1,
+            suggestedMax: xAxesMax,
+          },
+        },
+      ],
+    },
   }
 
   let checkCommented = false
@@ -367,21 +376,14 @@ function Product(props) {
       </CardSecondary>
       <CardSecondary>
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-8">
+            <HorizontalBar data={chartData} options={chartOptions} />
+          </div>
+          <div className="col-4">
             <p>
               average of rate：
               {isNaN(averagedRate) ? '目前沒有評分' : averagedRate}
             </p>
-          </div>
-          <div className="col-md-2">
-            <p>5 star：{numOf5star}</p>
-            <p>4 star：{numOf4star}</p>
-            <p>3 star：{numOf3star}</p>
-            <p>2 star：{numOf2star}</p>
-            <p>1 star：{numOf1star}</p>
-          </div>
-          <div className="col-md-6">
-            <HorizontalBar data={chartData} options={chartOptions} />
           </div>
         </div>
       </CardSecondary>

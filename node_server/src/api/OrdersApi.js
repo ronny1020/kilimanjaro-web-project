@@ -25,7 +25,7 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
             body.RecipientAddress,
             body.RecipientMobile,
             body.coupon,
-            body.rewordsPoints,
+            body.rewardsPoints,
           ])
           .catch(console.error())
 
@@ -65,11 +65,11 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
           return a + price * item.num
         }, 0)
 
-        const addRewordsPoints = Math.round(totalPrice / 100)
+        const addRewardsPoints = Math.round(totalPrice / 100)
 
         await database.promisePool
           .query(Order.UpdateCustomerRewardsPoints(), [
-            addRewordsPoints - body.rewordsPoints,
+            addRewardsPoints - body.rewardsPoints,
             cid,
           ])
           .catch(console.error())
@@ -83,7 +83,7 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
       }
       case 'put': {
         const [rows, fields] = await database.promisePool
-          .query(sql, [0, body.orderID])
+          .query(sql, [body.orderID])
           .catch(console.error())
 
         const [
@@ -113,15 +113,15 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
         }
 
         const totalPrice = products.reduce(
-          (a, product) => a + product.num * product.OrderPrice,
+          (a, product) => a + product.Quantity * product.OrderPrice,
           0
         )
 
-        const addedRewordsPoints = Math.round(totalPrice / 100)
+        const addedRewardsPoints = Math.round(totalPrice / 100)
 
         await database.promisePool
           .query(Order.UpdateCustomerRewardsPoints(), [
-            order[0].rewordsPoints - addedRewordsPoints,
+            order[0].rewardsPoints - addedRewardsPoints,
             order[0].CustomerID,
           ])
           .catch(console.error())
