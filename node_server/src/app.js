@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 require('./routes/memberRoutes')(app)
 require('./routes/favouriteRoutes')(app)
 require('./routes/couponRoutes')(app)
+require('./routes/cramRoutes')(app)
 //Nodemailer api:
 require('./routes/mailRoutes')(app)
 //Image upload api:

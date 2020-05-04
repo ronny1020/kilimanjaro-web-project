@@ -24,8 +24,9 @@ db.favourites = require('./favouriteModel.js')(sequelize, Sequelize)
 db.products = require('./productModel.js')(sequelize, Sequelize)
 db.coupon = require('./couponModel.js')(sequelize, Sequelize)
 db.couponMap = require('./couponMapModel.js')(sequelize, Sequelize)
+db.crams = require('./cramModel.js')(sequelize, Sequelize)
 
-//Reference:
+//Join table by foreign key: Reference
 //https://dwatow.github.io/2018/09-24-sequelize/sequelize-associations/
 //https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 db.favourites.belongsTo(db.products, { foreignKey: 'productID' })
@@ -33,5 +34,8 @@ db.products.hasMany(db.favourites, { foreignKey: 'productID' })
 
 db.couponMap.belongsTo(db.coupon, { foreignKey: 'couponID' })
 db.coupon.hasMany(db.couponMap, { foreignKey: 'couponID' })
+
+// db.crams.belongsTo(db.customers, { foreignKey: 'customerID' })
+// db.customers.hasMany(db.crams, { foreignKey: 'customerID' })
 
 module.exports = db

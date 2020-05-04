@@ -137,7 +137,7 @@ function Member(props) {
                             height: '170px',
                           }}
                         >
-                          <Form enctype="multipart/form-data">
+                          <Form encType="multipart/form-data">
                             <input
                               id="upload_img"
                               type="file"

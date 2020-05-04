@@ -5,7 +5,7 @@ module.exports = app => {
   //路由: 寄驗證信
   router.post('/verify', mail.sendMail)
 
-  //路由...(可新增)
+  //路由: 客服罐頭回信
 
   app.use('/api/mail', router)
 }

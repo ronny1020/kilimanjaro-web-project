@@ -246,10 +246,10 @@ INSERT INTO `customers` VALUES
 DROP TABLE IF EXISTS `crams`;
 CREATE TABLE `crams` (
   `cramID` int(10) ZEROFILL AUTO_INCREMENT,-- 流水號
-  `customerID` varchar(5) NOT NULL default '',-- Primary key:流水號(買家)
+  `customerID` varchar(5) NOT NULL,-- Primary key:流水號(買家)
   `cDate` date default NULL, -- 客訴日期
   `cramContent` varchar(300) default NULL, -- 客訴內容
-  `cChecked` enum('Y','N') collate utf8_unicode_ci NOT NULL, -- 已處理與否
+  `cChecked` enum('Y','N') collate utf8_unicode_ci NOT NULL default 'N', -- 已處理與否
   PRIMARY KEY  (`cramID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- 預設儲存引擎: InnoDB(after php5.5)
