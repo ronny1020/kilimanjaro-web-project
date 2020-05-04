@@ -9,6 +9,7 @@ import { paymentInfoStorage } from '../../actions/purchaseFormStorage'
 
 import { getMemberID } from '../../actions/getMemberID'
 import { getCoupon } from '../../actions/getCoupon'
+import CreditCard from '../../components/purchase/CreditCard'
 
 function Payment(props) {
   const memberID = getMemberID()
@@ -89,7 +90,7 @@ function Payment(props) {
         </div>
       </div>
       <CardSecondary>
-        <div className="row">
+        <div className="row ml-5">
           <p>您還可折抵 {Member.rewardsPoints} 點</p>
         </div>
         <label htmlFor="rewordPoint" className="row m-3">
@@ -159,6 +160,16 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">線上刷卡</div>
         </label>
+        {paymentMethodValue === '3' ? (
+          <div className="row">
+            <div className="col-3 d-flex "></div>
+            <div className="col-9 d-flex align-items-center">
+              <CreditCard />
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </CardSecondary>
 
       <div className="container p-0">
