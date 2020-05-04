@@ -11,6 +11,7 @@ import Edit from './Edit'
 import Favorite from './Favorite'
 import Coupon from './Coupon'
 import History from './History'
+import Cart from '../../Cart'
 
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import LobbyCard from '../../../components/member/LobbyCard'
@@ -75,7 +76,7 @@ function Member(props) {
     })
   //預設頭像:
   function addDefaultSRC(event) {
-    event.target.src = '../../images/dummy.jpg'
+    event.target.src = '../../images/interface.svg'
   }
 
   //上傳頭像: 按鈕
@@ -136,7 +137,7 @@ function Member(props) {
                             height: '170px',
                           }}
                         >
-                          <Form enctype="multipart/form-data">
+                          <Form encType="multipart/form-data">
                             <input
                               id="upload_img"
                               type="file"
@@ -227,6 +228,9 @@ function Member(props) {
             <Route path="/lobby/favorite">
               <Favorite />
             </Route>
+            <Router path="/cart">
+              <Cart />
+            </Router>
 
             {/* 原有的路由(想合併) */}
             <Route path="/login">

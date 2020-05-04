@@ -16,6 +16,7 @@ var mailTransport = nodemailer.createTransport({
   },
 })
 
+//新增: 罐頭回覆api
 exports.sendMail = (req, res) => {
   const mailAddr = req.body.mail
   const mailDetail = req.body.content

@@ -16,6 +16,7 @@ import Sellers_introApi from './api/Sellers_introApi'
 import OnSale from './api/OnSale'
 import SellersApi from './api/SellersApi'
 
+
 const app = express()
 
 app.use(cors())
@@ -39,6 +40,7 @@ app.use('/Sellers_introApi', Sellers_introApi)
 app.use('/OnSale', OnSale)
 app.use('/SellersApi', SellersApi)
 
+
 app.get('/', (req, res) => {
   console.log('Request Home Page')
   res.send(`<h1>Kilimanjaro Api Server Home Page</h1>`)
@@ -49,6 +51,7 @@ app.get('/', (req, res) => {
 require('./routes/memberRoutes')(app)
 require('./routes/favouriteRoutes')(app)
 require('./routes/couponRoutes')(app)
+require('./routes/cramRoutes')(app)
 //Nodemailer api:
 require('./routes/mailRoutes')(app)
 //Image upload api:

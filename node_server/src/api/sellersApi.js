@@ -57,6 +57,19 @@ async function executeSQL(
 router.get('/', (req, res, next) => {
   console.log('SellersApi get request')
   executeSQL(SellersApi.getSellersApi(req.query), res)
+  
 })
+
+router.get('/S001', (req, res, next) => {
+  console.log('SellersApi get request')
+
+  executeSQL(SellersApi.getProS001(req.query), res)
+})
+router.get('/S002', (req, res, next) => {
+  console.log('SellersApi get request')
+
+  executeSQL(SellersApi.getProS002(req.query), res)
+})
+
 
 export default router
