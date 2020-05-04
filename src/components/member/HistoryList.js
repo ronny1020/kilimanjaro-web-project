@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup, Button, Accordion } from 'react-bootstrap'
+import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function HistoryList(props) {
@@ -21,22 +21,34 @@ function HistoryList(props) {
       >
         取消訂單
       </Button>
-      <hr />
-      {/* 再加一個component於此 */}
+
+      {/* 訂單詳細內容: map中有map */}
       <ListGroup
         id={'detail' + item.OrderID.toString()}
         style={{ display: 'none' }}
+        variant="flush"
       >
+        <hr />
         {item.products.map((pitem) => (
-          <ListGroup.Item>{pitem.ProductName}</ListGroup.Item>
+          <ListGroup.Item>
+            <Row>
+              <Col>品名：{pitem.ProductName}</Col>
+              <Col>數量：{pitem.Quantity}</Col>
+              <Col>單價：{pitem.OrderPrice}</Col>
+              <Col>總價：{pitem.Quantity * pitem.OrderPrice}</Col>
+            </Row>
+          </ListGroup.Item>
         ))}
       </ListGroup>
     </ListGroup.Item>
   ))
 
+  //取消訂單
   function handleCancel() {
     console.log('do cancel.')
   }
+
+  //點擊顯示訂單詳細內容
   function showDetails(props) {
     // console.log(props.target.id)
     var targetList = document.getElementById('detail' + props.target.id)
