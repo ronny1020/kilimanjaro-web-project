@@ -535,10 +535,10 @@ function Sellers() {
                 </li>
                 <li
                   onClick={() => {
-                    seti(5)
+                    seti(0)
                   }}
                 >
-                  {sellerList[5]}
+                  {sellerList[0]}
                 </li>
                 {/* <li>
                   <Link to="/sellers">{sellerList[1]}</Link>

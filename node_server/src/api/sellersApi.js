@@ -70,6 +70,21 @@ router.get('/S002', (req, res, next) => {
 
   executeSQL(SellersApi.getProS002(req.query), res)
 })
+router.get('/S003', (req, res, next) => {
+  console.log('SellersApi get request')
+
+  executeSQL(SellersApi.getProS003(req.query), res)
+})
+router.get('/S004', (req, res, next) => {
+  console.log('SellersApi get request')
+
+  executeSQL(SellersApi.getProS004(req.query), res)
+})
+router.get('/S005', (req, res, next) => {
+  console.log('SellersApi get request')
+
+  executeSQL(SellersApi.getProS005(req.query), res)
+})
 
 
 export default router
