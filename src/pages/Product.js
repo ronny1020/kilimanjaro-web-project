@@ -6,6 +6,7 @@ import { getMemberID } from '../actions/getMemberID'
 import { connect } from 'react-redux'
 
 import { HorizontalBar } from 'react-chartjs-2'
+import { defaults } from 'react-chartjs-2'
 
 import { recordVisit, getProduct } from '../actions/getProduct'
 import {
@@ -26,6 +27,8 @@ import {
 } from '../actions/FavouriteAction'
 
 import CardSecondary from '../components/CardSecondary'
+
+import Rating from '@material-ui/lab/Rating'
 
 function Product(props) {
   let { id } = useParams()
@@ -93,6 +96,9 @@ function Product(props) {
     product.comments.filter((comment) => comment.rate === 2).length,
     product.comments.filter((comment) => comment.rate === 1).length,
   ]
+
+  defaults.global.defaultFontSize = 16
+  defaults.global.defaultFontFamily = "'Noto Sans TC', sans-serif"
 
   const chartData = {
     labels: ['5', '4', '3', '2', '1'],
@@ -380,10 +386,20 @@ function Product(props) {
             <HorizontalBar data={chartData} options={chartOptions} />
           </div>
           <div className="col-4">
-            <p>
-              average of rate：
-              {isNaN(averagedRate) ? '目前沒有評分' : averagedRate}
-            </p>
+            {isNaN(averagedRate) ? (
+              '目前沒有評分'
+            ) : (
+              <div className="d-flex flex-column align-items-center justify-content-center">
+                <p className="averagedRate">{averagedRate}</p>
+
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={Number(averagedRate)}
+                  precision={0.1}
+                  readOnly
+                />
+              </div>
+            )}
           </div>
         </div>
       </CardSecondary>
