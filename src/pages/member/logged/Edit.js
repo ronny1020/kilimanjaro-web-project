@@ -5,7 +5,7 @@ import Breadcrumb from '../../../components/Breadcrumb'
 
 import { Form, Button, Card, Accordion, InputGroup } from 'react-bootstrap'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-// import { AiOutlineCaretDown } from 'react-icons/ai'
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io'
 import bcrypt from 'bcryptjs'
 
 import LoginValidate from '../../../components/LoginValidate'
@@ -278,7 +278,17 @@ function Edit() {
                     eventKey="changePWD"
                     onClick={doRequire}
                   >
-                    {PWDreq ? '>取消更改' : 'V更改密碼'}
+                    {PWDreq ? (
+                      <>
+                        <IoIosArrowForward />
+                        <span> 取消更改</span>
+                      </>
+                    ) : (
+                      <>
+                        <IoIosArrowDown />
+                        <span> 更改密碼</span>
+                      </>
+                    )}
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="changePWD">
                     <Card.Body className="passwordBody">
@@ -365,9 +375,13 @@ function Edit() {
               </Accordion>
 
               <Button
-                variant="primary"
                 disabled={confirmedPWD ? false : true}
                 type="submit"
+                style={{
+                  marginTop: '15px',
+                  marginBottom: '15px',
+                  width: '100%',
+                }}
               >
                 送出更改
               </Button>
