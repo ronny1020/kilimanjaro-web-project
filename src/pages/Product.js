@@ -4,6 +4,9 @@ import { useParams, Link } from 'react-router-dom'
 import { getMemberID } from '../actions/getMemberID'
 
 import { connect } from 'react-redux'
+
+import { HorizontalBar } from 'react-chartjs-2'
+
 import { recordVisit, getProduct } from '../actions/getProduct'
 import {
   AddProductToCart,
@@ -93,6 +96,24 @@ function Product(props) {
     .length
   const numOf1star = product.comments.filter((comment) => comment.rate === 1)
     .length
+
+  const chartData = {
+    labels: ['5', '4', '3', '2', '1'],
+    datasets: [
+      {
+        label: 'Rate',
+        backgroundColor: '#6e8080',
+        borderWidth: 0,
+        hoverBackgroundColor: '#a3d3d7',
+        data: [numOf5star, numOf4star, numOf3star, numOf2star, numOf1star],
+      },
+    ],
+  }
+
+  const chartOptions = {
+    legend: { display: false },
+    maintainAspectRatio: false,
+  }
 
   let checkCommented = false
   product.comments.forEach((comment) => {
@@ -345,16 +366,26 @@ function Product(props) {
         </div>
       </CardSecondary>
       <CardSecondary>
-        <p>
-          average of rate：
-          {isNaN(averagedRate) ? '目前沒有評分' : averagedRate}
-        </p>
-        <p>5 star：{numOf5star}</p>
-        <p>4 star：{numOf4star}</p>
-        <p>3 star：{numOf3star}</p>
-        <p>2 star：{numOf2star}</p>
-        <p>1 star：{numOf1star}</p>
+        <div className="row">
+          <div className="col-md-4">
+            <p>
+              average of rate：
+              {isNaN(averagedRate) ? '目前沒有評分' : averagedRate}
+            </p>
+          </div>
+          <div className="col-md-2">
+            <p>5 star：{numOf5star}</p>
+            <p>4 star：{numOf4star}</p>
+            <p>3 star：{numOf3star}</p>
+            <p>2 star：{numOf2star}</p>
+            <p>1 star：{numOf1star}</p>
+          </div>
+          <div className="col-md-6">
+            <HorizontalBar data={chartData} options={chartOptions} />
+          </div>
+        </div>
       </CardSecondary>
+
       {commentOfLoggedID}
       {otherComments}
     </>
