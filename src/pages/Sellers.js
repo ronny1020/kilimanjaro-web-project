@@ -7,12 +7,6 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import '../styles/my.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
-import img001 from '../img/home/carousel/001.jpg'
-import img002 from '../img/home/carousel/002.jpg'
-import img003 from '../img/home/carousel/003.jpg'
-import img004 from '../img/home/carousel/004.jpg'
-import img005 from '../img/home/carousel/005.jpg'
-import img006 from '../img/home/carousel/006.jpg'
 import disc1 from '../img/disc/coffee2.jpg'
 
 function Sellers() {
@@ -29,6 +23,9 @@ function Sellers() {
   const [ProductName1, setProductName1] = useState('')
   const [ProductName2, setProductName2] = useState('')
   const [ProductName3, setProductName3] = useState('')
+  const [UnitPrice1, setUnitPrice1] = useState('')
+  const [UnitPrice2, setUnitPrice2] = useState('')
+  const [UnitPrice3, setUnitPrice3] = useState('')
   const [i, seti] = useState(0)
   // const [total, setTotal] = useState([])
 
@@ -85,6 +82,9 @@ function Sellers() {
         setProductName1(myJson2.MemberList[0].ProductName)
         setProductName2(myJson2.MemberList[1].ProductName)
         setProductName3(myJson2.MemberList[2].ProductName)
+        setUnitPrice1(myJson2.MemberList[0].UnitPrice)
+        setUnitPrice2(myJson2.MemberList[1].UnitPrice)
+        setUnitPrice3(myJson2.MemberList[2].UnitPrice)
         console.log(myJson2)
       })
   }, [sellerID])
@@ -149,7 +149,7 @@ function Sellers() {
                         <Carousel.Item>
                           <img
                             className="d-block w-100 carouselImage"
-                            src={img001}
+                            src={require('../img/disc/seller_0' + a + '1.jpg')}
                             alt="slide 001"
                           />
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
@@ -157,7 +157,7 @@ function Sellers() {
                         <Carousel.Item>
                           <img
                             className="d-block w-100 carouselImage"
-                            src={img002}
+                            src={require('../img/disc/seller_0' + a + '2.jpg')}
                             alt="slide 002"
                           />
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
@@ -165,39 +165,15 @@ function Sellers() {
                         <Carousel.Item>
                           <img
                             className="d-block w-100 carouselImage"
-                            src={img003}
+                            src={require('../img/disc/seller_0' + a + '3.jpg')}
                             alt="slide 003"
                           />
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
                         </Carousel.Item>{' '}
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={img004}
-                            alt="slide 004"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>{' '}
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={img005}
-                            alt="slide 005"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={img006}
-                            alt="slide 006"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>
                       </Carousel>
                       <div className="qt-background mt-3">
                         <div className="text-white " align="center">
-                          "賣家簡介"
+                          <h3>"賣家簡介，聯絡方式與基本資訊"</h3>
                         </div>
                       </div>
                     </div>
@@ -314,22 +290,22 @@ function Sellers() {
                 </div> */}
                 <div className=" card-deck">
                   <ProductListItem>
-                    <p>地 址:</p>
-                    <p>{sAddress}</p>
-                  </ProductListItem>
-                  <ProductListItem>
                     <p>電 話: </p>
                     <p>{sPhone}</p>
                   </ProductListItem>
-                </div>
-                <div className=" card-deck">
                   <ProductListItem>
                     <p>信 箱:</p>
                     <p>{sMail}</p>
                   </ProductListItem>
+                </div>
+                <div className=" card-deck">
                   <ProductListItem>
                     <p>國 家:</p>
                     <p>{sCountry}</p>
+                  </ProductListItem>
+                  <ProductListItem>
+                    <p>地 址:</p>
+                    <p>{sAddress}</p>
                   </ProductListItem>
                 </div>
                 {/* <div className="row mt-3">
@@ -405,7 +381,7 @@ function Sellers() {
                 </div> */}
                 <div className="qt-background mt-3">
                   <div className="text-white " align="center">
-                    "特色商品"
+                    <h3>"特色商品，了解商品相關資訊"</h3>
                   </div>
                 </div>
                 {/* <div className="row mt-3">
@@ -425,9 +401,12 @@ function Sellers() {
                           alt="slide 004"
                         />
                       </ProductListItem>
+                      <div>
+                        <h4 align="center">{ProductName1}</h4>
+                      </div>
                       <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
+                        <p>{ProductName1}</p>
+                        <h5> 售價:NT.{UnitPrice1}</h5>
                       </div>
                     </div>
                   </div>
@@ -440,9 +419,12 @@ function Sellers() {
                           alt="slide 004"
                         />
                       </ProductListItem>
+                      <div>
+                        <h4 align="center">{ProductName2}</h4>
+                      </div>
                       <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
+                        <p>{ProductName2}</p>
+                        <h5> 售價:NT.{UnitPrice2}</h5>
                       </div>
                     </div>
                   </div>
@@ -455,9 +437,12 @@ function Sellers() {
                           alt="slide 004"
                         />
                       </ProductListItem>
+                      <div>
+                        <h4 align="center">{ProductName3}</h4>
+                      </div>
                       <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
+                        <p>{ProductName3}</p>
+                        <h5> 售價:NT.{UnitPrice3}</h5>
                       </div>
                     </div>
                   </div>
@@ -504,42 +489,42 @@ function Sellers() {
                     </li>
                   </ul>
                 </nav>
-
+                <li
+                  onClick={() => {
+                    seti(0)
+                  }}
+                >
+                  <Link>{sellerList[0]}</Link>
+                </li>
                 <li
                   onClick={() => {
                     seti(1)
                   }}
                 >
-                  {sellerList[1]}
+                  <Link>{sellerList[1]}</Link>
                 </li>
                 <li
                   onClick={() => {
                     seti(2)
                   }}
                 >
-                  {sellerList[2]}
+                  <Link>{sellerList[2]}</Link>
                 </li>
                 <li
                   onClick={() => {
                     seti(3)
                   }}
                 >
-                  {sellerList[3]}
+                  <Link>{sellerList[3]}</Link>
                 </li>
                 <li
                   onClick={() => {
                     seti(4)
                   }}
                 >
-                  {sellerList[4]}
+                  <Link>{sellerList[4]}</Link>
                 </li>
-                <li
-                  onClick={() => {
-                    seti(0)
-                  }}
-                >
-                  {sellerList[0]}
-                </li>
+
                 {/* <li>
                   <Link to="/sellers">{sellerList[1]}</Link>
                 </li>

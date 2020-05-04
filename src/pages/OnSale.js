@@ -64,7 +64,7 @@ function OnSale() {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
     console.log(newMember)
-  }, [couponID])
+  }, [couponID, couponMapId, customerID, valid])
 
   return (
     <>
