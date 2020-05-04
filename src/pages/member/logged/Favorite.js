@@ -32,6 +32,7 @@ function Favorite() {
         return res.json()
       })
       .then((favlist) => {
+        // console.log(favlist)
         setfavlistInput(favlist)
         setGenList(true)
         // console.log(favlistInput)
@@ -40,16 +41,18 @@ function Favorite() {
 
   //刪除全部favorite
   function DelAll() {
-    alert('你真的要刪光?')
-    var url_del = 'http://localhost:6001/api/favourite/' + memberID
-    fetch(url_del, {
-      method: 'DELETE',
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        window.location.reload()
+    var msg = window.confirm('即將刪除所有我的最愛，您確定嗎？')
+    if (msg === true) {
+      var url_del = 'http://localhost:6001/api/favourite/' + memberID
+      fetch(url_del, {
+        method: 'DELETE',
       })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res)
+          window.location.reload()
+        })
+    }
   }
 
   const inputArray = {
@@ -82,9 +85,13 @@ function Favorite() {
             {genList === true ? (
               <FavList input={favlistInput} id={memberID} />
             ) : null}
-            <Button variant="primary" onClick={DelAll}>
-              全部刪光
-            </Button>
+            {favlistInput.length !== 0 ? (
+              <Button variant="primary" onClick={DelAll}>
+                全部刪除
+              </Button>
+            ) : (
+              <span>沒有可顯示的喜好清單</span>
+            )}
           </div>
         </div>
       </div>
