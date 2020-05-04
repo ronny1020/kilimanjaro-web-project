@@ -62,18 +62,22 @@ function Member(props) {
     return window.btoa(binary)
   }
   //獲得頭像:
-  fetch('http://localhost:6001/api/image/' + memberID, {
-    method: 'GET',
-  })
-    .catch((error) => console.error('Error:', error))
-    .then((response) => {
-      response.arrayBuffer().then((buffer) => {
-        var base64Flag = 'data:image/jpeg;base64,'
-        var imageStr = arrayBufferToBase64(buffer)
-        // console.log(base64Flag + imageStr)
-        setUploadImg(base64Flag + imageStr)
-      })
+  doGetImg()
+  function doGetImg() {
+    fetch('http://localhost:6001/api/image/' + memberID, {
+      method: 'GET',
     })
+      .catch((error) => console.error('Error:', error))
+      .then((response) => {
+        response.arrayBuffer().then((buffer) => {
+          var base64Flag = 'data:image/jpeg;base64,'
+          var imageStr = arrayBufferToBase64(buffer)
+          // console.log(base64Flag + imageStr)
+          setUploadImg(base64Flag + imageStr)
+        })
+      })
+  }
+
   //預設頭像:
   function addDefaultSRC(event) {
     event.target.src = '../../images/interface.svg'
@@ -96,7 +100,10 @@ function Member(props) {
     })
       .then((response) => response.json())
       .catch((error) => console.error('Error:', error))
-      .then((response) => console.log('Success:', response))
+      .then((response) => {
+        doGetImg()
+        console.log('Success:', response)
+      })
   }
   return (
     <>
