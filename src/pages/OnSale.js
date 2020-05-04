@@ -8,18 +8,13 @@ import disc1 from '../img/disc/disc1.jpg'
 import '../styles/my.scss'
 
 function OnSale() {
-  const [Coupon, setCoupon] = useState('')
+  // const [Coupon, setCoupon] = useState('')
+  const [couponID, setcouponID] = useState('')
+  const [couponMapId, setcouponMapId] = useState('')
+  const [customerID, setcustomerID] = useState('')
+  const [valid, setvalid] = useState('')
+  // const [customerID, setcustomerID] = useState('')
 
-  function getData() {
-    fetch('http://localhost:6001/OnSale')
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (myJson) {
-        setCoupon(myJson.MemberList)
-      })
-    // const [Mycart, setMycart] = useState([])
-  }
   // async function updateCartToLocalStorage(value) {
   //   // 開啟載入指示
   //   // const currentCart = JSON.parse(localStorage.getItem('cart')) || []
@@ -27,27 +22,49 @@ function OnSale() {
   //   // 設定資料
   // }
 
-  async function addToServer(value) {
-    const request = new Request('http://localhost:6001/OnSale', {
-      method: 'POST',
-      body: JSON.stringify(value),
+  // async function addToServer(value) {
+  //   const request = new Request('http://localhost:6001/OnSale', {
+  //     method: 'POST',
+  //     body: JSON.stringify(value),
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   })
+
+  //   console.log(JSON.stringify(value))
+
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+
+  //   console.log('伺服器回傳的json資料', data)
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // }, [Coupon])
+
+  // console.log(Coupon)
+
+  useEffect(() => {
+    let newMember = {
+      couponID: couponID,
+      couponMapId: couponMapId,
+      customerID: customerID,
+      valid: valid,
+    }
+    console.log(JSON.stringify(newMember))
+    fetch('http://localhost:6001/OnSale', {
+      method: 'POST', // want to use PATCH
+      body: JSON.stringify(newMember),
       headers: new Headers({
-        Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
     })
-
-    console.log(JSON.stringify(value))
-
-    const response = await fetch(request)
-    const data = await response.json()
-
-    console.log('伺服器回傳的json資料', data)
-  }
-
-  useEffect(() => {
-    getData()
-  }, [Coupon])
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+    console.log(newMember)
+  }, [couponID])
 
   return (
     <>
@@ -109,12 +126,10 @@ function OnSale() {
                           type="button"
                           className="btn btn-danger text-white"
                           onClick={() => {
-                            addToServer({
-                              couponMapId: 1,
-                              couponID: 1,
-                              customerID: 'C008',
-                              valid: 1,
-                            })
+                            setcouponID(1)
+                            setcouponMapId(1)
+                            setcustomerID('C009')
+                            setvalid(1)
                           }}
                         >
                           我要領取
