@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Question from '../components/seller/Question'
 
 import LobbyTitle from '../components/member/LobbyTitle'
@@ -8,7 +8,86 @@ import Sidebar from '../components/Sidebar'
 import img002 from '../img/disc/about-image.jpg'
 import img004 from '../img/disc/heart-icon.png'
 
+/* 聯絡我們:客服表單 import */
+
+import { Form, Button, Row, Col, Card } from 'react-bootstrap'
+import LoginValidate from '../components/LoginValidate'
+/* 聯絡我們:客服表單 import */
+
 function OnSale() {
+  /* 聯絡我們:客服表單 */
+  // 如果有登入:獲得用戶email
+  const [Email, setEmail] = useState('')
+  const [checked, setChecked] = useState(false)
+  //送出用的資料:
+  const [cramEmail, setCramEmail] = useState('')
+  const [cramContent, setCramContent] = useState('')
+  if (LoginValidate() === false) {
+  } else {
+    var memberID = LoginValidate().userID
+    fetch('http://localhost:6001/api/member/' + memberID)
+      .catch((error) => console.error('Error:', error))
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (memDetail) {
+        // console.log(memDetail)
+        setEmail(memDetail.cEmail)
+        return
+      })
+  }
+  //切換email模式
+  function doEmail(props) {
+    if (checked === true) {
+      setCramEmail(cramEmail)
+      setChecked(false)
+    }
+
+    if (checked === false) {
+      setCramEmail(Email)
+      setChecked(true)
+    }
+  }
+
+  //送出客訴:
+  function handleSubmit() {
+    // alert(cramEmail + cramContent)
+    //如果為外部訪客or更換email: customerID儲存其電子信箱
+    const cramJson = {
+      customerID: checked ? memberID : cramEmail,
+      cramContent: cramContent,
+    }
+    const mailJson = {
+      mail: cramEmail,
+    }
+
+    //寫入table: crams
+    fetch('http://localhost:6001/api/cram', {
+      method: 'POST',
+      body: JSON.stringify(cramJson),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then((res) => console.log('Success:', res))
+
+    //寄出罐頭回覆 mail api:
+    fetch('http://localhost:6001/api/mail/reply', {
+      method: 'POST',
+      body: JSON.stringify(mailJson),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then((res) => console.log('Success:', res))
+    // alert(JSON.stringify(cramJson))
+  }
+  /* 聯絡我們:客服表單 (END) */
+
   const inputArray = {
     title: '常見問題',
     網站定位: {
@@ -213,6 +292,61 @@ function OnSale() {
                 <Question input={jsonInput} />
                 <Question input={jsonInput} />
                 <Question input={jsonInput} /> */}
+
+                {/* 聯絡我們:客服表單 */}
+                <Card className="cramCard">
+                  <Card.Body>
+                    <Card.Title>聯絡我們</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      您的寶貴意見是我們成長的動力!
+                    </Card.Subtitle>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group as={Row} controlId="formEmail">
+                        <Form.Label column sm="2">
+                          電子信箱：
+                        </Form.Label>
+                        <Col sm="7">
+                          <Form.Control
+                            value={checked ? Email : cramEmail}
+                            type="email"
+                            placeholder="Enter email"
+                            onChange={(e) => setCramEmail(e.target.value)}
+                            // readOnly={checked ? true : false}
+                            required
+                          />
+                        </Col>
+                        <Col sm="3">
+                          <Form.Check
+                            //想調checkbox樣式
+                            className="cramFillEmail"
+                            type={'checkbox'}
+                            id={`default-checkbox`}
+                            label={`同會員Email`}
+                            disabled={
+                              typeof memberID !== 'undefined' ? false : true
+                            }
+                            checked={checked}
+                            onChange={doEmail}
+                          />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group controlId="formTextarea">
+                        <Form.Label>您的意見：</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows="3"
+                          required
+                          value={cramContent}
+                          onChange={(e) => setCramContent(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Button type="submit">送出意見</Button>
+                    </Form>
+                  </Card.Body>
+                </Card>
+
+                {/* 聯絡我們:客服表單 */}
               </div>
 
               <div className="col-4" align="center">
