@@ -23,9 +23,9 @@ CREATE TABLE coffee.orders(
 INSERT INTO coffee.orders (CustomerID, OrderDate, ShippedDate, ShippingMethodID, Freight, PaymentMethodID, InvoiceMethodID,
 RecipientName, RecipientAddress, RecipientMobile, couponMapId, rewardsPoints, valid) VALUES 
 ('C001', '2020-04-29 17:00:00', '2020-04-30 17:00:00',  1, 0, 1, 1, 'Tom', 'Taipei','0937200000',null ,0 ,true ),
-('C002', '2020-04-30 17:00:00', '2020-05-01 17:00:00',  1, 0, 2, 1, 'Jhon', 'Taipei','0937200000',null ,0 ,true ),
-('C002', '2020-04-29 17:00:00', '2020-05-01 17:00:00',  1, 0, 1, 2, 'Jhon', 'Taipei','0937200000',null ,0 ,true ),
-('C002', '2020-05-02 17:00:00', null ,  1, 0, 1, 2, 'Jhon', 'Taipei','0937200000',null ,0 ,true );
+('C002', '2020-04-30 17:00:00', '2020-05-01 17:00:00',  1, 0, 2, 1, 'John', 'Taipei','0937200000',null ,0 ,true ),
+('C002', '2020-04-29 17:00:00', '2020-05-01 17:00:00',  1, 0, 1, 2, 'John', 'Taipei','0937200000',null ,0 ,true ),
+('C002', '2020-05-02 17:00:00', null ,  1, 0, 1, 2, 'John', 'Taipei','0937200000',null ,0 ,true );
 
 
 

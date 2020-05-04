@@ -13,6 +13,7 @@ function FavList(props) {
         產品編號：{item.productID}
       </Link>
       <Button
+        style={{ float: 'right' }}
         variant="danger"
         id={props.id + '/' + item.productID.toString()}
         size="sm"
