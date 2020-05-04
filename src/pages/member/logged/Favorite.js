@@ -86,11 +86,15 @@ function Favorite() {
               <FavList input={favlistInput} id={memberID} />
             ) : null}
             {favlistInput.length !== 0 ? (
-              <Button variant="primary" onClick={DelAll}>
+              <Button
+                variant="primary"
+                onClick={DelAll}
+                style={{ marginBottom: '15px' }}
+              >
                 全部刪除
               </Button>
             ) : (
-              <span>沒有可顯示的喜好清單</span>
+              <p>沒有可顯示的喜好清單</p>
             )}
           </div>
         </div>

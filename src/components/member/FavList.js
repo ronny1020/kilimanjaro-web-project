@@ -16,7 +16,6 @@ function FavList(props) {
         style={{ float: 'right' }}
         variant="danger"
         id={props.id + '/' + item.productID.toString()}
-        size="sm"
         onClick={delItem}
       >
         刪除
@@ -44,7 +43,9 @@ function FavList(props) {
   }
   return (
     <>
-      <ListGroup variant="flush">{listItems}</ListGroup>
+      <ListGroup style={{ marginBottom: '15px' }} variant="flush">
+        {listItems}
+      </ListGroup>
     </>
   )
   //   const numbers = props.numbers
