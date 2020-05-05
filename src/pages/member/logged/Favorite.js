@@ -94,7 +94,7 @@ function Favorite() {
                 全部刪除
               </Button>
             ) : (
-              <p>沒有可顯示的喜好清單</p>
+              <p>沒有可顯示的喜好清單。</p>
             )}
           </div>
         </div>

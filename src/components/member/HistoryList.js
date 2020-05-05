@@ -29,10 +29,15 @@ function HistoryList(props) {
         variant="flush"
       >
         <hr />
+        <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
+          訂單明細：
+        </ListGroup.Item>
         {item.products.map((pitem) => (
           <ListGroup.Item>
             <Row>
-              <Col>品名：{pitem.ProductName}</Col>
+              <Link to={'/product/' + pitem.productID}>
+                <Col>品名：{pitem.ProductName}</Col>
+              </Link>
               <Col>數量：{pitem.Quantity}</Col>
               <Col>單價：{pitem.OrderPrice}</Col>
               <Col>總價：{pitem.Quantity * pitem.OrderPrice}</Col>
