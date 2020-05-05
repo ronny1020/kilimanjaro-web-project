@@ -17,7 +17,7 @@ function HomeCarousel() {
             src={img001}
             alt="slide 001"
           />
-          <Carousel.Caption>{/* text */}</Carousel.Caption>
+          <Carousel.Caption> {/* text */}</Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img

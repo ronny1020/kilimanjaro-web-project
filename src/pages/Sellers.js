@@ -6,6 +6,9 @@ import Modal from 'react-bootstrap/Modal'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
@@ -302,8 +305,37 @@ function Sellers() {
                 <div className=" card-deck">
                   <ProductListItem>
                     <p />
-                    <h3 onClick={handleShow}>連 絡 方 式 </h3>
-
+                    <h3 onClick={handleShow}>聯 絡 資 料 </h3>
+                    <Accordion>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="link"
+                            eventKey="0"
+                          >
+                            Click me!
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>Hello! I'm the body</Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="link"
+                            eventKey="1"
+                          >
+                            Click me!
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>Hello! I'm another body</Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
                     {/* <button
                       type="button"
                       className="btn btn-danger text-white"
@@ -326,7 +358,36 @@ function Sellers() {
                   <ProductListItem>
                     <p />
                     <h3 onClick={handleShow2}>基 本 資 料 </h3>
-
+                    <Accordion>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="link"
+                            eventKey="0"
+                          >
+                            Click me!
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>Hello! I'm the body</Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="link"
+                            eventKey="1"
+                          >
+                            Click me!
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>Hello! I'm another body</Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
                     {/* <button
                       type="button"
                       className="btn btn-danger text-white"
