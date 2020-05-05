@@ -1,5 +1,6 @@
 class ProductList {
-  static getProductList() {
+  static getProductList(keyword) {
+    let condition = keyword ? `Where ProductName like '%${keyword}%'` : ''
     let sql = `SELECT products.productID, ProductName, products.sellerID, sName, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,favouriteID
     , disID, discount, disName, disDescrip, startDate, overDate , IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) finalPrice, visitedTimes, sellingVolume
     FROM coffee.products 
@@ -16,7 +17,7 @@ class ProductList {
     left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
     on orders.OrderID = orders_detail.OrderID group by productID) s
     on products.productID=s.productID
-    ORDER BY products.productID DESC LIMIT ? , ? ;`
+    ${condition} ORDER BY products.productID DESC LIMIT ? , ? ;`
 
     return sql
   }

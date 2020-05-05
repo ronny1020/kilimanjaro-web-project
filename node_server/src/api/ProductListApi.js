@@ -47,6 +47,8 @@ async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
 }
 
 router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
+  const keyword=req.query.keyword?req.query.keyword:''
+  console.log(keyword)
   const perPage = req.params.perPage ? parseInt(req.params.perPage) : 20
   const page = req.params.page ? parseInt(req.params.page) : 1
 
@@ -59,7 +61,7 @@ router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
       ' by ' +
       req.params.cid
   )
-  executeSQL(ProductList.getProductList(), res, perPage, page, req.params.cid)
+  executeSQL(ProductList.getProductList(keyword), res, perPage, page, req.params.cid)
 })
 
 export default router

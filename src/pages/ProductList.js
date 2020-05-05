@@ -15,6 +15,7 @@ import {
 } from '../actions/FavouriteAction'
 
 import Pagination from 'react-bootstrap/Pagination'
+import CardSecondary from '../components/CardSecondary'
 
 function ProductList(props) {
   let { page } = useParams()
@@ -187,8 +188,25 @@ function ProductList(props) {
       ? row_start + range.perPage - 1
       : range.totalRows
 
+  function search() {
+    let query = ''
+    let keyword = document.getElementById('keyword').value
+    if (keyword) {
+      query = query + 'keyword=' + keyword
+    }
+    getProductList(page, memberID, query)
+  }
+
   return (
     <>
+      <CardSecondary>
+        <input
+          type="text"
+          className="form-control"
+          onChange={search}
+          id="keyword"
+        ></input>
+      </CardSecondary>
       <div className="topSpace"></div>
       <div className="container">
         <h1>產品頁面</h1>
