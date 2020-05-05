@@ -4,14 +4,12 @@ import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
-// import Filter from '../components/seller/Filter'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
 // import disc1 from '../img/disc/coffee2.jpg'
 import '../styles/my.scss'
-import '../components/seller/Filter'
 
 function Home() {
   const [i, seti] = useState(1)
