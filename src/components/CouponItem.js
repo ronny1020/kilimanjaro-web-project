@@ -46,20 +46,49 @@ function CouponItem(props) {
         <ProductListItem>
           {/* 傳入圖片參數以更改(圖片import於此檔案) */}
           <Image className="d-block h-40 w-100 " src={srcImg} rounded />
+          {/* 顯示基本資訊(暫定) */}
+          <ListGroup
+            style={{
+              position: 'absolute',
+              top: '40%',
+              left: '15%',
+              fontWeight: 'bold',
+            }}
+          >
+            <ListGroup.Item
+              style={{
+                backgroundColor: 'transparent',
+                border: '0px',
+                padding: '0',
+              }}
+            >
+              折扣券名稱：{couponArray.couponName}
+            </ListGroup.Item>
+            <ListGroup.Item
+              style={{
+                backgroundColor: 'transparent',
+                border: '0px',
+                padding: '0',
+              }}
+            >
+              消費滿{couponArray.limitation}可折抵{couponArray.minus}元
+            </ListGroup.Item>
+            <ListGroup.Item
+              style={{
+                backgroundColor: 'transparent',
+                border: '0px',
+                padding: '0',
+              }}
+            >
+              有效期限至：{couponArray.cpendDate}
+            </ListGroup.Item>
+          </ListGroup>
         </ProductListItem>
 
-        {/* 顯示基本資訊(暫定) */}
-        <ListGroup>
-          <ListGroup.Item>折扣券名稱：{couponArray.couponName}</ListGroup.Item>
-          <ListGroup.Item>
-            消費滿{couponArray.limitation}可折抵{couponArray.minus}元
-          </ListGroup.Item>
-          <ListGroup.Item>有效期限至：{couponArray.cpendDate}</ListGroup.Item>
-        </ListGroup>
         <Row>
           <Col align="center">
             <Button
-              style={{ marginTop: '15px' }}
+              //   style={{ marginTop: '15px' }}
               className="btn btn-danger text-white"
               onClick={handleCoupon}
             >
