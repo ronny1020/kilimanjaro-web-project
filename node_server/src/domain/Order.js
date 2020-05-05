@@ -1,10 +1,15 @@
 class Order {
   static getOrders() {
-    let sql = `SELECT * FROM coffee.orders
-    join coffee.shippingMethod on orders.ShippingMethodID = shippingMethod.ShippingMethodID
-    join coffee.paymentMethod on orders.paymentMethodID = paymentMethod.paymentMethodID
-    join coffee.invoiceMethod on orders.invoiceMethodID = invoiceMethod.invoiceMethodID
-    where CustomerID = ? ;`
+    let sql = `SELECT OrderID, orders.CustomerID, OrderDate, ShippedDate, orders.ShippingMethodID, ShippingMethodName, Freight, orders.PaymentMethodID, InvoiceMethodName,
+    orders.InvoiceMethodID, InvoiceMethodName, RecipientName, RecipientAddress, RecipientMobile, orders.couponMapId, rewardsPoints ,minus
+   FROM coffee.orders
+   left join coffee.shippingMethod on orders.ShippingMethodID = shippingMethod.ShippingMethodID
+   left join coffee.paymentMethod on orders.paymentMethodID = paymentMethod.paymentMethodID
+   left join coffee.invoiceMethod on orders.invoiceMethodID = invoiceMethod.invoiceMethodID
+   left join coffee.couponMap on orders.couponMapId = couponMap.couponMapId
+   left join coffee.coupon on couponMap.couponID = coupon.couponID
+   where orders.CustomerID = ?
+   ;`
     return sql
   }
 
