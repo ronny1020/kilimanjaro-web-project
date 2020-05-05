@@ -1,7 +1,7 @@
 class Order {
   static getOrders() {
     let sql = `SELECT OrderID, orders.CustomerID, OrderDate, ShippedDate, orders.ShippingMethodID, ShippingMethodName, Freight, orders.PaymentMethodID, InvoiceMethodName,
-    orders.InvoiceMethodID, InvoiceMethodName, RecipientName, RecipientAddress, RecipientMobile, orders.couponMapId, rewardsPoints ,minus
+   orders.valid, orders.InvoiceMethodID, InvoiceMethodName, RecipientName, RecipientAddress, RecipientMobile, orders.couponMapId, rewardsPoints ,minus
    FROM coffee.orders
    left join coffee.shippingMethod on orders.ShippingMethodID = shippingMethod.ShippingMethodID
    left join coffee.paymentMethod on orders.paymentMethodID = paymentMethod.paymentMethodID

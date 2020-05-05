@@ -5,6 +5,7 @@ import Breadcrumb from '../../../components/Breadcrumb'
 import { Redirect } from 'react-router-dom'
 
 import FavList from '../../../components/member/FavList'
+import Notice from '../../../components/Notice'
 
 import { Button } from 'react-bootstrap'
 
@@ -94,7 +95,7 @@ function Favorite() {
                 全部刪除
               </Button>
             ) : (
-              <p>沒有可顯示的喜好清單。</p>
+              <Notice message={'沒有可顯示的喜好清單。'} />
             )}
           </div>
         </div>
