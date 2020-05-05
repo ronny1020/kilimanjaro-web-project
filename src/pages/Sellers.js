@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
@@ -5,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
+// import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
@@ -527,66 +529,70 @@ function Sellers() {
               </div>
 
               <div className="col-4" align="center">
-                <nav className="navbar sidebar">
-                  <ul className="navbar-nav">
-                    <li>
-                      <div className=" bg-primary banner">
-                        <p className="text-secondary">請選擇賣家</p>
-                      </div>
+                {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
+                <nav class="navbar sidebar">
+                  <ul class="navbar-nav">
+                    <div class=" bg-primary titleLabel">
+                      <h4 class="text-secondary">請選擇賣家</h4>
+                    </div>
+                    <li
+                      class="nav-item"
+                      onClick={() => {
+                        seti(0)
+                      }}
+                    >
+                      <a class="nav-link">
+                        <p class="text-dark">&gt;非洲人咖啡</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li
+                      class="nav-item"
+                      onClick={() => {
+                        seti(1)
+                      }}
+                    >
+                      <a class="nav-link">
+                        <p class="text-dark">&gt;瑪麗亞咖啡</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li
+                      class="nav-item"
+                      onClick={() => {
+                        seti(2)
+                      }}
+                    >
+                      <a class="nav-link">
+                        <p class="text-dark">&gt;古坑樹咖啡</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li
+                      class="nav-item"
+                      onClick={() => {
+                        seti(3)
+                      }}
+                    >
+                      <a class="nav-link">
+                        <p class="text-dark">&gt;上島咖啡</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li
+                      class="nav-item"
+                      onClick={() => {
+                        seti(4)
+                      }}
+                    >
+                      <a class="nav-link">
+                        <p class="text-dark">&gt;小樽咖啡</p>
+                      </a>
+                      <hr />
                     </li>
                   </ul>
                 </nav>
-                <li
-                  onClick={() => {
-                    seti(0)
-                  }}
-                >
-                  <Link>{sellerList[0]}</Link>
-                </li>
-                <li
-                  onClick={() => {
-                    seti(1)
-                  }}
-                >
-                  <Link>{sellerList[1]}</Link>
-                </li>
-                <li
-                  onClick={() => {
-                    seti(2)
-                  }}
-                >
-                  <Link>{sellerList[2]}</Link>
-                </li>
-                <li
-                  onClick={() => {
-                    seti(3)
-                  }}
-                >
-                  <Link>{sellerList[3]}</Link>
-                </li>
-                <li
-                  onClick={() => {
-                    seti(4)
-                  }}
-                >
-                  <Link>{sellerList[4]}</Link>
-                </li>
-
-                {/* <li>
-                  <Link to="/sellers">{sellerList[1]}</Link>
-                </li>
-                <li>
-                  <Link to="/sellers">{sellerList[2]}</Link>
-                </li>
-                <li>
-                  <Link to="/sellers">{sellerList[3]}</Link>
-                </li>
-                <li>
-                  <Link to="/sellers">{sellerList[4]}</Link>
-                </li>
-                <li>
-                  <Link to="/sellers">{sellerList[5]}</Link>
-                </li> */}
+                {/* 改過的sidebar 只能這樣改了 (end) */}
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
