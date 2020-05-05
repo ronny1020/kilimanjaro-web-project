@@ -33,17 +33,26 @@ function HistoryList(props) {
         >
           <hr />
           <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
-            訂單明細：
+            <Row>
+              <Col>品名</Col>
+              <Col>數量</Col>
+              <Col>單價</Col>
+            </Row>
           </ListGroup.Item>
           {item.products.map((pitem) => (
-            <ListGroup.Item>
+            <ListGroup.Item
+              style={{ textAlign: 'center', fontWeight: 'bolder' }}
+            >
               <Row>
-                <Link to={'/product/' + pitem.productID}>
-                  <Col>品名：{pitem.ProductName}</Col>
-                </Link>
-                <Col>數量：{pitem.Quantity}</Col>
-                <Col>單價：{pitem.OrderPrice}</Col>
-                <Col>總價：{pitem.Quantity * pitem.OrderPrice}</Col>
+                <Col>
+                  <Link to={'/product/' + pitem.productID}>
+                    {pitem.ProductName}
+                  </Link>
+                </Col>
+
+                <Col>{pitem.Quantity}</Col>
+                <Col>{pitem.OrderPrice}</Col>
+                {/* <Col>總價：{pitem.Quantity * pitem.OrderPrice}</Col> */}
               </Row>
             </ListGroup.Item>
           ))}
@@ -69,6 +78,7 @@ function HistoryList(props) {
       .catch((error) => console.error('Error:', error))
       .then((response) => {
         alert('已取消訂單!')
+        window.location.replace('/lobby/history')
         console.log('Success:', response)
       })
   }

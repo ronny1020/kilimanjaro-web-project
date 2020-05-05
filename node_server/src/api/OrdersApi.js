@@ -143,7 +143,15 @@ async function executeSQL(sql, res, method = 'get', cid, body) {
               ] = await database.promisePool.query(Order.getOrderDetail(), [
                 row.OrderID,
               ])
-              return { ...row, products: products }
+              const totalPrice =
+                products.reduce(
+                  (a, product) => a + product.Quantity * product.OrderPrice,
+                  0
+                ) -
+                row.rewardsPoints -
+                row.minus
+
+              return { ...row, products: products, totalPrice: totalPrice }
             })
           )
 

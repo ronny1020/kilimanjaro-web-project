@@ -4,6 +4,7 @@ import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
 import CoupList from '../../../components/member/CoupList'
+import Notice from '../../../components/Notice'
 
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
@@ -65,6 +66,9 @@ function Coupon() {
             {genList === true ? (
               <CoupList input={couplistInput} id={memberID} />
             ) : null}
+            {couplistInput.length !== 0 ? null : (
+              <Notice message={'沒有可顯示的折價券。'} />
+            )}
           </div>
         </div>
       </div>

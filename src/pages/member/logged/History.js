@@ -6,6 +6,8 @@ import HistoryList from '../../../components/member/HistoryList'
 import HistoryCList from '../../../components/member/HistoryCList'
 import HistorySList from '../../../components/member/HistorySList'
 
+import Notice from '../../../components/Notice'
+
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
@@ -109,7 +111,7 @@ function History() {
             ) : null}
             {Array.isArray(orderDetails.Orders) &&
             orderDetails.Orders.length ? null : (
-              <p>沒有可顯示的交易紀錄。</p>
+              <Notice message={'沒有可顯示的交易紀錄。'} />
             )}
           </div>
         </div>
