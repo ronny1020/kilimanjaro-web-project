@@ -30,9 +30,12 @@ function Sellers() {
   const [i, seti] = useState(0)
 
   const [show, setShow] = useState(false)
+  const [show2, setShow2] = useState(false)
 
   const handleClose = () => setShow(false)
+  const handleClose2 = () => setShow2(false)
   const handleShow = () => setShow(true)
+  const handleShow2 = () => setShow2(true)
   // const [total, setTotal] = useState([])
 
   // async function getTotalFromServer() {
@@ -295,33 +298,54 @@ function Sellers() {
                   </ProductListItem>
                 </div> */}
                 <div className=" card-deck">
-                  <ProductListItem onClick={handleShow}>
-                    <p>電 話: </p>
-                    <p>{sPhone}</p>
-                    <button
+                  <ProductListItem>
+                    <p />
+                    <h3 onClick={handleShow}>連 絡 方 式 </h3>
+
+                    {/* <button
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={handleShow}
                     >
                       想看更多
-                    </button>
+                    </button> */}
 
                     <Modal show={show} onHide={handleClose}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>{sName}</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        Woohoo, you're reading this text in a modal!
+                        <p>電 話:{sPhone}</p>
+                        <p>信 箱:{sMail}</p>
                       </Modal.Body>
                       <Modal.Footer></Modal.Footer>
                     </Modal>
                   </ProductListItem>
                   <ProductListItem>
-                    <p>信 箱:</p>
-                    <p>{sMail}</p>
+                    <p />
+                    <h3 onClick={handleShow2}>基 本 資 料 </h3>
+
+                    {/* <button
+                      type="button"
+                      className="btn btn-danger text-white"
+                      onClick={handleShow}
+                    >
+                      想看更多
+                    </button> */}
+
+                    <Modal show={show2} onHide={handleClose2}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>{sName}</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <p>國 家:{sCountry}</p>
+                        <p>地 址:{sAddress}</p>
+                      </Modal.Body>
+                      <Modal.Footer></Modal.Footer>
+                    </Modal>
                   </ProductListItem>
                 </div>
-                <div className=" card-deck">
+                {/* <div className=" card-deck">
                   <ProductListItem>
                     <p>國 家:</p>
                     <p>{sCountry}</p>
@@ -330,7 +354,7 @@ function Sellers() {
                     <p>地 址:</p>
                     <p>{sAddress}</p>
                   </ProductListItem>
-                </div>
+                </div> */}
                 {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
