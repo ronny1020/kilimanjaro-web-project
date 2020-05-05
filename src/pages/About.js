@@ -204,7 +204,7 @@ function OnSale() {
                 </div>
                 <div className="qt-background mt-3">
                   <div className="text-white " align="center">
-                    "常見問題"
+                    <h3>"常見的問題，老實的回答"</h3>
                   </div>
                 </div>
 
