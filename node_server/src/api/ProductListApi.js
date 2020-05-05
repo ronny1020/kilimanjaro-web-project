@@ -4,7 +4,15 @@ import database from '../db/database.js'
 
 const router = express.Router()
 
-async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
+async function executeSQL(
+  sql,
+  res,
+  perPage,
+  page,
+  cid,
+  method = 'get',
+  keyword = ''
+) {
   try {
     const output = {
       totalRows: 0,
@@ -13,8 +21,11 @@ async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
       page: page,
       rows: 0,
     }
-    const t_sql = 'SELECT COUNT(1) num FROM coffee.products'
-    const results_total = await database.promisePool.query(t_sql)
+    console.log("ProductList.getProductListRowsNum(keyword)")
+    console.log(ProductList.getProductListRowsNum(keyword))
+    const results_total = await database.promisePool.query(
+      ProductList.getProductListRowsNum(keyword)
+    )
     output.totalRows = results_total[0][0].num
     output.totalPages = Math.ceil(output.totalRows / perPage)
     if (output.page < 1) output.page = 1
@@ -47,8 +58,8 @@ async function executeSQL(sql, res, perPage, page, cid, method = 'get') {
 }
 
 router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
-  const keyword=req.query.keyword?req.query.keyword:''
-  console.log(keyword)
+  const keyword = req.query.keyword ? req.query.keyword : ''
+
   const perPage = req.params.perPage ? parseInt(req.params.perPage) : 20
   const page = req.params.page ? parseInt(req.params.page) : 1
 
@@ -59,9 +70,20 @@ router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
       ' page= ' +
       page +
       ' by ' +
-      req.params.cid
+      req.params.cid +
+      ' with ' +
+      keyword +
+      '.'
   )
-  executeSQL(ProductList.getProductList(keyword), res, perPage, page, req.params.cid)
+  executeSQL(
+    ProductList.getProductList(keyword),
+    res,
+    perPage,
+    page,
+    req.params.cid,
+    'get',
+    keyword
+  )
 })
 
 export default router

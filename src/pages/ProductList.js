@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ProductListItem from '../components/ProductList/productListItem'
 import Loading from '../components/Loading'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getProductList } from '../actions/getProductList'
@@ -18,8 +18,12 @@ import Pagination from 'react-bootstrap/Pagination'
 import CardSecondary from '../components/CardSecondary'
 
 function ProductList(props) {
-  let { page } = useParams()
-  page = page ? page : 1
+  const [page, setPage] = React.useState(1)
+  const [pageListSelect, setPageListSelect] = React.useState([1])
+  const [rowStart, setRowStart] = React.useState(1)
+  const [rowEnd, setRowEnd] = React.useState(1)
+  const [query, setQuery] = React.useState('')
+
   const {
     products,
     range,
@@ -33,8 +37,53 @@ function ProductList(props) {
   const memberID = getMemberID()
 
   useEffect(() => {
-    getProductList(page, memberID)
-  }, [getProductList, page, memberID])
+    getProductList(page, memberID, query)
+  }, [getProductList, page, memberID, query])
+
+  useEffect(() => {
+    let pageList = []
+    if (range) {
+      for (let i = 1; i <= 3 && i <= range.totalPages; i++) {
+        pageList.push(i)
+      }
+
+      if (range.page <= 6) {
+        for (let i = 4; i <= range.page + 2 && i <= range.totalPages; i++) {
+          pageList.push(i)
+        }
+      } else {
+        pageList.push('ellipsis')
+
+        for (
+          let i = range.page - 2;
+          i <= range.page + 2 && i <= range.totalPages;
+          i++
+        ) {
+          pageList.push(i)
+        }
+      }
+
+      if (range.totalPages - range.page <= 5) {
+        for (let i = range.page + 3; i <= range.totalPages; i++) {
+          pageList.push(i)
+        }
+      } else {
+        pageList.push('ellipsis')
+        for (let i = range.totalPages - 2; i <= range.totalPages; i++) {
+          pageList.push(i)
+        }
+      }
+
+      setPageListSelect(pageList)
+
+      setRowStart((range.page - 1) * range.perPage + 1)
+      setRowEnd(
+        range.page * range.perPage < range.totalRows
+          ? range.page * range.perPage
+          : range.totalRows
+      )
+    }
+  }, [range])
 
   if (products === undefined) {
     return (
@@ -129,40 +178,8 @@ function ProductList(props) {
   ))
 
   // page selection
-  let pageList = []
 
-  for (let i = 1; i <= 3 && i <= range.totalPages; i++) {
-    pageList.push(i)
-  }
-
-  if (range.page <= 6) {
-    for (let i = 4; i <= range.page + 2 && i <= range.totalPages; i++) {
-      pageList.push(i)
-    }
-  } else {
-    pageList.push('ellipsis')
-
-    for (
-      let i = range.page - 2;
-      i <= range.page + 2 && i <= range.totalPages;
-      i++
-    ) {
-      pageList.push(i)
-    }
-  }
-
-  if (range.totalPages - range.page <= 5) {
-    for (let i = range.page + 3; i <= range.totalPages; i++) {
-      pageList.push(i)
-    }
-  } else {
-    pageList.push('ellipsis')
-    for (let i = range.totalPages - 2; i <= range.totalPages; i++) {
-      pageList.push(i)
-    }
-  }
-
-  const PageIndex = pageList.map((page, i) => {
+  const PageIndex = pageListSelect.map((page, i) => {
     switch (page) {
       case range.page:
         return (
@@ -174,7 +191,12 @@ function ProductList(props) {
         return <Pagination.Ellipsis disabled key={i} />
       default:
         return (
-          <Pagination.Item key={i} href={'../productList/' + page}>
+          <Pagination.Item
+            key={i}
+            onClick={() => {
+              setPage(page)
+            }}
+          >
             {page}
           </Pagination.Item>
         )
@@ -182,19 +204,17 @@ function ProductList(props) {
   })
 
   // calculate the date range
-  const row_start = (range.page - 1) * range.perPage + 1
-  const row_end =
-    row_start + range.perPage < range.totalRows
-      ? row_start + range.perPage - 1
-      : range.totalRows
 
   function search() {
-    let query = ''
+    let condition = ''
     let keyword = document.getElementById('keyword').value
+    condition = condition + 'keyword=' + keyword
     if (keyword) {
-      query = query + 'keyword=' + keyword
+      setQuery(condition)
+    } else {
+      setQuery('')
     }
-    getProductList(page, memberID, query)
+    setPage(1)
   }
 
   return (
@@ -211,25 +231,36 @@ function ProductList(props) {
       <div className="container">
         <h1>產品頁面</h1>
         <p className="d-flex justify-content-end mb-5">
-          第 {range.page} 頁( {row_start} - {row_end} )，共 {range.totalPages}{' '}
-          頁{range.totalRows} 項
+          第 {range.page} 頁( {rowStart} - {rowEnd} )，共 {range.totalPages}頁
+          {range.totalRows} 項
         </p>
         <div>{productList}</div>
         <Pagination className="justify-content-center mt-5">
-          <Pagination.First href="../productList/1" />
+          <Pagination.First
+            onClick={() => {
+              setPage(1)
+            }}
+          />
           <Pagination.Prev
-            href={'../productList/' + (range.page > 1 ? range.page - 1 : 1)}
+            onClick={() => {
+              setPage(range.page > 1 ? range.page - 1 : 1)
+            }}
           />
           {PageIndex}
           <Pagination.Next
-            href={
-              '../productList/' +
-              (range.page < range.totalPages
-                ? range.page + 1
-                : range.totalPages)
-            }
+            onClick={() => {
+              setPage(
+                range.page < range.totalPages
+                  ? range.page + 1
+                  : range.totalPages
+              )
+            }}
           />
-          <Pagination.Last href={'../productList/' + range.totalPages} />
+          <Pagination.Last
+            onClick={() => {
+              setPage(range.totalPages)
+            }}
+          />
         </Pagination>
       </div>
     </>

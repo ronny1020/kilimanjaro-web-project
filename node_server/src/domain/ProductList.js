@@ -21,6 +21,26 @@ class ProductList {
 
     return sql
   }
+
+  static getProductListRowsNum(keyword) {
+    let condition = keyword ? `Where ProductName like '%${keyword}%'` : ''
+    let sql = `SELECT COUNT(0) num 
+    FROM coffee.products 
+    Join coffee.sellers ON sellers.sellerID = products.sellerID
+    left JOIN
+    (SELECT discount_detail.disID, productID, max(disPrice) as discount, disName, disDescrip,  startDate, overDate 
+    FROM coffee.discount_detail 
+    JOIN coffee.discounts ON discount_detail.disID= discounts.disID and overDate > NOW() group by productID) d 
+    on products.productID=d.productID
+    left JOIN (select count(0) visitedTimes, productID, time_stamp FROM coffee.product_visited group by productID) v
+    on products.productID=v.productID
+    left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
+    on orders.OrderID = orders_detail.OrderID group by productID) s
+    on products.productID=s.productID
+    ${condition} ;`
+
+    return sql
+  }
 }
 
 export default ProductList
