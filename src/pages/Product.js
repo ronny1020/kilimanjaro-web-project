@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Loading from '../components/Loading'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getMemberID } from '../actions/getMemberID'
 
 import { connect } from 'react-redux'
@@ -29,6 +29,7 @@ import {
 import CardSecondary from '../components/CardSecondary'
 
 import Rating from '@material-ui/lab/Rating'
+import Chip from '@material-ui/core/Chip'
 
 function Product(props) {
   let { id } = useParams()
@@ -46,6 +47,8 @@ function Product(props) {
     AddProductToFavourite,
     removeProductFromFavourite,
   } = props
+
+  const [rate, setRate] = React.useState(5)
 
   const memberID = getMemberID()
 
@@ -78,9 +81,14 @@ function Product(props) {
   }
 
   const tagsLink = product.tags.map((tag, i) => (
-    <Link className="mx-1" key={i} to="#">
-      {tag}
-    </Link>
+    <Chip
+      label={tag}
+      component="a"
+      href="#chip"
+      clickable
+      variant="outlined"
+      key={i}
+    />
   ))
 
   // about comments
@@ -143,21 +151,15 @@ function Product(props) {
             <p>ID:{comment.customerID}</p>
 
             <div className="form-group">
-              <label htmlFor="rateInput">rate:</label>
-              <input
-                type="number"
-                className="form-control"
+              <Rating
+                name="simple-controlled"
                 id="rateInput"
-                defaultValue={comment.rate}
-                onChange={(event) => {
-                  event.target.value = Math.round(event.target.value)
-                  if (event.target.value < 1 && event.target.value !== null)
-                    event.target.value = 1
-                  if (event.target.value > 5 && event.target.value !== null)
-                    event.target.value = 5
+                value={rate}
+                onChange={(event, newValue) => {
+                  setRate(newValue)
                 }}
               />
-
+              <br />
               <label htmlFor="commentInput">Comment:</label>
               <textarea
                 className="form-control"
@@ -171,7 +173,6 @@ function Product(props) {
                 className="btn btn-success m-1"
                 onClick={(e) => {
                   e.preventDefault()
-                  const rate = document.getElementById('rateInput').value
                   const comment = document.getElementById('commentInput').value
                   async function Update() {
                     UpdateComment(product.productID, memberID, rate, comment)
@@ -186,6 +187,8 @@ function Product(props) {
                 className="btn btn-danger m-1"
                 onClick={(e) => {
                   e.preventDefault()
+                  document.getElementById('commentInput').value = 0
+                  setRate(5)
                   async function Remove() {
                     RemoveComment(product.productID, memberID)
                     await getProduct(id, memberID)
@@ -206,20 +209,15 @@ function Product(props) {
     <div>
       <CardSecondary>
         <div className="form-group">
-          <label htmlFor="rateInput">rate:</label>
-          <input
-            type="number"
-            className="form-control"
+          <Rating
+            name="simple-controlled"
             id="rateInput"
-            onChange={(event) => {
-              event.target.value = Math.round(event.target.value)
-              if (event.target.value < 1 && event.target.value !== null)
-                event.target.value = 1
-              if (event.target.value > 5 && event.target.value !== null)
-                event.target.value = 5
+            value={rate}
+            onChange={(event, newValue) => {
+              setRate(newValue)
             }}
           />
-
+          <br />
           <label htmlFor="commentInput">Comment:</label>
           <textarea
             className="form-control"
@@ -232,7 +230,6 @@ function Product(props) {
             className="btn btn-primary m-1"
             onClick={(e) => {
               e.preventDefault()
-              const rate = document.getElementById('rateInput').value
               const comment = document.getElementById('commentInput').value
               async function add() {
                 AddComment(product.productID, memberID, rate, comment)
@@ -241,7 +238,7 @@ function Product(props) {
               add()
             }}
           >
-            add
+            新增
           </button>
         </div>
       </CardSecondary>
@@ -253,7 +250,7 @@ function Product(props) {
       <div key={i}>
         <CardSecondary>
           <p>ID:{comment.customerID}</p>
-          <p>rate:{comment.rate}</p>
+          <Rating defaultValue={comment.rate} size="small" readOnly />
           <p>comment:{comment.commentText}</p>
         </CardSecondary>
       </div>
@@ -393,9 +390,9 @@ function Product(props) {
                 <p className="averagedRate">{averagedRate}</p>
 
                 <Rating
-                  name="half-rating-read"
                   defaultValue={Number(averagedRate)}
                   precision={0.1}
+                  size="large"
                   readOnly
                 />
               </div>
