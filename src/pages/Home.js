@@ -6,7 +6,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
 // import Filter from '../components/seller/Filter'
 
-import img002 from '../img/home/carousel/002.jpg'
+// import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
 // import disc1 from '../img/disc/coffee2.jpg'
@@ -42,7 +42,10 @@ function Home() {
             <div className="row ">
               <div className="col-md-4 mt-3">
                 <Card style={{ width: '24rem' }}>
-                  <Card.Img variant="top" src={img002} />
+                  <Card.Img
+                    variant="top"
+                    src={require('../img/disc/coffeehome.jpg')}
+                  />
                   {/* <Card.Body>
                     <Card.Title></Card.Title>
                     <Card.Text></Card.Text>
