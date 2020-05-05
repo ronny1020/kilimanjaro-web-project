@@ -3,10 +3,15 @@ import LobbyTitle from '../../../components/member/LobbyTitle'
 import Sidebar from '../../../components/Sidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 import HistoryList from '../../../components/member/HistoryList'
+import HistoryCList from '../../../components/member/HistoryCList'
+import HistorySList from '../../../components/member/HistorySList'
 
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
+import { Nav } from 'react-bootstrap'
 function History() {
+  //決定切換表單
+  const [DisplayList, setDisplayList] = useState('not_send')
   //獲取訂單資訊
   const [genList, setGenList] = useState(false)
   const [orderDetails, setOrderDetails] = useState({})
@@ -48,6 +53,12 @@ function History() {
       link: '/lobby/favorite',
     },
   }
+
+  function handleNav(props) {
+    console.log(props.target.id)
+    setDisplayList(props.target.id)
+  }
+
   return (
     <>
       <LobbyTitle string={'交易紀錄'} />
@@ -58,7 +69,44 @@ function History() {
           </div>
           <div className="col-9">
             <Breadcrumb />
-            {genList ? <HistoryList input={orderDetails} /> : null}
+
+            {/* 已寄送: 有ShippedDate
+            未寄送: 沒有ShippedDate
+            已取消: Valid為0 */}
+            <Nav variant="tabs" defaultActiveKey="not_send">
+              <Nav.Item>
+                <Nav.Link
+                  eventKey="not_send"
+                  id={'not_send'}
+                  onClick={handleNav}
+                >
+                  未寄送
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="send" id={'send'} onClick={handleNav}>
+                  已寄送
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  eventKey="cancelled"
+                  id={'cancelled'}
+                  onClick={handleNav}
+                >
+                  已取消
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            {genList && DisplayList === 'not_send' ? (
+              <HistoryList input={orderDetails} />
+            ) : null}
+            {genList && DisplayList === 'send' ? (
+              <HistorySList input={orderDetails} />
+            ) : null}
+            {genList && DisplayList === 'cancelled' ? (
+              <HistoryCList input={orderDetails} />
+            ) : null}
             {Array.isArray(orderDetails.Orders) &&
             orderDetails.Orders.length ? null : (
               <p>沒有可顯示的交易紀錄。</p>
