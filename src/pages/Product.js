@@ -34,7 +34,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
 function Alert(props) {
-  return <MuiAlert elevation={60} variant="outlined" {...props} />
+  return <MuiAlert elevation={6} variant="outlined" {...props} />
 }
 
 function Product(props) {
@@ -54,42 +54,34 @@ function Product(props) {
     removeProductFromFavourite,
   } = props
 
-  const [rate, setRate] = React.useState()
-
   const memberID = getMemberID()
 
+  const [rate, setRate] = React.useState(NaN)
+  const [averagedRate, setAveragedRate] = React.useState(NaN)
   // Control Alert
   const [editAlertOpen, setEditAlertOpen] = React.useState(false)
   const handleEditAlertClick = () => {
     setEditAlertOpen(true)
   }
   const handleEditAlertClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
     setEditAlertOpen(false)
   }
 
+  // delete
   const [deleteAlertOpen, setDeleteAlertOpen] = React.useState(false)
   const handleDeleteAlertClick = () => {
     setDeleteAlertOpen(true)
   }
   const handleDeleteAlertClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
     setDeleteAlertOpen(false)
   }
 
+  // add
   const [addAlertOpen, setAddAlertOpen] = React.useState(false)
   const handleAddAlertClick = () => {
     setAddAlertOpen(true)
   }
-
   const handleAddAlertClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
     setAddAlertOpen(false)
   }
 
@@ -100,6 +92,27 @@ function Product(props) {
     }
     start()
   }, [getProduct, id, memberID, recordVisit])
+
+  useEffect(() => {
+    if (product.length !== 0) {
+      let defaultRate
+      product.comments.forEach((comment) => {
+        if (comment.customerID === memberID) {
+          defaultRate = comment.rate
+        }
+      })
+      setRate(defaultRate)
+
+      setAveragedRate(
+        Number(
+          (
+            product.comments.reduce((a, b) => a + b.rate, 0) /
+            product.comments.length
+          ).toFixed(1)
+        )
+      )
+    }
+  }, [memberID, product])
 
   if (product.productID === undefined) {
     return (
@@ -133,11 +146,6 @@ function Product(props) {
   ))
 
   // about comments
-
-  const averagedRate = (
-    product.comments.reduce((a, b) => a + b.rate, 0) / product.comments.length
-  ).toFixed(1)
-
   const dataArray = [
     product.comments.filter((comment) => comment.rate === 5).length,
     product.comments.filter((comment) => comment.rate === 4).length,
@@ -218,7 +226,12 @@ function Product(props) {
                   e.preventDefault()
                   const comment = document.getElementById('commentInput').value
                   async function Update() {
-                    UpdateComment(product.productID, memberID, rate, comment)
+                    await UpdateComment(
+                      product.productID,
+                      memberID,
+                      rate,
+                      comment
+                    )
                     await getProduct(id, memberID)
                     handleEditAlertClick()
                   }
@@ -227,15 +240,7 @@ function Product(props) {
               >
                 edit
               </button>
-              <Snackbar
-                open={editAlertOpen}
-                autoHideDuration={6000}
-                onClose={handleEditAlertClose}
-              >
-                <Alert onClose={handleEditAlertClose} severity="success">
-                  您已成功編輯
-                </Alert>
-              </Snackbar>
+
               <button
                 className="btn btn-danger m-1"
                 onClick={(e) => {
@@ -243,24 +248,15 @@ function Product(props) {
                   document.getElementById('commentInput').value = 0
                   setRate()
                   async function Remove() {
-                    RemoveComment(product.productID, memberID)
+                    await RemoveComment(product.productID, memberID)
                     await getProduct(id, memberID)
                     handleDeleteAlertClick()
                   }
                   Remove()
                 }}
               >
-                delete
+                刪除
               </button>
-              <Snackbar
-                open={deleteAlertOpen}
-                autoHideDuration={6000}
-                onClose={handleDeleteAlertClose}
-              >
-                <Alert onClose={handleDeleteAlertClose} severity="error">
-                  您已成功刪除
-                </Alert>
-              </Snackbar>
             </div>
           </CardSecondary>
         </div>
@@ -304,15 +300,6 @@ function Product(props) {
           >
             新增
           </button>
-          <Snackbar
-            open={addAlertOpen}
-            autoHideDuration={6000}
-            onClose={handleAddAlertClose}
-          >
-            <Alert onClose={handleAddAlertClose} severity="success">
-              您已成功新增
-            </Alert>
-          </Snackbar>
         </div>
       </CardSecondary>
     </div>
@@ -467,7 +454,7 @@ function Product(props) {
                 <p className="averagedRate">{averagedRate}</p>
 
                 <Rating
-                  defaultValue={Number(averagedRate)}
+                  value={averagedRate}
                   precision={0.1}
                   size="large"
                   readOnly
@@ -480,6 +467,35 @@ function Product(props) {
 
       {commentOfLoggedID}
       {otherComments}
+
+      {/* alert snackbar */}
+      <Snackbar
+        open={editAlertOpen}
+        autoHideDuration={6000}
+        onClose={handleEditAlertClose}
+      >
+        <Alert onClose={handleEditAlertClose} severity="success">
+          您已成功編輯
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={addAlertOpen}
+        autoHideDuration={6000}
+        onClose={handleAddAlertClose}
+      >
+        <Alert onClose={handleAddAlertClose} severity="success">
+          您已成功新增
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={deleteAlertOpen}
+        autoHideDuration={6000}
+        onClose={handleDeleteAlertClose}
+      >
+        <Alert onClose={handleDeleteAlertClose} severity="error">
+          您已成功刪除
+        </Alert>
+      </Snackbar>
     </>
   )
 }
