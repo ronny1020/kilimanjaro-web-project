@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Row } from 'react-bootstrap'
 
 import LobbyTitle from '../components/member/LobbyTitle'
