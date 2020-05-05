@@ -30,10 +30,10 @@ function Home() {
 
   console.log(i)
   var a = String(i)
+
   return (
     <>
       <HomeCarousel />
-
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">
@@ -58,6 +58,7 @@ function Home() {
                     歡迎光臨 <br /> 吉利馬札羅
                   </strong>
                 </h1>
+
                 <p className="m-b-40">
                   這裡是咖啡愛好者的販賣與購買平台，希望您能有好的用戶體驗{' '}
                   <br />

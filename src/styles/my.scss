@@ -483,3 +483,28 @@ a.tab-label.active-btn {
     width: 100%;
   }
 }
+
+.intro .intro-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.intro .intro-subtitle {
+  font-size: 2.5rem;
+}
+
+
+.intro .text-slider-items {
+  display: none;
+}
+
+.intro .overlay-itro {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .9;
+}
