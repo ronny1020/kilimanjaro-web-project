@@ -10,6 +10,7 @@ import ProductListItem from '../components/ProductList/productListItem'
 
 // import disc1 from '../img/disc/coffee2.jpg'
 import '../styles/my.scss'
+import '../styles/animate.scss'
 
 function Home() {
   const [i, seti] = useState(1)
