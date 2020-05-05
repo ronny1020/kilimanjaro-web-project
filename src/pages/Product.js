@@ -30,6 +30,12 @@ import CardSecondary from '../components/CardSecondary'
 
 import Rating from '@material-ui/lab/Rating'
 import Chip from '@material-ui/core/Chip'
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
+
+function Alert(props) {
+  return <MuiAlert elevation={60} variant="outlined" {...props} />
+}
 
 function Product(props) {
   let { id } = useParams()
@@ -48,9 +54,44 @@ function Product(props) {
     removeProductFromFavourite,
   } = props
 
-  const [rate, setRate] = React.useState(5)
+  const [rate, setRate] = React.useState()
 
   const memberID = getMemberID()
+
+  // Control Alert
+  const [editAlertOpen, setEditAlertOpen] = React.useState(false)
+  const handleEditAlertClick = () => {
+    setEditAlertOpen(true)
+  }
+  const handleEditAlertClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setEditAlertOpen(false)
+  }
+
+  const [deleteAlertOpen, setDeleteAlertOpen] = React.useState(false)
+  const handleDeleteAlertClick = () => {
+    setDeleteAlertOpen(true)
+  }
+  const handleDeleteAlertClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setDeleteAlertOpen(false)
+  }
+
+  const [addAlertOpen, setAddAlertOpen] = React.useState(false)
+  const handleAddAlertClick = () => {
+    setAddAlertOpen(true)
+  }
+
+  const handleAddAlertClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setAddAlertOpen(false)
+  }
 
   useEffect(() => {
     async function start() {
@@ -143,6 +184,8 @@ function Product(props) {
     if (comment.customerID === memberID) checkCommented = true
   })
 
+  // comment of logged ID rate & comments function
+
   const commentOfLoggedID = checkCommented ? (
     product.comments.map((comment, i) => {
       return comment.customerID === memberID ? (
@@ -177,27 +220,47 @@ function Product(props) {
                   async function Update() {
                     UpdateComment(product.productID, memberID, rate, comment)
                     await getProduct(id, memberID)
+                    handleEditAlertClick()
                   }
                   Update()
                 }}
               >
                 edit
               </button>
+              <Snackbar
+                open={editAlertOpen}
+                autoHideDuration={6000}
+                onClose={handleEditAlertClose}
+              >
+                <Alert onClose={handleEditAlertClose} severity="success">
+                  您已成功編輯
+                </Alert>
+              </Snackbar>
               <button
                 className="btn btn-danger m-1"
                 onClick={(e) => {
                   e.preventDefault()
                   document.getElementById('commentInput').value = 0
-                  setRate(5)
+                  setRate()
                   async function Remove() {
                     RemoveComment(product.productID, memberID)
                     await getProduct(id, memberID)
+                    handleDeleteAlertClick()
                   }
                   Remove()
                 }}
               >
                 delete
               </button>
+              <Snackbar
+                open={deleteAlertOpen}
+                autoHideDuration={6000}
+                onClose={handleDeleteAlertClose}
+              >
+                <Alert onClose={handleDeleteAlertClose} severity="error">
+                  您已成功刪除
+                </Alert>
+              </Snackbar>
             </div>
           </CardSecondary>
         </div>
@@ -234,12 +297,22 @@ function Product(props) {
               async function add() {
                 AddComment(product.productID, memberID, rate, comment)
                 await getProduct(id, memberID)
+                handleAddAlertClick()
               }
-              add()
+              if (rate && comment) add()
             }}
           >
             新增
           </button>
+          <Snackbar
+            open={addAlertOpen}
+            autoHideDuration={6000}
+            onClose={handleAddAlertClose}
+          >
+            <Alert onClose={handleAddAlertClose} severity="success">
+              您已成功新增
+            </Alert>
+          </Snackbar>
         </div>
       </CardSecondary>
     </div>
@@ -250,7 +323,11 @@ function Product(props) {
       <div key={i}>
         <CardSecondary>
           <p>ID:{comment.customerID}</p>
-          <Rating defaultValue={comment.rate} size="small" readOnly />
+          {comment.rate ? (
+            <Rating defaultValue={comment.rate} size="small" readOnly />
+          ) : (
+            <></>
+          )}
           <p>comment:{comment.commentText}</p>
         </CardSecondary>
       </div>
