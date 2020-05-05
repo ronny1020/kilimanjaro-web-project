@@ -56,7 +56,7 @@ function OnSale() {
               </div>
 
               <div className="col-4" align="center">
-                <nav className="navbar sidebar">
+                {/* <nav className="navbar sidebar">
                   <ul className="navbar-nav">
                     <li>
                       <div className=" bg-primary banner">
@@ -64,12 +64,15 @@ function OnSale() {
                       </div>
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
+
+                {/* <li>
+                  <Link to="/product/123">小農咖啡園1</Link>
+                </li>
 
                 <li>
                   <Link to="/product/123">小農咖啡園1</Link>
                 </li>
-
                 <li>
                   <Link to="/product/123">小農咖啡園1</Link>
                 </li>
@@ -78,10 +81,7 @@ function OnSale() {
                 </li>
                 <li>
                   <Link to="/product/123">小農咖啡園1</Link>
-                </li>
-                <li>
-                  <Link to="/product/123">小農咖啡園1</Link>
-                </li>
+                </li> */}
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
