@@ -8,7 +8,8 @@ exports.create = (req, res) => {
   const newCoupon = {
     couponID: req.body.couponID,
     customerID: req.body.customerID,
-    valid: req.body.valid,
+    //vaild default 1 (true)
+    // valid: req.body.valid,
   }
 
   // Save Member in the database

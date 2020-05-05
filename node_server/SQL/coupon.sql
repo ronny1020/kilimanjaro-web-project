@@ -21,7 +21,7 @@ CREATE TABLE coffee.couponMap (
   couponMapId  int AUTO_INCREMENT PRIMARY KEY,-- Primary key:編號
   couponID int ,-- 庫碰編號
   customerID varchar(5) NOT NULL,-- 持有人
-  valid boolean,
+  valid boolean default 1,
   CONSTRAINT pair UNIQUE (couponID,customerID)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
