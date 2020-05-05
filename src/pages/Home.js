@@ -87,7 +87,7 @@ function Home() {
         </div> */}
         <div className="qt-background mt-3">
           <div className="text-white" align="center">
-            "最好的體驗，最棒的香味，完美的午後時光"
+            <h3>"最好的體驗，最棒的香味，完美的午後時光"</h3>
           </div>
         </div>
         <div className="menu-box ">
