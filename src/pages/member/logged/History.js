@@ -59,6 +59,10 @@ function History() {
           <div className="col-9">
             <Breadcrumb />
             {genList ? <HistoryList input={orderDetails} /> : null}
+            {Array.isArray(orderDetails.Orders) &&
+            orderDetails.Orders.length ? null : (
+              <p>沒有可顯示的交易紀錄。</p>
+            )}
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ import LobbyCard from '../../../components/member/LobbyCard'
 import Login from '../Login'
 import Home from '../../Home'
 import Product from '../../Product'
+import About from '../../About'
 import NotFoundPage from '../../NotFoundPage'
 
 import { CardGroup, Row, Col, Form } from 'react-bootstrap'
@@ -237,6 +238,9 @@ function Member(props) {
             </Route>
             <Router path="/cart">
               <Cart />
+            </Router>
+            <Router path="/about">
+              <About />
             </Router>
 
             {/* 原有的路由(想合併) */}
