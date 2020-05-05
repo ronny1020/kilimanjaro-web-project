@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
+import Modal from 'react-bootstrap/Modal'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
@@ -27,6 +28,11 @@ function Sellers() {
   const [UnitPrice2, setUnitPrice2] = useState('')
   const [UnitPrice3, setUnitPrice3] = useState('')
   const [i, seti] = useState(0)
+
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
   // const [total, setTotal] = useState([])
 
   // async function getTotalFromServer() {
@@ -289,9 +295,26 @@ function Sellers() {
                   </ProductListItem>
                 </div> */}
                 <div className=" card-deck">
-                  <ProductListItem>
+                  <ProductListItem onClick={handleShow}>
                     <p>電 話: </p>
                     <p>{sPhone}</p>
+                    <button
+                      type="button"
+                      className="btn btn-danger text-white"
+                      onClick={handleShow}
+                    >
+                      想看更多
+                    </button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        Woohoo, you're reading this text in a modal!
+                      </Modal.Body>
+                      <Modal.Footer></Modal.Footer>
+                    </Modal>
                   </ProductListItem>
                   <ProductListItem>
                     <p>信 箱:</p>
