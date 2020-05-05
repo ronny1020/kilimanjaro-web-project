@@ -4,14 +4,13 @@ import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
-// import Filter from '../components/seller/Filter'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
 
 // import disc1 from '../img/disc/coffee2.jpg'
 import '../styles/my.scss'
-import '../components/seller/Filter'
+import '../styles/animate.scss'
 
 function Home() {
   const [i, seti] = useState(1)
@@ -32,10 +31,10 @@ function Home() {
 
   console.log(i)
   var a = String(i)
+
   return (
     <>
       <HomeCarousel />
-
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">
@@ -60,6 +59,7 @@ function Home() {
                     歡迎光臨 <br /> 吉利馬札羅
                   </strong>
                 </h1>
+
                 <p className="m-b-40">
                   這裡是咖啡愛好者的販賣與購買平台，希望您能有好的用戶體驗{' '}
                   <br />
@@ -88,7 +88,7 @@ function Home() {
         </div> */}
         <div className="qt-background mt-3">
           <div className="text-white" align="center">
-            "最好的體驗，最棒的香味，完美的午後時光"
+            <h3>"最好的體驗，最棒的香味，完美的午後時光"</h3>
           </div>
         </div>
         <div className="menu-box ">

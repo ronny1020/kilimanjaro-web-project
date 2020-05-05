@@ -1,13 +1,13 @@
 import React from 'react'
-import { ListGroup, Button, Row, Col } from 'react-bootstrap'
+import { ListGroup, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function HistoryList(props) {
-  //未寄送之訂單: shipdate = null && vaild = 1
+function HistorySList(props) {
+  //已寄送之訂單: shipdate != null && vaild = 1
   //   console.log(props.input)
   const historyArray = props.input
   const listItems = historyArray.Orders.map((item) =>
-    item.ShippedDate === null && item.valid === 1 ? (
+    item.ShippedDate !== null && item.valid === 1 ? (
       <ListGroup.Item action key={item.OrderID.toString()}>
         <Link to="#" onClick={showDetails} id={item.OrderID.toString()}>
           訂單編號：{item.OrderID.toString()}
@@ -16,14 +16,6 @@ function HistoryList(props) {
           <br />
           下單日期：{item.OrderDate}
         </Link>
-        <Button
-          id={'cancel' + item.OrderID.toString()}
-          style={{ float: 'right' }}
-          variant="danger"
-          onClick={handleCancel}
-        >
-          取消訂單
-        </Button>
 
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
@@ -52,27 +44,6 @@ function HistoryList(props) {
     ) : null
   )
 
-  //取消訂單
-  function handleCancel(props) {
-    let target_id = props.target.id.replace('cancel', '')
-    const url_put = 'http://localhost:6001/ordersapi/'
-    let cancelJson = { orderID: target_id }
-    // console.log(target_id)
-    fetch(url_put, {
-      method: 'PUT',
-      body: JSON.stringify(cancelJson),
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error('Error:', error))
-      .then((response) => {
-        alert('已取消訂單!')
-        console.log('Success:', response)
-      })
-  }
-
   //點擊顯示訂單詳細內容
   function showDetails(props) {
     // console.log(props.target.id)
@@ -91,4 +62,4 @@ function HistoryList(props) {
   )
 }
 
-export default HistoryList
+export default HistorySList
