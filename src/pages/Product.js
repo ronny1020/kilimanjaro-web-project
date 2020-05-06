@@ -88,6 +88,15 @@ function Product(props) {
     setAddAlertOpen(false)
   }
 
+  // error
+  const [errorAlertOpen, setErrorAlertOpen] = React.useState(false)
+  const handleErrorAlertClick = () => {
+    setErrorAlertOpen(true)
+  }
+  const handleErrorAlertClose = (event, reason) => {
+    setErrorAlertOpen(false)
+  }
+
   useEffect(() => {
     async function start() {
       await recordVisit(id, memberID)
@@ -208,7 +217,7 @@ function Product(props) {
               <Rating
                 name="simple-controlled"
                 id="rateInput"
-                defaultValue={rate ? rate : 0}
+                value={rate ? rate : 0}
                 onChange={(event, newValue) => {
                   setRate(newValue)
                 }}
@@ -274,7 +283,7 @@ function Product(props) {
           <Rating
             name="simple-controlled"
             id="rateInput"
-            defaultValue={rate ? rate : 0}
+            value={rate ? rate : 0}
             onChange={(event, newValue) => {
               setRate(newValue)
             }}
@@ -298,7 +307,11 @@ function Product(props) {
                 await getProduct(id, memberID)
                 handleAddAlertClick()
               }
-              if (rate && comment) add()
+              if (rate && comment) {
+                add()
+              } else {
+                handleErrorAlertClick()
+              }
             }}
           >
             新增
@@ -488,6 +501,15 @@ function Product(props) {
       >
         <Alert onClose={handleAddAlertClose} severity="success">
           您已成功新增
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={errorAlertOpen}
+        autoHideDuration={6000}
+        onClose={handleErrorAlertClose}
+      >
+        <Alert onClose={handleErrorAlertClose} severity="error">
+          您尚未評分或留言
         </Alert>
       </Snackbar>
       <Snackbar

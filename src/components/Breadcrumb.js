@@ -11,7 +11,7 @@ function Breadcrumb(props) {
   let pathname_Array = pathname.split('/')
   // pathname_Array.shift()
 
-  console.log(pathname_Array)
+  // console.log(pathname_Array)
   // i=1: 忽略陣列第一格(首頁)
   for (let i = 1; i < pathname_Array.length; i++) {
     switch (pathname_Array[i]) {
