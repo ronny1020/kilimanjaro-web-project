@@ -17,7 +17,7 @@ import {
 import Pagination from 'react-bootstrap/Pagination'
 import CardSecondary from '../components/CardSecondary'
 
-import Grow from '@material-ui/core/Grow'
+import Zoom from '@material-ui/core/Zoom'
 
 function ProductList(props) {
   const [page, setPage] = React.useState(1)
@@ -25,7 +25,7 @@ function ProductList(props) {
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
   const [query, setQuery] = React.useState('')
-  const [showGrow, setShowGrow] = React.useState(false)
+  const [showZoom, setShowZoom] = React.useState(false)
 
   const {
     products,
@@ -94,8 +94,8 @@ function ProductList(props) {
 
   useEffect(() => {
     if (products) {
-      setShowGrow(false)
-      setShowGrow(true)
+      setShowZoom(false)
+      setShowZoom(true)
     }
   }, [products, query])
 
@@ -112,10 +112,13 @@ function ProductList(props) {
   const productList = products.map((product, i) => {
     return (
       <div key={i}>
-        <Grow
-          in={showGrow}
-          style={{ transformOrigin: '0 0 0' }}
-          {...(showGrow ? { timeout: 1000 * i } : {})}
+        <Zoom
+          in={showZoom}
+          style={{
+            transformOrigin: '0 0 0',
+            transitionDelay: showZoom ? 300 * i + 'ms' : '0ms',
+          }}
+          {...(showZoom ? { timeout: 1000 } : {})}
         >
           <div>
             <Link
@@ -205,7 +208,7 @@ function ProductList(props) {
               </ProductListItem>
             </Link>
           </div>
-        </Grow>
+        </Zoom>
       </div>
     )
   })
