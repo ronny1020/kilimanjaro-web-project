@@ -11,7 +11,7 @@ CREATE TABLE `customers` (
   `cBirthDate` date default NULL, -- 買家生日
   `cAddress` varchar(60) default NULL, -- 買家地址
   `cMobile` varchar(24) default NULL, -- 買家手機
-  `rewardsPoints` int, -- 使用的紅利點數
+  `rewardsPoints` int DEFAULT 0, -- 使用的紅利點數
   PRIMARY KEY  (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- 預設儲存引擎: InnoDB(after php5.5)

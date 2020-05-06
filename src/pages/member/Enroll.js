@@ -132,6 +132,7 @@ function Enroll(props) {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
+        <div style={{ height: '8vh' }}></div>
         <h1>註冊會員</h1>
         <Breadcrumb />
         {doneEnroll ? (

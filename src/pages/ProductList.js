@@ -17,12 +17,15 @@ import {
 import Pagination from 'react-bootstrap/Pagination'
 import CardSecondary from '../components/CardSecondary'
 
+import Zoom from '@material-ui/core/Zoom'
+
 function ProductList(props) {
   const [page, setPage] = React.useState(1)
   const [pageListSelect, setPageListSelect] = React.useState([1])
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
   const [query, setQuery] = React.useState('')
+  const [showZoom, setShowZoom] = React.useState(false)
 
   const {
     products,
@@ -76,7 +79,11 @@ function ProductList(props) {
 
       setPageListSelect(pageList)
 
-      setRowStart((range.page - 1) * range.perPage + 1)
+      setRowStart(
+        (range.page - 1) * range.perPage + 1 < range.totalRows
+          ? (range.page - 1) * range.perPage + 1
+          : range.totalRows
+      )
       setRowEnd(
         range.page * range.perPage < range.totalRows
           ? range.page * range.perPage
@@ -84,6 +91,13 @@ function ProductList(props) {
       )
     }
   }, [range])
+
+  useEffect(() => {
+    if (products) {
+      setShowZoom(false)
+      setShowZoom(true)
+    }
+  }, [products, query])
 
   if (products === undefined) {
     return (
@@ -95,87 +109,109 @@ function ProductList(props) {
     )
   }
 
-  const productList = products.map((product, i) => (
-    <div key={i}>
-      <Link to={'../product/' + product.productID} className="linkNoUnderline">
-        <ProductListItem>
-          <h3>{product.ProductName}</h3>
-          <p>price:{product.UnitPrice}</p>
-          {product.discount !== null ? (
-            <p>special price:{product.UnitPrice - product.discount}</p>
-          ) : (
-            <p></p>
-          )}
-          <div className="form-inline">
-            {/* favourite button */}
+  const productList = products.map((product, i) => {
+    return (
+      <div key={i}>
+        <Zoom
+          in={showZoom}
+          style={{
+            transformOrigin: '0 0 0',
+            transitionDelay: showZoom ? 300 * i + 'ms' : '0ms',
+          }}
+          {...(showZoom ? { timeout: 1000 } : {})}
+        >
+          <div>
+            <Link
+              to={'../product/' + product.productID}
+              className="linkNoUnderline"
+            >
+              <ProductListItem>
+                <h3>{product.ProductName}</h3>
+                <p>price:{product.UnitPrice}</p>
+                {product.discount !== null ? (
+                  <p>special price:{product.UnitPrice - product.discount}</p>
+                ) : (
+                  <p></p>
+                )}
+                <div className="form-inline">
+                  {/* favourite button */}
 
-            {product.favouriteID === null ? (
-              <button
-                className="btn btn-primary m-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  async function add() {
-                    await AddProductToFavourite(product.productID, memberID)
-                    await getProductList(page, memberID)
-                  }
-                  add()
-                }}
-              >
-                add to favourite
-              </button>
-            ) : (
-              <button
-                className="btn btn-danger  m-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  async function remove() {
-                    await removeProductFromFavourite(
-                      product.productID,
-                      memberID
-                    )
-                    await getProductList(page, memberID)
-                  }
-                  remove()
-                }}
-              >
-                remove from favourite
-              </button>
-            )}
-            {/* cart button */}
-            {product.num == null ? (
-              <button
-                className="btn btn-primary  m-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  async function add() {
-                    await AddProductToCart(product.productID, memberID)
-                    await getProductList(page, memberID)
-                  }
-                  add()
-                }}
-              >
-                add to cart
-              </button>
-            ) : (
-              <button
-                className="btn btn-danger  m-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  async function remove() {
-                    await removeProductFromCart(product.productID, memberID)
-                    await getProductList(page, memberID)
-                  }
-                  remove()
-                }}
-              >
-                remove({product.num}) from cart
-              </button>
-            )}
+                  {product.favouriteID === null ? (
+                    <button
+                      className="btn btn-primary m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function add() {
+                          await AddProductToFavourite(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        add()
+                      }}
+                    >
+                      add to favourite
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-danger  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromFavourite(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        remove()
+                      }}
+                    >
+                      remove from favourite
+                    </button>
+                  )}
+                  {/* cart button */}
+                  {product.num == null ? (
+                    <button
+                      className="btn btn-primary  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function add() {
+                          await AddProductToCart(product.productID, memberID)
+                          await getProductList(page, memberID)
+                        }
+                        add()
+                      }}
+                    >
+                      add to cart
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-danger  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromCart(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        remove()
+                      }}
+                    >
+                      remove({product.num}) from cart
+                    </button>
+                  )}
+                </div>
+              </ProductListItem>
+            </Link>
           </div>
-        </ProductListItem>
-      </Link>
-    </div>
-  ))
+        </Zoom>
+      </div>
+    )
+  })
 
   // page selection
 
@@ -195,6 +231,7 @@ function ProductList(props) {
             key={i}
             onClick={() => {
               setPage(page)
+              document.documentElement.scrollTop = 0
             }}
           >
             {page}
@@ -239,11 +276,13 @@ function ProductList(props) {
           <Pagination.First
             onClick={() => {
               setPage(1)
+              document.documentElement.scrollTop = 0
             }}
           />
           <Pagination.Prev
             onClick={() => {
               setPage(range.page > 1 ? range.page - 1 : 1)
+              document.documentElement.scrollTop = 0
             }}
           />
           {PageIndex}
@@ -254,11 +293,13 @@ function ProductList(props) {
                   ? range.page + 1
                   : range.totalPages
               )
+              document.documentElement.scrollTop = 0
             }}
           />
           <Pagination.Last
             onClick={() => {
               setPage(range.totalPages)
+              document.documentElement.scrollTop = 0
             }}
           />
         </Pagination>
