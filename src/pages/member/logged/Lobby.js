@@ -5,7 +5,13 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
-import Breadcrumb from '../../../components/Breadcrumb'
+import Modal from '@material-ui/core/Modal'
+import Backdrop from '@material-ui/core/Backdrop'
+import Fade from '@material-ui/core/Fade'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
 
 import Edit from './Edit'
 import Favorite from './Favorite'
@@ -13,6 +19,7 @@ import Coupon from './Coupon'
 import History from './History'
 import Cart from '../../Cart'
 
+import Breadcrumb from '../../../components/Breadcrumb'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 import LobbyCard from '../../../components/member/LobbyCard'
 import Login from '../Login'
@@ -26,8 +33,46 @@ import Image from 'react-bootstrap/Image'
 import { FaEdit } from 'react-icons/fa'
 
 import LoginValidate from '../../../components/LoginValidate'
-
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}))
 function Member(props) {
+  //ReactCrop: 參數
+  const [imageRef, setImageRef] = useState(null) //原始圖檔<img>
+  const [croppedImageUrl, setCroppedImageUrl] = useState(null) //blobURL
+  const [src, setSrc] = useState(null) //原始圖檔(base64)
+  const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 })
+
+  const [open, setOpen] = useState(false)
+  //modal: 開啟&關閉
+  const handleOpen = (event) => {
+    const reader = new FileReader()
+    reader.addEventListener('load', () => setSrc(reader.result))
+    reader.readAsDataURL(event.target.files[0])
+
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+    // setImageRef(null)
+    // setCroppedImageUrl(null)
+    //清空input欄位
+    document.getElementById('upload_img').value = ''
+  }
+
+  const classes = useStyles()
+  //避免重複載入初始頭像
+  const [loadImg, setLoadImg] = useState(true)
   const [name, setName] = useState('')
   const [point, setPoint] = useState('')
   const [uploadImg, setUploadImg] = useState('')
@@ -57,7 +102,7 @@ function Member(props) {
       // console.log(userdata.cName)
     })
 
-  //處理圖檔:
+  //處理base64圖檔:
   function arrayBufferToBase64(buffer) {
     var binary = ''
     var bytes = [].slice.call(new Uint8Array(buffer))
@@ -66,8 +111,11 @@ function Member(props) {
 
     return window.btoa(binary)
   }
-  //獲得頭像:
-  doGetImg()
+  //下載頭像:
+  if (loadImg === true) {
+    doGetImg()
+  }
+
   function doGetImg() {
     fetch('http://localhost:6001/api/image/' + memberID, {
       method: 'GET',
@@ -85,20 +133,23 @@ function Member(props) {
 
   //預設頭像:
   function addDefaultSRC(event) {
+    setLoadImg(false)
     event.target.src = '../../images/interface.svg'
   }
 
-  //上傳頭像: 按鈕
+  //打開資料夾: 模擬點擊
   function handleClick() {
     // alert('處理上傳')
     document.getElementById('upload_img').click()
   }
-  //上傳頭像: 讀取檔案
-  //檢查副檔名 (未完成)
-  function handleUpload(event) {
-    var formData = new FormData()
-    formData.append('avatar', event.target.files[0])
 
+  //上傳頭像: 讀取檔案
+  async function handleUpload(event) {
+    // console.log(croppedImageUrl)
+    // 再從url變回file!
+    let postBlob = await fetch(croppedImageUrl).then((r) => r.blob())
+    var formData = new FormData()
+    formData.append('avatar', postBlob)
     fetch('http://localhost:6001/api/image/' + memberID, {
       method: 'POST',
       body: formData,
@@ -107,9 +158,76 @@ function Member(props) {
       .catch((error) => console.error('Error:', error))
       .then((response) => {
         doGetImg()
+        handleClose()
         console.log('Success:', response)
       })
   }
+
+  //處理圖片裁切：
+  function onImageLoaded(image) {
+    //base64
+    // console.log(image)
+    setImageRef(image)
+  }
+  //抓取範圍變更時讀crop值:
+  function onCropChange(crop) {
+    setCrop(crop)
+  }
+  //抓完後表現crop值:
+  function onCropComplete(crop) {
+    // console.log(crop)
+    makeClientCrop(crop)
+  }
+
+  //預覽顯示:
+  async function makeClientCrop(crop) {
+    if (imageRef && crop.width && crop.height) {
+      const croppedResult = await getCroppedImg(
+        imageRef,
+        crop,
+        memberID + '.jpeg'
+      )
+      //已確定圖片裁剪成功: [object Blob]進去src
+      setCroppedImageUrl(croppedResult)
+      console.log(croppedImageUrl)
+    }
+  }
+
+  //顯示裁剪後結果於螢幕
+  function getCroppedImg(image, crop, fileName) {
+    // console.log(image, crop, fileName)
+    const canvas = document.createElement('canvas')
+    const scaleX = image.naturalWidth / image.width
+    const scaleY = image.naturalHeight / image.height
+    canvas.width = crop.width
+    canvas.height = crop.height
+    const ctx = canvas.getContext('2d')
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    )
+
+    // As Base64 string
+    // const base64Image = canvas.toDataURL('image/jpeg');
+
+    // As a blob
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        blob.name = fileName
+        //file轉成URL以顯示
+        resolve(window.URL.createObjectURL(blob))
+      }, 'image/jpeg')
+    })
+  }
+
   return (
     <>
       <Router>
@@ -164,8 +282,10 @@ function Member(props) {
                               id="upload_img"
                               type="file"
                               name="avatar"
+                              // 預設只接受圖檔
+                              accept="image/*"
                               hidden
-                              onChange={handleUpload}
+                              onChange={handleOpen}
                             />
                             <div className="container profileDiv">
                               <Image
@@ -236,6 +356,58 @@ function Member(props) {
                 </div>
                 <br />
               </div>
+              {/* 裁剪大頭貼之modal😜 */}
+
+              <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Fade in={open}>
+                  <div className={classes.paper}>
+                    <h2 id="transition-modal-title">編輯頭像</h2>
+                    <Row>
+                      <Col>
+                        {src === null ? null : (
+                          <ReactCrop
+                            src={src}
+                            crop={crop}
+                            ruleOfThirds
+                            onImageLoaded={onImageLoaded}
+                            onComplete={onCropComplete}
+                            onChange={onCropChange}
+                          />
+                        )}
+                      </Col>
+                      <Col>
+                        {croppedImageUrl === null ? null : (
+                          <img
+                            alt="Crop"
+                            style={{ maxWidth: '100%' }}
+                            src={croppedImageUrl}
+                          />
+                        )}
+                      </Col>
+                    </Row>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleUpload}
+                    >
+                      送出頭像
+                    </Button>
+                  </div>
+                </Fade>
+              </Modal>
+
+              {/* 裁剪大頭貼之modal😜 */}
             </Route>
 
             <Route path="/lobby/edit">
