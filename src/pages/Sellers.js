@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal'
+import { Button } from 'react-bootstrap'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import ProductListItem from '../components/ProductList/productListItem'
 import LobbyTitle from '../components/member/LobbyTitle'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import JqueryComClass from '../components/seller/JqueryComClass'
+
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
@@ -35,12 +38,12 @@ function Sellers() {
   const [i, seti] = useState(0)
 
   const [show, setShow] = useState(false)
-  const [show2, setShow2] = useState(false)
+  // const [show2, setShow2] = useState(false)
 
   const handleClose = () => setShow(false)
-  const handleClose2 = () => setShow2(false)
+  // const handleClose2 = () => setShow2(false)
   const handleShow = () => setShow(true)
-  const handleShow2 = () => setShow2(true)
+  // const handleShow2 = () => setShow2(true)
   // const [total, setTotal] = useState([])
 
   // async function getTotalFromServer() {
@@ -118,11 +121,7 @@ function Sellers() {
 
   return (
     <>
-      {/* <div className="qt-background mt-3">
-        <div className="text-white" align="center">
-          "最好的體驗，最棒的香味，完美的午後時光"
-        </div>
-      </div> */}
+      <JqueryComClass />
       {/* <div className="all-page-title page-breadcrumb">
         <div className="container text-center">
           <div className="row">
@@ -185,95 +184,141 @@ function Sellers() {
                           <Carousel.Caption>{/* text */}</Carousel.Caption>
                         </Carousel.Item>{' '}
                       </Carousel>
-                      <div className="qt-background mt-3">
-                        <div className="text-white " align="center">
-                          <h3>"賣家簡介，聯絡方式與基本資訊"</h3>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="col-lg-12">
+                        <div className="heading-title text-center container bg-white pt-3 m-6 ">
+                          <h2>賣家資訊</h2>
+                          <p>
+                            根據您的需求，能在此了解關於賣家的相關資訊，如基本資料與聯絡方式
+                          </p>
+                          <ButtonGroup aria-label="Basic example">
+                            {/* <Button variant="secondary" href="#">
+                      全部消息
+                    </Button> */}
+                            <Button id="photo" variant="secondary" href="#">
+                              關於特色商品
+                            </Button>
+                            <Button id="shop2" variant="secondary" href="#">
+                              關於聯絡方式與基本資訊
+                            </Button>
+
+                            <Button id="giri2" variant="secondary" href="#">
+                              關於店家剪影
+                            </Button>
+
+                            <Button variant="secondary" id="nothank">
+                              謝了，我不想知道
+                            </Button>
+                          </ButtonGroup>
+
+                          <p className="text-white">123</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="row mt-3 ">
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
 
-                  <div className="col-6 ">
-                    {/* <img
-                      className="d-block h-40 w-100 "
-                      src={img004}
-                      alt="slide 004"
-                    /> */}
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                      <img
-                        className="d-block h-100 w-100  "
-                        src={require('../img/disc/seller_1' + a + '1.jpg')}
-                        alt="slide 004"
-                      />
-                      <div class="team-hover">
-                        <div class="team-item text-white">
-                          <h4>最棒的咖啡</h4>
+                <div className="row mt-3 " id="nothank3">
+                  <div className="col-12 " align="center">
+                    <div className="container bg-white pt-3 m-6 ">
+                      <div className="qt-background mt-3" id="giri2">
+                        <div className="text-white " align="center">
+                          <h3>"店家剪影"</h3>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="col-6">
-                    {/* <img
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="col-12 container bg-white pt-3 m-6 ">
+                    <div className="row">
+                      <div className="col-6 ">
+                        {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     /> */}
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                      <img
-                        className="d-block h-100 w-100 "
-                        src={require('../img/disc/seller_1' + a + '2.jpg')}
-                        alt="slide 004"
-                      />
-                      <div class="team-hover">
-                        <div class="team-item text-white">
-                          <h4>最佳的氣氛</h4>
+                        <div
+                          class="team-thumb wow fadeInUp"
+                          data-wow-delay="0.2s"
+                          id="shop2"
+                        >
+                          <img
+                            className="d-block h-100 w-100  "
+                            src={require('../img/disc/seller_1' + a + '1.jpg')}
+                            alt="slide 004"
+                          />
+                          <div class="team-hover">
+                            <div class="team-item text-white">
+                              <h4>最棒的咖啡</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
+                        <div
+                          class="team-thumb wow fadeInUp"
+                          data-wow-delay="0.2s"
+                        >
+                          <img
+                            className="d-block h-100 w-100 "
+                            src={require('../img/disc/seller_1' + a + '2.jpg')}
+                            alt="slide 004"
+                          />
+                          <div class="team-hover">
+                            <div class="team-item text-white">
+                              <h4>最佳的氣氛</h4>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -302,41 +347,77 @@ function Sellers() {
                     <p>{sAddress}</p>
                   </ProductListItem>
                 </div> */}
-                <div className=" card-deck">
-                  <ProductListItem>
-                    <p />
-                    <h3 onClick={handleShow}>聯 絡 資 料 </h3>
-                    <Accordion>
-                      <Card>
-                        <Card.Header>
-                          <Accordion.Toggle
-                            as={Button}
-                            variant="link"
-                            eventKey="0"
-                          >
-                            Click me!
-                          </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                          <Card.Body>Hello! I'm the body</Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                      <Card>
-                        <Card.Header>
-                          <Accordion.Toggle
-                            as={Button}
-                            variant="link"
-                            eventKey="1"
-                          >
-                            Click me!
-                          </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="1">
-                          <Card.Body>Hello! I'm another body</Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                    </Accordion>
-                    {/* <button
+                <div className="row mt-3 " id="nothank4">
+                  <div className="col-12 " align="center">
+                    <div className="container bg-white pt-3 m-6 ">
+                      <div className=" card-deck">
+                        <ProductListItem>
+                          <p />
+
+                          <div className="qt-background mt-3" id="giri2">
+                            <div className="text-white " align="center">
+                              <h3 onClick={handleShow}>"聯絡方式與基本資訊"</h3>
+                            </div>
+                          </div>
+                          <Accordion className="mt-3">
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="0"
+                                >
+                                  電 話
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="0">
+                                <Card.Body>{sPhone}</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="1"
+                                >
+                                  信 箱
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="1">
+                                <Card.Body>{sMail}</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="2"
+                                >
+                                  國 家
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="2">
+                                <Card.Body>{sCountry}</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="3"
+                                >
+                                  地 址
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="3">
+                                <Card.Body>{sAddress}</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                          </Accordion>
+                          {/* <button
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={handleShow}
@@ -344,69 +425,69 @@ function Sellers() {
                       想看更多
                     </button> */}
 
-                    <Modal show={show} onHide={handleClose}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>{sName}</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <p>電 話:{sPhone}</p>
-                        <p>信 箱:{sMail}</p>
-                      </Modal.Body>
-                      <Modal.Footer></Modal.Footer>
-                    </Modal>
-                  </ProductListItem>
-                  <ProductListItem>
-                    <p />
-                    <h3 onClick={handleShow2}>基 本 資 料 </h3>
-                    <Accordion>
-                      <Card>
-                        <Card.Header>
-                          <Accordion.Toggle
-                            as={Button}
-                            variant="link"
-                            eventKey="0"
-                          >
-                            Click me!
-                          </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                          <Card.Body>Hello! I'm the body</Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                      <Card>
-                        <Card.Header>
-                          <Accordion.Toggle
-                            as={Button}
-                            variant="link"
-                            eventKey="1"
-                          >
-                            Click me!
-                          </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="1">
-                          <Card.Body>Hello! I'm another body</Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                    </Accordion>
-                    {/* <button
-                      type="button"
-                      className="btn btn-danger text-white"
-                      onClick={handleShow}
-                    >
-                      想看更多
-                    </button> */}
+                          <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>{sName}</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <p>電 話:{sPhone}</p>
+                              <p>信 箱:{sMail}</p>
+                              <p>國 家:{sCountry}</p>
+                              <p>地 址:{sAddress}</p>
+                            </Modal.Body>
+                            <Modal.Footer></Modal.Footer>
+                          </Modal>
+                        </ProductListItem>
+                      </div>
+                      {/* <div className=" card-deck">
+                        <ProductListItem>
+                          <p />
+                          <h3 onClick={handleShow2}>基 本 資 料 </h3>
+                          <Accordion>
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="0"
+                                >
+                                  Click me!
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="0">
+                                <Card.Body>Hello! I'm the body</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                            <Card>
+                              <Card.Header>
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  eventKey="1"
+                                >
+                                  Click me!
+                                </Accordion.Toggle>
+                              </Card.Header>
+                              <Accordion.Collapse eventKey="1">
+                                <Card.Body>Hello! I'm another body</Card.Body>
+                              </Accordion.Collapse>
+                            </Card>
+                          </Accordion>
 
-                    <Modal show={show2} onHide={handleClose2}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>{sName}</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <p>國 家:{sCountry}</p>
-                        <p>地 址:{sAddress}</p>
-                      </Modal.Body>
-                      <Modal.Footer></Modal.Footer>
-                    </Modal>
-                  </ProductListItem>
+                          <Modal show={show2} onHide={handleClose2}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>{sName}</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <p>國 家:{sCountry}</p>
+                              <p>地 址:{sAddress}</p>
+                            </Modal.Body>
+                            <Modal.Footer></Modal.Footer>
+                          </Modal>
+                        </ProductListItem>
+                      </div> */}
+                    </div>
+                  </div>
                 </div>
                 {/* <div className=" card-deck">
                   <ProductListItem>
@@ -489,102 +570,112 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
-                <div className="qt-background mt-3">
-                  <div className="text-white " align="center">
-                    <h3>"特色商品，了解商品相關資訊"</h3>
-                  </div>
-                </div>
-                {/* <div className="row mt-3">
+                <div className="row mt-3 " id="nothank5">
+                  <div className="col-12 " align="center">
+                    <div className="container bg-white pt-3 m-6 ">
+                      <div className="qt-background mt-3">
+                        <div className="text-white " align="center">
+                          <h3>"特色商品，了解商品相關資訊"</h3>
+                        </div>
+                      </div>
+                      {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>特色商品</h1>
                     </div>
                   </div>
                 </div> */}
-                <div className="row mt-3 ">
-                  <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div>
-                        <h4 align="center">{ProductName1}</h4>
-                      </div>
-                      <div className="why-text" align="center">
-                        <p>{ProductName1}</p>
-                        <h5> 售價:NT.{UnitPrice1}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div>
-                        <h4 align="center">{ProductName2}</h4>
-                      </div>
-                      <div className="why-text" align="center">
-                        <p>{ProductName2}</p>
-                        <h5> 售價:NT.{UnitPrice2}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div>
-                        <h4 align="center">{ProductName3}</h4>
-                      </div>
-                      <div className="why-text" align="center">
-                        <p>{ProductName3}</p>
-                        <h5> 售價:NT.{UnitPrice3}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <div className="col-4">
+                      <div className="row mt-3 ">
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={disc1}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">{ProductName1}</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>{ProductName1}</p>
+                              <h5> 售價:NT.{UnitPrice1}</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={disc1}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">{ProductName2}</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>{ProductName2}</p>
+                              <h5> 售價:NT.{UnitPrice2}</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={disc1}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">{ProductName3}</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>{ProductName3}</p>
+                              <h5> 售價:NT.{UnitPrice3}</h5>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <div className="col-4">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                  {/* <div className="col-4 ">
+                        {/* <div className="col-4 ">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                  {/* <div className="col-4">
+                        {/* <div className="col-4">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                </div>
-                <div className="row mt-3">
-                  <div className="col-12" align="center">
-                    <button type="button" className="btn btn-danger text-white">
-                      <Link className="text-white" to="/productList">
-                        想看更多
-                      </Link>
-                    </button>
+                      </div>
+                      <div className="row mt-3">
+                        <div className="col-12" align="center">
+                          <button
+                            type="button"
+                            className="btn btn-danger text-white"
+                          >
+                            <Link className="text-white" to="/productList">
+                              想看更多
+                            </Link>
+                          </button>
+                        </div>
+                        <p className="text-white">123</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

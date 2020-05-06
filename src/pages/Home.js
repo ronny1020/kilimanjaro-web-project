@@ -4,6 +4,7 @@ import HomeCarousel from '../components/Home/HomeCarousel'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
+import JqueryComClass from '../components/seller/JqueryComClass'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -34,6 +35,7 @@ function Home() {
 
   return (
     <>
+      <JqueryComClass />
       <HomeCarousel />
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
@@ -116,6 +118,7 @@ function Home() {
                       全部消息
                     </Button> */}
                     <Button
+                      id="giri"
                       variant="secondary"
                       href="#"
                       onClick={() => {
@@ -128,6 +131,7 @@ function Home() {
                       關於吉利馬札羅
                     </Button>
                     <Button
+                      id="shop"
                       variant="secondary"
                       href="#"
                       onClick={() => {
@@ -138,6 +142,9 @@ function Home() {
                       }}
                     >
                       關於商品
+                    </Button>
+                    <Button variant="secondary" id="nothank">
+                      謝了，我不想知道
                     </Button>
                   </ButtonGroup>
 
@@ -152,7 +159,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="row special-list">
+            <div className="row special-list" id="nothank2">
               {/* <div className="col-4 ">
                 <ProductListItem>
                   <img
