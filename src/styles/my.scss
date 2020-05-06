@@ -22,6 +22,53 @@
   font-weight: 500;
 }
 
+.qt-background2 {
+  background: url(../img/disc/call.jpg) no-repeat;
+  background-size: cover;
+  padding: 100px 0;
+  background-attachment: fixed;
+  background-position: center center;
+  position: relative;
+}
+
+.qt-background2 p {
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 44px;
+  color: #fff;
+  font-family: 'Arbutus Slab', serif;
+  margin-bottom: 20px;
+}
+
+.qt-background2 span {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.qt-background3 {
+  background: url(../img/disc/call2.jpg) no-repeat;
+  background-size: cover;
+  padding: 100px 0;
+  background-attachment: fixed;
+  background-position: center center;
+  position: relative;
+}
+
+.qt-background3 p {
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 44px;
+  color: #fff;
+  font-family: 'Arbutus Slab', serif;
+  margin-bottom: 20px;
+}
+
+.qt-background3 span {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+}
 
 .filter-button-group {
   border: 1px solid #e4e4e4;
@@ -440,11 +487,11 @@
   display: block;
 }
 
-.tab-content>.tab-label {
+.tab-content > .tab-label {
   display: none;
 }
 
-.tab-nav>.tab-label {
+.tab-nav > .tab-label {
   float: left;
 }
 
@@ -456,11 +503,11 @@ a.tab-label:hover {
   color: #fff;
   margin-right: 1px;
   padding: 0.625rem 1.25rem;
-  transition: background 0.20s linear 0s;
-  -o-transition: background 0.20s linear 0s;
-  -ms-transition: background 0.20s linear 0s;
-  -moz-transition: background 0.20s linear 0s;
-  -webkit-transition: background 0.20s linear 0s;
+  transition: background 0.2s linear 0s;
+  -o-transition: background 0.2s linear 0s;
+  -ms-transition: background 0.2s linear 0s;
+  -moz-transition: background 0.2s linear 0s;
+  -webkit-transition: background 0.2s linear 0s;
 }
 
 a.tab-label:hover,
@@ -476,9 +523,8 @@ a.tab-label.active-btn {
   text-align: left;
 }
 
-
-@media screen and (max-width:768px) {
-  .tab-nav>.tab-label {
+@media screen and (max-width: 768px) {
+  .tab-nav > .tab-label {
     margin: 0.5px 0;
     width: 100%;
   }
@@ -493,7 +539,6 @@ a.tab-label.active-btn {
   font-size: 2.5rem;
 }
 
-
 .intro .text-slider-items {
   display: none;
 }
@@ -506,5 +551,5 @@ a.tab-label.active-btn {
   padding: 0;
   height: 100%;
   width: 100%;
-  opacity: .9;
+  opacity: 0.9;
 }

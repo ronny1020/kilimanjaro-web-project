@@ -354,9 +354,11 @@ function Sellers() {
                         <ProductListItem>
                           <p />
 
-                          <div className="qt-background mt-3" id="giri2">
+                          <div className="qt-background2 mt-3" id="giri2">
                             <div className="text-white " align="center">
-                              <h3 onClick={handleShow}>"聯絡方式與基本資訊"</h3>
+                              <h3 onClick={handleShow}>
+                                <strong>"聯絡方式與基本資訊"</strong>
+                              </h3>
                             </div>
                           </div>
                           <Accordion className="mt-3">
@@ -573,7 +575,7 @@ function Sellers() {
                 <div className="row mt-3 " id="nothank5">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <div className="qt-background mt-3">
+                      <div className="qt-background3 mt-3">
                         <div className="text-white " align="center">
                           <h3>"特色商品，了解商品相關資訊"</h3>
                         </div>
