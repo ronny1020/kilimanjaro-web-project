@@ -5,7 +5,6 @@ export const AddProductToFavourite = (pid, cid) => {
       window.location.replace('http://localhost:3000/login/entrance')
     }
     const PostToFavourite = { productID: pid, customerID: cid }
-    console.log(PostToFavourite)
     const request = new Request('http://localhost:6001/api/favourite/', {
       method: 'POST',
       body: JSON.stringify(PostToFavourite),

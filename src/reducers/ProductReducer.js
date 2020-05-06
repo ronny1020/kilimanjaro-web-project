@@ -1,8 +1,7 @@
-import { GET_PRODUCT_DETAIL, SET_QUERY } from '../actions/actionTypes'
+import { GET_PRODUCT_DETAIL } from '../actions/actionTypes'
 
 const initialState = {
   item: [],
-  query: '',
 }
 
 export default function (state = initialState, action) {
@@ -12,11 +11,7 @@ export default function (state = initialState, action) {
         ...state,
         item: action.payload,
       }
-    case SET_QUERY:
-      return {
-        ...state,
-        query: action.payload,
-      }
+
     default:
       return state
   }

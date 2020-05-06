@@ -18,9 +18,9 @@ export const getProductList = (page, cid, query = '') => {
   }
 }
 
-export const setQuery = (Query) => {
+export const setQuery = (query) => {
   return {
     type: SET_QUERY,
-    payload: Query,
+    payload: query,
   }
 }

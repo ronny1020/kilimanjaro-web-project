@@ -18,6 +18,8 @@ import Pagination from 'react-bootstrap/Pagination'
 import CardSecondary from '../components/CardSecondary'
 
 import Zoom from '@material-ui/core/Zoom'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import TextField from '@material-ui/core/TextField'
 
 function ProductList(props) {
   const [page, setPage] = React.useState(1)
@@ -26,6 +28,13 @@ function ProductList(props) {
   const [rowEnd, setRowEnd] = React.useState(1)
 
   const [showZoom, setShowZoom] = React.useState(false)
+
+  const [keyword, setKeyword] = React.useState('')
+  const [searchRecord, setSearchRecord] = React.useState(
+    localStorage.getItem('searchRecord')
+      ? JSON.parse(localStorage.getItem('searchRecord'))
+      : []
+  )
 
   const {
     products,
@@ -40,6 +49,17 @@ function ProductList(props) {
   } = props
 
   const memberID = getMemberID()
+
+  useEffect(() => {
+    let condition = ''
+    condition = condition + 'keyword=' + keyword
+    if (keyword) {
+      setQuery(condition)
+    } else {
+      setQuery('')
+    }
+    setPage(1)
+  }, [keyword, setQuery])
 
   useEffect(() => {
     getProductList(page, memberID, query)
@@ -148,7 +168,7 @@ function ProductList(props) {
                             product.productID,
                             memberID
                           )
-                          await getProductList(page, memberID)
+                          await getProductList(page, memberID, query)
                         }
                         add()
                       }}
@@ -165,7 +185,7 @@ function ProductList(props) {
                             product.productID,
                             memberID
                           )
-                          await getProductList(page, memberID)
+                          await getProductList(page, memberID, query)
                         }
                         remove()
                       }}
@@ -181,7 +201,7 @@ function ProductList(props) {
                         e.preventDefault()
                         async function add() {
                           await AddProductToCart(product.productID, memberID)
-                          await getProductList(page, memberID)
+                          await getProductList(page, memberID, query)
                         }
                         add()
                       }}
@@ -198,7 +218,7 @@ function ProductList(props) {
                             product.productID,
                             memberID
                           )
-                          await getProductList(page, memberID)
+                          // await getProductList(page, memberID)
                         }
                         remove()
                       }}
@@ -244,27 +264,41 @@ function ProductList(props) {
 
   // calculate the date range
 
-  function search() {
-    let condition = ''
-    let keyword = document.getElementById('keyword').value
-    condition = condition + 'keyword=' + keyword
-    if (keyword) {
-      setQuery(condition)
-    } else {
-      setQuery('')
-    }
-    setPage(1)
-  }
-
   return (
     <>
       <CardSecondary>
-        <input
-          type="text"
-          className="form-control"
-          onChange={search}
-          id="keyword"
-        ></input>
+        {/* <input type="text" className="form-control" id="keyword"></input> */}
+
+        <Autocomplete
+          freeSolo
+          disableClearable
+          options={searchRecord.map((option) => option.keyword)}
+          onChange={(event, newValue) => {
+            let check = true
+            searchRecord.forEach((keyValue) => {
+              if (keyValue.keyword === newValue) {
+                check = false
+              }
+            })
+            if (check) {
+              setSearchRecord([...searchRecord, { keyword: newValue }])
+            }
+            localStorage.setItem('searchRecord', JSON.stringify(searchRecord))
+          }}
+          onInputChange={(event, newInputValue) => {
+            setKeyword(newInputValue)
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="關鍵字"
+              id="keyword"
+              margin="normal"
+              variant="outlined"
+              InputProps={{ ...params.InputProps, type: 'search' }}
+            />
+          )}
+        />
       </CardSecondary>
       <div className="topSpace"></div>
       <div className="container">
