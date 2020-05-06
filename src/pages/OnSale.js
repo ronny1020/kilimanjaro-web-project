@@ -43,14 +43,24 @@ function OnSale() {
                 {/* 確定值有進去才產生component*/}
                 {genList ? (
                   <>
-                    <Row>
-                      <CouponItem input={coupons[0]} />
-                      <CouponItem input={coupons[1]} />
-                    </Row>
-                    <Row>
-                      <CouponItem input={coupons[2]} />
-                      <CouponItem input={coupons[3]} />
-                    </Row>
+                    <div class="work-box">
+                      <div class="work-img">
+                        <Row>
+                          <CouponItem input={coupons[0]} />
+                          <CouponItem input={coupons[1]} />
+                        </Row>
+                        <p className="text-white">123</p>
+                      </div>
+                    </div>
+                    <div class="work-box">
+                      <div class="work-img">
+                        <Row>
+                          <CouponItem input={coupons[2]} />
+                          <CouponItem input={coupons[3]} />
+                        </Row>
+                        <p className="text-white">123</p>
+                      </div>
+                    </div>
                   </>
                 ) : null}
               </div>
