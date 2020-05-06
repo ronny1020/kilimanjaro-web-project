@@ -294,7 +294,7 @@ function OnSale() {
                 <Question input={jsonInput} /> */}
 
                 {/* 聯絡我們:客服表單 */}
-                <Card className="cramCard">
+                <Card className="cramCard" id="contact">
                   <Card.Body>
                     <Card.Title>聯絡我們</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">

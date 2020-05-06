@@ -76,10 +76,31 @@ function Entrance(props) {
         if (isLogged === true) {
           //登入成功 JWT
           setBSAlert(false)
+          //登入時間:
+          var today = new Date()
+          var date =
+            today.getFullYear() +
+            '年' +
+            (today.getMonth() + 1).toString().padStart(2, '0') +
+            '月' +
+            today.getDate().toString().padStart(2, '0') +
+            '日'
+          var time =
+            (today.getHours() > 11
+              ? '下午' + (today.getHours() - 11).toString().padStart(2, '0')
+              : '上午' + today.getHours().toString().padStart(2, '0')) +
+            '點' +
+            today.getMinutes().toString().padStart(2, '0') +
+            '分' +
+            today.getSeconds().toString().padStart(2, '0') +
+            '秒'
+          var dateTime = date + time
           const Validation = {
             user_id: customerID,
+            loginTime: dateTime,
             isLogged: true,
           }
+          //登入有效期限:
           const token = jwt.sign(Validation, 'himitsu', { expiresIn: '3h' })
           localStorage.setItem('token', token)
 

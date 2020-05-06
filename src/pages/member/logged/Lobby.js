@@ -29,6 +29,7 @@ import LoginValidate from '../../../components/LoginValidate'
 
 function Member(props) {
   const [name, setName] = useState('')
+  const [point, setPoint] = useState('')
   const [uploadImg, setUploadImg] = useState('')
 
   if (LoginValidate() === false) {
@@ -40,6 +41,8 @@ function Member(props) {
   } else {
     var memberID = LoginValidate().userID
     // var valid = LoginValidate.isLogged
+    //獲取登入時間: localStorage
+    var loginTime = LoginValidate().loginTime
   }
 
   var url = 'http://localhost:6001/Member/' + memberID
@@ -50,6 +53,7 @@ function Member(props) {
     })
     .then(function (userdata) {
       setName(userdata.cName)
+      setPoint(userdata.rewardsPoints)
       // console.log(userdata.cName)
     })
 
@@ -127,11 +131,21 @@ function Member(props) {
                           className="bg-white"
                           style={{
                             border: '0.5px solid lightgrey',
-                            borderRight: 0,
+                            // borderRight: 0,
                             height: '170px',
                           }}
                         >
                           <h2>您好, 會員{name}</h2>
+                          <h6>您登入的時間為：{loginTime}</h6>
+                          <hr />
+                          <h4>
+                            您目前累積的紅利點數：
+                            <code
+                              style={{ fontSize: '1.5em', color: '#fab5b5' }}
+                            >
+                              {point}
+                            </code>
+                          </h4>
                         </div>
                       </Col>
 
@@ -181,7 +195,7 @@ function Member(props) {
                       <LobbyCard
                         title="同好會"
                         content="查看您加入的同好會並進行管理。"
-                        to="#"
+                        to="/about#contact"
                         img="IoMdMail"
                       />
                       <LobbyCard

@@ -37,6 +37,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(24),
         unique: false
       },
+      rewardsPoints: {
+        type: Sequelize.INTEGER(11),
+        defaultValue: 0
+      },
     },
     {
       timestamps: false,
