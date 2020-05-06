@@ -84,11 +84,9 @@ function Entrance(props) {
             (today.getMonth() + 1).toString().padStart(2, '0') +
             '月' +
             today.getDate().toString().padStart(2, '0') +
-            '日'
+            '日  '
           var time =
-            (today.getHours() > 11
-              ? '下午' + (today.getHours() - 11).toString().padStart(2, '0')
-              : '上午' + today.getHours().toString().padStart(2, '0')) +
+            today.getHours().toString().padStart(2, '0') +
             '點' +
             today.getMinutes().toString().padStart(2, '0') +
             '分' +
