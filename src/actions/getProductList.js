@@ -1,4 +1,4 @@
-import { GET_PRODUCT_LIST } from './actionTypes'
+import { GET_PRODUCT_LIST, SET_QUERY } from './actionTypes'
 
 export const getProductList = (page, cid, query = '') => {
   return async (dispatch) => {
@@ -15,5 +15,12 @@ export const getProductList = (page, cid, query = '') => {
       type: GET_PRODUCT_LIST,
       payload: list,
     })
+  }
+}
+
+export const setQuery = (Query) => {
+  return {
+    type: SET_QUERY,
+    payload: Query,
   }
 }

@@ -1,4 +1,6 @@
 export const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST'
+export const SET_QUERY = 'SET_QUERY'
+
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL'
 export const GET_CART = 'GET_CART'
 export const GET_CART_NUM = 'GET_CART_NUM'
