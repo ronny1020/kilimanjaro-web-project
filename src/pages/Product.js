@@ -34,7 +34,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="outlined" {...props} />
+  return <MuiAlert elevation={6} {...props} />
 }
 
 function Product(props) {
@@ -58,6 +58,9 @@ function Product(props) {
 
   const [rate, setRate] = React.useState(NaN)
   const [averagedRate, setAveragedRate] = React.useState(NaN)
+
+  const [dataArray, setDataArray] = React.useState([0, 0, 0, 0, 0])
+
   // Control Alert
   const [editAlertOpen, setEditAlertOpen] = React.useState(false)
   const handleEditAlertClick = () => {
@@ -111,6 +114,14 @@ function Product(props) {
           ).toFixed(1)
         )
       )
+
+      setDataArray([
+        product.comments.filter((comment) => comment.rate === 5).length,
+        product.comments.filter((comment) => comment.rate === 4).length,
+        product.comments.filter((comment) => comment.rate === 3).length,
+        product.comments.filter((comment) => comment.rate === 2).length,
+        product.comments.filter((comment) => comment.rate === 1).length,
+      ])
     }
   }, [memberID, product])
 
@@ -146,14 +157,6 @@ function Product(props) {
   ))
 
   // about comments
-  const dataArray = [
-    product.comments.filter((comment) => comment.rate === 5).length,
-    product.comments.filter((comment) => comment.rate === 4).length,
-    product.comments.filter((comment) => comment.rate === 3).length,
-    product.comments.filter((comment) => comment.rate === 2).length,
-    product.comments.filter((comment) => comment.rate === 1).length,
-  ]
-
   defaults.global.defaultFontSize = 16
   defaults.global.defaultFontFamily = "'Noto Sans TC', sans-serif"
 
