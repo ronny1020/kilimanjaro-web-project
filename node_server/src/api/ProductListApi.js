@@ -19,15 +19,14 @@ async function executeSQL(
       perPage: perPage,
       totalPages: 0,
       page: page,
-      rows: 0,
     }
-    console.log("ProductList.getProductListRowsNum(keyword)")
-    console.log(ProductList.getProductListRowsNum(keyword))
+
     const results_total = await database.promisePool.query(
       ProductList.getProductListRowsNum(keyword)
     )
     output.totalRows = results_total[0][0].num
     output.totalPages = Math.ceil(output.totalRows / perPage)
+    if (output.totalPages < 1) output.totalPages = 1
     if (output.page < 1) output.page = 1
     if (output.page > output.totalPages) output.page = output.totalPages
 
@@ -38,17 +37,10 @@ async function executeSQL(
       output.perPage,
     ])
 
-    switch (method) {
-      case 'get':
-      default:
-        {
-          res.status(200).json({
-            Range: output,
-            ProductList: rows[0],
-          })
-        }
-        break
-    }
+    res.status(200).json({
+      Range: output,
+      ProductList: rows[0],
+    })
   } catch (error) {
     console.log(error)
     res.status(200).json({
