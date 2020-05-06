@@ -18,6 +18,7 @@ const LoginValidate = function () {
       return {
         isLogged: decrypt.isLogged,
         userID: decrypt.user_id,
+        loginTime: decrypt.loginTime,
       }
     } //沒辦法verify: false
     else return false

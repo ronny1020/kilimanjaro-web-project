@@ -29,6 +29,7 @@ import LoginValidate from '../../../components/LoginValidate'
 
 function Member(props) {
   const [name, setName] = useState('')
+  const [point, setPoint] = useState('')
   const [uploadImg, setUploadImg] = useState('')
 
   if (LoginValidate() === false) {
@@ -40,6 +41,8 @@ function Member(props) {
   } else {
     var memberID = LoginValidate().userID
     // var valid = LoginValidate.isLogged
+    //獲取登入時間: localStorage
+    var loginTime = LoginValidate().loginTime
   }
 
   var url = 'http://localhost:6001/Member/' + memberID
@@ -50,6 +53,7 @@ function Member(props) {
     })
     .then(function (userdata) {
       setName(userdata.cName)
+      setPoint(userdata.rewardsPoints)
       // console.log(userdata.cName)
     })
 
@@ -132,6 +136,9 @@ function Member(props) {
                           }}
                         >
                           <h2>您好, 會員{name}</h2>
+                          <p>歡迎回來!您登入的時間為：{loginTime}</p>
+                          <hr />
+                          <h2>您目前累積的紅利點數：{point}</h2>
                         </div>
                       </Col>
 
