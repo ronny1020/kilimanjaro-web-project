@@ -56,8 +56,8 @@ function Product(props) {
 
   const memberID = getMemberID()
 
-  const [rate, setRate] = React.useState(NaN)
-  const [averagedRate, setAveragedRate] = React.useState(NaN)
+  const [rate, setRate] = React.useState(0)
+  const [averagedRate, setAveragedRate] = React.useState(0)
 
   const [dataArray, setDataArray] = React.useState([0, 0, 0, 0, 0])
 
@@ -208,7 +208,7 @@ function Product(props) {
               <Rating
                 name="simple-controlled"
                 id="rateInput"
-                value={rate}
+                defaultValue={rate ? rate : 0}
                 onChange={(event, newValue) => {
                   setRate(newValue)
                 }}
@@ -274,7 +274,7 @@ function Product(props) {
           <Rating
             name="simple-controlled"
             id="rateInput"
-            value={rate}
+            defaultValue={rate ? rate : 0}
             onChange={(event, newValue) => {
               setRate(newValue)
             }}
@@ -294,7 +294,7 @@ function Product(props) {
               e.preventDefault()
               const comment = document.getElementById('commentInput').value
               async function add() {
-                AddComment(product.productID, memberID, rate, comment)
+                await AddComment(product.productID, memberID, rate, comment)
                 await getProduct(id, memberID)
                 handleAddAlertClick()
               }
