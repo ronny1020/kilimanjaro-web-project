@@ -25,6 +25,7 @@ function ProductList(props) {
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
   const [query, setQuery] = React.useState('')
+  const [showGrow, setShowGrow] = React.useState(false)
 
   const {
     products,
@@ -91,6 +92,13 @@ function ProductList(props) {
     }
   }, [range])
 
+  useEffect(() => {
+    if (products) {
+      setShowGrow(false)
+      setShowGrow(true)
+    }
+  }, [products, query])
+
   if (products === undefined) {
     return (
       <>
@@ -101,96 +109,106 @@ function ProductList(props) {
     )
   }
 
-  const productList = products.map((product, i) => (
-    <div key={i}>
-      <Grow
-        in={products}
-        style={{ transformOrigin: '0 0 0' }}
-        {...(products ? { timeout: i * 1000 } : {})}
-      >
-        <Link
-          to={'../product/' + product.productID}
-          className="linkNoUnderline"
+  const productList = products.map((product, i) => {
+    return (
+      <div key={i}>
+        <Grow
+          in={showGrow}
+          style={{ transformOrigin: '0 0 0' }}
+          {...(showGrow ? { timeout: 1000 * i } : {})}
         >
-          <ProductListItem>
-            <h3>{product.ProductName}</h3>
-            <p>price:{product.UnitPrice}</p>
-            {product.discount !== null ? (
-              <p>special price:{product.UnitPrice - product.discount}</p>
-            ) : (
-              <p></p>
-            )}
-            <div className="form-inline">
-              {/* favourite button */}
+          <div>
+            <Link
+              to={'../product/' + product.productID}
+              className="linkNoUnderline"
+            >
+              <ProductListItem>
+                <h3>{product.ProductName}</h3>
+                <p>price:{product.UnitPrice}</p>
+                {product.discount !== null ? (
+                  <p>special price:{product.UnitPrice - product.discount}</p>
+                ) : (
+                  <p></p>
+                )}
+                <div className="form-inline">
+                  {/* favourite button */}
 
-              {product.favouriteID === null ? (
-                <button
-                  className="btn btn-primary m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function add() {
-                      await AddProductToFavourite(product.productID, memberID)
-                      await getProductList(page, memberID)
-                    }
-                    add()
-                  }}
-                >
-                  add to favourite
-                </button>
-              ) : (
-                <button
-                  className="btn btn-danger  m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function remove() {
-                      await removeProductFromFavourite(
-                        product.productID,
-                        memberID
-                      )
-                      await getProductList(page, memberID)
-                    }
-                    remove()
-                  }}
-                >
-                  remove from favourite
-                </button>
-              )}
-              {/* cart button */}
-              {product.num == null ? (
-                <button
-                  className="btn btn-primary  m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function add() {
-                      await AddProductToCart(product.productID, memberID)
-                      await getProductList(page, memberID)
-                    }
-                    add()
-                  }}
-                >
-                  add to cart
-                </button>
-              ) : (
-                <button
-                  className="btn btn-danger  m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function remove() {
-                      await removeProductFromCart(product.productID, memberID)
-                      await getProductList(page, memberID)
-                    }
-                    remove()
-                  }}
-                >
-                  remove({product.num}) from cart
-                </button>
-              )}
-            </div>
-          </ProductListItem>
-        </Link>
-      </Grow>
-    </div>
-  ))
+                  {product.favouriteID === null ? (
+                    <button
+                      className="btn btn-primary m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function add() {
+                          await AddProductToFavourite(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        add()
+                      }}
+                    >
+                      add to favourite
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-danger  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromFavourite(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        remove()
+                      }}
+                    >
+                      remove from favourite
+                    </button>
+                  )}
+                  {/* cart button */}
+                  {product.num == null ? (
+                    <button
+                      className="btn btn-primary  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function add() {
+                          await AddProductToCart(product.productID, memberID)
+                          await getProductList(page, memberID)
+                        }
+                        add()
+                      }}
+                    >
+                      add to cart
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-danger  m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromCart(
+                            product.productID,
+                            memberID
+                          )
+                          await getProductList(page, memberID)
+                        }
+                        remove()
+                      }}
+                    >
+                      remove({product.num}) from cart
+                    </button>
+                  )}
+                </div>
+              </ProductListItem>
+            </Link>
+          </div>
+        </Grow>
+      </div>
+    )
+  })
 
   // page selection
 
