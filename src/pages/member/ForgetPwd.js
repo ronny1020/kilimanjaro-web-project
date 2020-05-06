@@ -69,7 +69,7 @@ function ForgetPwd() {
         // window.location.reload()
       } else {
         max -= 1
-        setTime('驗證碼有效期限:剩餘' + max + '秒')
+        setTime('驗證碼有效期限：　　剩餘' + max + '秒')
       }
     }, 1000)
     //若完成驗證則停下計時
@@ -190,6 +190,7 @@ function ForgetPwd() {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
+        <div style={{ height: '8vh' }}></div>
         <h1>忘記密碼</h1>
         <Breadcrumb />
         {validMail ? (
@@ -220,8 +221,10 @@ function ForgetPwd() {
             controlId="formVerification"
           >
             <Row>
-              <Col sm="4">
+              {/* <Col>
                 <Form.Label>輸入驗證碼</Form.Label>
+              </Col> */}
+              <Col>
                 <Form.Control
                   type="email"
                   placeholder="請輸入驗證碼"
@@ -229,14 +232,18 @@ function ForgetPwd() {
                   onChange={(e) => setVcode(e.target.value)}
                 />
               </Col>
-              <Col sm="4">
+              <Col>
                 {ButtonPhase === 'GET' ? (
-                  <Button onClick={getMail}>取得驗證碼</Button>
+                  <Button style={{ width: '100%' }} onClick={getMail}>
+                    取得驗證碼
+                  </Button>
                 ) : (
-                  <Button onClick={doVerify}>送出驗證碼</Button>
+                  <Button style={{ width: '100%' }} onClick={doVerify}>
+                    送出驗證碼
+                  </Button>
                 )}
               </Col>
-              <Col sm="4">{time}</Col>
+              <Col>{time}</Col>
             </Row>
           </Form.Group>
 

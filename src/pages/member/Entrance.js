@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import { Button, Form, InputGroup, Row, Col } from 'react-bootstrap'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
@@ -84,11 +84,9 @@ function Entrance(props) {
             (today.getMonth() + 1).toString().padStart(2, '0') +
             '月' +
             today.getDate().toString().padStart(2, '0') +
-            '日'
+            '日  '
           var time =
-            (today.getHours() > 11
-              ? '下午' + (today.getHours() - 11).toString().padStart(2, '0')
-              : '上午' + today.getHours().toString().padStart(2, '0')) +
+            today.getHours().toString().padStart(2, '0') +
             '點' +
             today.getMinutes().toString().padStart(2, '0') +
             '分' +
@@ -134,6 +132,7 @@ function Entrance(props) {
   return (
     <>
       <div className="col-sm-6 bg-secondary">
+        <div style={{ height: '8vh' }}></div>
         <h1>會員登入</h1>
         <Breadcrumb />
         <Alert id="warning_msg" variant="danger" show={bsAlert}>
@@ -141,7 +140,7 @@ function Entrance(props) {
         </Alert>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>帳號</Form.Label>
+            <Form.Label>會員帳號：</Form.Label>
             <Form.Control
               type="text"
               value={account}
@@ -152,7 +151,7 @@ function Entrance(props) {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>密碼</Form.Label>
+            <Form.Label>會員密碼：</Form.Label>
             <InputGroup>
               <Form.Control
                 type={Visible === false ? 'password' : 'text'}
@@ -168,12 +167,28 @@ function Entrance(props) {
               </InputGroup.Append>
             </InputGroup>
           </Form.Group>
-          <Link to="/login/enroll">註冊新會員</Link>
-          <Link to="/login/forget_pwd">忘記密碼?</Link>
-
-          <Button variant="primary" disabled={!validateForm()} type="submit">
-            登入
-          </Button>
+          <Row align="center">
+            <Col>
+              <Link to="/login/enroll">
+                <h5 className="loginLink">註冊新會員</h5>
+              </Link>
+            </Col>
+            <Col>
+              <Link to="/login/forget_pwd">
+                <h5 className="loginLink">忘記密碼？</h5>
+              </Link>
+            </Col>
+            <Col>
+              <Button
+                style={{ width: '100%' }}
+                variant="primary"
+                disabled={!validateForm()}
+                type="submit"
+              >
+                登入
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </div>
     </>
