@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import Question from '../components/seller/Question'
 
 import LobbyTitle from '../components/member/LobbyTitle'
@@ -294,7 +296,11 @@ function OnSale() {
                 <Question input={jsonInput} /> */}
 
                 {/* 聯絡我們:客服表單 */}
-                <Card className="cramCard" id="contact">
+                <Card
+                  className="cramCard"
+                  id="contact"
+                  style={{ backgroundColor: 'transparent' }}
+                >
                   <Card.Body>
                     <Card.Title>聯絡我們</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
@@ -305,7 +311,7 @@ function OnSale() {
                         <Form.Label column sm="2">
                           電子信箱：
                         </Form.Label>
-                        <Col sm="7">
+                        <Col sm="6">
                           <Form.Control
                             value={checked ? Email : cramEmail}
                             type="email"
@@ -315,27 +321,38 @@ function OnSale() {
                             required
                           />
                         </Col>
-                        <Col sm="3">
-                          <Form.Check
-                            //想調checkbox樣式
-                            className="cramFillEmail"
-                            type={'checkbox'}
-                            id={`default-checkbox`}
-                            label={`同會員Email`}
-                            disabled={
-                              typeof memberID !== 'undefined' ? false : true
+                        <Col sm="4">
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                color="primary"
+                                inputProps={{
+                                  'aria-label': 'secondary checkbox',
+                                }}
+                                className="cramFillEmail"
+                                id={`default-checkbox`}
+                                // label={`同會員Email`}
+                                disabled={
+                                  typeof memberID !== 'undefined' ? false : true
+                                }
+                                checked={checked}
+                                onChange={doEmail}
+                              />
                             }
-                            checked={checked}
-                            onChange={doEmail}
+                            label="同會員email"
                           />
                         </Col>
                       </Form.Group>
 
                       <Form.Group controlId="formTextarea">
-                        <Form.Label>您的意見：</Form.Label>
+                        <Form.Label
+                          style={{ float: 'left', marginLeft: '2.5px' }}
+                        >
+                          您的意見：
+                        </Form.Label>
                         <Form.Control
                           as="textarea"
-                          rows="3"
+                          rows="10"
                           required
                           value={cramContent}
                           onChange={(e) => setCramContent(e.target.value)}
