@@ -11,8 +11,9 @@ function Breadcrumb(props) {
   let pathname_Array = pathname.split('/')
   // pathname_Array.shift()
 
-  // console.log(pathname_Array)
-  for (let i = 0; i < pathname_Array.length; i++) {
+  console.log(pathname_Array)
+  // i=1: 忽略陣列第一格(首頁)
+  for (let i = 1; i < pathname_Array.length; i++) {
     switch (pathname_Array[i]) {
       // add your route here!
       case 'login':
@@ -45,8 +46,10 @@ function Breadcrumb(props) {
       case 'about':
         path = '關於我們'
         break
+      //都不符合時回傳空值
       default:
-        path = '首頁'
+        path = ''
+        break
     }
     var url = ''
     for (let m = 1; m <= i; m++) {
@@ -61,6 +64,7 @@ function Breadcrumb(props) {
         </li>
       </>
     )
+
     breadcrumb_content.push(appendToContent)
   }
 
@@ -68,7 +72,12 @@ function Breadcrumb(props) {
     <>
       <br />
       <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">{breadcrumb_content}</ol>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link to="">首頁</Link>
+          </li>
+          {breadcrumb_content}
+        </ol>
       </nav>
     </>
   )

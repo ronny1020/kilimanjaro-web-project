@@ -136,9 +136,16 @@ function Member(props) {
                           }}
                         >
                           <h2>您好, 會員{name}</h2>
-                          <p>歡迎回來!您登入的時間為：{loginTime}</p>
+                          <h6>您登入的時間為：{loginTime}</h6>
                           <hr />
-                          <h2>您目前累積的紅利點數：{point}</h2>
+                          <h4>
+                            您目前累積的紅利點數：
+                            <code
+                              style={{ fontSize: '1.5em', color: '#fab5b5' }}
+                            >
+                              {point}
+                            </code>
+                          </h4>
                         </div>
                       </Col>
 
