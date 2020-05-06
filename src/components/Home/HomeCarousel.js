@@ -7,6 +7,8 @@ import img004 from '../../img/home/carousel/004.jpg'
 import img005 from '../../img/home/carousel/005.jpg'
 import img006 from '../../img/home/carousel/006.jpg'
 
+import '../../styles/my.scss'
+
 function HomeCarousel() {
   return (
     <>
@@ -17,7 +19,7 @@ function HomeCarousel() {
             src={img001}
             alt="slide 001"
           />
-          <Carousel.Caption> {/* text */}</Carousel.Caption>
+          <Carousel.Caption> </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img

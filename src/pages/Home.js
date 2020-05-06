@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
+import Typed from 'react-typed'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -58,7 +59,19 @@ function Home() {
               <div className="col-md-8 mt-3 bg-secondary">
                 <h1 className="m-b-20 ">
                   <strong>
-                    歡迎光臨 <br /> 吉利馬札羅
+                    <Typed
+                      strings={[
+                        '歡迎光臨吉利馬札羅咖啡店',
+                        '各種現烘咖啡豆',
+                        '各類沖泡咖啡粉',
+                        '各式咖啡商品應有盡有',
+                        '希望您能有愉快的消費體驗',
+                      ]}
+                      typeSpeed={60}
+                      backSpeed={70}
+                      loop
+                    />
+                    <br />
                   </strong>
                 </h1>
 
@@ -67,8 +80,18 @@ function Home() {
                   <br />
                   任何咖啡相關商品，都能在此尋找，希望有機會發現您的最愛
                 </p>
+
+                <Typed
+                  strings={['尋找咖啡', '找尋樂趣', '尋找一個放鬆的好去處']}
+                  typeSpeed={70}
+                  backSpeed={80}
+                  attr="placeholder"
+                  loop
+                >
+                  <input type="text" />
+                </Typed>
                 <p>
-                  <Button>查看商品</Button>
+                  <Button className="mt-3">查看商品</Button>
                 </p>
               </div>
             </div>
