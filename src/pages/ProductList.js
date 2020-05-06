@@ -4,7 +4,7 @@ import Loading from '../components/Loading'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getProductList } from '../actions/getProductList'
+import { getProductList, setQuery } from '../actions/getProductList'
 import { getMemberID } from '../actions/getMemberID'
 
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
@@ -24,17 +24,19 @@ function ProductList(props) {
   const [pageListSelect, setPageListSelect] = React.useState([1])
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
-  const [query, setQuery] = React.useState('')
+
   const [showZoom, setShowZoom] = React.useState(false)
 
   const {
     products,
     range,
     getProductList,
+    setQuery,
     AddProductToCart,
     removeProductFromCart,
     AddProductToFavourite,
     removeProductFromFavourite,
+    query,
   } = props
 
   const memberID = getMemberID()
@@ -312,11 +314,13 @@ const mapStateToProps = (state) => {
   return {
     products: state.ProductListReducer.items.ProductList,
     range: state.ProductListReducer.items.Range,
+    query: state.ProductListReducer.query,
   }
 }
 
 export default connect(mapStateToProps, {
   getProductList,
+  setQuery,
   AddProductToCart,
   removeProductFromCart,
   AddProductToFavourite,
