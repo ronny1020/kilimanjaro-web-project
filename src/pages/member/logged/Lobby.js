@@ -131,7 +131,7 @@ function Member(props) {
                           className="bg-white"
                           style={{
                             border: '0.5px solid lightgrey',
-                            borderRight: 0,
+                            // borderRight: 0,
                             height: '170px',
                           }}
                         >
@@ -195,7 +195,7 @@ function Member(props) {
                       <LobbyCard
                         title="同好會"
                         content="查看您加入的同好會並進行管理。"
-                        to="#"
+                        to="/about#contact"
                         img="IoMdMail"
                       />
                       <LobbyCard

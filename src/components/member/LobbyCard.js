@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link'
 
 import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
 import { MdFavorite } from 'react-icons/md'
