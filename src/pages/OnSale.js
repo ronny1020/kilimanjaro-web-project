@@ -38,34 +38,7 @@ function OnSale() {
           <div className="container bg-secondary">
             <br />
             <div className="row">
-              <div className="col-8">
-                {/* 傳值進入此: 於component內操作api (亦可以用迴圈產生)*/}
-                {/* 確定值有進去才產生component*/}
-                {genList ? (
-                  <>
-                    <div class="work-box">
-                      <div class="work-img">
-                        <Row>
-                          <CouponItem input={coupons[0]} />
-                          <CouponItem input={coupons[1]} />
-                        </Row>
-                        <p className="text-white">123</p>
-                      </div>
-                    </div>
-                    <div class="work-box">
-                      <div class="work-img">
-                        <Row>
-                          <CouponItem input={coupons[2]} />
-                          <CouponItem input={coupons[3]} />
-                        </Row>
-                        <p className="text-white">123</p>
-                      </div>
-                    </div>
-                  </>
-                ) : null}
-              </div>
-
-              <div className="col-4" align="center">
+              <div className="col-4 qweqwe" align="center">
                 {/* <nav className="navbar sidebar">
                   <ul className="navbar-nav">
                     <li>
@@ -101,6 +74,32 @@ function OnSale() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+              </div>
+              <div className="col-8 asdasd">
+                {/* 傳值進入此: 於component內操作api (亦可以用迴圈產生)*/}
+                {/* 確定值有進去才產生component*/}
+                {genList ? (
+                  <>
+                    <div class="work-box">
+                      <div class="work-img">
+                        <Row>
+                          <CouponItem input={coupons[0]} />
+                          <CouponItem input={coupons[1]} />
+                        </Row>
+                        <p className="text-white">123</p>
+                      </div>
+                    </div>
+                    <div class="work-box">
+                      <div class="work-img">
+                        <Row>
+                          <CouponItem input={coupons[2]} />
+                          <CouponItem input={coupons[3]} />
+                        </Row>
+                        <p className="text-white">123</p>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
               </div>
             </div>
             <br />

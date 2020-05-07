@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CancelIcon from '@material-ui/icons/Cancel'
 
 function HistoryList(props) {
   //未寄送之訂單: shipdate = null && vaild = 1
@@ -9,21 +10,35 @@ function HistoryList(props) {
   const listItems = historyArray.Orders.map((item) =>
     item.ShippedDate === null && item.valid === 1 ? (
       <ListGroup.Item action key={item.OrderID.toString()}>
-        <Link to="#" onClick={showDetails} id={item.OrderID.toString()}>
-          訂單編號：{item.OrderID.toString()}
-          <br />
-          收件人：{item.RecipientName}
-          <br />
-          下單日期：{item.OrderDate}
-        </Link>
-        <Button
-          id={'cancel' + item.OrderID.toString()}
-          style={{ float: 'right' }}
-          variant="danger"
-          onClick={handleCancel}
-        >
-          取消訂單
-        </Button>
+        <Row>
+          <Col onClick={showDetails} id={item.OrderID.toString()}>
+            訂單編號：{item.OrderID.toString()}
+            <br />
+            收件人：{item.RecipientName}
+            <br />
+            下單日期：{item.OrderDate}
+          </Col>
+          <Col sm={2}>
+            {/* 按鈕內的元件點擊時會讀不到按鈕id值 */}
+            <Button
+              id={'cancel' + item.OrderID.toString()}
+              style={{ width: '100%' }}
+              variant="danger"
+              onClick={handleCancel}
+            >
+              <CancelIcon
+                style={{ zIndex: '-1' }}
+                id={'cancel' + item.OrderID.toString()}
+              />
+              <span
+                style={{ fontWeight: 'bold', zIndex: '-1' }}
+                id={'cancel' + item.OrderID.toString()}
+              >
+                取消
+              </span>
+            </Button>
+          </Col>
+        </Row>
 
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
@@ -66,7 +81,7 @@ function HistoryList(props) {
     let target_id = props.target.id.replace('cancel', '')
     const url_put = 'http://localhost:6001/ordersapi/'
     let cancelJson = { orderID: target_id }
-    // console.log(target_id)
+    // console.log(props)
     fetch(url_put, {
       method: 'PUT',
       body: JSON.stringify(cancelJson),

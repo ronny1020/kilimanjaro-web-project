@@ -129,7 +129,20 @@ function OnSale() {
             <br />
 
             <div className="row">
-              <div className="col-8">
+              <div className="col-4 qweqwe" align="center">
+                <Sidebar input={inputArray} />
+
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+              </div>
+              <div className="col-8 asdasd">
                 <Breadcrumb />
                 <div className="row">
                   <div className="col-12">
@@ -164,7 +177,7 @@ function OnSale() {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6">
+                    <div className="col-12">
                       {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
@@ -183,14 +196,14 @@ function OnSale() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-6">
-                      {/* <img
+                    {/* <div className="col-6"> */}
+                    {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     /> */}
 
-                      <div
+                    {/* <div
                         class="team-thumb wow fadeInUp"
                         data-wow-delay="0.2s"
                       >
@@ -200,8 +213,8 @@ function OnSale() {
                             <h4>您好，我是副創辦人</h4>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      </div> */}
+                    {/* </div> */}
                   </div>
                 </div>
                 <div className="qt-background mt-3">
@@ -364,20 +377,6 @@ function OnSale() {
                 </Card>
 
                 {/* 聯絡我們:客服表單 */}
-              </div>
-
-              <div className="col-4" align="center">
-                <Sidebar input={inputArray} />
-
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <br />
-                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-                <br />
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <br />
-                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-                <br />
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
               </div>
             </div>
             <br />

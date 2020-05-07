@@ -6,6 +6,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
+import { Link } from 'react-router-dom'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -91,7 +92,12 @@ function Home() {
                   <input type="text" />
                 </Typed>
                 <p>
-                  <Button className="mt-3">查看商品</Button>
+                  <Button className="mt-3">
+                    {' '}
+                    <Link className="text-white" to="/productList">
+                      查看商品
+                    </Link>
+                  </Button>
                 </p>
               </div>
             </div>
