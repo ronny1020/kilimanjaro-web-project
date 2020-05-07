@@ -487,11 +487,11 @@
   display: block;
 }
 
-.tab-content>.tab-label {
+.tab-content > .tab-label {
   display: none;
 }
 
-.tab-nav>.tab-label {
+.tab-nav > .tab-label {
   float: left;
 }
 
@@ -524,7 +524,7 @@ a.tab-label.active-btn {
 }
 
 @media screen and (max-width: 768px) {
-  .tab-nav>.tab-label {
+  .tab-nav > .tab-label {
     margin: 0.5px 0;
     width: 100%;
   }
@@ -591,18 +591,12 @@ a.tab-label.active-btn {
 @media only screen and (max-width: 1000px) {
   .qweqwe {
     display: none;
-
-
   }
-
 
   .asdasd {
     float: left;
     width: auto;
-
   }
-
-
 
   .jumbotron {
     text-align: center;
@@ -613,8 +607,11 @@ a.tab-label.active-btn {
   }
 
   .row::after {
-    content: "";
+    content: '';
     clear: both;
     display: table;
+  }
+  .tyutyu {
+    font-size: smaller;
   }
 }

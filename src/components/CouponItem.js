@@ -65,6 +65,7 @@ function CouponItem(props) {
           <Image className="d-block h-40 w-100 " src={srcImg} rounded />
           {/* 顯示基本資訊(暫定) */}
           <ListGroup
+            className="tyutyu"
             style={{
               position: 'absolute',
               top: '30%',
