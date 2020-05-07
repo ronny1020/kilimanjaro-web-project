@@ -20,6 +20,10 @@ import CardSecondary from '../components/CardSecondary'
 import Zoom from '@material-ui/core/Zoom'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
 
 function ProductList(props) {
   const [page, setPage] = React.useState(1)
@@ -30,6 +34,8 @@ function ProductList(props) {
   const [showZoom, setShowZoom] = React.useState(false)
 
   const [keyword, setKeyword] = React.useState('')
+  const [column, setColumn] = React.useState('ProductName')
+
   const [searchRecord, setSearchRecord] = React.useState(
     localStorage.getItem('searchRecord')
       ? JSON.parse(localStorage.getItem('searchRecord'))
@@ -52,14 +58,16 @@ function ProductList(props) {
 
   useEffect(() => {
     let condition = ''
-    condition = condition + 'keyword=' + keyword
+    condition = keyword ? condition + 'keyword=' + keyword + '&' : condition
+    condition = column ? condition + 'column=' + column + '&' : condition
+
     if (keyword) {
       setQuery(condition)
     } else {
       setQuery('')
     }
     setPage(1)
-  }, [keyword, setQuery])
+  }, [column, keyword, setQuery])
 
   useEffect(() => {
     getProductList(page, memberID, query)
@@ -267,39 +275,69 @@ function ProductList(props) {
   return (
     <>
       <CardSecondary>
-        {/* <input type="text" className="form-control" id="keyword"></input> */}
-
-        <Autocomplete
-          freeSolo
-          disableClearable
-          options={searchRecord.map((option) => option.keyword)}
-          onChange={(event, newValue) => {
-            let check = true
-            searchRecord.forEach((keyValue) => {
-              if (keyValue.keyword === newValue) {
-                check = false
-              }
-            })
-            if (check) {
-              setSearchRecord([...searchRecord, { keyword: newValue }])
-            }
-            localStorage.setItem('searchRecord', JSON.stringify(searchRecord))
-          }}
-          onInputChange={(event, newInputValue) => {
-            setKeyword(newInputValue)
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="關鍵字"
-              id="keyword"
-              margin="normal"
-              variant="outlined"
-              InputProps={{ ...params.InputProps, type: 'search' }}
+        <div className="row">
+          <div className="col-9 d-flex align-items-end pb-0">
+            <Autocomplete
+              className="w-100"
+              freeSolo
+              disableClearable
+              options={searchRecord.map((option) => option.keyword)}
+              onChange={(event, newValue) => {
+                let check = true
+                searchRecord.forEach((keyValue) => {
+                  if (keyValue.keyword === newValue) {
+                    check = false
+                  }
+                })
+                if (check) {
+                  setSearchRecord([...searchRecord, { keyword: newValue }])
+                }
+                localStorage.setItem(
+                  'searchRecord',
+                  JSON.stringify(searchRecord)
+                )
+              }}
+              onInputChange={(event, newInputValue) => {
+                setKeyword(newInputValue)
+              }}
+              renderInput={(params) => (
+                <TextField
+                  className="m-0"
+                  {...params}
+                  label="關鍵字"
+                  id="keyword"
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{ ...params.InputProps, type: 'search' }}
+                />
+              )}
             />
-          )}
-        />
+          </div>
+          <div className="col-3 d-flex align-items-end pb-0">
+            <FormControl className="w-100" variant="outlined">
+              <InputLabel id="demo-simple-select-outlined-label">
+                搜尋欄位
+              </InputLabel>
+              <Select
+                MenuProps={{ disableScrollLock: true }}
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={column}
+                onChange={(event) => {
+                  setColumn(event.target.value)
+                }}
+                label="搜尋欄位"
+              >
+                <MenuItem value={'ProductName'}>名稱</MenuItem>
+                <MenuItem value={'specification'}>規格</MenuItem>
+                <MenuItem value={'description'}>介紹</MenuItem>
+                <MenuItem value={'tag'}>TAG</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+        </div>
       </CardSecondary>
+
       <div className="topSpace"></div>
       <div className="container">
         <h1>產品頁面</h1>

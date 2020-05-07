@@ -1,9 +1,12 @@
 class ProductList {
   static conditionCreator(query) {
-    const keyword = query.keyword ? query.keyword : ''
     const condition = {
-      main: keyword ? `Where ProductName like '%${keyword}%'` : '',
+      main: '',
     }
+    const keyword = query.keyword ? query.keyword : ''
+    const column = query.column ? query.column : 'ProductName'
+    condition.main = keyword ? `Where ${column} like '%${keyword}%'` : ''
+
     return condition
   }
 
