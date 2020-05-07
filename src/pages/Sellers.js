@@ -11,7 +11,8 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
-// import Typed from 'react-typed'
+import Typed from 'react-typed'
+import SmoothScroll from 'smooth-scroll'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
@@ -119,7 +120,10 @@ function Sellers() {
   // console.log(a)
 
   // a !== undefined ?? console.log(a[0])
-
+  useEffect(() => {
+    var scroll = new SmoothScroll('a[href*="#"]')
+    console.log(scroll)
+  }, [])
   return (
     <>
       <JqueryComClass />
@@ -137,6 +141,7 @@ function Sellers() {
       </div> */}
 
       <div className="all-page-title page-breadcrumb">
+        <div id="nn0"></div>
         <div className="container text-center">
           <div className="row">
             <div className="col-lg-12 " align="center">
@@ -233,7 +238,22 @@ function Sellers() {
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1>{sName}</h1>
+                      <h1 className="text-info">{sName}</h1>
+                      <h3 className="m-b-20 ">
+                        <strong>
+                          <Typed
+                            strings={[
+                              '來自各國優質賣家',
+                              '精心栽種的咖啡飲品',
+                              '就為了喝下那一刻的幸福',
+                            ]}
+                            typeSpeed={60}
+                            backSpeed={70}
+                            loop
+                          />
+                          <br />
+                        </strong>
+                      </h3>
 
                       <Carousel>
                         <Carousel.Item>
@@ -273,19 +293,42 @@ function Sellers() {
                             {/* <Button variant="secondary" href="#">
                       全部消息
                     </Button> */}
-                            <Button id="photo" variant="secondary" href="#">
-                              關於特色商品
+                            <Button id="photo" variant="secondary">
+                              打開特色商品
                             </Button>
-                            <Button id="shop2" variant="secondary" href="#">
-                              關於聯絡方式與基本資訊
+                            <Button id="shop2" variant="secondary">
+                              打開聯絡方式與基本資訊
                             </Button>
 
-                            <Button id="giri2" variant="secondary" href="#">
-                              關於店家剪影
+                            <Button id="giri2" variant="secondary">
+                              打開店家剪影
                             </Button>
 
                             <Button variant="secondary" id="nothank">
                               謝了，我不想知道
+                            </Button>
+                          </ButtonGroup>
+
+                          <ButtonGroup
+                            aria-label="Basic example"
+                            className="mt-3"
+                          >
+                            {/* <Button variant="secondary" href="#">
+                      全部消息
+                    </Button> */}
+                            <Button variant="secondary" data-scroll href="#nn1">
+                              跳轉特色商品
+                            </Button>
+                            <Button variant="secondary" data-scroll href="#nn2">
+                              跳轉聯絡方式與基本資訊
+                            </Button>
+
+                            <Button variant="secondary" data-scroll href="#nn3">
+                              跳轉店家剪影
+                            </Button>
+
+                            <Button variant="secondary" href="#nn0">
+                              我想回到最上面
                             </Button>
                           </ButtonGroup>
 
@@ -295,7 +338,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div>
-
+                <div id="nn3"></div>
                 <div className="row mt-3 " id="nothank3">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
@@ -424,6 +467,7 @@ function Sellers() {
                     <p>{sAddress}</p>
                   </ProductListItem>
                 </div> */}
+                <div id="nn2"></div>
                 <div className="row mt-3 " id="nothank4">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
@@ -649,6 +693,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
+                <div id="nn1"></div>
                 <div className="row mt-3 " id="nothank5">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
