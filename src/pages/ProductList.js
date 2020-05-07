@@ -26,7 +26,6 @@ import Zoom from '@material-ui/core/Zoom'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
@@ -286,6 +285,7 @@ function ProductList(props) {
             <Autocomplete
               className="w-100"
               freeSolo
+              defaultValue={keyword}
               disableClearable
               options={searchRecord.map((option) => option.keyword)}
               onChange={(event, newValue) => {
@@ -314,7 +314,7 @@ function ProductList(props) {
                   id="keyword"
                   margin="normal"
                   variant="outlined"
-                  InputProps={{ ...params.InputProps, type: 'search' }}
+                  // InputProps={{ ...params.InputProps, type: 'search' }}
                 />
               )}
             />
@@ -325,20 +325,19 @@ function ProductList(props) {
                 搜尋欄位
               </InputLabel>
               <Select
+                native
                 MenuProps={{ disableScrollLock: true }}
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={column}
                 onChange={(event) => {
                   setColumn(event.target.value)
                 }}
                 label="搜尋欄位"
               >
-                <MenuItem value={'ProductName'}>產品名稱</MenuItem>
-                <MenuItem value={'sName'}>賣家名稱</MenuItem>
-                <MenuItem value={'specification'}>規格</MenuItem>
-                <MenuItem value={'description'}>介紹</MenuItem>
-                <MenuItem value={'tag'}>TAG</MenuItem>
+                <option value={'ProductName'}>產品名稱</option>
+                <option value={'sName'}>賣家名稱</option>
+                <option value={'specification'}>規格</option>
+                <option value={'description'}>介紹</option>
+                <option value={'tag'}>TAG</option>
               </Select>
             </FormControl>
           </div>

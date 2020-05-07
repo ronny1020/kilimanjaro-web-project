@@ -172,6 +172,7 @@ function Product(props) {
       onClick={() => {
         setKeyword(tag)
         setColumn('tag')
+        document.documentElement.scrollTop = 0
         history.push('/productList')
       }}
     />
