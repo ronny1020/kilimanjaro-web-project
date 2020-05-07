@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import Question from '../components/seller/Question'
@@ -6,7 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import LobbyTitle from '../components/member/LobbyTitle'
 import '../styles/my.scss'
 import Breadcrumb from '../components/Breadcrumb'
-import Sidebar from '../components/Sidebar'
+// import Sidebar from '../components/Sidebar'
 import img002 from '../img/disc/about-image.jpg'
 import img004 from '../img/disc/heart-icon.png'
 
@@ -14,6 +14,7 @@ import img004 from '../img/disc/heart-icon.png'
 
 import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
+import SmoothScroll from 'smooth-scroll'
 /* 聯絡我們:客服表單 import */
 
 function OnSale() {
@@ -90,22 +91,22 @@ function OnSale() {
   }
   /* 聯絡我們:客服表單 (END) */
 
-  const inputArray = {
-    title: '常見問題',
-    網站定位: {
-      link: '/lobby/edit',
-    },
+  // const inputArray = {
+  //   title: '常見問題',
+  //   網站定位: {
+  //     link: '/lobby/edit',
+  //   },
 
-    新手教學: {
-      link: '/lobby/coupon',
-    },
-    折扣活動: {
-      link: '/lobby/history',
-    },
-    購物車上限: {
-      link: '/lobby/favorite',
-    },
-  }
+  //   新手教學: {
+  //     link: '/lobby/coupon',
+  //   },
+  //   折扣活動: {
+  //     link: '/lobby/history',
+  //   },
+  //   購物車上限: {
+  //     link: '/lobby/favorite',
+  //   },
+  // }
   // let jsonInput = {
   //   title: '網站定位',
   //   content:
@@ -113,12 +114,18 @@ function OnSale() {
   //   color: 'primary',
   //   id: 'seller01',
   // }
+
+  useEffect(() => {
+    var scroll = new SmoothScroll('a[href*="#"]')
+    console.log(scroll)
+  }, [])
+
   return (
     <>
       <div className="all-page-title page-breadcrumb">
         <div className="container text-center">
           <div className="row">
-            <div className="col-md-4 col-xs-0 " align="center">
+            <div className="col-lg-12 " align="center">
               {/* <h1>賣家介紹</h1> */}
               <p className="text-white">~關於我們網站，與常見的問題~</p>
             </div>
@@ -130,7 +137,44 @@ function OnSale() {
 
             <div className="row">
               <div className="col-4 qweqwe" align="center">
-                <Sidebar input={inputArray} />
+                {/* <Sidebar input={inputArray} /> */}
+                <nav class="navbar sidebar">
+                  <ul class="navbar-nav">
+                    <div class=" bg-primary titleLabel">
+                      <h4 class="text-secondary">常見問題</h4>
+                    </div>
+                    <li class="nav-item" onClick={() => {}}>
+                      <a class="nav-link" data-scroll href="#mm1">
+                        <p class="text-dark">&gt;網站定位</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li class="nav-item" onClick={() => {}}>
+                      <a class="nav-link" data-scroll href="#mm2">
+                        <p class="text-dark">&gt;賣家資訊</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li class="nav-item" onClick={() => {}}>
+                      <a class="nav-link" data-scroll href="#mm3">
+                        <p class="text-dark">&gt;折扣活動</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li class="nav-item" onClick={() => {}}>
+                      <a class="nav-link" data-scroll href="#mm4">
+                        <p class="text-dark">&gt;商品訊息</p>
+                      </a>
+                      <hr />
+                    </li>
+                    <li class="nav-item" onClick={() => {}}>
+                      <a class="nav-link" data-scroll href="#mm5">
+                        <p class="text-dark">&gt;客戶服務</p>
+                      </a>
+                      <hr />
+                    </li>
+                  </ul>
+                </nav>
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
@@ -234,7 +278,7 @@ function OnSale() {
                       </div>
                       <p>Q:吉利馬札羅是做甚麼的網站?</p>
                     </div>
-
+                    <div id="mm1"></div>
                     <div className="back">
                       <p>
                         本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
@@ -254,7 +298,7 @@ function OnSale() {
                       </div>
                       <p>Q:如何了解商品賣家的相關訊息?</p>
                     </div>
-
+                    <div id="mm2"></div>
                     <div className="back">
                       <p>
                         請參閱本店網站首頁的「店家介紹」，裡面有賣家的基本介紹與聯絡方式。
@@ -273,7 +317,7 @@ function OnSale() {
                       </div>
                       <p>Q:貴站有折扣活動嗎?</p>
                     </div>
-
+                    <div id="mm3"></div>
                     <div className="back">
                       <p>
                         對於本站會員，提供庫碰劵折扣，能為您欲買的商品提供不定的折數。
@@ -292,7 +336,7 @@ function OnSale() {
                       </div>
                       <p>Q: 如何取得更詳細的產品訊息??</p>
                     </div>
-
+                    <div id="mm4"></div>
                     <div className="back">
                       <p>
                         點選我們的首頁中的產品資訊，裡面有產品列表，對有興趣的產品點進去就有更詳細的產品訊息。
@@ -309,6 +353,7 @@ function OnSale() {
                 <Question input={jsonInput} /> */}
 
                 {/* 聯絡我們:客服表單 */}
+                <div id="mm5"></div>
                 <Card
                   className="cramCard"
                   id="contact"

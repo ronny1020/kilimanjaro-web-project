@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import CancelIcon from '@material-ui/icons/Cancel'
+// import CancelIcon from '@material-ui/icons/Cancel'
 import swal from 'sweetalert'
 
 function HistoryList(props) {
@@ -23,12 +23,11 @@ function HistoryList(props) {
             {/* 按鈕內的元件點擊時會讀不到按鈕id值 */}
             <Button
               id={'cancel' + item.OrderID.toString()}
-              style={{ width: '100%' }}
+              style={{ width: '100%', fontWeight: 'bolder' }}
               variant="danger"
               onClick={handleCancel}
             >
-              <CancelIcon />
-              <span style={{ fontWeight: 'bold' }}>取消</span>
+              取消
             </Button>
           </Col>
         </Row>

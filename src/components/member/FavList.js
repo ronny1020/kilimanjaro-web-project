@@ -1,10 +1,10 @@
 import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import DeleteIcon from '@material-ui/icons/Delete'
+// import DeleteIcon from '@material-ui/icons/Delete'
 
 function FavList(props) {
-  console.log(props)
+  // console.log(props)
   const favArray = props.input
   const listItems = favArray.map((item) => (
     <ListGroup.Item key={item.productID.toString()}>
@@ -25,13 +25,12 @@ function FavList(props) {
 
         <Col sm={2}>
           <Button
-            style={{ width: '100%' }}
+            style={{ width: '100%', fontWeight: 'bolder' }}
             variant="danger"
             id={props.id + '/' + item.productID.toString()}
             onClick={delItem}
           >
-            <DeleteIcon />
-            <span style={{ fontWeight: 'bold' }}>刪除</span>
+            刪除
           </Button>
         </Col>
       </Row>
