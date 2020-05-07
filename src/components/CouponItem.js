@@ -1,7 +1,8 @@
 import React from 'react'
+import swal from 'sweetalert'
 import ProductListItem from './ProductList/productListItem'
 
-import LoginValidate from '../components/LoginValidate'
+import LoginValidate from './LoginValidate'
 import { Row, Col, Image, Button, ListGroup } from 'react-bootstrap'
 import srcImg from '../img/disc/coupon.jpg'
 
@@ -11,7 +12,12 @@ function CouponItem(props) {
 
   function handleCoupon() {
     if (LoginValidate() === false) {
-      return alert('請登入會員帳號以領取!')
+      return swal({
+        title: '提示訊息',
+        text: '請登入會員帳號以領取!',
+        icon: 'warning',
+        button: 'OK',
+      })
     } else {
       //   console.log(couponArray.couponName)
       //此處開始領取
@@ -31,10 +37,21 @@ function CouponItem(props) {
         .then((response) => {
           //獲取錯誤訊息(重複領取) or 領取成功
           if (typeof response.message !== 'undefined') {
-            alert('您已經領取過此折扣券!')
+            swal({
+              title: '提示訊息',
+              text: '您已經領取過此折扣券!',
+              icon: 'error',
+              button: 'OK',
+            })
+
             console.log(response)
           } else {
-            alert('領取成功!')
+            swal({
+              title: '提示訊息',
+              text: '領取成功!',
+              icon: 'success',
+              button: 'OK',
+            })
             console.log(response)
           }
         })
@@ -48,6 +65,7 @@ function CouponItem(props) {
           <Image className="d-block h-40 w-100 " src={srcImg} rounded />
           {/* 顯示基本資訊(暫定) */}
           <ListGroup
+            className="tyutyu"
             style={{
               position: 'absolute',
               top: '30%',

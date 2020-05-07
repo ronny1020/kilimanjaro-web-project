@@ -9,7 +9,7 @@ function CoupList(props) {
     <ListGroup.Item action key={item.couponMapId.toString()}>
       優惠券名稱：{item.coupon.couponName}
       <br />
-      消費滿{item.coupon.limitation}可以使用
+      消費滿{item.coupon.limitation}可折抵{item.coupon.minus}元
       <br />
       使用期限：至{item.coupon.cpendDate}
     </ListGroup.Item>

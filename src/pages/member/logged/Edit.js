@@ -7,6 +7,7 @@ import { Form, Button, Card, Accordion, InputGroup } from 'react-bootstrap'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io'
 import bcrypt from 'bcryptjs'
+import swal from 'sweetalert'
 
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
@@ -99,19 +100,27 @@ function Edit() {
 
   //舊密碼驗證:
   function PasswordValidate(event) {
-    // event.preventDefault()
+    event.preventDefault()
     fetch('http://localhost:6001/Member/' + memberID)
       .then((res) => res.json())
       .then((details) => {
         if (bcrypt.compareSync(oldpwd, details.cPassword) === true)
           handleSubmit()
-        else alert('舊密碼與原密碼不符!')
+        else
+          swal({
+            title: '提示訊息',
+            text: '舊密碼與原密碼不符!',
+            icon: 'warning',
+          })
       })
   }
 
   function handleSubmit(event) {
     //do POST here!(to node.js)
-    // event.preventDefault()
+    try {
+      event.preventDefault()
+    } catch (error) {}
+
     if (editpwd === '') {
       // 沒密碼: 直接送出
       // Store hash in your password DB.
@@ -136,7 +145,14 @@ function Edit() {
       })
         .then((res) => res.json())
         .catch((error) => console.error('Error:', error))
-        .then((response) => console.log('Success:', response))
+        .then((response) => {
+          swal({
+            title: '提示訊息',
+            text: '會員資料已更新!',
+            icon: 'success',
+          })
+          console.log('Success:', response)
+        })
     } else {
       //有密碼: 則加密後送出
       bcrypt.genSalt(10, function (err, salt) {
@@ -164,7 +180,14 @@ function Edit() {
           })
             .then((res) => res.json())
             .catch((error) => console.error('Error:', error))
-            .then((response) => console.log('Success:', response))
+            .then((response) => {
+              swal({
+                title: '提示訊息',
+                text: '會員資料已更新!',
+                icon: 'success',
+              })
+              console.log('Success:', response)
+            })
         })
       })
     }
