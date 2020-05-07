@@ -587,3 +587,27 @@ a.tab-label.active-btn {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
+
+
+
+@media(max-width: 1000px) {
+  .qweqwe {
+    width: 0%;
+    display: none;
+
+  }
+
+  .asdasd {
+
+    width: auto;
+
+  }
+
+  .jumbotron {
+    text-align: center;
+  }
+
+  footer {
+    text-align: center;
+  }
+}

@@ -129,7 +129,7 @@ function OnSale() {
             <br />
 
             <div className="row">
-              <div className="col-4" align="center">
+              <div className="col-4 qweqwe" align="center">
                 <Sidebar input={inputArray} />
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
@@ -142,7 +142,7 @@ function OnSale() {
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
               </div>
-              <div className="col-8">
+              <div className="col-8 asdasd">
                 <Breadcrumb />
                 <div className="row">
                   <div className="col-12">
