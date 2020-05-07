@@ -11,6 +11,7 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
+// import Typed from 'react-typed'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'

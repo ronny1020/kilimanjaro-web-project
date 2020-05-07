@@ -7,6 +7,8 @@ import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
+import '../../node_modules/video-react/dist/video-react.css'
+// import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -37,6 +39,14 @@ function Home() {
 
   return (
     <>
+      {/* <Player
+        fluid={false}
+        muted={true}
+        autoPlay={true}
+        playsInline
+        poster="/assets/poster.png"
+        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+      /> */}
       <JqueryComClass />
       <HomeCarousel />
       <div id="slides" className="cover-slides">
