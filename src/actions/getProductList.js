@@ -1,4 +1,9 @@
-import { GET_PRODUCT_LIST, SET_QUERY } from './actionTypes'
+import {
+  GET_PRODUCT_LIST,
+  SET_QUERY,
+  SET_KEYWORD,
+  SET_COLUMN,
+} from './actionTypes'
 
 export const getProductList = (page, cid, query = '') => {
   return async (dispatch) => {
@@ -22,5 +27,19 @@ export const setQuery = (query) => {
   return {
     type: SET_QUERY,
     payload: query,
+  }
+}
+
+export const setKeyword = (keyword) => {
+  return {
+    type: SET_KEYWORD,
+    payload: keyword,
+  }
+}
+
+export const setColumn = (column) => {
+  return {
+    type: SET_COLUMN,
+    payload: column,
   }
 }

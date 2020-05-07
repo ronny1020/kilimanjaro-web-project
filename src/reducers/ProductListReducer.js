@@ -1,8 +1,15 @@
-import { GET_PRODUCT_LIST, SET_QUERY } from '../actions/actionTypes'
+import {
+  GET_PRODUCT_LIST,
+  SET_QUERY,
+  SET_KEYWORD,
+  SET_COLUMN,
+} from '../actions/actionTypes'
 
 const initialState = {
   items: [],
   query: '',
+  keyword: '',
+  column: 'ProductName',
 }
 
 export default function (state = initialState, action) {
@@ -16,6 +23,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         query: action.payload,
+      }
+    case SET_KEYWORD:
+      return {
+        ...state,
+        keyword: action.payload,
+      }
+    case SET_COLUMN:
+      return {
+        ...state,
+        column: action.payload,
       }
     default:
       return state

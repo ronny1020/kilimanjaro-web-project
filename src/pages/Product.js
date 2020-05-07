@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+
+import { useHistory } from 'react-router-dom'
 import Loading from '../components/Loading'
 import { useParams } from 'react-router-dom'
 import { getMemberID } from '../actions/getMemberID'
@@ -33,17 +35,22 @@ import Chip from '@material-ui/core/Chip'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
+import { setKeyword, setColumn } from '../actions/getProductList'
+
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
 }
 
 function Product(props) {
+  let history = useHistory()
   let { id } = useParams()
 
   const {
     product,
     recordVisit,
     getProduct,
+    setKeyword,
+    setColumn,
     AddProductToCart,
     removeProductFromCart,
     updateProductNumToCart,
@@ -157,11 +164,16 @@ function Product(props) {
   const tagsLink = product.tags.map((tag, i) => (
     <Chip
       label={tag}
+      className="m-1"
       component="a"
-      href="#chip"
       clickable
       variant="outlined"
       key={i}
+      onClick={() => {
+        setKeyword(tag)
+        setColumn('tag')
+        history.push('/productList')
+      }}
     />
   ))
 
@@ -546,4 +558,6 @@ export default connect(mapStateToProps, {
   RemoveComment,
   AddProductToFavourite,
   removeProductFromFavourite,
+  setKeyword,
+  setColumn,
 })(Product)

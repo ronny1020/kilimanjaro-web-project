@@ -4,7 +4,12 @@ import Loading from '../components/Loading'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getProductList, setQuery } from '../actions/getProductList'
+import {
+  getProductList,
+  setQuery,
+  setKeyword,
+  setColumn,
+} from '../actions/getProductList'
 import { getMemberID } from '../actions/getMemberID'
 
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
@@ -33,9 +38,6 @@ function ProductList(props) {
 
   const [showZoom, setShowZoom] = React.useState(false)
 
-  const [keyword, setKeyword] = React.useState('')
-  const [column, setColumn] = React.useState('ProductName')
-
   const [searchRecord, setSearchRecord] = React.useState(
     localStorage.getItem('searchRecord')
       ? JSON.parse(localStorage.getItem('searchRecord'))
@@ -47,11 +49,15 @@ function ProductList(props) {
     range,
     getProductList,
     setQuery,
+    setKeyword,
+    setColumn,
     AddProductToCart,
     removeProductFromCart,
     AddProductToFavourite,
     removeProductFromFavourite,
     query,
+    keyword,
+    column,
   } = props
 
   const memberID = getMemberID()
@@ -388,12 +394,16 @@ const mapStateToProps = (state) => {
     products: state.ProductListReducer.items.ProductList,
     range: state.ProductListReducer.items.Range,
     query: state.ProductListReducer.query,
+    keyword: state.ProductListReducer.keyword,
+    column: state.ProductListReducer.column,
   }
 }
 
 export default connect(mapStateToProps, {
   getProductList,
   setQuery,
+  setKeyword,
+  setColumn,
   AddProductToCart,
   removeProductFromCart,
   AddProductToFavourite,
