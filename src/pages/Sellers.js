@@ -151,7 +151,7 @@ function Sellers() {
 
           <div className="container bg-secondary">
             <br />
-            <div className="row">
+            <div className="row ">
               <div className="col-4 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
                 <nav class="navbar sidebar">
