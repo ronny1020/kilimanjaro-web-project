@@ -24,3 +24,12 @@ ul.navbar-nav hr {
   top: 10px;
   line-height: 47px;
 }
+
+//newsidebar
+.MuiDrawer-paperAnchorLeft {
+  left: auto !important;
+}
+.MuiDrawer-paper {
+  top: auto !important;
+  position: relative !important;
+}

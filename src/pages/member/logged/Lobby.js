@@ -332,7 +332,7 @@ function Member(props) {
                           <LobbyCard
                             title="同好會"
                             content="查看您加入的同好會並進行管理。"
-                            to="/about#contact"
+                            to="/about#mm5"
                             img="IoMdMail"
                           />
                           <LobbyCard
