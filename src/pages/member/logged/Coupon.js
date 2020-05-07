@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
-import Sidebar from '../../../components/Sidebar'
+// import Sidebar from '../../../components/Sidebar'
+import NewSidebar from '../../../components/NewSidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
 import CoupList from '../../../components/member/CoupList'
@@ -37,29 +38,30 @@ function Coupon() {
       })
   }
 
-  const inputArray = {
-    title: '會員中心',
-    個人資料修改: {
-      link: '/lobby/edit',
-    },
+  // const inputArray = {
+  //   title: '會員中心',
+  //   個人資料修改: {
+  //     link: '/lobby/edit',
+  //   },
 
-    折扣券: {
-      link: '/lobby/coupon',
-    },
-    交易紀錄: {
-      link: '/lobby/history',
-    },
-    喜好清單: {
-      link: '/lobby/favorite',
-    },
-  }
+  //   折扣券: {
+  //     link: '/lobby/coupon',
+  //   },
+  //   交易紀錄: {
+  //     link: '/lobby/history',
+  //   },
+  //   喜好清單: {
+  //     link: '/lobby/favorite',
+  //   },
+  // }
   return (
     <>
       <LobbyTitle string={'折扣券'} />
       <div className="container bg-secondary">
         <div className="row">
-          <div className="col-3">
-            <Sidebar input={inputArray} />
+          <div className="col-3 container">
+            <NewSidebar />
+            {/* <Sidebar input={inputArray} /> */}
           </div>
           <div className="col-9">
             <Breadcrumb />
