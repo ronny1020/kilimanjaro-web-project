@@ -19,14 +19,23 @@ function HistoryList(props) {
             下單日期：{item.OrderDate}
           </Col>
           <Col sm={2}>
+            {/* 按鈕內的元件點擊時會讀不到按鈕id值 */}
             <Button
               id={'cancel' + item.OrderID.toString()}
               style={{ width: '100%' }}
               variant="danger"
               onClick={handleCancel}
             >
-              <CancelIcon />
-              <span style={{ fontWeight: 'bolder' }}>取消</span>
+              <CancelIcon
+                style={{ zIndex: '-1' }}
+                id={'cancel' + item.OrderID.toString()}
+              />
+              <span
+                style={{ fontWeight: 'bold', zIndex: '-1' }}
+                id={'cancel' + item.OrderID.toString()}
+              >
+                取消
+              </span>
             </Button>
           </Col>
         </Row>
@@ -72,7 +81,7 @@ function HistoryList(props) {
     let target_id = props.target.id.replace('cancel', '')
     const url_put = 'http://localhost:6001/ordersapi/'
     let cancelJson = { orderID: target_id }
-    // console.log(target_id)
+    // console.log(props)
     fetch(url_put, {
       method: 'PUT',
       body: JSON.stringify(cancelJson),
