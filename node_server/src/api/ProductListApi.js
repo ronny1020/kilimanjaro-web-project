@@ -11,7 +11,7 @@ async function executeSQL(
   page,
   cid,
   method = 'get',
-  keyword = ''
+  query = {}
 ) {
   try {
     const output = {
@@ -22,7 +22,7 @@ async function executeSQL(
     }
 
     const results_total = await database.promisePool.query(
-      ProductList.getProductListRowsNum(keyword)
+      ProductList.getProductListRowsNum(query)
     )
     output.totalRows = results_total[0][0].num
     output.totalPages = Math.ceil(output.totalRows / perPage)
@@ -68,13 +68,13 @@ router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
       '.'
   )
   executeSQL(
-    ProductList.getProductList(keyword),
+    ProductList.getProductList(req.query),
     res,
     perPage,
     page,
     req.params.cid,
     'get',
-    keyword
+    req.query
   )
 })
 

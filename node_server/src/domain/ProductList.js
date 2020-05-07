@@ -1,6 +1,14 @@
 class ProductList {
-  static getProductList(keyword) {
-    let condition = keyword ? `Where ProductName like '%${keyword}%'` : ''
+  static conditionCreator(query) {
+    const keyword = query.keyword ? query.keyword : ''
+    const condition = {
+      main: keyword ? `Where ProductName like '%${keyword}%'` : '',
+    }
+    return condition
+  }
+
+  static getProductList(query) {
+    let condition = this.conditionCreator(query)
     let sql = `SELECT products.productID, ProductName, products.sellerID, sName, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,favouriteID
     , disID, discount, disName, disDescrip, startDate, overDate , IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) finalPrice, visitedTimes, sellingVolume
     FROM coffee.products 
@@ -17,13 +25,13 @@ class ProductList {
     left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
     on orders.OrderID = orders_detail.OrderID group by productID) s
     on products.productID=s.productID
-    ${condition} ORDER BY products.productID DESC LIMIT ? , ? ;`
+    ${condition.main} ORDER BY products.productID DESC LIMIT ? , ? ;`
 
     return sql
   }
 
-  static getProductListRowsNum(keyword) {
-    let condition = keyword ? `Where ProductName like '%${keyword}%'` : ''
+  static getProductListRowsNum(query) {
+    let condition = this.conditionCreator(query)
     let sql = `SELECT COUNT(0) num 
     FROM coffee.products 
     Join coffee.sellers ON sellers.sellerID = products.sellerID
@@ -37,7 +45,7 @@ class ProductList {
     left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
     on orders.OrderID = orders_detail.OrderID group by productID) s
     on products.productID=s.productID
-    ${condition} ;`
+    ${condition.main} ;`
 
     return sql
   }
