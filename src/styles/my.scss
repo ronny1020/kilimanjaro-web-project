@@ -487,11 +487,11 @@
   display: block;
 }
 
-.tab-content > .tab-label {
+.tab-content>.tab-label {
   display: none;
 }
 
-.tab-nav > .tab-label {
+.tab-nav>.tab-label {
   float: left;
 }
 
@@ -524,7 +524,7 @@ a.tab-label.active-btn {
 }
 
 @media screen and (max-width: 768px) {
-  .tab-nav > .tab-label {
+  .tab-nav>.tab-label {
     margin: 0.5px 0;
     width: 100%;
   }
@@ -611,6 +611,7 @@ a.tab-label.active-btn {
     clear: both;
     display: table;
   }
+
   .tyutyu {
     font-size: smaller;
   }

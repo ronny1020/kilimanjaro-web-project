@@ -152,7 +152,7 @@ function Sellers() {
           <div className="container bg-secondary">
             <br />
             <div className="row ">
-              <div className="col-4 qweqwe" align="center">
+              <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
                 <nav class="navbar sidebar">
                   <ul class="navbar-nav">
@@ -228,7 +228,7 @@ function Sellers() {
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
               </div>
-              <div className="col-8 asdasd">
+              <div className="col-md-8 col-xs-12 asdasd">
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
