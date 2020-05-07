@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import Question from '../components/seller/Question'
@@ -14,6 +14,7 @@ import img004 from '../img/disc/heart-icon.png'
 
 import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
+import SmoothScroll from 'smooth-scroll'
 /* 聯絡我們:客服表單 import */
 
 function OnSale() {
@@ -113,6 +114,10 @@ function OnSale() {
   //   color: 'primary',
   //   id: 'seller01',
   // }
+
+  useEffect(() => {
+    var scroll = new SmoothScroll('a[href*="#"]')
+  }, [])
   return (
     <>
       <div className="all-page-title page-breadcrumb">
