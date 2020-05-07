@@ -2,6 +2,7 @@ import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CancelIcon from '@material-ui/icons/Cancel'
+import swal from 'sweetalert'
 
 function HistoryList(props) {
   //未寄送之訂單: shipdate = null && vaild = 1
@@ -26,16 +27,8 @@ function HistoryList(props) {
               variant="danger"
               onClick={handleCancel}
             >
-              <CancelIcon
-                style={{ zIndex: '-1' }}
-                id={'cancel' + item.OrderID.toString()}
-              />
-              <span
-                style={{ fontWeight: 'bold', zIndex: '-1' }}
-                id={'cancel' + item.OrderID.toString()}
-              >
-                取消
-              </span>
+              <CancelIcon />
+              <span style={{ fontWeight: 'bold' }}>取消</span>
             </Button>
           </Col>
         </Row>
@@ -79,23 +72,36 @@ function HistoryList(props) {
   //取消訂單
   function handleCancel(props) {
     let target_id = props.target.id.replace('cancel', '')
-    const url_put = 'http://localhost:6001/ordersapi/'
-    let cancelJson = { orderID: target_id }
-    // console.log(props)
-    fetch(url_put, {
-      method: 'PUT',
-      body: JSON.stringify(cancelJson),
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
+    console.log(target_id)
+    swal({
+      title: '您確定嗎?',
+      text: '定單一經取消，則無法再被復原!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const url_put = 'http://localhost:6001/ordersapi/'
+        let cancelJson = { orderID: target_id }
+        fetch(url_put, {
+          method: 'PUT',
+          body: JSON.stringify(cancelJson),
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          }),
+        })
+          .then((res) => res.json())
+          .catch((error) => console.error('Error:', error))
+          .then((response) => {
+            swal({
+              title: '提示訊息',
+              text: '訂單已取消!',
+              icon: 'success',
+            }).then(() => window.location.reload('/lobby/history'))
+            console.log('Success:', response)
+          })
+      }
     })
-      .then((res) => res.json())
-      .catch((error) => console.error('Error:', error))
-      .then((response) => {
-        alert('已取消訂單!')
-        window.location.replace('/lobby/history')
-        console.log('Success:', response)
-      })
   }
 
   //點擊顯示訂單詳細內容

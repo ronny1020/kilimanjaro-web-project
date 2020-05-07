@@ -240,193 +240,250 @@ function Member(props) {
         <>
           <Switch>
             <Route exact path="/lobby">
-              <LobbyTitle
-                string={'會員中心'}
-                isAuth={props.isAuth}
-                setIsAuth={props.setIsAuth}
-              />
-              <div className="container bg-secondary">
-                <div className="row">
-                  <div className="col-8">
-                    <Breadcrumb />
-                    <Row style={{ marginBottom: '1em' }}>
-                      <Col lg={8} className="pr-0">
-                        <div
-                          className="bg-white"
-                          style={{
-                            border: '0.5px solid lightgrey',
-                            // borderRight: 0,
-                            height: '170px',
-                          }}
-                        >
-                          <h2>您好, 會員{name}</h2>
-                          <h6>您登入的時間為：{loginTime}</h6>
-                          <hr />
-                          <h4>
-                            您目前累積的紅利點數：
-                            <code
-                              style={{ fontSize: '1.5em', color: '#fab5b5' }}
+              <div className="all-page-title page-breadcrumb">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 " align="center">
+                      {/* <h1>賣家介紹</h1> */}
+                      <p className="text-white">~歡迎來到最棒的會員中心！~</p>
+                    </div>
+                  </div>
+                  <LobbyTitle
+                    string={'會員中心'}
+                    isAuth={props.isAuth}
+                    setIsAuth={props.setIsAuth}
+                  />
+                  <div className="container bg-secondary">
+                    <div className="row">
+                      <div className="col-8">
+                        <Breadcrumb />
+                        <Row style={{ marginBottom: '1em' }}>
+                          <Col lg={8} className="pr-0">
+                            <div
+                              className="bg-white"
+                              style={{
+                                border: '0.5px solid lightgrey',
+                                // borderRight: 0,
+                                height: '170px',
+                              }}
                             >
-                              {point}
-                            </code>
-                          </h4>
-                        </div>
-                      </Col>
-
-                      {/* 上傳頭像: 表單 */}
-                      <Col lg={4} className="pl-0">
-                        <div
-                          className="bg-white"
-                          style={{
-                            border: '0.5px solid lightgrey',
-                            borderLeft: 0,
-                            height: '170px',
-                          }}
-                        >
-                          <Form encType="multipart/form-data">
-                            <input
-                              id="upload_img"
-                              type="file"
-                              name="avatar"
-                              // 預設只接受圖檔
-                              accept="image/*"
-                              hidden
-                              onChange={handleOpen}
-                            />
-                            <div className="container profileDiv">
-                              <Image
-                                className="profile"
-                                src={uploadImg}
-                                roundedCircle
-                                onClick={handleClick}
-                                onError={addDefaultSRC} //Image fallback
-                              />
-                              <FaEdit
-                                className="profileEdit"
-                                onClick={handleClick}
-                              />
+                              <h2>您好, 會員{name}</h2>
+                              <h6>您登入的時間為：{loginTime}</h6>
+                              <hr />
+                              <h4>
+                                您目前累積的紅利點數：
+                                <code
+                                  style={{
+                                    fontSize: '1.5em',
+                                    color: '#fab5b5',
+                                  }}
+                                >
+                                  {point}
+                                </code>
+                              </h4>
                             </div>
-                          </Form>
-                        </div>
-                      </Col>
-                      {/* 上傳頭像: 表單(end) */}
-                    </Row>
-                    <CardGroup>
-                      <LobbyCard
-                        title="修改會員資料"
-                        content="修改信箱、住址、姓名等註冊資料。"
-                        to="/lobby/edit"
-                        img="FaUserEdit"
-                      />
-                      <LobbyCard
-                        title="同好會"
-                        content="查看您加入的同好會並進行管理。"
-                        to="/about#contact"
-                        img="IoMdMail"
-                      />
-                      <LobbyCard
-                        title="折扣券"
-                        content="確認目前擁有可以使用的折扣。"
-                        to="/lobby/coupon"
-                        img="GiTicket"
-                      />
-                    </CardGroup>
+                          </Col>
 
-                    <CardGroup>
-                      <LobbyCard
-                        title="交易紀錄"
-                        content="觀看過去在吉利馬札羅的消費紀錄。"
-                        to="/lobby/history"
-                        img="FaCreditCard"
-                      />
-                      <LobbyCard
-                        title="喜好清單"
-                        content="過去引起您注目，並可能進行購買的商品。"
-                        to="/lobby/favorite"
-                        img="MdFavorite"
-                      />
-                      <LobbyCard
-                        title="查看購物車"
-                        content="查看您準備購買的商品。"
-                        to="/cart"
-                        img="FaCartArrowDown"
-                      />
-                    </CardGroup>
-                  </div>
-                  <div className="col-4" align="center">
+                          {/* 上傳頭像: 表單 */}
+                          <Col lg={4} className="pl-0">
+                            <div
+                              className="bg-white"
+                              style={{
+                                border: '0.5px solid lightgrey',
+                                borderLeft: 0,
+                                height: '170px',
+                              }}
+                            >
+                              <Form encType="multipart/form-data">
+                                <input
+                                  id="upload_img"
+                                  type="file"
+                                  name="avatar"
+                                  // 預設只接受圖檔
+                                  accept="image/*"
+                                  hidden
+                                  onChange={handleOpen}
+                                />
+                                <div className="container profileDiv">
+                                  <Image
+                                    className="profile"
+                                    src={uploadImg}
+                                    roundedCircle
+                                    onClick={handleClick}
+                                    onError={addDefaultSRC} //Image fallback
+                                  />
+                                  <FaEdit
+                                    className="profileEdit"
+                                    onClick={handleClick}
+                                  />
+                                </div>
+                              </Form>
+                            </div>
+                          </Col>
+                          {/* 上傳頭像: 表單(end) */}
+                        </Row>
+                        <CardGroup>
+                          <LobbyCard
+                            title="修改會員資料"
+                            content="修改信箱、住址、姓名等註冊資料。"
+                            to="/lobby/edit"
+                            img="FaUserEdit"
+                          />
+                          <LobbyCard
+                            title="同好會"
+                            content="查看您加入的同好會並進行管理。"
+                            to="/about#contact"
+                            img="IoMdMail"
+                          />
+                          <LobbyCard
+                            title="折扣券"
+                            content="確認目前擁有可以使用的折扣。"
+                            to="/lobby/coupon"
+                            img="GiTicket"
+                          />
+                        </CardGroup>
+
+                        <CardGroup>
+                          <LobbyCard
+                            title="交易紀錄"
+                            content="觀看過去在吉利馬札羅的消費紀錄。"
+                            to="/lobby/history"
+                            img="FaCreditCard"
+                          />
+                          <LobbyCard
+                            title="喜好清單"
+                            content="過去引起您注目，並可能進行購買的商品。"
+                            to="/lobby/favorite"
+                            img="MdFavorite"
+                          />
+                          <LobbyCard
+                            title="查看購物車"
+                            content="查看您準備購買的商品。"
+                            to="/cart"
+                            img="FaCartArrowDown"
+                          />
+                        </CardGroup>
+                      </div>
+                      <div className="col-4" align="center">
+                        <br />
+                        <img
+                          src="../../images/ad1.png"
+                          alt="ad1"
+                          width="80%"
+                        ></img>
+                        <br />
+                        <img
+                          src="../../images/ad2.png"
+                          alt="ad2"
+                          width="80%"
+                        ></img>
+                      </div>
+                    </div>
                     <br />
-                    <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                    <br />
-                    <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                   </div>
+                  {/* 裁剪大頭貼之modal😜 */}
+
+                  <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                  >
+                    <Fade in={open}>
+                      <div className={classes.paper}>
+                        <h2 id="transition-modal-title">編輯頭像</h2>
+                        <Row>
+                          <Col>
+                            {src === null ? null : (
+                              <ReactCrop
+                                src={src}
+                                crop={crop}
+                                ruleOfThirds
+                                onImageLoaded={onImageLoaded}
+                                onComplete={onCropComplete}
+                                onChange={onCropChange}
+                              />
+                            )}
+                          </Col>
+                          <Col>
+                            {croppedImageUrl === null ? null : (
+                              <img
+                                alt="Crop"
+                                style={{ maxWidth: '100%' }}
+                                src={croppedImageUrl}
+                              />
+                            )}
+                          </Col>
+                        </Row>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleUpload}
+                        >
+                          送出頭像
+                        </Button>
+                      </div>
+                    </Fade>
+                  </Modal>
+
+                  {/* 裁剪大頭貼之modal😜 */}
                 </div>
-                <br />
               </div>
-              {/* 裁剪大頭貼之modal😜 */}
-
-              <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                  timeout: 500,
-                }}
-              >
-                <Fade in={open}>
-                  <div className={classes.paper}>
-                    <h2 id="transition-modal-title">編輯頭像</h2>
-                    <Row>
-                      <Col>
-                        {src === null ? null : (
-                          <ReactCrop
-                            src={src}
-                            crop={crop}
-                            ruleOfThirds
-                            onImageLoaded={onImageLoaded}
-                            onComplete={onCropComplete}
-                            onChange={onCropChange}
-                          />
-                        )}
-                      </Col>
-                      <Col>
-                        {croppedImageUrl === null ? null : (
-                          <img
-                            alt="Crop"
-                            style={{ maxWidth: '100%' }}
-                            src={croppedImageUrl}
-                          />
-                        )}
-                      </Col>
-                    </Row>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleUpload}
-                    >
-                      送出頭像
-                    </Button>
-                  </div>
-                </Fade>
-              </Modal>
-
-              {/* 裁剪大頭貼之modal😜 */}
             </Route>
 
             <Route path="/lobby/edit">
-              <Edit />
+              <div className="all-page-title page-breadcrumb">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 " align="center">
+                      <p className="text-white">~歡迎來到最棒的會員中心！~</p>
+                    </div>
+                  </div>
+                  <Edit />
+                </div>
+              </div>
             </Route>
             <Route path="/lobby/coupon">
-              <Coupon />
+              <div className="all-page-title page-breadcrumb">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 " align="center">
+                      <p className="text-white">~歡迎來到最棒的會員中心！~</p>
+                    </div>
+                  </div>
+                  <Coupon />
+                </div>
+              </div>
             </Route>
             <Route path="/lobby/history">
-              <History />
+              <div className="all-page-title page-breadcrumb">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 " align="center">
+                      <p className="text-white">~歡迎來到最棒的會員中心！~</p>
+                    </div>
+                  </div>
+                  <History />
+                </div>
+              </div>
             </Route>
             <Route path="/lobby/favorite">
-              <Favorite />
+              <div className="all-page-title page-breadcrumb">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 " align="center">
+                      <p className="text-white">~歡迎來到最棒的會員中心！~</p>
+                    </div>
+                  </div>
+                  <Favorite />
+                </div>
+              </div>
             </Route>
             <Router path="/cart">
               <Cart />
