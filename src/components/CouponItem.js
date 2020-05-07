@@ -50,7 +50,7 @@ function CouponItem(props) {
           <ListGroup
             style={{
               position: 'absolute',
-              top: '40%',
+              top: '30%',
               left: '15%',
               fontWeight: 'bold',
             }}
@@ -62,7 +62,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              折扣券名稱：{couponArray.couponName}
+              <p6>折扣券名稱：{couponArray.couponName}</p6>
             </ListGroup.Item>
             <ListGroup.Item
               style={{
@@ -71,7 +71,9 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              消費滿{couponArray.limitation}可折抵{couponArray.minus}元
+              <p6>
+                消費滿{couponArray.limitation}可折抵{couponArray.minus}元
+              </p6>
             </ListGroup.Item>
             <ListGroup.Item
               style={{
@@ -80,7 +82,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              有效期限至：{couponArray.cpendDate}
+              <p6>有效期限至：{couponArray.cpendDate}</p6>
             </ListGroup.Item>
           </ListGroup>
         </ProductListItem>
