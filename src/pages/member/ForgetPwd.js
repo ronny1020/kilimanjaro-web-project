@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button, Col, Row, Alert, InputGroup } from 'react-bootstrap'
+import swal from 'sweetalert'
 import Breadcrumb from '../../components/Breadcrumb'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
@@ -7,6 +8,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 function ForgetPwd() {
   //比對信箱&抓之後要用的ID
+  let CAccount = ''
   const [mail, setMail] = useState('')
   const [CID, setCID] = useState('')
   const [newPwd, setNewPwd] = useState('')
@@ -93,6 +95,7 @@ function ForgetPwd() {
             // console.log(allMemList[i].cEmail)
             if (mail === allMemList[i].cEmail) {
               setCID(allMemList[i].customerID)
+              CAccount = allMemList[i].cAccount
               resolve(true)
             }
           }
@@ -121,7 +124,9 @@ function ForgetPwd() {
       let mail_content = {
         mail: mail,
         content: answer,
+        account: CAccount,
       }
+      console.log(mail_content)
       answer = ''
 
       //寄出驗證信
@@ -145,15 +150,28 @@ function ForgetPwd() {
     try {
       jwt.verify(Answer, 'himitsu')
     } catch (err) {
-      alert('驗證碼已過期!')
+      // alert('驗證碼已過期!')
+      swal({
+        title: '提示訊息',
+        text: '驗證碼已過期!',
+        icon: 'warning',
+      })
       window.location.reload()
     }
 
     if (jwt.verify(Answer, 'himitsu').answer === Vcode) {
-      alert('驗證成功!')
+      swal({
+        title: '提示訊息',
+        text: '信箱驗證成功!',
+        icon: 'success',
+      })
       setIsFinished(true)
     } else {
-      alert('錯誤的驗證碼!')
+      swal({
+        title: '提示訊息',
+        text: '錯誤的驗證碼!',
+        icon: 'error',
+      })
     }
   }
 
@@ -179,9 +197,12 @@ function ForgetPwd() {
             .then((res) => res.json())
             .catch((error) => console.error('Error:', error))
             .then((response) => {
-              alert('變更成功!')
               console.log('Success:', response)
-              window.location.reload()
+              swal({
+                title: '提示訊息',
+                text: '密碼變更成功!',
+                icon: 'success',
+              }).then(() => window.location.reload())
             })
         }
       })

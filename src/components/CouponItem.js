@@ -1,4 +1,5 @@
 import React from 'react'
+import swal from 'sweetalert'
 import ProductListItem from './ProductList/productListItem'
 
 import LoginValidate from '../components/LoginValidate'
@@ -31,10 +32,21 @@ function CouponItem(props) {
         .then((response) => {
           //獲取錯誤訊息(重複領取) or 領取成功
           if (typeof response.message !== 'undefined') {
-            alert('您已經領取過此折扣券!')
+            swal({
+              title: '提示訊息',
+              text: '您已經領取過此折扣券!',
+              icon: 'error',
+              button: 'OK',
+            })
+
             console.log(response)
           } else {
-            alert('領取成功!')
+            swal({
+              title: '提示訊息',
+              text: '領取成功!',
+              icon: 'success',
+              button: 'OK',
+            })
             console.log(response)
           }
         })
@@ -50,7 +62,7 @@ function CouponItem(props) {
           <ListGroup
             style={{
               position: 'absolute',
-              top: '30%',
+              top: '40%',
               left: '15%',
               fontWeight: 'bold',
             }}
@@ -62,7 +74,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              <p6>折扣券名稱：{couponArray.couponName}</p6>
+              折扣券名稱：{couponArray.couponName}
             </ListGroup.Item>
             <ListGroup.Item
               style={{
@@ -71,9 +83,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              <p6>
-                消費滿{couponArray.limitation}可折抵{couponArray.minus}元
-              </p6>
+              消費滿{couponArray.limitation}可折抵{couponArray.minus}元
             </ListGroup.Item>
             <ListGroup.Item
               style={{
@@ -82,7 +92,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              <p6>有效期限至：{couponArray.cpendDate}</p6>
+              有效期限至：{couponArray.cpendDate}
             </ListGroup.Item>
           </ListGroup>
         </ProductListItem>

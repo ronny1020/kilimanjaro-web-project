@@ -11,6 +11,7 @@ import Fade from '@material-ui/core/Fade'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ReactCrop from 'react-image-crop'
+import swal from 'sweetalert'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import Edit from './Edit'
@@ -159,6 +160,11 @@ function Member(props) {
       .then((response) => {
         doGetImg()
         handleClose()
+        swal({
+          title: '提示訊息',
+          text: '頭像已上傳成功!',
+          icon: 'success',
+        })
         console.log('Success:', response)
       })
   }

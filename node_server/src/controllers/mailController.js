@@ -20,6 +20,7 @@ var mailTransport = nodemailer.createTransport({
 exports.sendVerify = (req, res) => {
   const mailAddr = req.body.mail
   const mailDetail = req.body.content
+  const userAccount = req.body.account
 
   mailTransport.sendMail(
     {
@@ -27,7 +28,9 @@ exports.sendVerify = (req, res) => {
       to: '<' + mailAddr + '>',
       subject: '吉利馬札羅開發團隊',
       html:
-        "<h1 style='background-color: black;color: white;'>Kilimanjaro</h1><p style='font-size: 20px;'>親愛的用戶, 您好：</p><p style='font-size: 20px;'>你的驗證碼為：<code style='background-color: lightgray;'>" +
+        "<h1 style='background-color: black;color: white;'>Kilimanjaro</h1><p style='font-size: 20px;'>親愛的用戶" +
+        userAccount +
+        ", 您好：</p><p style='font-size: 20px;'>你的驗證碼為：<code style='background-color: lightgray;'>" +
         mailDetail +
         "</code></p><footer style='background-color: black;color: white;'> Klimanjaro dev team @2020</footer>",
     },
