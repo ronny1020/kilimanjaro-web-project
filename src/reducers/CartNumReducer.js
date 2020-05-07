@@ -1,7 +1,7 @@
 import { GET_CART_NUM } from '../actions/actionTypes'
 
 const initialState = {
-  cartNum: [],
+  cartNum: 0,
 }
 
 export default function (state = initialState, action) {

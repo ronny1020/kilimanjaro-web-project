@@ -21,13 +21,17 @@ function Header(props) {
   const { getCartNum, cartNum, product, products, Cart } = props
 
   useEffect(() => {
-    async function start() {
-      await getCartNum(memberID)
-      await favicon.badge(cartNum)
+    if (window.location.pathname === '/cart') {
+      if (Cart) getCartNum(memberID)
+    } else {
+      getCartNum(memberID)
     }
-    start()
+  }, [getCartNum, memberID, product, products, Cart])
+
+  useEffect(() => {
+    favicon.badge(cartNum)
     document.title = cartNum ? '(' + cartNum + ') Kilimanjaro' : 'Kilimanjaro'
-  }, [getCartNum, memberID, product, products, Cart, cartNum])
+  }, [cartNum])
 
   function login() {
     localStorage.setItem('siteBeforeLogin', window.location.pathname)
