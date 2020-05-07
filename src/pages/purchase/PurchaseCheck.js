@@ -11,6 +11,7 @@ import { createOrder } from '../../actions/purchaseFormStorage'
 function PurchaseCheck(props) {
   const memberID = getMemberID()
   if (memberID == null) {
+    localStorage.setItem('siteBeforeLogin', './cart')
     window.location.replace('./login/entrance')
   }
 

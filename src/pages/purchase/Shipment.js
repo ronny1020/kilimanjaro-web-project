@@ -37,6 +37,7 @@ function Shipment(props) {
   const [Freight, setFreight] = React.useState('0')
 
   const shippingMethodVChange = (event) => {
+    localStorage.setItem('siteBeforeLogin', './cart')
     setShippingMethodValue(event.target.value)
   }
 

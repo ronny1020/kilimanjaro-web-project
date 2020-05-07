@@ -22,6 +22,7 @@ function Cart(props) {
   const memberID = getMemberID()
 
   if (memberID == null) {
+    localStorage.setItem('siteBeforeLogin', window.location.pathname)
     window.location.replace('./login/entrance')
   }
 

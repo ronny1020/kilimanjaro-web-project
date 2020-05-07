@@ -14,6 +14,7 @@ import CreditCard from '../../components/purchase/CreditCard'
 function Payment(props) {
   const memberID = getMemberID()
   if (memberID == null) {
+    localStorage.setItem('siteBeforeLogin', './cart')
     window.location.replace('./login/entrance')
   }
   let history = useHistory()
