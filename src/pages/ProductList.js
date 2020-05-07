@@ -328,7 +328,8 @@ function ProductList(props) {
                 }}
                 label="搜尋欄位"
               >
-                <MenuItem value={'ProductName'}>名稱</MenuItem>
+                <MenuItem value={'ProductName'}>產品名稱</MenuItem>
+                <MenuItem value={'sName'}>賣家名稱</MenuItem>
                 <MenuItem value={'specification'}>規格</MenuItem>
                 <MenuItem value={'description'}>介紹</MenuItem>
                 <MenuItem value={'tag'}>TAG</MenuItem>

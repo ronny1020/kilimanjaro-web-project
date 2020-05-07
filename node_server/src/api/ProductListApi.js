@@ -4,15 +4,7 @@ import database from '../db/database.js'
 
 const router = express.Router()
 
-async function executeSQL(
-  sql,
-  res,
-  perPage,
-  page,
-  cid,
-  method = 'get',
-  query = {}
-) {
+async function executeSQL(res, perPage, page, cid, method = 'get', query = {}) {
   try {
     const output = {
       totalRows: 0,
@@ -22,7 +14,7 @@ async function executeSQL(
     }
 
     const results_total = await database.promisePool.query(
-      ProductList.getProductListRowsNum(query)
+      await ProductList.getProductListRowsNum(query)
     )
     output.totalRows = results_total[0][0].num
     output.totalPages = Math.ceil(output.totalRows / perPage)
@@ -30,12 +22,10 @@ async function executeSQL(
     if (output.page < 1) output.page = 1
     if (output.page > output.totalPages) output.page = output.totalPages
 
-    const rows = await database.promisePool.query(sql, [
-      cid,
-      cid,
-      (output.page - 1) * output.perPage,
-      output.perPage,
-    ])
+    const rows = await database.promisePool.query(
+      await ProductList.getProductList(query),
+      [cid, cid, (output.page - 1) * output.perPage, output.perPage]
+    )
 
     res.status(200).json({
       Range: output,
@@ -67,15 +57,7 @@ router.get('/:cid?/:perPage?/:page?', (req, res, next) => {
       keyword +
       '.'
   )
-  executeSQL(
-    ProductList.getProductList(req.query),
-    res,
-    perPage,
-    page,
-    req.params.cid,
-    'get',
-    req.query
-  )
+  executeSQL(res, perPage, page, req.params.cid, 'get', req.query)
 })
 
 export default router

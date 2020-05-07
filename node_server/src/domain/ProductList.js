@@ -1,14 +1,44 @@
+import database from '../db/database.js'
+
 class ProductList {
-  static conditionCreator(query) {
+  static async conditionCreator(query) {
     const condition = {
       main: 'Where ',
     }
- 
+
     const column = query.column ? query.column : 'ProductName'
-    condition.main = query.keyword
-      ? condition.main + `${column} like '%${query.keyword}%'` + ' & '
-      : condition.main
-      condition.main = query.sellerID
+    query.column === 'tag'
+    if (column === 'tag') {
+      async function getIdList() {
+        const [idList, error] = await database.promisePool.query(
+          `SELECT * FROM coffee.products_tagmap 
+         join coffee.products on products.productID = products_tagmap.productID
+         join coffee.products_tags on products_tags.tagID = products_tagmap.tagID
+         where tagName like '%${query.keyword}%';`
+        )
+
+        if (idList.length !== 0) {
+          let idString = ''
+          idList.forEach(id => {
+            idString = idString + id.productID + ' ,'
+          })
+          idString = idString.substr(0, idString.length - 1)
+
+          return { main: `where products.productID in (${idString})` }
+        } else {
+          return { main: 'where products.productID in (0)' }
+        }
+      }
+      return await getIdList()
+    } else {
+      const table = column == 'sName' ? 'sellers' : 'products'
+      condition.main = query.keyword
+        ? condition.main +
+          `${table}.${column} like '%${query.keyword}%'` +
+          ' & '
+        : condition.main
+    }
+    condition.main = query.sellerID
       ? condition.main + `products.sellerID = '${query.sellerID}'` + ' & '
       : condition.main
     if (condition.main === 'Where ') {
@@ -19,8 +49,8 @@ class ProductList {
     return condition
   }
 
-  static getProductList(query) {
-    let condition = this.conditionCreator(query)
+  static async getProductList(query) {
+    let condition = await this.conditionCreator(query)
     let sql = `SELECT products.productID, ProductName, products.sellerID, sName, CategoryID, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,favouriteID
     , disID, discount, disName, disDescrip, startDate, overDate , IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) finalPrice, visitedTimes, sellingVolume
     FROM coffee.products 
@@ -41,8 +71,8 @@ class ProductList {
     return sql
   }
 
-  static getProductListRowsNum(query) {
-    let condition = this.conditionCreator(query)
+  static async getProductListRowsNum(query) {
+    let condition = await this.conditionCreator(query)
     let sql = `SELECT COUNT(0) num 
     FROM coffee.products 
     Join coffee.sellers ON sellers.sellerID = products.sellerID
@@ -57,9 +87,6 @@ class ProductList {
     on orders.OrderID = orders_detail.OrderID group by productID) s
     on products.productID=s.productID
     ${condition.main} ;`
-
-
-console.log(sql)
     return sql
   }
 }
