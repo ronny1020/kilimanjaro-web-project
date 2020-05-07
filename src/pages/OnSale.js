@@ -38,7 +38,7 @@ function OnSale() {
           <div className="container bg-secondary">
             <br />
             <div className="row">
-              <div className="col-4" align="center">
+              <div className="col-4 qweqwe" align="center">
                 {/* <nav className="navbar sidebar">
                   <ul className="navbar-nav">
                     <li>
@@ -75,7 +75,7 @@ function OnSale() {
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
               </div>
-              <div className="col-8">
+              <div className="col-8 asdasd">
                 {/* 傳值進入此: 於component內操作api (亦可以用迴圈產生)*/}
                 {/* 確定值有進去才產生component*/}
                 {genList ? (
