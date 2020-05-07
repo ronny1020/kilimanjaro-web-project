@@ -10,13 +10,13 @@ function HistoryCList(props) {
     //三元表示式: 太神啦= =
     item.valid === 0 ? (
       <ListGroup.Item action key={item.OrderID.toString()}>
-        <Link to="#" onClick={showDetails} id={item.OrderID.toString()}>
+        <div onClick={showDetails} id={item.OrderID.toString()}>
           訂單編號：{item.OrderID.toString()}
           <br />
           收件人：{item.RecipientName}
           <br />
           下單日期：{item.OrderDate}
-        </Link>
+        </div>
 
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
@@ -56,7 +56,7 @@ function HistoryCList(props) {
 
   //點擊顯示訂單詳細內容
   function showDetails(props) {
-    // console.log(props.target.id)
+    console.log(props.target.id)
     var targetList = document.getElementById('detail' + props.target.id)
     targetList.style.display === 'none'
       ? (targetList.style.display = '')

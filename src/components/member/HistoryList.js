@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CancelIcon from '@material-ui/icons/Cancel'
 
 function HistoryList(props) {
   //未寄送之訂單: shipdate = null && vaild = 1
@@ -9,21 +10,26 @@ function HistoryList(props) {
   const listItems = historyArray.Orders.map((item) =>
     item.ShippedDate === null && item.valid === 1 ? (
       <ListGroup.Item action key={item.OrderID.toString()}>
-        <Link to="#" onClick={showDetails} id={item.OrderID.toString()}>
-          訂單編號：{item.OrderID.toString()}
-          <br />
-          收件人：{item.RecipientName}
-          <br />
-          下單日期：{item.OrderDate}
-        </Link>
-        <Button
-          id={'cancel' + item.OrderID.toString()}
-          style={{ float: 'right' }}
-          variant="danger"
-          onClick={handleCancel}
-        >
-          取消訂單
-        </Button>
+        <Row>
+          <Col onClick={showDetails} id={item.OrderID.toString()}>
+            訂單編號：{item.OrderID.toString()}
+            <br />
+            收件人：{item.RecipientName}
+            <br />
+            下單日期：{item.OrderDate}
+          </Col>
+          <Col sm={2}>
+            <Button
+              id={'cancel' + item.OrderID.toString()}
+              style={{ width: '100%' }}
+              variant="danger"
+              onClick={handleCancel}
+            >
+              <CancelIcon />
+              <span style={{ fontWeight: 'bolder' }}>取消</span>
+            </Button>
+          </Col>
+        </Row>
 
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
