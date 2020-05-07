@@ -1,12 +1,21 @@
 class ProductList {
   static conditionCreator(query) {
     const condition = {
-      main: '',
+      main: 'Where ',
     }
-    const keyword = query.keyword ? query.keyword : ''
+ 
     const column = query.column ? query.column : 'ProductName'
-    condition.main = keyword ? `Where ${column} like '%${keyword}%'` : ''
-
+    condition.main = query.keyword
+      ? condition.main + `${column} like '%${query.keyword}%'` + ' & '
+      : condition.main
+      condition.main = query.sellerID
+      ? condition.main + `products.sellerID = '${query.sellerID}'` + ' & '
+      : condition.main
+    if (condition.main === 'Where ') {
+      condition.main = ''
+    } else {
+      condition.main = condition.main.substr(0, condition.main.length - 3)
+    }
     return condition
   }
 
@@ -29,7 +38,6 @@ class ProductList {
     on orders.OrderID = orders_detail.OrderID group by productID) s
     on products.productID=s.productID
     ${condition.main} ORDER BY products.productID DESC LIMIT ? , ? ;`
-
     return sql
   }
 
@@ -50,6 +58,8 @@ class ProductList {
     on products.productID=s.productID
     ${condition.main} ;`
 
+
+console.log(sql)
     return sql
   }
 }
