@@ -12,7 +12,12 @@ function CouponItem(props) {
 
   function handleCoupon() {
     if (LoginValidate() === false) {
-      return alert('請登入會員帳號以領取!')
+      return swal({
+        title: '提示訊息',
+        text: '請登入會員帳號以領取!',
+        icon: 'warning',
+        button: 'OK',
+      })
     } else {
       //   console.log(couponArray.couponName)
       //此處開始領取
