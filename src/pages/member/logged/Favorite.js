@@ -8,6 +8,7 @@ import FavList from '../../../components/member/FavList'
 import Notice from '../../../components/Notice'
 
 import { Button } from 'react-bootstrap'
+import swal from 'sweetalert'
 
 import LoginValidate from '../../../components/LoginValidate'
 
@@ -42,18 +43,29 @@ function Favorite() {
 
   //刪除全部favorite
   function DelAll() {
-    var msg = window.confirm('即將刪除所有我的最愛，您確定嗎？')
-    if (msg === true) {
-      var url_del = 'http://localhost:6001/api/favourite/' + memberID
-      fetch(url_del, {
-        method: 'DELETE',
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res)
-          window.location.reload()
+    swal({
+      title: '您確定嗎？',
+      text: '您即將刪除列表中的所有項目！',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        var url_del = 'http://localhost:6001/api/favourite/' + memberID
+        fetch(url_del, {
+          method: 'DELETE',
         })
-    }
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res)
+            swal({
+              title: '提示訊息',
+              text: '您已經成功刪除！',
+              icon: 'success',
+            }).then(() => window.location.reload())
+          })
+      }
+    })
   }
 
   const inputArray = {
