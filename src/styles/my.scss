@@ -588,20 +588,21 @@ a.tab-label.active-btn {
   animation-iteration-count: infinite;
 }
 
-
-
-@media(max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
   .qweqwe {
-    width: 0%;
     display: none;
+
 
   }
 
-  .asdasd {
 
+  .asdasd {
+    float: left;
     width: auto;
 
   }
+
+
 
   .jumbotron {
     text-align: center;
@@ -609,5 +610,11 @@ a.tab-label.active-btn {
 
   footer {
     text-align: center;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 }

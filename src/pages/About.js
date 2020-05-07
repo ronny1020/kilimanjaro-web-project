@@ -118,7 +118,7 @@ function OnSale() {
       <div className="all-page-title page-breadcrumb">
         <div className="container text-center">
           <div className="row">
-            <div className="col-lg-12 " align="center">
+            <div className="col-md-4 col-xs-0 " align="center">
               {/* <h1>賣家介紹</h1> */}
               <p className="text-white">~關於我們網站，與常見的問題~</p>
             </div>
@@ -142,7 +142,7 @@ function OnSale() {
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
               </div>
-              <div className="col-8 asdasd">
+              <div className="col-md-8 col-xs-12 asdasd">
                 <Breadcrumb />
                 <div className="row">
                   <div className="col-12">
