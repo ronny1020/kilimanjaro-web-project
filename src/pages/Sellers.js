@@ -311,7 +311,7 @@ function Sellers() {
 
                           <ButtonGroup
                             aria-label="Basic example"
-                            className="mt-3"
+                            className="mt-1"
                           >
                             {/* <Button variant="secondary" href="#">
                       全部消息
@@ -328,7 +328,7 @@ function Sellers() {
                             </Button>
 
                             <Button variant="secondary" href="#nn0">
-                              我想回到最上面
+                              謝了，我想回上面
                             </Button>
                           </ButtonGroup>
 
