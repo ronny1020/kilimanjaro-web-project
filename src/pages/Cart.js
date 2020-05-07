@@ -47,8 +47,11 @@ function Cart(props) {
   totalPrice = new Intl.NumberFormat('en-IN').format(totalPrice)
 
   useEffect(() => {
-    getCart(memberID)
-    getMemberInfo(memberID)
+    async function start() {
+      await getCart(memberID)
+      await getMemberInfo(memberID)
+    }
+    start()
   }, [getCart, getMemberInfo, memberID])
 
   if (Cart === undefined) {
