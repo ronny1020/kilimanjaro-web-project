@@ -1,25 +1,40 @@
 import React from 'react'
-import { ListGroup, Button } from 'react-bootstrap'
+import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 function FavList(props) {
-  //   console.log(props)
+  console.log(props)
   const favArray = props.input
   const listItems = favArray.map((item) => (
-    <ListGroup.Item action key={item.productID.toString()}>
-      <Link to={'/product/' + item.productID}>
-        產品名稱：{item.product.ProductName}
-        <br />
-        產品編號：{item.productID}
-      </Link>
-      <Button
-        style={{ float: 'right' }}
-        variant="danger"
-        id={props.id + '/' + item.productID.toString()}
-        onClick={delItem}
-      >
-        刪除
-      </Button>
+    <ListGroup.Item key={item.productID.toString()}>
+      <Row>
+        <Col>
+          品名：
+          <Link to={'/product/' + item.productID}>
+            {item.product.ProductName}{' '}
+          </Link>
+          <br />
+          售價：{item.product.UnitPrice}
+          <br />
+          庫存：
+          {item.product.UnitsInStock === null
+            ? '缺貨中'
+            : item.product.UnitsInStock}
+        </Col>
+
+        <Col sm={2}>
+          <Button
+            style={{ width: '100%' }}
+            variant="danger"
+            id={props.id + '/' + item.productID.toString()}
+            onClick={delItem}
+          >
+            <DeleteIcon />
+            <span style={{ fontWeight: 'bold' }}>刪除</span>
+          </Button>
+        </Col>
+      </Row>
     </ListGroup.Item>
   ))
 
