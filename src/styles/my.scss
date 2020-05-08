@@ -616,3 +616,20 @@ a.tab-label.active-btn {
     font-size: smaller;
   }
 }
+
+.sidebar2 {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  background-color: #f1f1f1;
+  // position: fixed;
+  // height: 100%;
+  overflow: auto;
+}
+
+.sidebar2 a {
+  display: block;
+  color: black;
+  padding: 0px;
+  // text-decoration: none;
+}

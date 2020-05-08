@@ -16,6 +16,7 @@ import SmoothScroll from 'smooth-scroll'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
+import '../styles/sidebar.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
 import disc1 from '../img/disc/coffee2.jpg'
@@ -160,9 +161,9 @@ function Sellers() {
             <div className="row ">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
-                <nav class="navbar sidebar">
+                <div class=" sidebar2">
                   <ul class="navbar-nav">
-                    <div class=" bg-primary titleLabel">
+                    <div class=" side_title ">
                       <h4 class="text-secondary">請選擇賣家</h4>
                     </div>
                     <li
@@ -221,7 +222,7 @@ function Sellers() {
                       <hr />
                     </li>
                   </ul>
-                </nav>
+                </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
