@@ -31,6 +31,7 @@ node_server/node_modules/
 node_server/.pnp
 node_server/.pnp.js
 node_server/public/avatar
+node_server/public/product
 
 # General
 node_server/.DS_Store

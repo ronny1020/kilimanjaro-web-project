@@ -16,6 +16,7 @@ import SmoothScroll from 'smooth-scroll'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
+import '../styles/sidebar.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
 import disc1 from '../img/disc/coffee2.jpg'
@@ -160,68 +161,66 @@ function Sellers() {
             <div className="row ">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
-                <nav class="navbar sidebar">
-                  <ul class="navbar-nav">
-                    <div class=" bg-primary titleLabel">
-                      <h4 class="text-secondary">請選擇賣家</h4>
-                    </div>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(0)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;非洲人咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(1)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;瑪麗亞咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(2)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;古坑樹咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(3)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;上島咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(4)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;小樽咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                  </ul>
-                </nav>
+                <div class=" sidebar2">
+                  <div class=" side_title2 ">
+                    <h4 class="text-secondary">請選擇賣家</h4>
+                  </div>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(0)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;非洲人咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(1)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;瑪麗亞咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(2)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;古坑樹咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(3)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;上島咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(4)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;小樽咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>

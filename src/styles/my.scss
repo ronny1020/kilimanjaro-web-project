@@ -589,7 +589,7 @@ a.tab-label.active-btn {
 }
 
 @media only screen and (max-width: 1000px) {
-  .qweqwe {
+  .qweqwe img {
     display: none;
   }
 
@@ -615,4 +615,56 @@ a.tab-label.active-btn {
   .tyutyu {
     font-size: smaller;
   }
+}
+
+.sidebar2 {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  background-color: #f1f1f1;
+  // position: fixed;
+  // height: 100%;
+  overflow: auto;
+}
+
+.sidebar2 a {
+  display: block;
+  color: black;
+  padding: 0px;
+  // text-decoration: none;
+}
+
+.sidebar_m2 a {
+  display: block;
+  width: 25vw;
+  color: black;
+  padding: 16px;
+  border: 0.5px solid lightgrey;
+  // text-decoration: none;
+}
+
+.side_title2 {
+  display: block;
+  color: white;
+  padding: 8px;
+  margin-bottom: 8px;
+  // text-decoration: none;
+}
+
+.side_title2 {
+  background-color: #555;
+  color: white;
+  border-left: 0.7vw solid black;
+}
+
+.sidebar2 a.active,
+.sidebar_m2 a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.sidebar2 a:hover:not(.active),
+.sidebar_m2 a:hover:not(.active) {
+  background-color: #6e8080;
+  color: white;
 }

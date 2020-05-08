@@ -6,6 +6,8 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import CouponItem from '../components/CouponItem'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
+import { GoStar } from 'react-icons/go'
+import NewSidebar from '../components/NewSidebar'
 
 import '../styles/my.scss'
 
@@ -29,6 +31,12 @@ function OnSale() {
     var scroll = new SmoothScroll('a[href*="#"]')
     console.log(scroll)
   }, [])
+  const inputArray = [
+    { text: '小額優惠區', link: '#aa1', icon: <GoStar /> },
+    { text: '中額優惠區', link: '#aa2', icon: <GoStar /> },
+    { text: '高額優惠區', link: '#aa3', icon: <GoStar /> },
+    { text: '特級優惠區', link: '#aa4', icon: <GoStar /> },
+  ]
   return (
     <>
       <div className="all-page-title page-breadcrumb">
@@ -44,7 +52,8 @@ function OnSale() {
             <br />
             <div className="row">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
-                <nav class="navbar sidebar">
+                <NewSidebar title={'優惠專區'} input={inputArray} />
+                {/* <nav class="navbar sidebar">
                   <ul class="navbar-nav">
                     <div class=" bg-primary titleLabel">
                       <h4 class="text-secondary">常見問題</h4>
@@ -74,7 +83,7 @@ function OnSale() {
                       <hr />
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
                 {/* <nav className="navbar sidebar">
                   <ul className="navbar-nav">
                     <li>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
 // import Sidebar from '../../../components/Sidebar'
-import NewSidebar from '../../../components/NewSidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
 import CoupList from '../../../components/member/CoupList'
@@ -9,6 +8,8 @@ import Notice from '../../../components/Notice'
 
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
+import { FaUserEdit, FaTicketAlt, FaHistory, FaHeart } from 'react-icons/fa'
+import NewSidebar from '../../../components/NewSidebar'
 
 function Coupon() {
   const [genList, setGenList] = useState(false)
@@ -38,29 +39,20 @@ function Coupon() {
       })
   }
 
-  // const inputArray = {
-  //   title: '會員中心',
-  //   個人資料修改: {
-  //     link: '/lobby/edit',
-  //   },
+  const inputArray = [
+    { text: '資料修改', link: '/lobby/edit', icon: <FaUserEdit /> },
+    { text: '折扣票券', link: '/lobby/coupon', icon: <FaTicketAlt /> },
+    { text: '交易紀錄', link: '/lobby/history', icon: <FaHistory /> },
+    { text: '喜好清單', link: '/lobby/favorite', icon: <FaHeart /> },
+  ]
 
-  //   折扣券: {
-  //     link: '/lobby/coupon',
-  //   },
-  //   交易紀錄: {
-  //     link: '/lobby/history',
-  //   },
-  //   喜好清單: {
-  //     link: '/lobby/favorite',
-  //   },
-  // }
   return (
     <>
       <LobbyTitle string={'折扣券'} />
-      <div className="container bg-secondary">
-        <div className="row">
-          <div className="col-3 container">
-            <NewSidebar />
+      <div className="container bg-secondary" style={{ height: '80vh' }}>
+        <div className="row" style={{ minHeight: '100vh' }}>
+          <div className="col-3">
+            <NewSidebar title={'會員中心'} input={inputArray} />
             {/* <Sidebar input={inputArray} /> */}
           </div>
           <div className="col-9">

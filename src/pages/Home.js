@@ -8,6 +8,7 @@ import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
+
 // import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
@@ -48,7 +49,9 @@ function Home() {
         src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
       /> */}
       <JqueryComClass />
+
       <HomeCarousel />
+
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">

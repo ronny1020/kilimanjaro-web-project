@@ -254,7 +254,7 @@ function Member(props) {
                     setIsAuth={props.setIsAuth}
                   />
                   <div className="container bg-secondary">
-                    <div className="row">
+                    <div className="row" style={{ minHeight: '100vh' }}>
                       <div className="col-8">
                         <Breadcrumb />
                         <Row style={{ marginBottom: '1em' }}>
