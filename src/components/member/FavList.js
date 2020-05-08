@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup, Button, Row, Col } from 'react-bootstrap'
+import { ListGroup, Button, Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 // import DeleteIcon from '@material-ui/icons/Delete'
@@ -10,6 +10,16 @@ function FavList(props) {
   const listItems = favArray.map((item) => (
     <ListGroup.Item key={item.productID.toString()}>
       <Row>
+        <Col xs lg="2" style={{ borderRight: '0.5px solid lightgrey' }}>
+          <Image
+            rounded
+            className="w-100"
+            src={'../../images/products/' + item.productID + '/0.jpg'}
+            onError={(event) =>
+              (event.target.src = '../../images/products/default.jpg')
+            }
+          ></Image>
+        </Col>
         <Col>
           品名：
           <Link to={'/product/' + item.productID}>
