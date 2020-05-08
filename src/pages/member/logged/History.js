@@ -63,10 +63,10 @@ function History() {
       <LobbyTitle string={'交易紀錄'} />
       <div className="container bg-secondary">
         <div className="row" style={{ minHeight: '100vh' }}>
-          <div className="col-3">
+          <div className="col-3 lobbyR">
             <NewSidebar title={'會員中心'} input={inputArray} />
           </div>
-          <div className="col-9">
+          <div className="col-9 lobbyL">
             <Breadcrumb />
 
             {/* 已寄送: 有ShippedDate
