@@ -35,14 +35,29 @@ function PurchaseCheck(props) {
   const productList = Cart.map((product, i) => (
     <div key={i}>
       <ProductListItem>
-        <h3>{product.ProductName}</h3>
-        <p>id:{product.productID}</p>
-        <p>價格：{product.UnitPrice}</p>
-        {product.discount !== null ? (
-          <p>special price:{product.UnitPrice - product.discount}</p>
-        ) : (
-          <p></p>
-        )}
+        <div className="row">
+          <div className="col-md-auto">
+            <img
+              alt=""
+              src={'../images/products/' + product.productID + '/0.jpg'}
+              className="productListImage"
+              onError={(event) =>
+                (event.target.src = '../images/products/default.jpg')
+              }
+            />
+          </div>
+
+          <div className="col-md-auto p-3">
+            <h3>{product.ProductName}</h3>
+            <p>id:{product.productID}</p>
+            <p>價格：{product.UnitPrice}</p>
+            {product.discount !== null ? (
+              <p>special price:{product.UnitPrice - product.discount}</p>
+            ) : (
+              <p></p>
+            )}
+          </div>
+        </div>
       </ProductListItem>
     </div>
   ))

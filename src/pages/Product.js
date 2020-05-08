@@ -36,6 +36,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
 import { setKeyword, setColumn } from '../actions/getProductList'
+import ProductImageStepper from '../components/Product/ProductImageStepper'
 
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
@@ -356,122 +357,139 @@ function Product(props) {
     <>
       <div className="topSpace"></div>
       <CardSecondary>
-        <h2>產品名稱：{product.ProductName}</h2>
-        <p>價格：{product.UnitPrice}</p>
-        {product.discount !== null ? (
-          <p>special price:{product.UnitPrice - product.discount}</p>
-        ) : (
-          <p></p>
-        )}
-        <p>庫存：{product.UnitsInStock}</p>
-        <p>人氣：{product.visitedTimes}</p>
-        <p>Tags：{tagsLink}</p>
+        <div className="row">
+          <div className="col-md-6">
+            <ProductImageStepper productID={product.productID} />
+          </div>
+          <div className="col-md-6">
+            {' '}
+            <h2>產品名稱：{product.ProductName}</h2>
+            <p>價格：{product.UnitPrice}</p>
+            {product.discount !== null ? (
+              <p>special price:{product.UnitPrice - product.discount}</p>
+            ) : (
+              <p></p>
+            )}
+            <p>庫存：{product.UnitsInStock}</p>
+            <p>人氣：{product.visitedTimes}</p>
+            <p>Tags：{tagsLink}</p>
+            <div className="form-inline">
+              <label htmlFor="order_num" className="m-1">
+                數量：
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Enter Number"
+                id="order_num"
+                defaultValue={product.num}
+                onChange={(event) => {
+                  event.target.value = Math.round(event.target.value)
+                  if (event.target.value < 1) event.target.value = 1
+                  if (event.target.value > product.UnitsInStock)
+                    event.target.value = product.UnitsInStock
+                }}
+              />
 
-        <div className="form-inline">
-          <label htmlFor="order_num" className="m-1">
-            數量：
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            placeholder="Enter Number"
-            id="order_num"
-            defaultValue={product.num}
-            onChange={(event) => {
-              event.target.value = Math.round(event.target.value)
-              if (event.target.value < 1) event.target.value = 1
-              if (event.target.value > product.UnitsInStock)
-                event.target.value = product.UnitsInStock
-            }}
-          />
-
-          {product.UnitsInStock ? (
-            product.num == null ? (
-              <>
+              {product.UnitsInStock ? (
+                product.num == null ? (
+                  <>
+                    <button
+                      className="btn btn-primary m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const num = document.getElementById('order_num').value
+                        async function add() {
+                          await AddProductToCart(
+                            product.productID,
+                            memberID,
+                            num
+                          )
+                          await getProduct(id, memberID)
+                        }
+                        add()
+                      }}
+                    >
+                      add
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-success m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function update() {
+                          const num = document.getElementById('order_num').value
+                          await updateProductNumToCart(
+                            product.productID,
+                            memberID,
+                            num
+                          )
+                          await getProduct(id, memberID)
+                        }
+                        update()
+                      }}
+                    >
+                      update
+                    </button>
+                    <button
+                      className="btn btn-danger m-1"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromCart(
+                            product.productID,
+                            memberID
+                          )
+                          await getProduct(id, memberID)
+                        }
+                        remove()
+                        document.getElementById('order_num').value = 1
+                      }}
+                    >
+                      remove({product.num})
+                    </button>
+                  </>
+                )
+              ) : (
+                <p>很抱歉，目前沒有庫存</p>
+              )}
+              {product.favouriteID === null ? (
                 <button
                   className="btn btn-primary m-1"
                   onClick={(e) => {
                     e.preventDefault()
-                    const num = document.getElementById('order_num').value
                     async function add() {
-                      await AddProductToCart(product.productID, memberID, num)
+                      await AddProductToFavourite(product.productID, memberID)
                       await getProduct(id, memberID)
                     }
                     add()
                   }}
                 >
-                  add
+                  add to favourite
                 </button>
-              </>
-            ) : (
-              <>
+              ) : (
                 <button
-                  className="btn btn-success m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function update() {
-                      const num = document.getElementById('order_num').value
-                      await updateProductNumToCart(
-                        product.productID,
-                        memberID,
-                        num
-                      )
-                      await getProduct(id, memberID)
-                    }
-                    update()
-                  }}
-                >
-                  update
-                </button>
-                <button
-                  className="btn btn-danger m-1"
+                  className="btn btn-danger  m-1"
                   onClick={(e) => {
                     e.preventDefault()
                     async function remove() {
-                      await removeProductFromCart(product.productID, memberID)
+                      await removeProductFromFavourite(
+                        product.productID,
+                        memberID
+                      )
                       await getProduct(id, memberID)
                     }
+
                     remove()
-                    document.getElementById('order_num').value = 1
                   }}
                 >
-                  remove({product.num})
+                  remove from favourite
                 </button>
-              </>
-            )
-          ) : (
-            <p>很抱歉，目前沒有庫存</p>
-          )}
-          {product.favouriteID === null ? (
-            <button
-              className="btn btn-primary m-1"
-              onClick={(e) => {
-                e.preventDefault()
-                async function add() {
-                  await AddProductToFavourite(product.productID, memberID)
-                  await getProduct(id, memberID)
-                }
-                add()
-              }}
-            >
-              add to favourite
-            </button>
-          ) : (
-            <button
-              className="btn btn-danger  m-1"
-              onClick={(e) => {
-                e.preventDefault()
-                async function remove() {
-                  await removeProductFromFavourite(product.productID, memberID)
-                  await getProduct(id, memberID)
-                }
-
-                remove()
-              }}
-            >
-              remove from favourite
-            </button>
-          )}
+              )}
+            </div>
+          </div>
         </div>
       </CardSecondary>
       <CardSecondary>

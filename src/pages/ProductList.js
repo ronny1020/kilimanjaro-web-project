@@ -162,7 +162,7 @@ function ProductList(props) {
             >
               <ProductListItem>
                 <div className="row">
-                  <div className="col-md-3">
+                  <div className="col-md-auto d-flex justify-content-center">
                     {' '}
                     <img
                       alt=""
@@ -174,7 +174,7 @@ function ProductList(props) {
                     />
                   </div>
 
-                  <div className="col-md-9 p-3">
+                  <div className="col-md-auto p-3">
                     <h3>{product.ProductName}</h3>
                     <p>price:{product.UnitPrice}</p>
                     {product.discount !== null ? (

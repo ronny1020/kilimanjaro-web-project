@@ -68,61 +68,82 @@ function Cart(props) {
     <div key={i}>
       <Link to={'../product/' + product.productID} className="linkNoUnderline">
         <ProductListItem>
-          <h3>{product.ProductName}</h3>
-          <p>id:{product.productID}</p>
-          <p>價格：{product.UnitPrice}</p>
-          {product.discount !== null ? (
-            <p>special price:{product.UnitPrice - product.discount}</p>
-          ) : (
-            <p></p>
-          )}
-          <div className="form-inline">
-            <label htmlFor={product.productID} className="m-1">
-              數量：
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="Enter Number"
-              id={product.productID}
-              defaultValue={product.num}
-              onClick={(e) => {
-                e.preventDefault()
-              }}
-              onChange={(event) => {
-                event.target.value = Math.round(event.target.value)
-                if (event.target.value < 1) event.target.value = 1
-                if (event.target.value > product.UnitsInStock)
-                  event.target.value = product.UnitsInStock
-              }}
-            />
-            <button
-              className="btn btn-success m-1"
-              onClick={(e) => {
-                e.preventDefault()
-                async function update() {
-                  const num = document.getElementById(product.productID).value
-                  await updateProductNumToCart(product.productID, memberID, num)
-                  await getCart(memberID)
+          <div className="row">
+            <div className="col-md-auto">
+              {' '}
+              <img
+                alt=""
+                src={'../images/products/' + product.productID + '/0.jpg'}
+                className="productListImage"
+                onError={(event) =>
+                  (event.target.src = '../images/products/default.jpg')
                 }
-                update()
-              }}
-            >
-              update
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={(e) => {
-                e.preventDefault()
-                async function remove() {
-                  await removeProductFromCart(product.productID, memberID)
-                  await getCart(memberID)
-                }
-                remove()
-              }}
-            >
-              remove({product.num})
-            </button>
+              />
+            </div>
+
+            <div className="col-md-auto p-3">
+              <h3>{product.ProductName}</h3>
+              <p>id:{product.productID}</p>
+              <p>價格：{product.UnitPrice}</p>
+              {product.discount !== null ? (
+                <p>special price:{product.UnitPrice - product.discount}</p>
+              ) : (
+                <p></p>
+              )}
+              <div className="form-inline">
+                <label htmlFor={product.productID} className="m-1">
+                  數量：
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter Number"
+                  id={product.productID}
+                  defaultValue={product.num}
+                  onClick={(e) => {
+                    e.preventDefault()
+                  }}
+                  onChange={(event) => {
+                    event.target.value = Math.round(event.target.value)
+                    if (event.target.value < 1) event.target.value = 1
+                    if (event.target.value > product.UnitsInStock)
+                      event.target.value = product.UnitsInStock
+                  }}
+                />
+                <button
+                  className="btn btn-success m-1"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    async function update() {
+                      const num = document.getElementById(product.productID)
+                        .value
+                      await updateProductNumToCart(
+                        product.productID,
+                        memberID,
+                        num
+                      )
+                      await getCart(memberID)
+                    }
+                    update()
+                  }}
+                >
+                  update
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    async function remove() {
+                      await removeProductFromCart(product.productID, memberID)
+                      await getCart(memberID)
+                    }
+                    remove()
+                  }}
+                >
+                  remove({product.num})
+                </button>
+              </div>
+            </div>
           </div>
         </ProductListItem>
       </Link>
