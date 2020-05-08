@@ -74,7 +74,12 @@ function Favorite() {
     { text: '資料修改', link: '/lobby/edit', icon: <FaUserEdit /> },
     { text: '折扣票券', link: '/lobby/coupon', icon: <FaTicketAlt /> },
     { text: '交易紀錄', link: '/lobby/history', icon: <FaHistory /> },
-    { text: '喜好清單', link: '/lobby/favorite', icon: <FaHeart /> },
+    {
+      text: '喜好清單',
+      link: '/lobby/favorite',
+      icon: <FaHeart />,
+      focus: true,
+    },
   ]
 
   return (

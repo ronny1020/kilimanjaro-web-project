@@ -617,6 +617,7 @@ a.tab-label.active-btn {
   }
 }
 
+//newsidebar
 .sidebar2 {
   margin: 0;
   padding: 0;
@@ -646,15 +647,8 @@ a.tab-label.active-btn {
 .side_title2 {
   display: block;
   color: white;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 16px;
   // text-decoration: none;
-}
-
-.side_title2 {
-  background-color: #555;
-  color: white;
-  border-left: 0.7vw solid black;
 }
 
 .sidebar2 a.active,
@@ -667,4 +661,68 @@ a.tab-label.active-btn {
 .sidebar_m2 a:hover:not(.active) {
   background-color: #6e8080;
   color: white;
+}
+
+.side_title2 {
+  background-color: #555;
+  color: white;
+  border-left: 0.7vw solid black;
+}
+
+//行動版sidebar
+.sidebar_m2 {
+  z-index: 100;
+  width: 100vw;
+  left: 0;
+  height: auto;
+  bottom: 0;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+
+  background-color: #f1f1f1;
+  // position: fixed;
+  // height: 100%;
+  overflow: auto;
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebar2 {
+    display: none;
+  }
+
+  .sidebar_m2 {
+    display: -webkit-box;
+  }
+
+  // .sidebar {
+  //   width: 100%;
+  //   height: auto;
+  //   position: relative;
+  // }
+  // .sidebar a {
+  //   float: left;
+  // }
+  // div.content {
+  //   margin-left: 0;
+  // }
+}
+
+@media screen and (max-width: 420px) {
+  .sidebar2 {
+    display: none;
+  }
+
+  .sidebar_m2 {
+    display: -webkit-box;
+  }
+
+  // .side_title{
+  //   display: none;
+  // }
+  // .sidebar a {
+  //   text-align: center;
+  //   // float: left;
+  // }
 }

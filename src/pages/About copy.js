@@ -15,6 +15,7 @@ import img004 from '../img/disc/heart-icon.png'
 import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
 import SmoothScroll from 'smooth-scroll'
+import { GoStar } from 'react-icons/go'
 /* 聯絡我們:客服表單 import */
 
 function OnSale() {
@@ -138,7 +139,36 @@ function OnSale() {
             <div className="row">
               <div className="col-4 qweqwe" align="center">
                 {/* <Sidebar input={inputArray} /> */}
-                <nav class="navbar sidebar">
+                <div class=" sidebar2">
+                  <div class=" side_title2 ">常見問題</div>
+                  <a data-scroll href="#mm1">
+                    <br />
+                    <GoStar />
+                    網站定位
+                  </a>
+                  <a data-scroll href="#mm2">
+                    <br />
+                    <GoStar />
+                    賣家資訊
+                  </a>
+                  <a data-scroll href="#mm3">
+                    <br />
+                    <GoStar />
+                    折扣活動
+                  </a>
+                  <a data-scroll href="#mm4">
+                    <br />
+                    <GoStar />
+                    商品訊息
+                  </a>
+                  <a data-scroll href="#mm5">
+                    <br />
+                    <GoStar />
+                    客戶服務
+                    <p />
+                  </a>
+                </div>
+                {/* <nav class="navbar sidebar">
                   <ul class="navbar-nav">
                     <div class=" bg-primary titleLabel">
                       <h4 class="text-secondary">常見問題</h4>
@@ -174,7 +204,7 @@ function OnSale() {
                       <hr />
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />

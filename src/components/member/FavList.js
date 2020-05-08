@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert'
 // import DeleteIcon from '@material-ui/icons/Delete'
 
 function FavList(props) {
@@ -52,7 +53,11 @@ function FavList(props) {
       .then((res) => res.json())
       .then((res) => {
         console.log(res)
-        window.location.reload()
+        swal({
+          title: '提示訊息',
+          text: '商品已從列表中刪除!',
+          icon: 'success',
+        }).then(() => window.location.reload())
       })
   }
   return (
