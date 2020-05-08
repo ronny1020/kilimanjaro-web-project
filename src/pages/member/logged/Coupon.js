@@ -56,11 +56,11 @@ function Coupon() {
       <LobbyTitle string={'折扣券'} />
       <div className="container bg-secondary" style={{ height: '80vh' }}>
         <div className="row" style={{ minHeight: '100vh' }}>
-          <div className="col-3">
+          <div className="col-3 lobbyR">
             <NewSidebar title={'會員中心'} input={inputArray} />
             {/* <Sidebar input={inputArray} /> */}
           </div>
-          <div className="col-9">
+          <div className="col-9 lobbyL">
             <Breadcrumb />
             {genList === true ? (
               <CoupList input={couplistInput} id={memberID} />

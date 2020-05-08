@@ -255,7 +255,7 @@ function Member(props) {
                   />
                   <div className="container bg-secondary">
                     <div className="row" style={{ minHeight: '100vh' }}>
-                      <div className="col-8">
+                      <div className="col-8 lobbyL">
                         <Breadcrumb />
                         <Row style={{ marginBottom: '1em' }}>
                           <Col lg={8} className="pr-0 lobbyBannerL">
@@ -373,7 +373,7 @@ function Member(props) {
                           />
                         </CardGroup>
                       </div>
-                      <div className="col-4" align="center">
+                      <div className="col-4 lobbyR" align="center">
                         <br />
                         <img
                           src="../../images/ad1.png"

@@ -3,26 +3,35 @@
   left: 0;
 }
 
-.loginLink {
-  // position: absolute;
-  // bottom: 0;
-}
-// .loginLink:hover {
-//   color: #fcafaf;
-// }
-
 @media screen and(max-width:990px) {
   .lobbyBannerL {
     padding-right: 15px !important;
   }
   .lobbyBannerR {
     padding-left: 15px !important;
-    
   }
-  .changeBorder{
+  .changeBorder {
     border-left: 0.5px solid lightgray !important;
     // border-width: 0.5px 0.5px 0.5px 0.5px;
     // border-left-style: solid;
     // border-left-color: lightgrey;
+  }
+}
+
+@media screen and(max-width:750px) {
+  .lobbyR {
+    max-height: 0;
+  }
+  .lobbyR img{
+    display: none;
+  }
+  // .lobbyR .sidebar_m {
+  //   display: unset;
+  // }
+  .lobbyL {
+    top: 1em;
+    position: absolute;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }

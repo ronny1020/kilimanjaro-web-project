@@ -211,10 +211,10 @@ function Edit() {
       <LobbyTitle string={'個人資料修改'} />
       <div className="container bg-secondary">
         <div className="row" style={{ minHeight: '100vh' }}>
-          <div className="col-3">
+          <div className="col-3 lobbyR">
             <NewSidebar title={'會員中心'} input={inputArray} />
           </div>
-          <div className="col-9">
+          <div className="col-9 lobbyL">
             <Breadcrumb />
             <Form onSubmit={PWDreq ? PasswordValidate : handleSubmit}>
               <Form.Group controlId="edit_name">
