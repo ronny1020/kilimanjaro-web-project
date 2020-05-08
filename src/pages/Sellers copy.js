@@ -11,12 +11,16 @@ import LobbyTitle from '../components/member/LobbyTitle'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
+import Typed from 'react-typed'
+import SmoothScroll from 'smooth-scroll'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
+import '../styles/sidebar.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
 import disc1 from '../img/disc/coffee2.jpg'
+import { GoStar } from 'react-icons/go'
 
 function Sellers() {
   const [sellerID, setsellerID] = useState('S001')
@@ -118,7 +122,10 @@ function Sellers() {
   // console.log(a)
 
   // a !== undefined ?? console.log(a[0])
-
+  useEffect(() => {
+    var scroll = new SmoothScroll('a[href*="#"]')
+    console.log(scroll)
+  }, [])
   return (
     <>
       <JqueryComClass />
@@ -136,6 +143,7 @@ function Sellers() {
       </div> */}
 
       <div className="all-page-title page-breadcrumb">
+        <div id="nn0"></div>
         <div className="container text-center">
           <div className="row">
             <div className="col-lg-12 " align="center">
@@ -154,68 +162,60 @@ function Sellers() {
             <div className="row ">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
-                <nav class="navbar sidebar">
-                  <ul class="navbar-nav">
-                    <div class=" bg-primary titleLabel">
-                      <h4 class="text-secondary">請選擇賣家</h4>
-                    </div>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(0)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;非洲人咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(1)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;瑪麗亞咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(2)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;古坑樹咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(3)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;上島咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(4)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;小樽咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                  </ul>
-                </nav>
+                <div class=" sidebar2">
+                  <div class=" side_title2 ">請選擇賣家</div>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(0)
+                    }}
+                  >
+                    <br />
+                    <GoStar />
+                    非洲人咖啡
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(1)
+                    }}
+                  >
+                    <br />
+                    <GoStar />
+                    瑪麗亞咖啡
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(2)
+                    }}
+                  >
+                    <br />
+                    <GoStar />
+                    古坑樹咖啡
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(3)
+                    }}
+                  >
+                    <br />
+                    <GoStar />
+                    上島咖啡
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(4)
+                    }}
+                  >
+                    <br />
+                    <GoStar />
+                    小樽咖啡
+                    <p />
+                  </a>
+                </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
 
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
@@ -232,7 +232,22 @@ function Sellers() {
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1>{sName}</h1>
+                      <h1 className="text-info">{sName}</h1>
+                      <h3 className="m-b-20 ">
+                        <strong>
+                          <Typed
+                            strings={[
+                              '來自各國優質賣家',
+                              '精心栽種的咖啡飲品',
+                              '就為了喝下那一刻的幸福',
+                            ]}
+                            typeSpeed={60}
+                            backSpeed={70}
+                            loop
+                          />
+                          <br />
+                        </strong>
+                      </h3>
 
                       <Carousel>
                         <Carousel.Item>
@@ -272,19 +287,42 @@ function Sellers() {
                             {/* <Button variant="secondary" href="#">
                       全部消息
                     </Button> */}
-                            <Button id="photo" variant="secondary" href="#">
-                              關於特色商品
+                            <Button id="photo" variant="secondary">
+                              打開特色商品
                             </Button>
-                            <Button id="shop2" variant="secondary" href="#">
-                              關於聯絡方式與基本資訊
+                            <Button id="shop2" variant="secondary">
+                              打開聯絡方式與基本資訊
                             </Button>
 
-                            <Button id="giri2" variant="secondary" href="#">
-                              關於店家剪影
+                            <Button id="giri2" variant="secondary">
+                              打開店家剪影
                             </Button>
 
                             <Button variant="secondary" id="nothank">
                               謝了，我不想知道
+                            </Button>
+                          </ButtonGroup>
+
+                          <ButtonGroup
+                            aria-label="Basic example"
+                            className="mt-1"
+                          >
+                            {/* <Button variant="secondary" href="#">
+                      全部消息
+                    </Button> */}
+                            <Button variant="secondary" data-scroll href="#nn1">
+                              跳轉特色商品
+                            </Button>
+                            <Button variant="secondary" data-scroll href="#nn2">
+                              跳轉聯絡方式與基本資訊
+                            </Button>
+
+                            <Button variant="secondary" data-scroll href="#nn3">
+                              跳轉店家剪影
+                            </Button>
+
+                            <Button variant="secondary" href="#nn0">
+                              謝了，我想回上面
                             </Button>
                           </ButtonGroup>
 
@@ -294,7 +332,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div>
-
+                <div id="nn3"></div>
                 <div className="row mt-3 " id="nothank3">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
@@ -423,6 +461,7 @@ function Sellers() {
                     <p>{sAddress}</p>
                   </ProductListItem>
                 </div> */}
+                <div id="nn2"></div>
                 <div className="row mt-3 " id="nothank4">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
@@ -648,6 +687,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
+                <div id="nn1"></div>
                 <div className="row mt-3 " id="nothank5">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">

@@ -7,7 +7,7 @@ import CouponItem from '../components/CouponItem'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
 import { GoStar } from 'react-icons/go'
-import NewSidebar from '../components/NewSidebar'
+// import NewSidebar from '../components/NewSidebar'
 
 import '../styles/my.scss'
 
@@ -31,12 +31,12 @@ function OnSale() {
     var scroll = new SmoothScroll('a[href*="#"]')
     console.log(scroll)
   }, [])
-  const inputArray = [
-    { text: '小額優惠區', link: '#aa1', icon: <GoStar /> },
-    { text: '中額優惠區', link: '#aa2', icon: <GoStar /> },
-    { text: '高額優惠區', link: '#aa3', icon: <GoStar /> },
-    { text: '特級優惠區', link: '#aa4', icon: <GoStar /> },
-  ]
+  // const inputArray = [
+  //   { text: '小額優惠區', link: '#aa1', icon: <GoStar /> },
+  //   { text: '中額優惠區', link: '#aa2', icon: <GoStar /> },
+  //   { text: '高額優惠區', link: '#aa3', icon: <GoStar /> },
+  //   { text: '特級優惠區', link: '#aa4', icon: <GoStar /> },
+  // ]
   return (
     <>
       <div className="all-page-title page-breadcrumb">
@@ -52,7 +52,31 @@ function OnSale() {
             <br />
             <div className="row">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
-                <NewSidebar title={'優惠專區'} input={inputArray} />
+                <div class=" sidebar2">
+                  <div class=" side_title2 ">請選擇賣家</div>
+                  <a data-scroll href="#aa1">
+                    <br />
+                    <GoStar />
+                    小額優惠區
+                  </a>
+                  <a data-scroll href="#aa2">
+                    <br />
+                    <GoStar />
+                    中額優惠區
+                  </a>
+                  <a data-scroll href="#aa3">
+                    <br />
+                    <GoStar />
+                    高額優惠區
+                  </a>
+                  <a data-scroll href="#aa4">
+                    <br />
+                    <GoStar />
+                    特級優惠區
+                    <p />
+                  </a>
+                </div>
+                {/* <NewSidebar title={'優惠專區'} input={inputArray} /> */}
                 {/* <nav class="navbar sidebar">
                   <ul class="navbar-nav">
                     <div class=" bg-primary titleLabel">
