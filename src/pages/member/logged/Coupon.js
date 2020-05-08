@@ -57,9 +57,9 @@ function Coupon() {
   return (
     <>
       <LobbyTitle string={'折扣券'} />
-      <div className="container bg-secondary">
+      <div className="container bg-secondary" style={{ height: '80vh' }}>
         <div className="row">
-          <div className="col-3 container">
+          <div className="col-3">
             <NewSidebar />
             {/* <Sidebar input={inputArray} /> */}
           </div>
