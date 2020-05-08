@@ -17,7 +17,7 @@ function HistoryList(props) {
             <br />
             收件人：{item.RecipientName}
             <br />
-            下單日期：{item.OrderDate}
+            下單日期：{new Date(item.OrderDate).toString()}
           </Col>
           <Col sm={2}>
             {/* 按鈕內的元件點擊時會讀不到按鈕id值 */}
@@ -35,7 +35,11 @@ function HistoryList(props) {
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
           id={'detail' + item.OrderID.toString()}
-          style={{ display: 'none' }}
+          style={{
+            // border: '2px solid black',
+            // borderRadius: '2%',
+            display: 'none',
+          }}
           variant="flush"
         >
           <hr />
@@ -63,6 +67,11 @@ function HistoryList(props) {
               </Row>
             </ListGroup.Item>
           ))}
+          <ListGroup.Item style={{ textAlign: 'right' }}>
+            <Row>
+              <Col>總計：{item.totalPrice}元整</Col>
+            </Row>
+          </ListGroup.Item>
         </ListGroup>
       </ListGroup.Item>
     ) : null

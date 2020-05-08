@@ -15,7 +15,7 @@ function HistoryCList(props) {
           <br />
           收件人：{item.RecipientName}
           <br />
-          下單日期：{item.OrderDate}
+          下單日期：{new Date(item.OrderDate).toString()}
         </div>
 
         {/* 訂單詳細內容: map中有map */}
@@ -49,6 +49,11 @@ function HistoryCList(props) {
               </Row>
             </ListGroup.Item>
           ))}
+          <ListGroup.Item style={{ textAlign: 'right' }}>
+            <Row>
+              <Col>總計：{item.totalPrice}元整</Col>
+            </Row>
+          </ListGroup.Item>
         </ListGroup>
       </ListGroup.Item>
     ) : null

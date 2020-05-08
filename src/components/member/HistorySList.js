@@ -9,13 +9,13 @@ function HistorySList(props) {
   const listItems = historyArray.Orders.map((item) =>
     item.ShippedDate !== null && item.valid === 1 ? (
       <ListGroup.Item action key={item.OrderID.toString()}>
-        <Link to="#" onClick={showDetails} id={item.OrderID.toString()}>
+        <div onClick={showDetails} id={item.OrderID.toString()}>
           訂單編號：{item.OrderID.toString()}
           <br />
           收件人：{item.RecipientName}
           <br />
-          下單日期：{item.OrderDate}
-        </Link>
+          下單日期：{new Date(item.OrderDate).toString()}
+        </div>
 
         {/* 訂單詳細內容: map中有map */}
         <ListGroup
@@ -48,6 +48,11 @@ function HistorySList(props) {
               </Row>
             </ListGroup.Item>
           ))}
+          <ListGroup.Item style={{ textAlign: 'right' }}>
+            <Row>
+              <Col>總計：{item.totalPrice}元整</Col>
+            </Row>
+          </ListGroup.Item>
         </ListGroup>
       </ListGroup.Item>
     ) : null
