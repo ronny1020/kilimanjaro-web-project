@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import LobbyTitle from '../../../components/member/LobbyTitle'
-import Sidebar from '../../../components/Sidebar'
+// import Sidebar from '../../../components/Sidebar'
+import { FaUserEdit, FaTicketAlt, FaHistory, FaHeart } from 'react-icons/fa'
+import NewSidebar from '../../../components/NewSidebar'
 import Breadcrumb from '../../../components/Breadcrumb'
 
 import { Form, Button, Card, Accordion, InputGroup } from 'react-bootstrap'
@@ -193,29 +195,19 @@ function Edit() {
     }
   }
 
-  const inputArray = {
-    title: '會員中心',
-    個人資料修改: {
-      link: '/lobby/edit',
-    },
-
-    折扣券: {
-      link: '/lobby/coupon',
-    },
-    交易紀錄: {
-      link: '/lobby/history',
-    },
-    喜好清單: {
-      link: '/lobby/favorite',
-    },
-  }
+  const inputArray = [
+    { text: '資料修改', link: '/lobby/edit', icon: <FaUserEdit /> },
+    { text: '折扣票券', link: '/lobby/coupon', icon: <FaTicketAlt /> },
+    { text: '交易紀錄', link: '/lobby/history', icon: <FaHistory /> },
+    { text: '喜好清單', link: '/lobby/favorite', icon: <FaHeart /> },
+  ]
   return (
     <>
       <LobbyTitle string={'個人資料修改'} />
       <div className="container bg-secondary">
-        <div className="row">
+        <div className="row" style={{ minHeight: '100vh' }}>
           <div className="col-3">
-            <Sidebar input={inputArray} />
+            <NewSidebar title={'會員中心'} input={inputArray} />
           </div>
           <div className="col-9">
             <Breadcrumb />
