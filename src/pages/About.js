@@ -384,6 +384,11 @@ function OnSale() {
 
                 {/* 聯絡我們:客服表單 */}
                 <div id="mm5"></div>
+                <div className="qt-background3 mt-3">
+                  <div className="text-white " align="center">
+                    <h3>"客戶服務，傳達您的意見"</h3>
+                  </div>
+                </div>
                 <Card
                   className="cramCard"
                   id="contact"
