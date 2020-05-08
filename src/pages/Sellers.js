@@ -213,6 +213,7 @@ function Sellers() {
                     <br />
                     <GoStar />
                     小樽咖啡
+                    <p />
                   </a>
                 </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
