@@ -42,6 +42,7 @@
   padding: 16px;
   // text-decoration: none;
 }
+
 .sidebar_m a {
   display: block;
   width: 25vw;
@@ -50,6 +51,7 @@
   border: 0.5px solid lightgrey;
   // text-decoration: none;
 }
+
 .side_title {
   display: block;
   color: white;
@@ -97,9 +99,11 @@
   .sidebar {
     display: none;
   }
+
   .sidebar_m {
     display: -webkit-box;
   }
+
   // .sidebar {
   //   width: 100%;
   //   height: auto;
@@ -117,9 +121,11 @@
   .sidebar {
     display: none;
   }
+
   .sidebar_m {
     display: -webkit-box;
   }
+
   // .side_title{
   //   display: none;
   // }
