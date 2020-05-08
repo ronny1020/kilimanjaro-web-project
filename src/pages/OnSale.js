@@ -53,7 +53,7 @@ function OnSale() {
             <div className="row">
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 <div class=" sidebar2">
-                  <div class=" side_title2 ">請選擇賣家</div>
+                  <div class=" side_title2 ">優惠專區</div>
                   <a data-scroll href="#aa1">
                     <br />
                     <GoStar />
