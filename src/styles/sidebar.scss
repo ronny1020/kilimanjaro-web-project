@@ -139,11 +139,19 @@
 .sidebarForProductList {
   display: block !important;
 }
-.sidebarForProductList .titleLabel {
-  width: 100% !important;
+.sidebarForProductList .side_title {
+  text-align: center;
 }
 .sidebarForProductList .productLink {
   cursor: pointer;
+}
+.sidebarForProductList .nav-link:hover {
+  background-color: #6e8080;
+  color: white;
+}
+.sidebarForProductList .active {
+  background-color: #6e8080;
+  color: white;
 }
 .sidebarForProductList hr {
   margin: 0;

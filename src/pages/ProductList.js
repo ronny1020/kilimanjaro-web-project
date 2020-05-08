@@ -58,6 +58,7 @@ function ProductList(props) {
     query,
     keyword,
     column,
+    category,
   } = props
 
   const memberID = getMemberID()
@@ -134,6 +135,10 @@ function ProductList(props) {
       setShowZoom(true)
     }
   }, [products, query])
+
+  useEffect(() => {
+    console.log(category)
+  }, [category])
 
   if (products === undefined) {
     return (
@@ -428,6 +433,7 @@ const mapStateToProps = (state) => {
     query: state.ProductListReducer.query,
     keyword: state.ProductListReducer.keyword,
     column: state.ProductListReducer.column,
+    category: state.ProductListReducer.category,
   }
 }
 
