@@ -28,6 +28,7 @@ import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import ProductListSidebar from '../components/ProductList/productListSidebar'
 
 function ProductList(props) {
   const [page, setPage] = React.useState(1)
@@ -300,110 +301,121 @@ function ProductList(props) {
 
   return (
     <>
-      <CardSecondary>
+      <div className="container">
         <div className="row">
-          <div className="col-md-9 d-flex align-items-end pb-0">
-            <Autocomplete
-              className="w-100"
-              freeSolo
-              defaultValue={keyword}
-              disableClearable
-              options={searchRecord.map((option) => option.keyword)}
-              onChange={(event, newValue) => {
-                let check = true
-                searchRecord.forEach((keyValue) => {
-                  if (keyValue.keyword === newValue) {
-                    check = false
-                  }
-                })
-                if (check) {
-                  setSearchRecord([...searchRecord, { keyword: newValue }])
-                }
-                localStorage.setItem(
-                  'searchRecord',
-                  JSON.stringify(searchRecord)
-                )
-              }}
-              onInputChange={(event, newInputValue) => {
-                setKeyword(newInputValue)
-              }}
-              renderInput={(params) => (
-                <TextField
-                  className="m-0"
-                  {...params}
-                  label="關鍵字"
-                  id="keyword"
-                  margin="normal"
-                  variant="outlined"
-                  // InputProps={{ ...params.InputProps, type: 'search' }}
-                />
-              )}
-            />
+          <div className="col-md-3 mt-3">
+            <ProductListSidebar />
           </div>
-          <div className="col-md-3 d-flex align-items-end pb-0">
-            <FormControl className="w-100" variant="outlined">
-              <InputLabel id="demo-simple-select-outlined-label">
-                搜尋欄位
-              </InputLabel>
-              <Select
-                native
-                MenuProps={{ disableScrollLock: true }}
-                value={column}
-                onChange={(event) => {
-                  setColumn(event.target.value)
-                }}
-                label="搜尋欄位"
-              >
-                <option value={'ProductName'}>產品名稱</option>
-                <option value={'sName'}>賣家名稱</option>
-                <option value={'specification'}>規格</option>
-                <option value={'description'}>介紹</option>
-                <option value={'tag'}>TAG</option>
-              </Select>
-            </FormControl>
+          <div className="col-md-9 mt-3">
+            <CardSecondary>
+              <div className="row">
+                <div className="col-md-9 d-flex align-items-end pb-0 mb-3">
+                  <Autocomplete
+                    className="w-100"
+                    freeSolo
+                    defaultValue={keyword}
+                    disableClearable
+                    options={searchRecord.map((option) => option.keyword)}
+                    onChange={(event, newValue) => {
+                      let check = true
+                      searchRecord.forEach((keyValue) => {
+                        if (keyValue.keyword === newValue) {
+                          check = false
+                        }
+                      })
+                      if (check) {
+                        setSearchRecord([
+                          ...searchRecord,
+                          { keyword: newValue },
+                        ])
+                      }
+                      localStorage.setItem(
+                        'searchRecord',
+                        JSON.stringify(searchRecord)
+                      )
+                    }}
+                    onInputChange={(event, newInputValue) => {
+                      setKeyword(newInputValue)
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        className="m-0"
+                        {...params}
+                        label="關鍵字"
+                        id="keyword"
+                        margin="normal"
+                        variant="outlined"
+                        // InputProps={{ ...params.InputProps, type: 'search' }}
+                      />
+                    )}
+                  />
+                </div>
+                <div className="col-md-3 d-flex align-items-end pb-0">
+                  <FormControl className="w-100 mb-3" variant="outlined">
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      搜尋欄位
+                    </InputLabel>
+                    <Select
+                      native
+                      MenuProps={{ disableScrollLock: true }}
+                      value={column}
+                      onChange={(event) => {
+                        setColumn(event.target.value)
+                      }}
+                      label="搜尋欄位"
+                    >
+                      <option value={'ProductName'}>產品名稱</option>
+                      <option value={'sName'}>賣家名稱</option>
+                      <option value={'specification'}>規格</option>
+                      <option value={'description'}>介紹</option>
+                      <option value={'tag'}>TAG</option>
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+            </CardSecondary>
+
+            <div className="topSpace"></div>
+            <div className="container">
+              <p className="d-flex justify-content-end mb-5">
+                第 {range.page} 頁( {rowStart} - {rowEnd} )，共{' '}
+                {range.totalPages}頁{range.totalRows} 項
+              </p>
+              <div>{productList}</div>
+              <Pagination className="justify-content-center mt-5">
+                <Pagination.First
+                  onClick={() => {
+                    setPage(1)
+                    document.documentElement.scrollTop = 0
+                  }}
+                />
+                <Pagination.Prev
+                  onClick={() => {
+                    setPage(range.page > 1 ? range.page - 1 : 1)
+                    document.documentElement.scrollTop = 0
+                  }}
+                />
+                {PageIndex}
+                <Pagination.Next
+                  onClick={() => {
+                    setPage(
+                      range.page < range.totalPages
+                        ? range.page + 1
+                        : range.totalPages
+                    )
+                    document.documentElement.scrollTop = 0
+                  }}
+                />
+                <Pagination.Last
+                  onClick={() => {
+                    setPage(range.totalPages)
+                    document.documentElement.scrollTop = 0
+                  }}
+                />
+              </Pagination>
+            </div>
           </div>
         </div>
-      </CardSecondary>
-
-      <div className="topSpace"></div>
-      <div className="container">
-        <h1>產品頁面</h1>
-        <p className="d-flex justify-content-end mb-5">
-          第 {range.page} 頁( {rowStart} - {rowEnd} )，共 {range.totalPages}頁
-          {range.totalRows} 項
-        </p>
-        <div>{productList}</div>
-        <Pagination className="justify-content-center mt-5">
-          <Pagination.First
-            onClick={() => {
-              setPage(1)
-              document.documentElement.scrollTop = 0
-            }}
-          />
-          <Pagination.Prev
-            onClick={() => {
-              setPage(range.page > 1 ? range.page - 1 : 1)
-              document.documentElement.scrollTop = 0
-            }}
-          />
-          {PageIndex}
-          <Pagination.Next
-            onClick={() => {
-              setPage(
-                range.page < range.totalPages
-                  ? range.page + 1
-                  : range.totalPages
-              )
-              document.documentElement.scrollTop = 0
-            }}
-          />
-          <Pagination.Last
-            onClick={() => {
-              setPage(range.totalPages)
-              document.documentElement.scrollTop = 0
-            }}
-          />
-        </Pagination>
       </div>
     </>
   )

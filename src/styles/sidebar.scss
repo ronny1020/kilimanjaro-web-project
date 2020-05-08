@@ -134,3 +134,34 @@
   //   // float: left;
   // }
 }
+
+// only for products list
+.sidebarForProductList {
+  display: block !important;
+}
+.sidebarForProductList .titleLabel {
+  width: 100% !important;
+}
+.sidebarForProductList .productLink {
+  cursor: pointer;
+}
+.sidebarForProductList hr {
+  margin: 0;
+}
+.sidebarForProductList p {
+  margin: 8px;
+  line-height: 24px;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebarForProductList .productLink {
+    display: inline-block;
+    width: 50%;
+    border-top: 0.5px solid lightgrey;
+  }
+
+  .sidebarForProductList hr {
+    display: none;
+  }
+}

@@ -3,6 +3,7 @@ import {
   SET_QUERY,
   SET_KEYWORD,
   SET_COLUMN,
+  SET_CATEGORY,
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   query: '',
   keyword: '',
   column: 'ProductName',
+  category: 0,
 }
 
 export default function (state = initialState, action) {
@@ -33,6 +35,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         column: action.payload,
+      }
+    case SET_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
       }
     default:
       return state

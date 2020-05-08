@@ -3,6 +3,7 @@ import {
   SET_QUERY,
   SET_KEYWORD,
   SET_COLUMN,
+  SET_CATEGORY,
 } from './actionTypes'
 
 export const getProductList = (page, cid, query = '') => {
@@ -41,5 +42,12 @@ export const setColumn = (column) => {
   return {
     type: SET_COLUMN,
     payload: column,
+  }
+}
+
+export const setCategory = (category) => {
+  return {
+    type: SET_CATEGORY,
+    payload: category,
   }
 }
