@@ -7,7 +7,8 @@ function NewSidebar(props) {
   const input = props.input
   let listItem = input.map((item) => (
     <Link key={item.link} to={item.link}>
-      >{item.text}
+      {item.icon}
+      {item.text}
     </Link>
   ))
   return (
