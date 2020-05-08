@@ -38,29 +38,20 @@ function Coupon() {
       })
   }
 
-  // const inputArray = {
-  //   title: '會員中心',
-  //   個人資料修改: {
-  //     link: '/lobby/edit',
-  //   },
+  const inputArray = [
+    { text: '資料修改', link: '/lobby/edit' },
+    { text: '折扣券', link: '/lobby/coupon' },
+    { text: '交易紀錄', link: '/lobby/history' },
+    { text: '喜好清單', link: '/lobby/favorite' },
+  ]
 
-  //   折扣券: {
-  //     link: '/lobby/coupon',
-  //   },
-  //   交易紀錄: {
-  //     link: '/lobby/history',
-  //   },
-  //   喜好清單: {
-  //     link: '/lobby/favorite',
-  //   },
-  // }
   return (
     <>
       <LobbyTitle string={'折扣券'} />
       <div className="container bg-secondary" style={{ height: '80vh' }}>
         <div className="row">
           <div className="col-3">
-            <NewSidebar />
+            <NewSidebar title={'會員中心'} input={inputArray} />
             {/* <Sidebar input={inputArray} /> */}
           </div>
           <div className="col-9">

@@ -3,23 +3,23 @@ import React from 'react'
 import { HashLink as Link } from 'react-router-hash-link'
 //RWD: to Bottom
 //Light when clicked
-function NewSidebar() {
+function NewSidebar(props) {
+  const input = props.input
+  let listItem = input.map((item) => (
+    <Link key={item.link} to={item.link}>
+      >{item.text}
+    </Link>
+  ))
   return (
     <>
       <br />
       <div className="sidebar" align="center">
-        <div className="side_title">會員中心</div>
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
+        <div className="side_title">{props.title}</div>
+        {listItem}
       </div>
 
       <div className="sidebar_m" align="center">
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
-        <Link to="#">>side_content</Link>
+        {listItem}
       </div>
     </>
   )
