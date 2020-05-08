@@ -23,6 +23,12 @@ function Home() {
   const [sName, setsName] = useState('新產品上市')
   const [sCountry, setsCountry] = useState('深烘培咖啡粉')
   const [sAddress, setsAddress] = useState('售價:NT.80')
+  const [sName2, setsName2] = useState('新產品上市')
+  const [sCountry2, setsCountry2] = useState('深烘培咖啡粉')
+  const [sAddress2, setsAddress2] = useState('售價:NT.80')
+  const [sName3, setsName3] = useState('新產品上市')
+  const [sCountry3, setsCountry3] = useState('深烘培咖啡粉')
+  const [sAddress3, setsAddress3] = useState('售價:NT.80')
 
   useEffect(() => {
     fetch('http://localhost:6001/sellersApi')
@@ -165,9 +171,21 @@ function Home() {
                       href="#"
                       onClick={() => {
                         seti(2)
-                        setsName('人員招募')
-                        setsCountry('儲備幹部')
-                        setsAddress('月薪35000元')
+                        setsName('客服招募')
+                        setsCountry('本站正職客服人員')
+                        setsAddress(
+                          '現時誠摯招募客服人員，月薪28000元，意者請至1x4人力網站投履歷'
+                        )
+                        setsName2('消毒公告')
+                        setsCountry2('肺炎防疫措施')
+                        setsAddress2(
+                          '為因應武漢肺炎擴散，本公司將進行每周全面消毒，以確保安全與衛生'
+                        )
+                        setsName3('維護公告')
+                        setsCountry3('網站與資料庫維護')
+                        setsAddress3(
+                          '5月25日將進行網站維護與資料庫，將暫停網站運作一天'
+                        )
                       }}
                     >
                       關於吉利馬札羅
@@ -178,9 +196,15 @@ function Home() {
                       href="#"
                       onClick={() => {
                         seti(1)
-                        setsName('新產品上市')
-                        setsCountry('深烘培咖啡粉')
+                        setsName('新品上市')
+                        setsCountry('深烘培咖啡豆')
                         setsAddress('售價:NT.80')
+                        setsName2('新品上市')
+                        setsCountry2('吉利馬札羅特調咖啡')
+                        setsAddress2('售價:NT.65')
+                        setsName3('新品上市')
+                        setsCountry3('三合一咖啡組')
+                        setsAddress3('售價:NT.45')
                       }}
                     >
                       關於商品
@@ -265,17 +289,17 @@ function Home() {
                   <ProductListItem>
                     <img
                       className="d-block h-100 w-100 "
-                      src={require('../img/disc/coffee_1' + a + '.jpg')}
+                      src={require('../img/disc/coffee_2' + a + '.jpg')}
                       alt="slide 004"
                     />
                   </ProductListItem>
                   <div className="why-text" align="center">
-                    <p>{sCountry}</p>
-                    <h5> {sAddress}</h5>
+                    <p>{sCountry2}</p>
+                    <h5> {sAddress2}</h5>
                   </div>
                 </div>
                 <div>
-                  <h4 align="center">{sName}</h4>
+                  <h4 align="center">{sName2}</h4>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 special-grid drinks">
@@ -283,17 +307,17 @@ function Home() {
                   <ProductListItem>
                     <img
                       className="d-block h-100 w-100 "
-                      src={require('../img/disc/coffee_1' + a + '.jpg')}
+                      src={require('../img/disc/coffee_3' + a + '.jpg')}
                       alt="slide 004"
                     />
                   </ProductListItem>
                   <div className="why-text" align="center">
-                    <p>{sCountry}</p>
-                    <h5> {sAddress}</h5>
+                    <p>{sCountry3}</p>
+                    <h5> {sAddress3}</h5>
                   </div>
                 </div>
                 <div>
-                  <h4 align="center">{sName}</h4>
+                  <h4 align="center">{sName3}</h4>
                 </div>
               </div>
 
