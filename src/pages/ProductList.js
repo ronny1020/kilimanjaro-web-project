@@ -166,17 +166,15 @@ function ProductList(props) {
                     {' '}
                     <img
                       alt=""
-                      src={
-                        '../../images/products/' + product.productID + '/0.jpg'
-                      }
+                      src={'../images/products/' + product.productID + '/0.jpg'}
                       className="productListImage"
                       onError={(event) =>
-                        (event.target.src = '../../images/products/default.jpg')
+                        (event.target.src = '../images/products/default.jpg')
                       }
                     />
                   </div>
 
-                  <div className="col-md-9">
+                  <div className="col-md-9 p-3">
                     <h3>{product.ProductName}</h3>
                     <p>price:{product.UnitPrice}</p>
                     {product.discount !== null ? (
@@ -304,7 +302,7 @@ function ProductList(props) {
     <>
       <CardSecondary>
         <div className="row">
-          <div className="col-9 d-flex align-items-end pb-0">
+          <div className="col-md-9 d-flex align-items-end pb-0">
             <Autocomplete
               className="w-100"
               freeSolo
@@ -342,7 +340,7 @@ function ProductList(props) {
               )}
             />
           </div>
-          <div className="col-3 d-flex align-items-end pb-0">
+          <div className="col-md-3 d-flex align-items-end pb-0">
             <FormControl className="w-100" variant="outlined">
               <InputLabel id="demo-simple-select-outlined-label">
                 搜尋欄位
