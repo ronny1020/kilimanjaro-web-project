@@ -20,6 +20,7 @@ import '../styles/sidebar.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
 import disc1 from '../img/disc/coffee2.jpg'
+import { GoStar } from 'react-icons/go'
 
 function Sellers() {
   const [sellerID, setsellerID] = useState('S001')
@@ -162,19 +163,16 @@ function Sellers() {
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
                 <div class=" sidebar2">
-                  <div class=" side_title2 ">
-                    <h4 class="text-secondary">請選擇賣家</h4>
-                  </div>
+                  <div class=" side_title2 ">請選擇賣家</div>
                   <a
                     class="nav-item"
                     onClick={() => {
                       seti(0)
                     }}
                   >
-                    <a class="nav-link">
-                      <p class="text-dark">&gt;非洲人咖啡</p>
-                    </a>
-                    <hr />
+                    <br />
+                    <GoStar />
+                    非洲人咖啡
                   </a>
                   <a
                     class="nav-item"
@@ -182,10 +180,9 @@ function Sellers() {
                       seti(1)
                     }}
                   >
-                    <a class="nav-link">
-                      <p class="text-dark">&gt;瑪麗亞咖啡</p>
-                    </a>
-                    <hr />
+                    <br />
+                    <GoStar />
+                    瑪麗亞咖啡
                   </a>
                   <a
                     class="nav-item"
@@ -193,10 +190,9 @@ function Sellers() {
                       seti(2)
                     }}
                   >
-                    <a class="nav-link">
-                      <p class="text-dark">&gt;古坑樹咖啡</p>
-                    </a>
-                    <hr />
+                    <br />
+                    <GoStar />
+                    古坑樹咖啡
                   </a>
                   <a
                     class="nav-item"
@@ -204,10 +200,9 @@ function Sellers() {
                       seti(3)
                     }}
                   >
-                    <a class="nav-link">
-                      <p class="text-dark">&gt;上島咖啡</p>
-                    </a>
-                    <hr />
+                    <br />
+                    <GoStar />
+                    上島咖啡
                   </a>
                   <a
                     class="nav-item"
@@ -215,10 +210,9 @@ function Sellers() {
                       seti(4)
                     }}
                   >
-                    <a class="nav-link">
-                      <p class="text-dark">&gt;小樽咖啡</p>
-                    </a>
-                    <hr />
+                    <br />
+                    <GoStar />
+                    小樽咖啡
                   </a>
                 </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
