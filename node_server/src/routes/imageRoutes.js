@@ -3,6 +3,7 @@ module.exports = app => {
   var router = require('express').Router()
   var multer = require('multer')
   var upload = multer({ dest: 'public/avatar' })
+  var fs = require('fs')
 
   var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -40,6 +41,35 @@ module.exports = app => {
     } catch (err) {
       res.send(400)
     }
+  })
+
+  //路由: 載入商品圖片 產品ID+第幾張圖
+  router.get('/product/:productID/:number', function(req, res, next) {
+    var files = fs.readdirSync(
+      __dirname + '../../../public/product/' + req.params.productID + '/'
+    )
+
+    try {
+      res.download(
+        __dirname +
+          '../../../public/product/' +
+          req.params.productID +
+          '/' +
+          files[req.params.number - 1]
+      )
+    } catch (err) {
+      res.send(400)
+    }
+  })
+
+  //路由: 告訴你該產品有幾張圖
+  router.get('/product/:productID/', function(req, res, next) {
+    var files = fs.readdirSync(
+      __dirname + '../../../public/product/' + req.params.productID + '/'
+    )
+
+    let result = { length: files.length }
+    res.send(result)
   })
 
   app.use('/api/image', router)
