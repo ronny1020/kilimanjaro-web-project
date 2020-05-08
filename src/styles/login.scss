@@ -10,3 +10,19 @@
 // .loginLink:hover {
 //   color: #fcafaf;
 // }
+
+@media screen and(max-width:990px) {
+  .lobbyBannerL {
+    padding-right: 15px !important;
+  }
+  .lobbyBannerR {
+    padding-left: 15px !important;
+    
+  }
+  .changeBorder{
+    border-left: 0.5px solid lightgray !important;
+    // border-width: 0.5px 0.5px 0.5px 0.5px;
+    // border-left-style: solid;
+    // border-left-color: lightgrey;
+  }
+}

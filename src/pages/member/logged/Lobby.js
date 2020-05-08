@@ -258,40 +258,49 @@ function Member(props) {
                       <div className="col-8">
                         <Breadcrumb />
                         <Row style={{ marginBottom: '1em' }}>
-                          <Col lg={8} className="pr-0">
+                          <Col lg={8} className="pr-0 lobbyBannerL">
                             <div
                               className="bg-white"
                               style={{
                                 border: '0.5px solid lightgrey',
                                 // borderRight: 0,
-                                height: '170px',
+                                minHeight: '20vh',
                               }}
                             >
-                              <h2>您好, 會員{name}</h2>
-                              <h6>您登入的時間為：{loginTime}</h6>
-                              <hr />
-                              <h4>
-                                您目前累積的紅利點數：
-                                <code
-                                  style={{
-                                    fontSize: '1.5em',
-                                    color: '#fab5b5',
-                                  }}
-                                >
-                                  {point}
-                                </code>
-                              </h4>
+                              <div
+                                className="container"
+                                style={{
+                                  borderBottom: '0.5px solid lightgray',
+                                  minHeight: '10vh',
+                                }}
+                              >
+                                <h2>您好, 會員{name}</h2>
+                                <h6>您登入的時間為：{loginTime}</h6>
+                              </div>
+                              <div className="container">
+                                <h4>
+                                  您目前累積的紅利點數：
+                                  <code
+                                    style={{
+                                      fontSize: '1.5em',
+                                      color: '#fab5b5',
+                                    }}
+                                  >
+                                    {point}
+                                  </code>
+                                </h4>
+                              </div>
                             </div>
                           </Col>
 
                           {/* 上傳頭像: 表單 */}
-                          <Col lg={4} className="pl-0">
+                          <Col lg={4} className="pl-0 lobbyBannerR">
                             <div
-                              className="bg-white"
+                              className="bg-white changeBorder"
                               style={{
                                 border: '0.5px solid lightgrey',
                                 borderLeft: 0,
-                                height: '170px',
+                                minHeight: '20vh',
                               }}
                             >
                               <Form encType="multipart/form-data">
