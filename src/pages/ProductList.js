@@ -161,84 +161,107 @@ function ProductList(props) {
               className="linkNoUnderline"
             >
               <ProductListItem>
-                <h3>{product.ProductName}</h3>
-                <p>price:{product.UnitPrice}</p>
-                {product.discount !== null ? (
-                  <p>special price:{product.UnitPrice - product.discount}</p>
-                ) : (
-                  <p></p>
-                )}
-                <div className="form-inline">
-                  {/* favourite button */}
+                <div className="row">
+                  <div className="col-md-3">
+                    {' '}
+                    <img
+                      alt=""
+                      src={
+                        '../../images/products/' + product.productID + '/0.jpg'
+                      }
+                      className="productListImage"
+                      onError={(event) =>
+                        (event.target.src = '../../images/products/default.jpg')
+                      }
+                    />
+                  </div>
 
-                  {product.favouriteID === null ? (
-                    <button
-                      className="btn btn-primary m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function add() {
-                          await AddProductToFavourite(
-                            product.productID,
-                            memberID
-                          )
-                          await getProductList(page, memberID, query)
-                        }
-                        add()
-                      }}
-                    >
-                      add to favourite
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-danger  m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function remove() {
-                          await removeProductFromFavourite(
-                            product.productID,
-                            memberID
-                          )
-                          await getProductList(page, memberID, query)
-                        }
-                        remove()
-                      }}
-                    >
-                      remove from favourite
-                    </button>
-                  )}
-                  {/* cart button */}
-                  {product.num == null ? (
-                    <button
-                      className="btn btn-primary  m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function add() {
-                          await AddProductToCart(product.productID, memberID)
-                          await getProductList(page, memberID, query)
-                        }
-                        add()
-                      }}
-                    >
-                      add to cart
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-danger  m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function remove() {
-                          await removeProductFromCart(
-                            product.productID,
-                            memberID
-                          )
-                          // await getProductList(page, memberID)
-                        }
-                        remove()
-                      }}
-                    >
-                      remove({product.num}) from cart
-                    </button>
-                  )}
+                  <div className="col-md-9">
+                    <h3>{product.ProductName}</h3>
+                    <p>price:{product.UnitPrice}</p>
+                    {product.discount !== null ? (
+                      <p>
+                        special price:{product.UnitPrice - product.discount}
+                      </p>
+                    ) : (
+                      <p></p>
+                    )}
+                    <div className="form-inline">
+                      {/* favourite button */}
+
+                      {product.favouriteID === null ? (
+                        <button
+                          className="btn btn-primary m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function add() {
+                              await AddProductToFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getProductList(page, memberID, query)
+                            }
+                            add()
+                          }}
+                        >
+                          add to favourite
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-danger  m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function remove() {
+                              await removeProductFromFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getProductList(page, memberID, query)
+                            }
+                            remove()
+                          }}
+                        >
+                          remove from favourite
+                        </button>
+                      )}
+                      {/* cart button */}
+                      {product.num == null ? (
+                        <button
+                          className="btn btn-primary  m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function add() {
+                              await AddProductToCart(
+                                product.productID,
+                                memberID
+                              )
+                              await getProductList(page, memberID, query)
+                            }
+                            add()
+                          }}
+                        >
+                          add to cart
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-danger  m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function remove() {
+                              await removeProductFromCart(
+                                product.productID,
+                                memberID
+                              )
+                              // await getProductList(page, memberID)
+                            }
+                            remove()
+                          }}
+                        >
+                          remove({product.num}) from cart
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </ProductListItem>
             </Link>
