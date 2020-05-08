@@ -162,66 +162,64 @@ function Sellers() {
               <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
                 <div class=" sidebar2">
-                  <ul class="navbar-nav">
-                    <div class=" side_title ">
-                      <h4 class="text-secondary">請選擇賣家</h4>
-                    </div>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(0)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;非洲人咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(1)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;瑪麗亞咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(2)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;古坑樹咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(3)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;上島咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        seti(4)
-                      }}
-                    >
-                      <a class="nav-link">
-                        <p class="text-dark">&gt;小樽咖啡</p>
-                      </a>
-                      <hr />
-                    </li>
-                  </ul>
+                  <div class=" side_title2 ">
+                    <h4 class="text-secondary">請選擇賣家</h4>
+                  </div>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(0)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;非洲人咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(1)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;瑪麗亞咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(2)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;古坑樹咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(3)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;上島咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
+                  <a
+                    class="nav-item"
+                    onClick={() => {
+                      seti(4)
+                    }}
+                  >
+                    <a class="nav-link">
+                      <p class="text-dark">&gt;小樽咖啡</p>
+                    </a>
+                    <hr />
+                  </a>
                 </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
 
