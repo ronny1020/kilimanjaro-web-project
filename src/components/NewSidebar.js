@@ -7,7 +7,7 @@ function NewSidebar(props) {
   const input = props.input
   let listItem = input.map((item) => (
     <Link key={item.link} to={item.link}>
-      {item.icon}
+      {item.icon ? item.icon : null}
       {item.text}
     </Link>
   ))
