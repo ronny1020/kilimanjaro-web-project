@@ -588,10 +588,22 @@ a.tab-label.active-btn {
   animation-iteration-count: infinite;
 }
 
+@media only screen and (min-width: 1000px) {
+  .bbbbb {
+    display: none;
+    ;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .qweqwe img {
     display: none;
   }
+
+  .aaaaa {
+    display: none;
+  }
+
 
   .asdasd {
     float: left;
@@ -603,6 +615,7 @@ a.tab-label.active-btn {
   }
 
   footer {
+    float: left;
     text-align: center;
   }
 
