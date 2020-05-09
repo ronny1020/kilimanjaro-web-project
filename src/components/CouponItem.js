@@ -63,13 +63,15 @@ function CouponItem(props) {
         <ProductListItem>
           {/* 傳入圖片參數以更改(圖片import於此檔案) */}
           <Image className="d-block h-40 w-100 " src={srcImg} rounded />
+
           {/* 顯示基本資訊(暫定) */}
           <ListGroup
             className="tyutyu"
             style={{
+              color: 'info',
               position: 'absolute',
-              top: '30%',
-              left: '15%',
+              top: '25%',
+              left: '10%',
               fontWeight: 'bold',
             }}
           >
