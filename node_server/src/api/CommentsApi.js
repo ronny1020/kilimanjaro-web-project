@@ -17,8 +17,10 @@ async function executeSQL(
   try {
     switch (method) {
       case 'post': {
+        let d = new Date()
+        const addTime = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
         const [rows, fields] = await database.promisePool
-          .query(sql, [pid, cid, rate, commentText])
+          .query(sql, [pid, cid, rate, addTime, commentText])
           .catch(console.error())
         res.status(200).json()
         break

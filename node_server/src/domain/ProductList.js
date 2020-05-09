@@ -7,6 +7,7 @@ class ProductList {
       orderBy: query.orderBy ? query.orderBy : 'add_time DESC',
       visitedTimesPeriod: '',
       sellingVolumePeriod: '',
+      commentPeriod: '',
     }
     if (query.orderBy === 'visitedTimes DESC')
       condition.visitedTimesPeriod = query.period
@@ -16,6 +17,14 @@ class ProductList {
       condition.sellingVolumePeriod = query.period
         ? `and OrderDate > DATE_SUB(NOW(),INTERVAL ${query.period})`
         : ''
+    if (
+      query.orderBy === 'avgRate DESC' ||
+      query.orderBy === 'countComment DESC'
+    )
+      condition.commentPeriod = query.period
+        ? `where addTime > DATE_SUB(NOW(),INTERVAL ${query.period})`
+        : ''
+
     const column = query.column ? query.column : 'ProductName'
     query.column === 'tag'
     if (column === 'tag') {
@@ -78,12 +87,14 @@ class ProductList {
   static async getProductList(query) {
     let condition = await this.conditionCreator(query)
     let sql = `SELECT products.productID, ProductName, products.sellerID, sName, products.CategoryID, categoryName, UnitPrice, UnitsInStock, add_time, specification, description, cartID, cart.customerID, num ,favouriteID
-    , disID, discount, disName, disDescrip, startDate, overDate , IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) finalPrice, visitedTimes, sellingVolume
+    , disID, discount, disName, disDescrip, startDate, overDate , IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) finalPrice, visitedTimes, sellingVolume, avgRate, countComment
     FROM coffee.products 
     left join coffee.category on category.categoryID=products.categoryID
     left JOIN coffee.cart ON coffee.products.productID=coffee.cart.productID and  cart.customerID = ?
     left JOIN coffee.favourites ON coffee.products.productID=coffee.favourites.productID and  favourites.customerID = ?
     Join coffee.sellers ON sellers.sellerID = products.sellerID
+    left JOIN (SELECT productId, avg(rate) avgRate ,count(commentText) countComment FROM coffee.comments ${condition.commentPeriod} group by productID) c
+    on products.productID=c.productID
     left JOIN
     (SELECT discount_detail.disID, productID, max(disPrice) as discount, disName, disDescrip,  startDate, overDate 
     FROM coffee.discount_detail 
@@ -103,6 +114,8 @@ class ProductList {
     let sql = `SELECT COUNT(0) num 
     FROM coffee.products 
     Join coffee.sellers ON sellers.sellerID = products.sellerID
+    left JOIN (SELECT productId, avg(rate) avgRate ,count(commentText) countComment FROM coffee.comments ${condition.commentPeriod} group by productID) c
+    on products.productID=c.productID
     left JOIN
     (SELECT discount_detail.disID, productID, max(disPrice) as discount, disName, disDescrip,  startDate, overDate 
     FROM coffee.discount_detail 

@@ -5,7 +5,7 @@ class Comments {
   }
 
   static postComment() {
-    let sql = `INSERT INTO coffee.comments  (productID , customerID ,rate, commentText) VALUES  ( ? , ? , ? , ? );`
+    let sql = `INSERT INTO coffee.comments  (productID , customerID ,rate ,addTime ,commentText ) VALUES  ( ? , ? , ?, ? , ? );`
     return sql
   }
 

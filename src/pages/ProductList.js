@@ -575,7 +575,9 @@ function ProductList(props) {
                         setOrderBy(event.target.value)
                         if (
                           orderBy === 'visitedTimes DESC' ||
-                          orderBy === 'sellingVolume DESC'
+                          orderBy === 'sellingVolume DESC' ||
+                          orderBy === 'avgRate DESC' ||
+                          orderBy === 'countComment DESC'
                         )
                           setPeriod('all')
                       }}
@@ -590,10 +592,14 @@ function ProductList(props) {
                       <option value={'discount DESC'}>最多折扣</option>
                       <option value={'visitedTimes DESC'}>最高人氣</option>
                       <option value={'sellingVolume DESC'}>最熱銷</option>
+                      <option value={'avgRate DESC'}>評分最高</option>
+                      <option value={'countComment DESC'}>最多評論</option>
                     </Select>
                   </FormControl>
                   {orderBy === 'visitedTimes DESC' ||
-                  orderBy === 'sellingVolume DESC' ? (
+                  orderBy === 'sellingVolume DESC' ||
+                  orderBy === 'avgRate DESC' ||
+                  orderBy === 'countComment DESC' ? (
                     <FormControl className="ml-3">
                       <InputLabel htmlFor="period">時間</InputLabel>
                       <Select

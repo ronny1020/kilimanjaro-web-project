@@ -286,6 +286,7 @@ function Product(props) {
                 刪除
               </button>
             </div>
+            <p>{comment.addTime.substring(0, 10)}</p>
           </CardSecondary>
         </div>
       ) : (
@@ -348,6 +349,7 @@ function Product(props) {
             <></>
           )}
           <p>comment:{comment.commentText}</p>
+          <p>{comment.addTime.substring(0, 10)}</p>
         </CardSecondary>
       </div>
     ) : (
