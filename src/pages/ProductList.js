@@ -36,6 +36,9 @@ function ProductList(props) {
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
 
+  const [orderBy, setOrderBy] = React.useState('')
+  const [period, setPeriod] = React.useState('all')
+
   const [showZoom, setShowZoom] = React.useState(false)
 
   const [searchRecord, setSearchRecord] = React.useState(
@@ -68,18 +71,20 @@ function ProductList(props) {
     condition = keyword ? condition + 'keyword=' + keyword + '&' : condition
     condition = column ? condition + 'column=' + column + '&' : condition
     condition = category ? condition + 'category=' + category + '&' : condition
+    condition = orderBy ? condition + 'orderBy=' + orderBy + '&' : condition
+    condition =
+      period !== 'all' ? condition + 'period=' + period + '&' : condition
 
-    if (keyword || category) {
+    if (keyword || category || orderBy) {
       setQuery(condition)
     } else {
       setQuery('')
     }
     setPage(1)
-  }, [category, column, keyword, setQuery])
+  }, [category, column, keyword, orderBy, period, setQuery])
 
   useEffect(() => {
     getProductList(page, memberID, query)
-    console.log(query)
   }, [getProductList, page, memberID, query])
 
   useEffect(() => {
@@ -380,12 +385,69 @@ function ProductList(props) {
 
             <div className="topSpace"></div>
             <div className="container">
-              <p className="d-flex justify-content-end mb-5">
-                第 {range.page} 頁( {rowStart} - {rowEnd} )，共{' '}
-                {range.totalPages}頁{range.totalRows} 項
-              </p>
+              <div className="row">
+                <div className="d-flex justify-content-start mb-3 col">
+                  <FormControl>
+                    <InputLabel htmlFor="orderBy">排序方式</InputLabel>
+                    <Select
+                      native
+                      value={orderBy}
+                      onChange={(event) => {
+                        setOrderBy(event.target.value)
+                        if (
+                          orderBy === 'visitedTimes DESC' ||
+                          orderBy === 'sellingVolume DESC'
+                        )
+                          setPeriod('all')
+                      }}
+                      inputProps={{
+                        id: 'orderBy',
+                      }}
+                    >
+                      <option value={'add_time DESC'}>時間 (近 → 遠)</option>
+                      <option value={'add_time ASC'}>時間 (遠 → 近)</option>
+                      <option value={'finalPrice ASC'}>價格 (低 → 高)</option>
+                      <option value={'finalPrice DESC'}>價格 (高 → 低)</option>
+                      <option value={'discount DESC'}>最多折扣</option>
+                      <option value={'visitedTimes DESC'}>最高人氣</option>
+                      <option value={'sellingVolume DESC'}>最熱銷</option>
+                    </Select>
+                  </FormControl>
+                  {orderBy === 'visitedTimes DESC' ||
+                  orderBy === 'sellingVolume DESC' ? (
+                    <FormControl className="ml-3">
+                      <InputLabel htmlFor="period">時間</InputLabel>
+                      <Select
+                        native
+                        value={period}
+                        onChange={(event) => {
+                          setPeriod(event.target.value)
+                        }}
+                        inputProps={{
+                          id: 'period',
+                        }}
+                      >
+                        <option value={'all'}>全部</option>
+                        <option value={'1 day'}>單日內</option>
+                        <option value={'1 week'}>單週內</option>
+                        <option value={'1 month'}>單月內</option>
+                        <option value={'3 month'}>三個月內</option>
+                        <option value={'6 month'}>六個月內</option>
+                        <option value={'1 year'}>一年內</option>
+                      </Select>
+                    </FormControl>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                <p className="d-flex justify-content-end mb-3 align-self-end col">
+                  第 {range.page} 頁( {rowStart} - {rowEnd} )，共{' '}
+                  {range.totalPages}頁{range.totalRows} 項
+                </p>
+              </div>
+
               <div>{productList}</div>
-              <Pagination className="justify-content-center mt-5">
+              <Pagination className="justify-content-center mt-5 ">
                 <Pagination.First
                   onClick={() => {
                     setPage(1)
