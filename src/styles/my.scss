@@ -588,8 +588,31 @@ a.tab-label.active-btn {
   animation-iteration-count: infinite;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 768px) {
+  .bbbbb {
+    display: none;
+    ;
+  }
+
+  .ccccc {
+    display: none;
+  }
+
+  .tyu2 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .qweqwe img {
+    display: none;
+  }
+
+  .aaaaa {
+    display: none;
+  }
+
+  .tyu {
     display: none;
   }
 
@@ -603,6 +626,7 @@ a.tab-label.active-btn {
   }
 
   footer {
+    float: left;
     text-align: center;
   }
 
@@ -669,6 +693,57 @@ a.tab-label.active-btn {
   border-left: 0.7vw solid black;
 }
 
+.sidebar3 {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  background-color: #f1f1f1;
+  // position: fixed;
+  // height: 100%;
+  overflow: auto;
+}
+
+.sidebar3 a {
+  display: block;
+  color: black;
+  padding: 0px;
+  // text-decoration: none;
+}
+
+.sidebar_m3 a {
+  display: block;
+  width: 25vw;
+  color: black;
+  padding: 16px;
+  border: 0.5px solid lightgrey;
+  // text-decoration: none;
+}
+
+.side_title3 {
+  display: block;
+  color: white;
+  padding: 16px;
+  // text-decoration: none;
+}
+
+.sidebar3 a.active,
+.sidebar_m3 a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.sidebar3 a:hover:not(.active),
+.sidebar_m3 a:hover:not(.active) {
+  background-color: #6e8080;
+  color: white;
+}
+
+.side_title3 {
+  background-color: #555;
+  color: white;
+  border-left: 0.7vw solid black;
+}
+
 //行動版sidebar
 .sidebar_m2 {
   z-index: 100;
@@ -687,7 +762,7 @@ a.tab-label.active-btn {
   display: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .sidebar2 {
     display: none;
   }
@@ -709,7 +784,7 @@ a.tab-label.active-btn {
   // }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width:768px) {
   .sidebar2 {
     display: none;
   }

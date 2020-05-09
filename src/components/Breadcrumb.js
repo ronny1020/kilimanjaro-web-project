@@ -46,6 +46,12 @@ function Breadcrumb(props) {
       case 'about':
         path = '關於我們'
         break
+      case 'sellers':
+        path = '店家介紹'
+        break
+      case 'onSale':
+        path = '優惠專區'
+        break
       //都不符合時回傳空值
       default:
         path = ''

@@ -13,13 +13,13 @@ import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
+import Breadcrumb from '../components/Breadcrumb'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
 import '../styles/sidebar.scss'
 // import { FaWikipediaW } from 'react-icons/fa'
 
-import disc1 from '../img/disc/coffee2.jpg'
 import { GoStar } from 'react-icons/go'
 
 function Sellers() {
@@ -143,7 +143,7 @@ function Sellers() {
       </div> */}
 
       <div className="all-page-title page-breadcrumb">
-        <div id="nn0"></div>
+        {/* <div id="nn0"></div> */}
         <div className="container text-center">
           <div className="row">
             <div className="col-lg-12 " align="center">
@@ -153,7 +153,7 @@ function Sellers() {
               </p>
             </div>
           </div>
-          <LobbyTitle string={'賣家介紹'} />
+          <LobbyTitle string={'店家介紹'} />
 
           <div className="row"></div>
 
@@ -227,12 +227,86 @@ function Sellers() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <div className="row ccccc ">
+                  <div className="col-12 " align="center">
+                    <div class="tyu2">
+                      <Breadcrumb />
+                    </div>
+                    <div className="container bg-white pt-3 m-6 ">
+                      {' '}
+                      <div class=" sidebar3 ">
+                        <div class=" side_title3 ">請選擇賣家</div>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(0)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          非洲人咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(1)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          瑪麗亞咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(2)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          古坑樹咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(3)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          上島咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(4)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          小樽咖啡
+                          <p />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
               <div className="col-md-8 col-xs-12 asdasd">
+                <div class="tyu">
+                  <Breadcrumb />
+                </div>
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1 className="text-info">{sName}</h1>
+                      <h1>
+                        <strong>{sName}</strong>
+                      </h1>
                       <h3 className="m-b-20 ">
                         <strong>
                           <Typed
@@ -276,6 +350,7 @@ function Sellers() {
                         </Carousel.Item>{' '}
                       </Carousel>
                     </div>
+                    <div id="nn0"></div>
                     <div className="row mt-3">
                       <div className="col-lg-12">
                         <div className="heading-title text-center container bg-white pt-3 m-6 ">
@@ -320,10 +395,10 @@ function Sellers() {
                             <Button variant="secondary" data-scroll href="#nn3">
                               跳轉店家剪影
                             </Button>
-
-                            <Button variant="secondary" href="#nn0">
+                            {/* 
+                            <Button variant="secondary" data-scroll href="#nn0">
                               謝了，我想回上面
-                            </Button>
+                            </Button> */}
                           </ButtonGroup>
 
                           <p className="text-white">123</p>
@@ -709,7 +784,7 @@ function Sellers() {
                             <ProductListItem>
                               <img
                                 className="d-block h-100 w-100 "
-                                src={disc1}
+                                src={require('../img/disc/p' + a + '1.jpg')}
                                 alt="slide 004"
                               />
                             </ProductListItem>
@@ -717,7 +792,10 @@ function Sellers() {
                               <h4 align="center">{ProductName1}</h4>
                             </div>
                             <div className="why-text" align="center">
-                              <p>{ProductName1}</p>
+                              <p>
+                                {sName}:<br />
+                                {ProductName1}
+                              </p>
                               <h5> 售價:NT.{UnitPrice1}</h5>
                             </div>
                           </div>
@@ -727,7 +805,7 @@ function Sellers() {
                             <ProductListItem>
                               <img
                                 className="d-block h-100 w-100 "
-                                src={disc1}
+                                src={require('../img/disc/p' + a + '2.jpg')}
                                 alt="slide 004"
                               />
                             </ProductListItem>
@@ -735,7 +813,10 @@ function Sellers() {
                               <h4 align="center">{ProductName2}</h4>
                             </div>
                             <div className="why-text" align="center">
-                              <p>{ProductName2}</p>
+                              <p>
+                                {sName}:<br />
+                                {ProductName2}
+                              </p>
                               <h5> 售價:NT.{UnitPrice2}</h5>
                             </div>
                           </div>
@@ -745,7 +826,7 @@ function Sellers() {
                             <ProductListItem>
                               <img
                                 className="d-block h-100 w-100 "
-                                src={disc1}
+                                src={require('../img/disc/p' + a + '3.jpg')}
                                 alt="slide 004"
                               />
                             </ProductListItem>
@@ -753,7 +834,10 @@ function Sellers() {
                               <h4 align="center">{ProductName3}</h4>
                             </div>
                             <div className="why-text" align="center">
-                              <p>{ProductName3}</p>
+                              <p>
+                                {sName}:<br />
+                                {ProductName3}
+                              </p>
                               <h5> 售價:NT.{UnitPrice3}</h5>
                             </div>
                           </div>
@@ -790,6 +874,14 @@ function Sellers() {
                               想看更多
                             </Link>
                           </button>
+                          <Button
+                            className=" btn-success text-white m-3"
+                            variant="secondary"
+                            data-scroll
+                            href="#nn0"
+                          >
+                            謝了，我想回上面
+                          </Button>
                         </div>
                         <p className="text-white">123</p>
                       </div>
