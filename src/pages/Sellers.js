@@ -153,7 +153,7 @@ function Sellers() {
               </p>
             </div>
           </div>
-          <LobbyTitle string={'賣家介紹'} />
+          <LobbyTitle string={'店家介紹'} />
 
           <div className="row"></div>
 
@@ -218,6 +218,10 @@ function Sellers() {
                 </div>
                 {/* 改過的sidebar 只能這樣改了 (end) */}
 
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
