@@ -19,7 +19,7 @@ function LobbyTitle(props) {
           </div>
           <div className="col-3">
             <div className="title_link">
-              <Link to="/about">常見問題</Link>
+              <Link to="/about#mm1">常見問題</Link>
               <span>|</span>
               <Link
                 to="#"

@@ -16,6 +16,7 @@ import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
 import SmoothScroll from 'smooth-scroll'
 import { GoStar } from 'react-icons/go'
+
 /* 聯絡我們:客服表單 import */
 
 function OnSale() {
@@ -357,7 +358,7 @@ function OnSale() {
                     <div id="mm1"></div>
                     <div className="back">
                       <p>
-                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                        本站致力推廣咖啡與相關知識，使大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合咖啡飲品及相關器具買賣方，使彼此的需求得到滿足。
                       </p>
                     </div>
                   </div>
