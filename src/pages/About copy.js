@@ -16,6 +16,7 @@ import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
 import SmoothScroll from 'smooth-scroll'
 import { GoStar } from 'react-icons/go'
+
 /* 聯絡我們:客服表單 import */
 
 function OnSale() {
@@ -137,7 +138,7 @@ function OnSale() {
             <br />
 
             <div className="row">
-              <div className="col-4 qweqwe" align="center">
+              <div className="col-md-4 col-xs-0 qweqwe" align="center">
                 {/* <Sidebar input={inputArray} /> */}
                 <div class=" sidebar2">
                   <div class=" side_title2 ">常見問題</div>
@@ -215,9 +216,55 @@ function OnSale() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <br />
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+
+                <div className="row ccccc ">
+                  <div className="col-12 " align="center">
+                    <div class="tyu2">
+                      <Breadcrumb />
+                    </div>
+                    <div className="container bg-white pt-3 m-6 ">
+                      <div class=" sidebar3">
+                        <div class=" side_title3 ">常見問題</div>
+                        <a data-scroll href="#mm1">
+                          <br />
+                          <GoStar />
+                          網站定位
+                        </a>
+                        <a data-scroll href="#mm2">
+                          <br />
+                          <GoStar />
+                          賣家資訊
+                        </a>
+                        <a data-scroll href="#mm3">
+                          <br />
+                          <GoStar />
+                          折扣活動
+                        </a>
+                        <a data-scroll href="#mm4">
+                          <br />
+                          <GoStar />
+                          商品訊息
+                        </a>
+                        <a data-scroll href="#mm5">
+                          <br />
+                          <GoStar />
+                          客戶服務
+                          <p />
+                        </a>
+                      </div>
+                      <p className="text-white">123</p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="col-md-8 col-xs-12 asdasd">
-                <Breadcrumb />
+                <div class="tyu">
+                  <Breadcrumb />
+                </div>
                 <div className="row">
                   <div className="col-12">
                     {/* <img
@@ -311,7 +358,7 @@ function OnSale() {
                     <div id="mm1"></div>
                     <div className="back">
                       <p>
-                        本站致力於發揚咖啡文化及推廣咖啡相關知識，使一班大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合對咖啡有興趣的民眾及想推廣咖啡及相關器具的店家，使彼此的需求接得到滿足。
+                        本站致力推廣咖啡與相關知識，使大眾能夠輕易地找到適合自己的咖啡。且作為一個平台，能夠媒合咖啡飲品及相關器具買賣方，使彼此的需求得到滿足。
                       </p>
                     </div>
                   </div>
@@ -384,6 +431,11 @@ function OnSale() {
 
                 {/* 聯絡我們:客服表單 */}
                 <div id="mm5"></div>
+                <div className="qt-background3 mt-3">
+                  <div className="text-white " align="center">
+                    <h3>"客戶服務，傳達您的意見"</h3>
+                  </div>
+                </div>
                 <Card
                   className="cramCard"
                   id="contact"

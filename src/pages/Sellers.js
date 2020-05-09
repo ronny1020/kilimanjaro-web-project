@@ -304,7 +304,9 @@ function Sellers() {
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
-                      <h1 className="text-info">{sName}</h1>
+                      <h1>
+                        <strong>{sName}</strong>
+                      </h1>
                       <h3 className="m-b-20 ">
                         <strong>
                           <Typed
