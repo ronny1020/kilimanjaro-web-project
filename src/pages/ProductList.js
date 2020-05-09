@@ -67,17 +67,19 @@ function ProductList(props) {
     let condition = ''
     condition = keyword ? condition + 'keyword=' + keyword + '&' : condition
     condition = column ? condition + 'column=' + column + '&' : condition
+    condition = category ? condition + 'category=' + category + '&' : condition
 
-    if (keyword) {
+    if (keyword || category) {
       setQuery(condition)
     } else {
       setQuery('')
     }
     setPage(1)
-  }, [column, keyword, setQuery])
+  }, [category, column, keyword, setQuery])
 
   useEffect(() => {
     getProductList(page, memberID, query)
+    console.log(query)
   }, [getProductList, page, memberID, query])
 
   useEffect(() => {
@@ -135,10 +137,6 @@ function ProductList(props) {
       setShowZoom(true)
     }
   }, [products, query])
-
-  useEffect(() => {
-    console.log(category)
-  }, [category])
 
   if (products === undefined) {
     return (
@@ -318,7 +316,7 @@ function ProductList(props) {
                   <Autocomplete
                     className="w-100"
                     freeSolo
-                    defaultValue={keyword}
+                    value={keyword}
                     disableClearable
                     options={searchRecord.map((option) => option.keyword)}
                     onChange={(event, newValue) => {

@@ -24,27 +24,34 @@ class ProductList {
           })
           idString = idString.substr(0, idString.length - 1)
 
-          return { main: `where products.productID in (${idString})` }
+          return ` products.productID in (${idString})`
         } else {
-          return { main: 'where products.productID in (0)' }
+          return ''
         }
       }
-      return await getIdList()
+      const productsWithTag = await getIdList()
+      condition.main = productsWithTag
+        ? condition.main + productsWithTag + ' and '
+        : condition.main
     } else {
       const table = column == 'sName' ? 'sellers' : 'products'
       condition.main = query.keyword
         ? condition.main +
           `${table}.${column} like '%${query.keyword}%'` +
-          ' & '
+          ' and '
         : condition.main
     }
     condition.main = query.sellerID
-      ? condition.main + `products.sellerID = '${query.sellerID}'` + ' & '
+      ? condition.main + `products.sellerID = '${query.sellerID}'` + ' and '
       : condition.main
+    condition.main = query.category
+      ? condition.main + `products.CategoryID = '${query.category}'` + ' and '
+      : condition.main
+
     if (condition.main === 'Where ') {
       condition.main = ''
     } else {
-      condition.main = condition.main.substr(0, condition.main.length - 3)
+      condition.main = condition.main.substr(0, condition.main.length - 4)
     }
     return condition
   }

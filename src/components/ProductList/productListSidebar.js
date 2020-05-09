@@ -20,7 +20,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 1 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 1
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(1)
             }}
@@ -29,7 +33,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 2 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 2
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(2)
             }}
@@ -38,7 +46,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 3 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 3
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(3)
             }}
@@ -47,7 +59,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 4 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 4
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(4)
             }}
@@ -56,7 +72,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 5 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 5
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(5)
             }}
@@ -65,7 +85,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 6 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 6
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(6)
             }}
@@ -74,7 +98,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 7 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 7
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(7)
             }}
@@ -83,7 +111,11 @@ function ProductListSidebar(props) {
           </div>
           <hr />
           <div
-            className={category === 8 ? 'nav-link active' : 'nav-link'}
+            className={
+              category === 8
+                ? 'nav-link productLink active'
+                : 'nav-link productLink'
+            }
             onClick={() => {
               setCategory(8)
             }}
