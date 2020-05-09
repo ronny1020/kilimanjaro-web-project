@@ -2,10 +2,21 @@ import database from '../db/database.js'
 
 class ProductList {
   static async conditionCreator(query) {
+    
     const condition = {
       main: 'Where ',
+      orderBy: query.orderBy ? query.orderBy : 'add_time DESC',
+      visitedTimesPeriod: '',
+      sellingVolumePeriod: '',
     }
-
+    if (query.orderBy === 'visitedTimes DESC')
+      condition.visitedTimesPeriod = query.period
+        ? `where time_stamp > DATE_SUB(NOW(),INTERVAL ${query.period})`
+        : ''
+    if (query.orderBy === 'sellingVolume DESC')
+      condition.sellingVolumePeriod = query.period
+        ? `and OrderDate > DATE_SUB(NOW(),INTERVAL ${query.period})`
+        : ''
     const column = query.column ? query.column : 'ProductName'
     query.column === 'tag'
     if (column === 'tag') {
@@ -69,12 +80,12 @@ class ProductList {
     FROM coffee.discount_detail 
     JOIN coffee.discounts ON discount_detail.disID= discounts.disID and overDate > NOW() group by productID) d 
     on products.productID=d.productID
-    left JOIN (select count(0) visitedTimes, productID, time_stamp FROM coffee.product_visited group by productID) v
+    left JOIN (select count(0) visitedTimes, productID, time_stamp FROM coffee.product_visited ${condition.visitedTimesPeriod} group by productID) v
     on products.productID=v.productID
     left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
-    on orders.OrderID = orders_detail.OrderID group by productID) s
+    on orders.OrderID = orders_detail.OrderID ${condition.sellingVolumePeriod}  group by productID) s
     on products.productID=s.productID
-    ${condition.main} ORDER BY products.productID DESC LIMIT ? , ? ;`
+    ${condition.main} ORDER BY ${condition.orderBy} LIMIT ? , ? ;`
     return sql
   }
 
@@ -88,10 +99,10 @@ class ProductList {
     FROM coffee.discount_detail 
     JOIN coffee.discounts ON discount_detail.disID= discounts.disID and overDate > NOW() group by productID) d 
     on products.productID=d.productID
-    left JOIN (select count(0) visitedTimes, productID, time_stamp FROM coffee.product_visited group by productID) v
+    left JOIN (select count(0) visitedTimes, productID, time_stamp FROM coffee.product_visited ${condition.visitedTimesPeriod} group by productID) v
     on products.productID=v.productID
     left JOIN (SELECT sum(Quantity) sellingVolume ,productID FROM coffee.orders_detail join coffee.orders 
-    on orders.OrderID = orders_detail.OrderID group by productID) s
+    on orders.OrderID = orders_detail.OrderID ${condition.sellingVolumePeriod}  group by productID) s
     on products.productID=s.productID
     ${condition.main} ;`
     return sql
