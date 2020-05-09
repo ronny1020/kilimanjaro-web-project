@@ -2,7 +2,6 @@ import database from '../db/database.js'
 
 class ProductList {
   static async conditionCreator(query) {
-    
     const condition = {
       main: 'Where ',
       orderBy: query.orderBy ? query.orderBy : 'add_time DESC',
@@ -55,8 +54,17 @@ class ProductList {
     condition.main = query.sellerID
       ? condition.main + `products.sellerID = '${query.sellerID}'` + ' and '
       : condition.main
+
     condition.main = query.category
       ? condition.main + `products.CategoryID = '${query.category}'` + ' and '
+      : condition.main
+
+    condition.main = query.priceRangeFrom
+      ? condition.main +
+        `IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) >= '${query.priceRangeFrom}'` +
+        ' and ' +
+        `IFNULL(if(UnitPrice-discount<0, 0 ,UnitPrice-discount),UnitPrice) <= '${query.priceRangeTo}'` +
+        ' and '
       : condition.main
 
     if (condition.main === 'Where ') {

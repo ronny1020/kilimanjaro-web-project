@@ -27,7 +27,14 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Typography from '@material-ui/core/Typography'
+
 import Select from '@material-ui/core/Select'
+import Switch from '@material-ui/core/Switch'
+import Slider from '@material-ui/core/Slider'
+import Input from '@material-ui/core/Input'
+
 import ProductListSidebar from '../components/ProductList/productListSidebar'
 
 function ProductList(props) {
@@ -35,6 +42,9 @@ function ProductList(props) {
   const [pageListSelect, setPageListSelect] = React.useState([1])
   const [rowStart, setRowStart] = React.useState(1)
   const [rowEnd, setRowEnd] = React.useState(1)
+
+  const [advanceSearch, setAdvanceSearch] = React.useState(false)
+  const [priceRange, setPriceRange] = React.useState([0, 1000])
 
   const [orderBy, setOrderBy] = React.useState('')
   const [period, setPeriod] = React.useState('all')
@@ -74,14 +84,31 @@ function ProductList(props) {
     condition = orderBy ? condition + 'orderBy=' + orderBy + '&' : condition
     condition =
       period !== 'all' ? condition + 'period=' + period + '&' : condition
-
-    if (keyword || category || orderBy) {
+    condition = advanceSearch
+      ? condition +
+        'priceRangeFrom=' +
+        priceRange[0] +
+        '&' +
+        'priceRangeTo=' +
+        priceRange[1] +
+        '&'
+      : condition
+    if (keyword || category || orderBy || advanceSearch) {
       setQuery(condition)
     } else {
       setQuery('')
     }
     setPage(1)
-  }, [category, column, keyword, orderBy, period, setQuery])
+  }, [
+    advanceSearch,
+    category,
+    column,
+    keyword,
+    orderBy,
+    period,
+    priceRange,
+    setQuery,
+  ])
 
   useEffect(() => {
     getProductList(page, memberID, query)
@@ -380,6 +407,101 @@ function ProductList(props) {
                     </Select>
                   </FormControl>
                 </div>
+              </div>
+              {advanceSearch ? (
+                <>
+                  <div className="row">
+                    <div className="col-md-6">
+                      {' '}
+                      <Typography id="priceRange" gutterBottom>
+                        價格範圍
+                      </Typography>
+                      <Slider
+                        min={0}
+                        max={1000}
+                        value={priceRange}
+                        aria-labelledby="priceRange"
+                        onChange={(event, newValue) => {
+                          setPriceRange(newValue)
+                        }}
+                        valueLabelDisplay="auto"
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <div className="d-inline-block">
+                        <Typography id="priceRangeFrom" gutterBottom>
+                          從：
+                        </Typography>
+                        <Input
+                          value={priceRange[0]}
+                          margin="dense"
+                          aria-labelledby="priceRangeFrom"
+                          onChange={(event) => {
+                            let inputValue = Math.round(event.target.value)
+                            if (inputValue < 0) inputValue = 0
+                            if (inputValue > 1000) inputValue = 1000
+                            if (inputValue < priceRange[1]) {
+                              setPriceRange([inputValue, priceRange[1]])
+                            } else {
+                              setPriceRange([priceRange[1], inputValue])
+                            }
+                          }}
+                          inputProps={{
+                            min: 0,
+                            max: 1000,
+                            type: 'number',
+                            'aria-labelledby': 'input-slider',
+                          }}
+                        />
+                      </div>
+
+                      <div className="d-inline-block ml-3">
+                        <Typography id="priceRangeFrom" gutterBottom>
+                          至：
+                        </Typography>
+                        <Input
+                          value={priceRange[1]}
+                          margin="dense"
+                          aria-labelledby="priceRangeFrom"
+                          onChange={(event) => {
+                            let inputValue = Math.round(event.target.value)
+                            if (inputValue < 0) inputValue = 0
+                            if (inputValue > 1000) inputValue = 1000
+                            if (inputValue > priceRange[0]) {
+                              setPriceRange([priceRange[0], inputValue])
+                            } else {
+                              setPriceRange([inputValue, priceRange[0]])
+                            }
+                          }}
+                          inputProps={{
+                            min: 0,
+                            max: 1000,
+                            type: 'number',
+                            'aria-labelledby': 'input-slider',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+
+              <div className="row">
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={advanceSearch}
+                      color="primary"
+                      onChange={(event) =>
+                        setAdvanceSearch(event.target.checked)
+                      }
+                    />
+                  }
+                  label="進階搜尋"
+                  className="m-3"
+                />
               </div>
             </CardSecondary>
 
