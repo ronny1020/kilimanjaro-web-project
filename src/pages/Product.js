@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 
-import { useHistory } from 'react-router-dom'
+import { setCategory } from '../actions/getProductList'
+import { useHistory, Link, useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
-import { useParams } from 'react-router-dom'
+
 import { getMemberID } from '../actions/getMemberID'
 
 import { connect } from 'react-redux'
@@ -60,6 +61,7 @@ function Product(props) {
     RemoveComment,
     AddProductToFavourite,
     removeProductFromFavourite,
+    setCategory,
   } = props
 
   const memberID = getMemberID()
@@ -356,6 +358,38 @@ function Product(props) {
   return (
     <>
       <div className="topSpace"></div>
+
+      <nav aria-label="breadcrumb" className="container px-0">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link to="">首頁</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link
+              to="../productList"
+              onClick={() => {
+                setCategory(0)
+              }}
+            >
+              產品資訊
+            </Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link
+              to="../productList"
+              onClick={() => {
+                setCategory(product.CategoryID)
+              }}
+            >
+              {product.categoryName}
+            </Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link to="#">{product.ProductName}</Link>
+          </li>
+        </ol>
+      </nav>
+
       <CardSecondary>
         <div className="row">
           <div className="col-md-6">
@@ -579,4 +613,5 @@ export default connect(mapStateToProps, {
   removeProductFromFavourite,
   setKeyword,
   setColumn,
+  setCategory,
 })(Product)
