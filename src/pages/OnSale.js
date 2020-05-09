@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 import { Row } from 'react-bootstrap'
 
+import { Button } from 'react-bootstrap'
 import LobbyTitle from '../components/member/LobbyTitle'
 import CouponItem from '../components/CouponItem'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
 import { GoStar } from 'react-icons/go'
 // import NewSidebar from '../components/NewSidebar'
+import Breadcrumb from '../components/Breadcrumb'
 
 import '../styles/my.scss'
 
@@ -40,6 +42,7 @@ function OnSale() {
   return (
     <>
       <div className="all-page-title page-breadcrumb">
+        <div id="nn0"></div>
         <div className="container text-center">
           <div className="row">
             <div className="col-lg-12 " align="center">
@@ -143,8 +146,44 @@ function OnSale() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <div className="row ccccc ">
+                  <div className="col-12 " align="center">
+                    <div class="tyu2">
+                      <Breadcrumb />
+                    </div>
+                    <div className="container bg-white pt-3 m-6 ">
+                      <div class=" sidebar3">
+                        <div class=" side_title3 ">優惠專區</div>
+                        <a data-scroll href="#aa1">
+                          <br />
+                          <GoStar />
+                          小額優惠區
+                        </a>
+                        <a data-scroll href="#aa2">
+                          <br />
+                          <GoStar />
+                          中額優惠區
+                        </a>
+                        <a data-scroll href="#aa3">
+                          <br />
+                          <GoStar />
+                          高額優惠區
+                        </a>
+                        <a data-scroll href="#aa4">
+                          <br />
+                          <GoStar />
+                          特級優惠區
+                          <p />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="col-md-8 col-xs-12 asdasd">
+                <div class="tyu">
+                  <Breadcrumb />
+                </div>
                 {/* 傳值進入此: 於component內操作api (亦可以用迴圈產生)*/}
                 {/* 確定值有進去才產生component*/}
                 {genList ? (
@@ -264,6 +303,19 @@ function OnSale() {
                         </Row>
                         <p className="text-white">123</p>
                       </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="col-12" align="center">
+                        <Button
+                          className=" btn-success text-white m-3"
+                          variant="secondary"
+                          data-scroll
+                          href="#nn0"
+                        >
+                          謝了，我想回上面
+                        </Button>
+                      </div>
+                      <p className="text-white">123</p>
                     </div>
                   </>
                 ) : null}

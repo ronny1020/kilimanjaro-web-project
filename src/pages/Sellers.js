@@ -13,6 +13,7 @@ import Card from 'react-bootstrap/Card'
 import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
+import Breadcrumb from '../components/Breadcrumb'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
@@ -226,8 +227,76 @@ function Sellers() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <div className="row ccccc ">
+                  <div className="col-12 " align="center">
+                    <div class="tyu2">
+                      <Breadcrumb />
+                    </div>
+                    <div className="container bg-white pt-3 m-6 ">
+                      {' '}
+                      <div class=" sidebar3 ">
+                        <div class=" side_title3 ">請選擇賣家</div>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(0)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          非洲人咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(1)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          瑪麗亞咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(2)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          古坑樹咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(3)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          上島咖啡
+                        </a>
+                        <a
+                          class="nav-item"
+                          onClick={() => {
+                            seti(4)
+                          }}
+                        >
+                          <br />
+                          <GoStar />
+                          小樽咖啡
+                          <p />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
               <div className="col-md-8 col-xs-12 asdasd">
+                <div class="tyu">
+                  <Breadcrumb />
+                </div>
                 <div className="row">
                   <div className="col-12 " align="center">
                     <div className="container bg-white pt-3 m-6 ">
