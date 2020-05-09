@@ -19,6 +19,8 @@ import {
   removeProductFromFavourite,
 } from '../actions/FavouriteAction'
 
+import { setCategory } from '../actions/getProductList'
+
 import Pagination from 'react-bootstrap/Pagination'
 import CardSecondary from '../components/CardSecondary'
 
@@ -64,6 +66,7 @@ function ProductList(props) {
     setQuery,
     setKeyword,
     setColumn,
+    setCategory,
     AddProductToCart,
     removeProductFromCart,
     AddProductToFavourite,
@@ -332,16 +335,71 @@ function ProductList(props) {
     }
   })
 
-  // calculate the date range
+  let categoryName = ''
+  switch (category) {
+    case 0:
+      break
+    case 1:
+      categoryName = '咖啡豆'
+      break
+    case 2:
+      categoryName = '即溶咖啡'
+      break
+    case 3:
+      categoryName = '咖啡膠囊'
+      break
+    case 4:
+      categoryName = '濾掛包'
+      break
+    case 5:
+      categoryName = '濾紙'
+      break
+    case 6:
+      categoryName = '烘培機'
+      break
+    case 7:
+      categoryName = '磨豆機'
+      break
+    case 8:
+      categoryName = '咖啡機'
+      break
+    default:
+  }
+
+  categoryName = categoryName ? (
+    <li className="breadcrumb-item active" aria-current="page">
+      <Link to="#">{categoryName}</Link>
+    </li>
+  ) : (
+    ''
+  )
 
   return (
     <>
       <div className="container">
         <div className="row">
-          <div className="col-md-3 mt-3">
+          <div className="col-md-3 mt-5">
             <ProductListSidebar />
           </div>
-          <div className="col-md-9 mt-3">
+          <div className="col-md-9 mt-5">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item active" aria-current="page">
+                  <Link to="">首頁</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  <Link
+                    to="#"
+                    onClick={() => {
+                      setCategory(0)
+                    }}
+                  >
+                    產品資訊
+                  </Link>
+                </li>
+                {categoryName}
+              </ol>
+            </nav>
             <CardSecondary>
               <div className="row">
                 <div className="col-md-9 d-flex align-items-end pb-0 mb-3">
@@ -411,8 +469,7 @@ function ProductList(props) {
               {advanceSearch ? (
                 <>
                   <div className="row">
-                    <div className="col-md-6">
-                      {' '}
+                    <div className="col-md-6 p-4">
                       <Typography id="priceRange" gutterBottom>
                         價格範圍
                       </Typography>
@@ -427,7 +484,7 @@ function ProductList(props) {
                         valueLabelDisplay="auto"
                       />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 p-4">
                       <div className="d-inline-block">
                         <Typography id="priceRangeFrom" gutterBottom>
                           從：
@@ -624,6 +681,7 @@ export default connect(mapStateToProps, {
   setQuery,
   setKeyword,
   setColumn,
+  setCategory,
   AddProductToCart,
   removeProductFromCart,
   AddProductToFavourite,
