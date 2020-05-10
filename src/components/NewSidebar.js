@@ -42,7 +42,9 @@ function NewSidebar(props) {
     <>
       <br />
       <div className="sidebar" align="center">
-        <div className="side_title">{props.title}</div>
+        <div className="side_title">
+          <h4>{props.title}</h4>
+        </div>
         {listItem}
       </div>
 
