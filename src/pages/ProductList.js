@@ -36,6 +36,7 @@ import Select from '@material-ui/core/Select'
 import Switch from '@material-ui/core/Switch'
 import Slider from '@material-ui/core/Slider'
 import Input from '@material-ui/core/Input'
+import Rating from '@material-ui/lab/Rating'
 
 import ProductListSidebar from '../components/ProductList/productListSidebar'
 
@@ -50,7 +51,7 @@ function ProductList(props) {
 
   const [orderBy, setOrderBy] = React.useState('')
   const [period, setPeriod] = React.useState('all')
-
+  const [rate, setRate] = React.useState(0)
   const [showZoom, setShowZoom] = React.useState(false)
 
   const [searchRecord, setSearchRecord] = React.useState(
@@ -96,6 +97,8 @@ function ProductList(props) {
         priceRange[1] +
         '&'
       : condition
+    condition = rate ? condition + 'rate=' + rate + '&' : condition
+
     if (keyword || category || orderBy || advanceSearch) {
       setQuery(condition)
     } else {
@@ -110,6 +113,7 @@ function ProductList(props) {
     orderBy,
     period,
     priceRange,
+    rate,
     setQuery,
   ])
 
@@ -538,6 +542,17 @@ function ProductList(props) {
                           }}
                         />
                       </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <Typography>評分必須高於</Typography>
+                      <Rating
+                        value={rate}
+                        onChange={(event, newValue) => {
+                          setRate(newValue)
+                        }}
+                      />
                     </div>
                   </div>
                 </>
