@@ -61,7 +61,7 @@ function Home() {
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">
-            <div className="row ">
+            <div className="row " align="center">
               <div className="col-md-4 mt-3">
                 <Card style={{ width: '24rem' }}>
                   <Card.Img
