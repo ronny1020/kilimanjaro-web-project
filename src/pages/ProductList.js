@@ -237,34 +237,46 @@ function ProductList(props) {
                     />
                   </div>
 
-                  <div className={view === 'list' ? 'col-md-auto p-3' : ''}>
+                  <div className={view === 'list' ? 'col-md p-3' : ''}>
                     <h3>{product.ProductName}</h3>
-
-                    {product.discount !== null ? (
-                      <>
+                    <div className={view === 'list' ? 'row' : ''}>
+                      <div className={view === 'list' ? 'col-6' : ''}>
+                        <Rating
+                          name="size-small"
+                          value={product.avgRate ? Number(product.avgRate) : 0}
+                          size="small"
+                          precision={0.1}
+                          readOnly
+                        />
+                        <p>人氣:{' ' + product.visitedTimes}</p>
                         <p>
-                          原價:
-                          <span className="originalPrice">
-                            {' ' + product.UnitPrice}
-                          </span>
+                          銷量:
+                          {product.sellingVolume === null
+                            ? ' 0'
+                            : ' ' + product.sellingVolume}
                         </p>
-                        <p>
-                          特價:
-                          <span className="specialPrice">
-                            {' ' + product.finalPrice}
-                          </span>
-                        </p>
-                      </>
-                    ) : (
-                      <p>售價:{' ' + product.UnitPrice}</p>
-                    )}
-                    <Rating
-                      name="size-small"
-                      value={product.avgRate}
-                      size="small"
-                      precision={0.1}
-                      readOnly
-                    />
+                      </div>
+                      <div className={view === 'list' ? 'col-6' : ''}>
+                        {product.discount !== null ? (
+                          <>
+                            <p>
+                              原價:
+                              <span className="originalPrice">
+                                {' ' + product.UnitPrice}
+                              </span>
+                            </p>
+                            <p>
+                              特價:
+                              <span className="specialPrice">
+                                {' ' + product.finalPrice}
+                              </span>
+                            </p>
+                          </>
+                        ) : (
+                          <p>售價:{' ' + product.UnitPrice}</p>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
                   <div className="form-inline favouriteAndCartButton">

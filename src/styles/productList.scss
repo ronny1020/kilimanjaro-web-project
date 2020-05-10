@@ -6,7 +6,7 @@
 
 .productListBlockView {
   width: 180px;
-  height: 400px;
+  height: 450px;
 }
 
 .productImage {
@@ -35,9 +35,14 @@
   font-size: 20px;
 }
 
-// @media screen and (max-width: 768px) {
-//   .productListImage {
-//     width: 100%;
-//     height: ;
-//   }
-// }
+@media screen and (max-width: 768px) {
+  .productListImage {
+    width: 100%;
+    height: 75vw;
+  }
+
+  .productListBlockView .productListImage {
+    width: 180px;
+    height: 180px;
+  }
+}

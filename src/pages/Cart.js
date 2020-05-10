@@ -114,23 +114,47 @@ function Cart(props) {
                 </div>
 
                 <div className="col-4">
-                  <label htmlFor={product.productID}>數量：</label>
-                  <input
-                    type="number"
-                    className="form-control w-50"
-                    placeholder="Enter Number"
-                    id={product.productID}
-                    defaultValue={product.num}
-                    onClick={(e) => {
-                      e.preventDefault()
-                    }}
-                    onChange={(event) => {
-                      event.target.value = Math.round(event.target.value)
-                      if (event.target.value < 1) event.target.value = 1
-                      if (event.target.value > product.UnitsInStock)
-                        event.target.value = product.UnitsInStock
-                    }}
-                  />
+                  <div className="form-inline">
+                    <label htmlFor={product.productID}>數量：</label>
+                    <input
+                      type="number"
+                      className="form-control w-50"
+                      placeholder="Enter Number"
+                      id={product.productID}
+                      defaultValue={product.num}
+                      onClick={(e) => {
+                        e.preventDefault()
+                      }}
+                      onChange={(event) => {
+                        event.target.value = Math.round(event.target.value)
+                        if (event.target.value < 1) event.target.value = 1
+                        if (event.target.value > product.UnitsInStock)
+                          event.target.value = product.UnitsInStock
+                      }}
+                    />
+                    <Tooltip title="修改訂購數量">
+                      <button
+                        className="btn btn-sm btn-success m-1"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          async function update() {
+                            const num = document.getElementById(
+                              product.productID
+                            ).value
+                            await updateProductNumToCart(
+                              product.productID,
+                              memberID,
+                              num
+                            )
+                            await getCart(memberID)
+                          }
+                          update()
+                        }}
+                      >
+                        <EditIcon fontSize="small" />
+                      </button>
+                    </Tooltip>
+                  </div>
                 </div>
                 <div className="col-4">
                   <p>總價：</p>
@@ -143,27 +167,6 @@ function Cart(props) {
               </div>
             </div>
             <div className="form-inline favouriteAndCartButton">
-              <Tooltip title="修改訂購數量">
-                <button
-                  className="btn btn-sm btn-success m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function update() {
-                      const num = document.getElementById(product.productID)
-                        .value
-                      await updateProductNumToCart(
-                        product.productID,
-                        memberID,
-                        num
-                      )
-                      await getCart(memberID)
-                    }
-                    update()
-                  }}
-                >
-                  <EditIcon fontSize="small" />
-                </button>
-              </Tooltip>
               <Tooltip title="從購物車中移除">
                 <button
                   className="btn btn-sm btn-danger"

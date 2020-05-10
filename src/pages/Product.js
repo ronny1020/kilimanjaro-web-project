@@ -39,6 +39,14 @@ import MuiAlert from '@material-ui/lab/Alert'
 import { setKeyword, setColumn } from '../actions/getProductList'
 import ProductImageStepper from '../components/Product/ProductImageStepper'
 
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import EditIcon from '@material-ui/icons/Edit'
+
+import Tooltip from '@material-ui/core/Tooltip'
+
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
 }
@@ -67,7 +75,6 @@ function Product(props) {
   const memberID = getMemberID()
 
   const [rate, setRate] = React.useState(0)
-  const [averagedRate, setAveragedRate] = React.useState(0)
 
   const [dataArray, setDataArray] = React.useState([0, 0, 0, 0, 0])
 
@@ -124,15 +131,6 @@ function Product(props) {
         }
       })
       setRate(defaultRate)
-
-      setAveragedRate(
-        Number(
-          (
-            product.comments.reduce((a, b) => a + b.rate, 0) /
-            product.comments.length
-          ).toFixed(1)
-        )
-      )
 
       setDataArray([
         product.comments.filter((comment) => comment.rate === 5).length,
@@ -233,7 +231,7 @@ function Product(props) {
               <Rating
                 name="simple-controlled"
                 id="rateInput"
-                value={rate ? rate : 0}
+                value={rate ? Number(rate) : 0}
                 onChange={(event, newValue) => {
                   setRate(newValue)
                 }}
@@ -300,7 +298,7 @@ function Product(props) {
           <Rating
             name="simple-controlled"
             id="rateInput"
-            value={rate ? rate : 0}
+            value={rate ? Number(rate) : 0}
             onChange={(event, newValue) => {
               setRate(newValue)
             }}
@@ -344,7 +342,7 @@ function Product(props) {
         <CardSecondary>
           <p>ID:{comment.customerID}</p>
           {comment.rate ? (
-            <Rating defaultValue={comment.rate} size="small" readOnly />
+            <Rating defaultValue={Number(comment.rate)} size="small" readOnly />
           ) : (
             <></>
           )}
@@ -415,8 +413,7 @@ function Product(props) {
               </label>
               <input
                 type="number"
-                className="form-control"
-                placeholder="Enter Number"
+                className="form-control w-25"
                 id="order_num"
                 defaultValue={product.num}
                 onChange={(event) => {
@@ -426,103 +423,115 @@ function Product(props) {
                     event.target.value = product.UnitsInStock
                 }}
               />
-
-              {product.UnitsInStock ? (
-                product.num == null ? (
-                  <>
-                    <button
-                      className="btn btn-primary m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
+              {product.num == null ? (
+                <Tooltip title="加入購物車">
+                  <button
+                    className="btn btn-sm btn-primary m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const num = document.getElementById('order_num').value
+                      async function add() {
+                        await AddProductToCart(product.productID, memberID, num)
+                        await getProduct(id, memberID)
+                      }
+                      add()
+                    }}
+                  >
+                    <AddShoppingCartIcon fontSize="small" />
+                  </button>
+                </Tooltip>
+              ) : (
+                <Tooltip title="修改訂購數量">
+                  <button
+                    className="btn btn-sm btn-success m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      async function update() {
                         const num = document.getElementById('order_num').value
-                        async function add() {
-                          await AddProductToCart(
-                            product.productID,
-                            memberID,
-                            num
-                          )
-                          await getProduct(id, memberID)
-                        }
-                        add()
-                      }}
-                    >
-                      add
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="btn btn-success m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function update() {
-                          const num = document.getElementById('order_num').value
-                          await updateProductNumToCart(
-                            product.productID,
-                            memberID,
-                            num
-                          )
-                          await getProduct(id, memberID)
-                        }
-                        update()
-                      }}
-                    >
-                      update
-                    </button>
-                    <button
-                      className="btn btn-danger m-1"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        async function remove() {
-                          await removeProductFromCart(
-                            product.productID,
-                            memberID
-                          )
-                          await getProduct(id, memberID)
-                        }
-                        remove()
-                        document.getElementById('order_num').value = 1
-                      }}
-                    >
-                      remove({product.num})
-                    </button>
-                  </>
-                )
+                        await updateProductNumToCart(
+                          product.productID,
+                          memberID,
+                          num
+                        )
+                        await getProduct(id, memberID)
+                      }
+                      update()
+                    }}
+                  >
+                    <EditIcon fontSize="small" />
+                  </button>
+                </Tooltip>
+              )}
+            </div>
+            <div className="form-inline favouriteAndCartButton">
+              {product.UnitsInStock ? (
+                <>
+                  {product.num === null ? (
+                    <> </>
+                  ) : (
+                    <>
+                      <Tooltip title="從購物車中移除">
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function remove() {
+                              await removeProductFromCart(
+                                product.productID,
+                                memberID
+                              )
+                              await getProduct(id, memberID)
+                            }
+                            remove()
+                            document.getElementById('order_num').value = 1
+                          }}
+                        >
+                          <RemoveShoppingCartIcon fontSize="small" />(
+                          {product.num})
+                        </button>
+                      </Tooltip>
+                    </>
+                  )}
+                </>
               ) : (
                 <p>很抱歉，目前沒有庫存</p>
               )}
               {product.favouriteID === null ? (
-                <button
-                  className="btn btn-primary m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function add() {
-                      await AddProductToFavourite(product.productID, memberID)
-                      await getProduct(id, memberID)
-                    }
-                    add()
-                  }}
-                >
-                  add to favourite
-                </button>
+                <Tooltip title="加到我的最愛">
+                  <button
+                    className="btn btn-sm btn-primary m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      async function add() {
+                        await AddProductToFavourite(product.productID, memberID)
+                        await getProduct(id, memberID)
+                      }
+                      add()
+                    }}
+                  >
+                    <FavoriteIcon fontSize="small" />
+                  </button>
+                </Tooltip>
               ) : (
-                <button
-                  className="btn btn-danger  m-1"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function remove() {
-                      await removeProductFromFavourite(
-                        product.productID,
-                        memberID
-                      )
-                      await getProduct(id, memberID)
-                    }
+                <Tooltip title="從我的最愛移除">
+                  <button
+                    className="btn btn-sm btn-danger m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      async function remove() {
+                        await removeProductFromFavourite(
+                          product.productID,
+                          memberID
+                        )
+                        await getProduct(id, memberID)
+                      }
 
-                    remove()
-                  }}
-                >
-                  remove from favourite
-                </button>
+                      remove()
+                    }}
+                  >
+                    <FavoriteBorderIcon fontSize="small" />
+                  </button>
+                </Tooltip>
               )}
             </div>
           </div>
@@ -534,14 +543,16 @@ function Product(props) {
             <HorizontalBar data={chartData} options={chartOptions} />
           </div>
           <div className="col-4">
-            {isNaN(averagedRate) ? (
+            {product.avgRate === null ? (
               '目前沒有評分'
             ) : (
               <div className="d-flex flex-column align-items-center justify-content-center">
-                <p className="averagedRate">{averagedRate}</p>
+                <p className="averagedRate">
+                  {Math.round(product.avgRate * 10) / 10}
+                </p>
 
                 <Rating
-                  value={averagedRate}
+                  value={Number(product.avgRate)}
                   precision={0.1}
                   size="large"
                   readOnly
@@ -554,7 +565,18 @@ function Product(props) {
 
       {commentOfLoggedID}
       {otherComments}
-
+      <div className="container p-0">
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">商品規格</h4>
+        </div>
+      </div>
+      <CardSecondary>{product.specification}</CardSecondary>
+      <div className="container p-0">
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">商品介紹</h4>
+        </div>
+      </div>
+      <CardSecondary>{product.description}</CardSecondary>
       {/* alert snackbar */}
       <Snackbar
         open={editAlertOpen}
