@@ -9,6 +9,7 @@ import Breadcrumb from '../components/Breadcrumb'
 // import Sidebar from '../components/Sidebar'
 import img002 from '../img/disc/about-image.jpg'
 import img004 from '../img/disc/heart-icon.png'
+import ProductListItem from '../components/ProductList/productListItem'
 
 /* 聯絡我們:客服表單 import */
 
@@ -220,6 +221,8 @@ function OnSale() {
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
                 <br />
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
+                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
 
                 <div className="row ccccc ">
                   <div className="col-12 " align="center">
@@ -292,13 +295,14 @@ function OnSale() {
 
                       <div class="wow fadeInUp" data-wow-delay="0.4s">
                         <p>
-                          咖啡愛好者即便處在一個陌生的城市裡，聞到咖啡香，心便感覺安定；走進咖啡店無數次，盯著價目表許久，最後還是會決定點那杯每天都在喝的咖啡。他們迷戀香氣，絲毫不厭倦。
+                          吉利馬札羅，專業咖啡網站，為您挑選最適合的商品，以滿足所有咖啡愛好者的味蕾。
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12">
+                    <div className="col-3"></div>
+                    <div className="col-6">
                       {/* <img
                       className="d-block h-40 w-100 "
                       src={img004}
@@ -306,10 +310,14 @@ function OnSale() {
                     /> */}
 
                       <div
-                        class="team-thumb wow fadeInUp"
+                        class="team-thumb wow fadeInUp rounded-circle"
                         data-wow-delay="0.2s"
                       >
-                        <img src={img002} alt="slide 004" />
+                        <img
+                          src={img002}
+                          class="d-block w-100"
+                          alt="slide 004"
+                        />
                         <div class="team-hover">
                           <div class="team-item text-white">
                             <h4>您好，我是創辦人</h4>
@@ -317,6 +325,133 @@ function OnSale() {
                         </div>
                       </div>
                     </div>
+                    <div className="col-3"></div>
+
+                    <div className="col-12 mt-3">
+                      <div class="about-info">
+                        <div
+                          class="section-title wow fadeInUp"
+                          data-wow-delay="0.2s"
+                        >
+                          <h2>~喝一口的美好~</h2>
+                        </div>
+
+                        <div class="wow fadeInUp" data-wow-delay="0.4s">
+                          <p>
+                            咖啡愛好者即便處在一個陌生的城市裡，聞到咖啡香，心便感覺安定；走進咖啡店無數次，盯著價目表許久，最後還是會決定點那杯每天都在喝的咖啡。他們迷戀香氣，絲毫不厭倦。
+                          </p>
+                        </div>
+                      </div>
+                      <div className="row mt-3 ">
+                        <div className="col-12 mt-3">
+                          <h2>聯絡方式</h2>
+                          <p>透過下列三種方式，能將您的寶貴意見傳達給我們。</p>
+                        </div>
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={require('../img/disc/phone.jpg')}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">電話</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>我們的客服專線</p>
+                              <h4>+44 345 678 903</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={require('../img/disc/mail.jpg')}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">信箱</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>我們的客服信箱</p>
+                              <h4> adobexd@mail.com</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 special-grid drinks">
+                          <div className="gallery-single fix">
+                            <ProductListItem>
+                              <img
+                                className="d-block h-100 w-100 "
+                                src={require('../img/disc/web.jpg')}
+                                alt="slide 004"
+                              />
+                            </ProductListItem>
+                            <div>
+                              <h4 align="center">網站</h4>
+                            </div>
+                            <div className="why-text" align="center">
+                              <p>網站的客服專區</p>
+                              <h4>
+                                {' '}
+                                透過下方的「客服專區」，亦能將您的寶貴意見傳達給我們
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                        {/* <div className="col-4 ">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                        {/* <div className="col-4">
+                    <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    />
+                  </div> */}
+                      </div>
+                      {/* <div class="contact-imfo-box">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-12">
+                              <h4>聯絡方式</h4>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                              <div class="overflow-hidden">
+                                <h4>電話</h4>
+                                <p class="lead">+44 345 678 903</p>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="overflow-hidden">
+                                <h4>信箱</h4>
+                                <p class="lead">adobexd@mail.com</p>
+                              </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                          </div>
+                        </div>
+                      </div> */}
+                    </div>
+
                     {/* <div className="col-6"> */}
                     {/* <img
                       className="d-block h-40 w-100 "
