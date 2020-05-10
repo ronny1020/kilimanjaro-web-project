@@ -38,6 +38,12 @@ import Slider from '@material-ui/core/Slider'
 import Input from '@material-ui/core/Input'
 import Rating from '@material-ui/lab/Rating'
 
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+
+import ViewListIcon from '@material-ui/icons/ViewList'
+import ViewModuleIcon from '@material-ui/icons/ViewModule'
+
 import ProductListSidebar from '../components/ProductList/productListSidebar'
 
 function ProductList(props) {
@@ -53,6 +59,8 @@ function ProductList(props) {
   const [period, setPeriod] = React.useState('all')
   const [rate, setRate] = React.useState(0)
   const [showZoom, setShowZoom] = React.useState(false)
+
+  const [view, setView] = React.useState('list')
 
   const [searchRecord, setSearchRecord] = React.useState(
     localStorage.getItem('searchRecord')
@@ -187,7 +195,7 @@ function ProductList(props) {
     )
   }
 
-  const productList = products.map((product, i) => {
+  const productListMain = products.map((product, i) => {
     return (
       <div key={i}>
         <Zoom
@@ -204,8 +212,16 @@ function ProductList(props) {
               className="linkNoUnderline"
             >
               <ProductListItem>
-                <div className="row">
-                  <div className="col-md-auto d-flex justify-content-center">
+                <div
+                  className={view === 'list' ? 'row' : 'productListBlockView'}
+                >
+                  <div
+                    className={
+                      view === 'list'
+                        ? 'col-md-auto d-flex justify-content-center'
+                        : ''
+                    }
+                  >
                     <img
                       alt=""
                       src={'../images/products/' + product.productID + '/0.jpg'}
@@ -216,7 +232,7 @@ function ProductList(props) {
                     />
                   </div>
 
-                  <div className="col-md-auto p-3">
+                  <div className={view === 'list' ? 'col-md-auto p-3' : ''}>
                     <h3>{product.ProductName}</h3>
                     <p>price:{product.UnitPrice}</p>
                     {product.discount !== null ? (
@@ -586,7 +602,7 @@ function ProductList(props) {
             <div className="topSpace"></div>
             <div className="container">
               <div className="row">
-                <div className="d-flex justify-content-start mb-3 col">
+                <div className="d-flex justify-content-start mb-3 col-md">
                   <FormControl>
                     <InputLabel htmlFor="orderBy">排序方式</InputLabel>
                     <Select
@@ -646,13 +662,39 @@ function ProductList(props) {
                     <></>
                   )}
                 </div>
-                <p className="d-flex justify-content-end mb-3 align-self-end col">
+                <p className="d-flex justify-content-end mb-3 align-self-end col-md">
                   第 {range.page} 頁( {rowStart} - {rowEnd} )，共{' '}
                   {range.totalPages}頁{range.totalRows} 項
                 </p>
               </div>
+              <div className="row d-flex justify-content-end pr-3">
+                <ButtonGroup color="primary" variant="contained" size="small">
+                  <Button
+                    onClick={() => {
+                      setView('list')
+                    }}
+                  >
+                    <ViewListIcon />
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setView('block')
+                    }}
+                  >
+                    <ViewModuleIcon />
+                  </Button>
+                </ButtonGroup>
+              </div>
 
-              <div>{productList}</div>
+              <div
+                className={
+                  view === 'list'
+                    ? ''
+                    : 'd-flex align-content-start justify-content-between flex-wrap'
+                }
+              >
+                {productListMain}
+              </div>
               <Pagination className="justify-content-center mt-5 ">
                 <Pagination.First
                   onClick={() => {
