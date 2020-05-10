@@ -43,6 +43,12 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 import ViewListIcon from '@material-ui/icons/ViewList'
 import ViewModuleIcon from '@material-ui/icons/ViewModule'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+
+import Tooltip from '@material-ui/core/Tooltip'
 
 import ProductListSidebar from '../components/ProductList/productListSidebar'
 
@@ -249,12 +255,15 @@ function ProductList(props) {
                       precision={0.1}
                       readOnly
                     />
-                    <div className="form-inline">
-                      {/* favourite button */}
+                  </div>
 
-                      {product.favouriteID === null ? (
+                  <div className="form-inline favouriteAndCartButton">
+                    {/* favourite button */}
+
+                    {product.favouriteID === null ? (
+                      <Tooltip title="加到我的最愛">
                         <button
-                          className="btn btn-primary m-1"
+                          className="btn btn-sm btn-primary m-1"
                           onClick={(e) => {
                             e.preventDefault()
                             async function add() {
@@ -267,11 +276,13 @@ function ProductList(props) {
                             add()
                           }}
                         >
-                          add to favourite
+                          <FavoriteIcon fontSize="small" />
                         </button>
-                      ) : (
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="從我的最愛移除">
                         <button
-                          className="btn btn-danger  m-1"
+                          className="btn btn-sm btn-danger m-1"
                           onClick={(e) => {
                             e.preventDefault()
                             async function remove() {
@@ -284,13 +295,15 @@ function ProductList(props) {
                             remove()
                           }}
                         >
-                          remove from favourite
+                          <FavoriteBorderIcon fontSize="small" />
                         </button>
-                      )}
-                      {/* cart button */}
-                      {product.num == null ? (
+                      </Tooltip>
+                    )}
+                    {/* cart button */}
+                    {product.num == null ? (
+                      <Tooltip title="加入購物車">
                         <button
-                          className="btn btn-primary  m-1"
+                          className="btn btn-sm btn-primary m-1"
                           onClick={(e) => {
                             e.preventDefault()
                             async function add() {
@@ -303,11 +316,13 @@ function ProductList(props) {
                             add()
                           }}
                         >
-                          add to cart
+                          <AddShoppingCartIcon fontSize="small" />
                         </button>
-                      ) : (
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="從購物車中移除">
                         <button
-                          className="btn btn-danger  m-1"
+                          className="btn btn-sm btn-danger m-1"
                           onClick={(e) => {
                             e.preventDefault()
                             async function remove() {
@@ -315,15 +330,16 @@ function ProductList(props) {
                                 product.productID,
                                 memberID
                               )
-                              // await getProductList(page, memberID)
+                              await getProductList(page, memberID)
                             }
                             remove()
                           }}
                         >
-                          remove({product.num}) from cart
+                          <RemoveShoppingCartIcon fontSize="small" />(
+                          {product.num})
                         </button>
-                      )}
-                    </div>
+                      </Tooltip>
+                    )}
                   </div>
                 </div>
               </ProductListItem>
@@ -690,7 +706,7 @@ function ProductList(props) {
                 className={
                   view === 'list'
                     ? ''
-                    : 'd-flex align-content-start justify-content-between flex-wrap'
+                    : 'd-flex align-content-start justify-content-around flex-wrap'
                 }
               >
                 {productListMain}
