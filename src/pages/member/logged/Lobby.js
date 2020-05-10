@@ -253,7 +253,10 @@ function Member(props) {
                     isAuth={props.isAuth}
                     setIsAuth={props.setIsAuth}
                   />
-                  <div className="container bg-secondary">
+                  <div
+                    className="container bg-secondary"
+                    style={{ overflow: 'auto' }}
+                  >
                     <div className="row" style={{ minHeight: '100vh' }}>
                       <div className="col-8 lobbyL">
                         <Breadcrumb />

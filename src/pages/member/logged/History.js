@@ -61,7 +61,7 @@ function History() {
   return (
     <>
       <LobbyTitle string={'交易紀錄'} />
-      <div className="container bg-secondary">
+      <div className="container bg-secondary" style={{ overflow: 'auto' }}>
         <div className="row" style={{ minHeight: '100vh' }}>
           <div className="col-3 lobbyR">
             <NewSidebar title={'會員中心'} input={inputArray} />

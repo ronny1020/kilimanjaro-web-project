@@ -6,7 +6,7 @@ function Notice(props) {
   return (
     <>
       <div align="center" style={{ marginBottom: '15px' }}>
-        <Image src={srcSVG}></Image>
+        <Image src={srcSVG} style={{ width: '100%' }}></Image>
         <h1>{props.message}</h1>
       </div>
     </>
