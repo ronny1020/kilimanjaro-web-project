@@ -2,14 +2,14 @@
   background-color: white;
   text-align: center;
 
-  height: 210px;
+  min-height: 25vh;
   border-bottom: 0.5px solid gray;
 
   //   position: absolute;
   //   top:200px;
 }
 .lobbytitle {
-  padding-top: 150px;
+  padding-top: 20vh;
 }
 
 .lobbytitle h1 {
@@ -21,6 +21,7 @@
 .title_link {
   position: absolute;
   bottom: 0;
+  right: 3vw;
   font-size: 18px;
 }
 .title_link a {
@@ -31,6 +32,23 @@
 .title_link span {
   top: 5px;
   margin: 5px;
+}
+.LinkB {
+  display: none;
+}
+@media screen and(max-width:420px) {
+  .col span,
+  .LinkA {
+    display: none;
+  }
+  .LinkB {
+    display: unset;
+    text-align: center;
+  }
+  .title_link {
+    right: unset;
+    right: 5.8vw;
+  }
 }
 
 //Lobby cards:

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 
 function LobbyTitle(props) {
   // console.log(props)
@@ -12,14 +13,22 @@ function LobbyTitle(props) {
   return (
     <>
       <div className="container mt-auto title_bg">
-        <div className="row lobbytitle">
-          <div className="col-3"></div>
-          <div className="col-6">
-            <h1>{title}</h1>
-          </div>
-          <div className="col-3">
+        <Row className="lobbytitle">
+          <Col>
             <div className="title_link">
-              <Link to="/about#mm1">常見問題</Link>
+              <Link to="/about#mm1" className="LinkB">
+                常見問題
+              </Link>
+            </div>
+          </Col>
+          <Col>
+            <h1>{title}</h1>
+          </Col>
+          <Col>
+            <div className="title_link">
+              <Link to="/about#mm1" className="LinkA">
+                常見問題
+              </Link>
               <span>|</span>
               <Link
                 to="#"
@@ -34,8 +43,8 @@ function LobbyTitle(props) {
                 登出頁面
               </Link>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </>
   )
