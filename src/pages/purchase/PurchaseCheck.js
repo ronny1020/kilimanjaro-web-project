@@ -36,7 +36,7 @@ function PurchaseCheck(props) {
     <div key={i}>
       <ProductListItem>
         <div className="row">
-          <div className="col-md-auto">
+          <div className="col-md-3">
             <img
               alt=""
               src={'../images/products/' + product.productID + '/0.jpg'}
@@ -46,16 +46,46 @@ function PurchaseCheck(props) {
               }
             />
           </div>
-
-          <div className="col-md-auto p-3">
+          <div className="col-md-9 p-3">
             <h3>{product.ProductName}</h3>
-            <p>id:{product.productID}</p>
-            <p>價格：{product.UnitPrice}</p>
-            {product.discount !== null ? (
-              <p>special price:{product.UnitPrice - product.discount}</p>
-            ) : (
-              <p></p>
-            )}
+            <div className="row">
+              <div className="col-4">
+                {product.discount !== null ? (
+                  <>
+                    <p>
+                      原價:
+                      <span className="originalPrice">
+                        {' ' + product.UnitPrice}
+                      </span>
+                    </p>
+                    <p>
+                      特價:
+                      <span className="specialPrice">
+                        {' ' + product.finalPrice}
+                      </span>
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>售價：</p>
+                    <p>{product.UnitPrice}</p>
+                  </>
+                )}
+              </div>
+
+              <div className="col-4">
+                <p>數量：</p>
+                <p>{product.num}</p>
+              </div>
+              <div className="col-4">
+                <p>總價：</p>
+                <p>
+                  {new Intl.NumberFormat('en-IN').format(
+                    product.UnitPrice * product.num
+                  )}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </ProductListItem>

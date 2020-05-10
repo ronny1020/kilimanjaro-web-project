@@ -17,6 +17,11 @@ import {
 import CardSecondary from '../components/CardSecondary'
 import { getMemberInfo } from '../actions/getMemberInfo'
 
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import EditIcon from '@material-ui/icons/Edit'
+
+import Tooltip from '@material-ui/core/Tooltip'
+
 function Cart(props) {
   let history = useHistory()
   const memberID = getMemberID()
@@ -69,7 +74,7 @@ function Cart(props) {
       <Link to={'../product/' + product.productID} className="linkNoUnderline">
         <ProductListItem>
           <div className="row">
-            <div className="col-md-auto">
+            <div className="col-md-3">
               {' '}
               <img
                 alt=""
@@ -81,37 +86,66 @@ function Cart(props) {
               />
             </div>
 
-            <div className="col-md-auto p-3">
+            <div className="col-md-9 p-3">
               <h3>{product.ProductName}</h3>
-              <p>id:{product.productID}</p>
-              <p>價格：{product.UnitPrice}</p>
-              {product.discount !== null ? (
-                <p>special price:{product.UnitPrice - product.discount}</p>
-              ) : (
-                <p></p>
-              )}
-              <div className="form-inline">
-                <label htmlFor={product.productID} className="m-1">
-                  數量：
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  placeholder="Enter Number"
-                  id={product.productID}
-                  defaultValue={product.num}
-                  onClick={(e) => {
-                    e.preventDefault()
-                  }}
-                  onChange={(event) => {
-                    event.target.value = Math.round(event.target.value)
-                    if (event.target.value < 1) event.target.value = 1
-                    if (event.target.value > product.UnitsInStock)
-                      event.target.value = product.UnitsInStock
-                  }}
-                />
+              <div className="row mb-3 pd-5">
+                <div className="col-4">
+                  {product.discount !== null ? (
+                    <>
+                      <p>
+                        原價:
+                        <span className="originalPrice">
+                          {' ' + product.UnitPrice}
+                        </span>
+                      </p>
+                      <p>
+                        特價:
+                        <span className="specialPrice">
+                          {' ' + product.finalPrice}
+                        </span>
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>售價：</p>
+                      <p>{product.UnitPrice}</p>
+                    </>
+                  )}
+                </div>
+
+                <div className="col-4">
+                  <label htmlFor={product.productID}>數量：</label>
+                  <input
+                    type="number"
+                    className="form-control w-50"
+                    placeholder="Enter Number"
+                    id={product.productID}
+                    defaultValue={product.num}
+                    onClick={(e) => {
+                      e.preventDefault()
+                    }}
+                    onChange={(event) => {
+                      event.target.value = Math.round(event.target.value)
+                      if (event.target.value < 1) event.target.value = 1
+                      if (event.target.value > product.UnitsInStock)
+                        event.target.value = product.UnitsInStock
+                    }}
+                  />
+                </div>
+                <div className="col-4">
+                  <p>總價：</p>
+                  <p>
+                    {new Intl.NumberFormat('en-IN').format(
+                      product.UnitPrice * product.num
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="form-inline favouriteAndCartButton">
+              <Tooltip title="修改訂購數量">
                 <button
-                  className="btn btn-success m-1"
+                  className="btn btn-sm btn-success m-1"
                   onClick={(e) => {
                     e.preventDefault()
                     async function update() {
@@ -127,10 +161,12 @@ function Cart(props) {
                     update()
                   }}
                 >
-                  update
+                  <EditIcon fontSize="small" />
                 </button>
+              </Tooltip>
+              <Tooltip title="從購物車中移除">
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-sm btn-danger"
                   onClick={(e) => {
                     e.preventDefault()
                     async function remove() {
@@ -140,9 +176,9 @@ function Cart(props) {
                     remove()
                   }}
                 >
-                  remove({product.num})
+                  <RemoveShoppingCartIcon fontSize="small" />({product.num})
                 </button>
-              </div>
+              </Tooltip>
             </div>
           </div>
         </ProductListItem>
@@ -165,7 +201,7 @@ function Cart(props) {
       </div>
       <CardSecondary>
         <span>
-          共 {Cart.length} 項商品，總價 {totalPrice} 元
+          共 {Cart.length} 款商品，總價 {totalPrice} 元
         </span>
       </CardSecondary>
       <div className="container">
@@ -180,7 +216,7 @@ function Cart(props) {
             remove()
           }}
         >
-          remove all
+          清除購物車
         </button>
 
         <button
@@ -193,7 +229,7 @@ function Cart(props) {
             document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
           }}
         >
-          NEXT
+          下一步
         </button>
       </div>
       <div className="container p-0">
@@ -213,12 +249,12 @@ function Cart(props) {
           <li>海外郵資運費計算。</li>
         </ul>
       </CardSecondary>
-      <hr className="my-5" />
+      {/* <hr className="my-5" />
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">推薦商品</h4>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

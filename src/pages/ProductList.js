@@ -240,13 +240,24 @@ function ProductList(props) {
 
                   <div className={view === 'list' ? 'col-md-auto p-3' : ''}>
                     <h3>{product.ProductName}</h3>
-                    <p>price:{product.UnitPrice}</p>
+
                     {product.discount !== null ? (
-                      <p>
-                        special price:{product.UnitPrice - product.discount}
-                      </p>
+                      <>
+                        <p>
+                          原價:
+                          <span className="originalPrice">
+                            {' ' + product.UnitPrice}
+                          </span>
+                        </p>
+                        <p>
+                          特價:
+                          <span className="specialPrice">
+                            {' ' + product.finalPrice}
+                          </span>
+                        </p>
+                      </>
                     ) : (
-                      <p></p>
+                      <p>售價:{' ' + product.UnitPrice}</p>
                     )}
                     <Rating
                       name="size-small"

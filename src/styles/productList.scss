@@ -4,11 +4,10 @@
   object-fit: cover;
 }
 
-.productListBlockView{
+.productListBlockView {
   width: 180px;
   height: 400px;
 }
-
 
 .productImage {
   height: 500px;
@@ -22,15 +21,22 @@
   cursor: pointer;
 }
 
-.favouriteAndCartButton{
+.favouriteAndCartButton {
   position: absolute;
   bottom: 8px;
-  right:8px
+  right: 8px;
 }
 
+.originalPrice {
+  text-decoration: line-through;
+}
+.specialPrice {
+  color: $danger;
+  font-size: 20px;
+}
 
 @media screen and (max-width: 800px) {
-  .productListImage{
+  .productListImage {
     width: 100%;
     height: 75vw;
   }
