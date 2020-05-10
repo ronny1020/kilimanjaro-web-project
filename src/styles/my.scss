@@ -487,11 +487,11 @@
   display: block;
 }
 
-.tab-content>.tab-label {
+.tab-content > .tab-label {
   display: none;
 }
 
-.tab-nav>.tab-label {
+.tab-nav > .tab-label {
   float: left;
 }
 
@@ -524,7 +524,7 @@ a.tab-label.active-btn {
 }
 
 @media screen and (max-width: 768px) {
-  .tab-nav>.tab-label {
+  .tab-nav > .tab-label {
     margin: 0.5px 0;
     width: 100%;
   }
@@ -588,10 +588,13 @@ a.tab-label.active-btn {
   animation-iteration-count: infinite;
 }
 
+.bbbbb {
+  margin: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .bbbbb {
     display: none;
-    ;
   }
 
   .ccccc {
@@ -784,7 +787,7 @@ a.tab-label.active-btn {
   // }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .sidebar2 {
     display: none;
   }
