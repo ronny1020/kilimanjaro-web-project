@@ -9,7 +9,7 @@ CREATE TABLE coffee.comments (
   CONSTRAINT pair UNIQUE (productID,customerID)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
-INSERT INTO coffee.comments  (productID , customerID ,addTime, rate, commentText) VALUES 
+INSERT INTO coffee.comments  (productID , customerID , rate , addTime , commentText) VALUES 
 (0000164413,'C001', 5 ,'2020-05-09 10:10:00',"great"),
 (0000164415,'C001', 4 ,'2020-04-09 10:10:00',"good"),
 (0000164513,'C001', 3 ,'2019-05-09 10:10:00',"It's OK..."),
