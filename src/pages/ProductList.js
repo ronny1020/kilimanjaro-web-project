@@ -330,7 +330,7 @@ function ProductList(props) {
                                 product.productID,
                                 memberID
                               )
-                              await getProductList(page, memberID)
+                              await getProductList(page, memberID, query)
                             }
                             remove()
                           }}
