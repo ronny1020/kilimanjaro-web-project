@@ -83,7 +83,7 @@ function HistoryList(props) {
     console.log(target_id)
     swal({
       title: '您確定嗎?',
-      text: '定單一經取消，則無法再被復原!',
+      text: '訂單一經取消，則無法再被復原!',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
