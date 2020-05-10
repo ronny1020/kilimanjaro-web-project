@@ -206,7 +206,6 @@ function ProductList(props) {
               <ProductListItem>
                 <div className="row">
                   <div className="col-md-auto d-flex justify-content-center">
-                    {' '}
                     <img
                       alt=""
                       src={'../images/products/' + product.productID + '/0.jpg'}
@@ -227,6 +226,13 @@ function ProductList(props) {
                     ) : (
                       <p></p>
                     )}
+                    <Rating
+                      name="size-small"
+                      value={product.avgRate}
+                      size="small"
+                      precision={0.1}
+                      readOnly
+                    />
                     <div className="form-inline">
                       {/* favourite button */}
 
