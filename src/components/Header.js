@@ -57,7 +57,7 @@ function Header(props) {
               <img src="../images/user.svg" alt="user"></img>
             )}
           </Nav.Link>
-          <Nav.Link className="navicon_mob" href="/product">
+          <Nav.Link className="navicon_mob" href="/cart">
             <img src="../images/cart.svg" alt="cart"></img>
             {cartNum ? <div className="cartDot">{cartNum}</div> : ''}
           </Nav.Link>
