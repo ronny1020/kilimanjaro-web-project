@@ -27,7 +27,7 @@ class ProductList {
 
     const column = query.column ? query.column : 'ProductName'
     query.column === 'tag'
-    if (column === 'tag') {
+    if (column === 'tag' && query.keyword) {
       async function getIdList() {
         const [idList, error] = await database.promisePool.query(
           `SELECT * FROM coffee.products_tagmap 
@@ -45,7 +45,7 @@ class ProductList {
 
           return ` products.productID in (${idString})`
         } else {
-          return ''
+          return `products.productID in ('X')`
         }
       }
       const productsWithTag = await getIdList()
@@ -76,11 +76,9 @@ class ProductList {
         ' and '
       : condition.main
 
-
-      condition.main = query.rate
+    condition.main = query.rate
       ? condition.main + `avgRate > '${query.rate}'` + ' and '
       : condition.main
-
 
     if (condition.main === 'Where ') {
       condition.main = ''

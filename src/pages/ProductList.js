@@ -186,7 +186,6 @@ function ProductList(props) {
 
   useEffect(() => {
     if (products) {
-      setShowZoom(false)
       setShowZoom(true)
     }
   }, [products, query])
