@@ -4,7 +4,6 @@ import {
   SET_KEYWORD,
   SET_COLUMN,
   SET_CATEGORY,
-  SET_FROMOTHERPAGES,
 } from './actionTypes'
 
 export const getProductList = (page, cid, query = '') => {
@@ -50,12 +49,5 @@ export const setCategory = (category) => {
   return {
     type: SET_CATEGORY,
     payload: category,
-  }
-}
-
-export const SetFromOtherPages = (fromOtherPages) => {
-  return {
-    type: SET_FROMOTHERPAGES,
-    payload: fromOtherPages,
   }
 }

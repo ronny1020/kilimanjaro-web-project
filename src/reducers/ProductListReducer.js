@@ -4,7 +4,6 @@ import {
   SET_KEYWORD,
   SET_COLUMN,
   SET_CATEGORY,
-  SET_FROMOTHERPAGES,
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -42,11 +41,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         category: action.payload,
-      }
-    case SET_FROMOTHERPAGES:
-      return {
-        ...state,
-        fromOtherPages: action.payload,
       }
     default:
       return state

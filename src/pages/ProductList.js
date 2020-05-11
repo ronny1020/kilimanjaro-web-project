@@ -93,21 +93,9 @@ function ProductList(props) {
     column,
     category,
     getCartNum,
-    fromOtherPages,
   } = props
 
   const memberID = getMemberID()
-
-  useEffect(() => {
-    if (!fromOtherPages) {
-      getProductList(page, memberID)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    getProductList(page, memberID, query)
-  }, [getProductList, page, memberID, query])
 
   useEffect(() => {
     let condition = ''
@@ -127,20 +115,21 @@ function ProductList(props) {
         '&'
       : condition
     condition = advanceSearch ? condition + 'rate=' + rate + '&' : condition
-
-    if (keyword || category || orderBy || advanceSearch) {
-      setQuery(condition)
-    } else {
-      setQuery('')
+    async function start() {
+      await getProductList(page, memberID, condition)
+      await setQuery(condition)
     }
-    setPage(1)
+    start()
   }, [
-    advanceSearch,
-    category,
-    column,
+    getProductList,
+    page,
+    memberID,
     keyword,
+    column,
+    category,
     orderBy,
     period,
+    advanceSearch,
     priceRange,
     rate,
     setQuery,
