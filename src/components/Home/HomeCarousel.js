@@ -6,6 +6,7 @@ import img003 from '../../img/home/carousel/003.jpg'
 import img004 from '../../img/home/carousel/004.jpg'
 import img005 from '../../img/home/carousel/005.jpg'
 import img006 from '../../img/home/carousel/006.jpg'
+import Typed from 'react-typed'
 
 //測試gif & mp4
 // import gif001 from '../../img/home/carousel/001.mp4'
@@ -22,6 +23,24 @@ function HomeCarousel() {
             src={img001}
             alt="slide 001"
           />
+          <Carousel.Caption>
+            <h1>
+              {' '}
+              <strong>
+                <Typed
+                  strings={[
+                    '歡迎光臨吉利馬札羅咖啡店',
+                    '希望您能有愉快的消費體驗',
+                  ]}
+                  typeSpeed={60}
+                  backSpeed={70}
+                  loop
+                />
+                <br />
+              </strong>
+            </h1>
+          </Carousel.Caption>
+
           {/* <iframe
             title="null"
             className="d-block w-100 carouselImage"

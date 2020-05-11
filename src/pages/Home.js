@@ -9,7 +9,7 @@ import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
 
-// import { Player } from 'video-react'
+import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -46,6 +46,7 @@ function Home() {
 
   return (
     <>
+      <JqueryComClass />
       {/* <Player
         fluid={false}
         muted={true}
@@ -54,8 +55,6 @@ function Home() {
         poster="/assets/poster.png"
         src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
       /> */}
-      <JqueryComClass />
-
       <HomeCarousel />
 
       <div id="slides" className="cover-slides">
@@ -68,6 +67,7 @@ function Home() {
                     variant="top"
                     src={require('../img/disc/coffeehome.jpg')}
                   />
+
                   {/* <Card.Body>
                     <Card.Title></Card.Title>
                     <Card.Text></Card.Text>
@@ -85,7 +85,6 @@ function Home() {
                         '各種現烘咖啡豆',
                         '各類沖泡咖啡粉',
                         '各式咖啡商品應有盡有',
-                        '希望您能有愉快的消費體驗',
                       ]}
                       typeSpeed={60}
                       backSpeed={70}
