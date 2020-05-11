@@ -7,6 +7,9 @@ import { getCartNum } from '../actions/CartAction'
 
 import { connect } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
+import Popover from '@material-ui/core/Popover'
+
+import SearchIcon from '@material-ui/icons/Search'
 
 // http://lab.ejci.net/favico.js/
 import Favico from 'favico.js'
@@ -18,6 +21,19 @@ var favicon = new Favico({
 
 function Header(props) {
   const memberID = getMemberID()
+
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   const { cartNum, getCartNum } = props
 
@@ -76,9 +92,36 @@ function Header(props) {
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
           <div className="iconGroup">
-            <Nav.Link className="navicon_web">
+            <Nav.Link className="navicon_web" onClick={handleClick}>
               <img src="../images/search.svg" alt="search"></img>
             </Nav.Link>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <div class="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-success" type="submit">
+                    <SearchIcon />
+                  </button>
+                </div>
+              </div>
+            </Popover>
             <Nav.Link className="navicon_web" onClick={login}>
               {memberID ? (
                 <img src="../images/home.svg" alt="user"></img>
