@@ -1,7 +1,11 @@
 .title_bg {
-  background-color: white;
+  background-image: url('titlebg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.7;
+  // background-color: white;
   text-align: center;
-
+  border-radius: 5px 5px 0 0;
   min-height: 25vh;
   border-bottom: 0.5px solid gray;
 
@@ -10,6 +14,7 @@
 }
 .lobbytitle {
   padding-top: 20vh;
+  padding-bottom: 3.5vh;
 }
 
 .lobbytitle h1 {
