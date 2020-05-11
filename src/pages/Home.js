@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import $ from 'jquery'
 import HomeCarousel from '../components/Home/HomeCarousel'
+import HomeCarousel2 from '../components/Home/HomeCarousel2'
 import { Button } from 'react-bootstrap'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
@@ -9,7 +10,7 @@ import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
 
-import { Player } from 'video-react'
+// import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -55,9 +56,12 @@ function Home() {
         poster="/assets/poster.png"
         src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
       /> */}
-
-      <HomeCarousel />
-
+      <div class="cvb">
+        <HomeCarousel />
+      </div>
+      {/* <div class="cvb2">
+        <HomeCarousel2 />
+      </div> */}
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">
