@@ -9,7 +9,7 @@ import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
 
-import { Player } from 'video-react'
+// import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -81,7 +81,6 @@ function Home() {
                   <strong>
                     <Typed
                       strings={[
-                        '歡迎光臨吉利馬札羅咖啡店',
                         '各種現烘咖啡豆',
                         '各類沖泡咖啡粉',
                         '各式咖啡商品應有盡有',
