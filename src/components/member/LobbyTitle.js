@@ -14,6 +14,7 @@ function LobbyTitle(props) {
     <>
       <div className="container mt-auto title_bg">
         <Row className="lobbytitle">
+          {/* <div style={{ backgroundColor: 'rgba(255,255,255, 0.1)' }}> */}
           <Col>
             <div className="title_link">
               <Link to="/about#mm1" className="LinkB">
@@ -44,6 +45,7 @@ function LobbyTitle(props) {
               </Link>
             </div>
           </Col>
+          {/* </div> */}
         </Row>
       </div>
     </>
