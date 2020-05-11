@@ -208,7 +208,7 @@ function Edit() {
   ]
   return (
     <>
-      <LobbyTitle string={'個人資料修改'} />
+      <LobbyTitle string={'資料修改'} />
       <div className="container bg-secondary" style={{ overflow: 'auto' }}>
         <div className="row" style={{ minHeight: '100vh' }}>
           <div className="col-3 lobbyR">
