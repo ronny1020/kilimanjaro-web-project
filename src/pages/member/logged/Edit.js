@@ -152,7 +152,7 @@ function Edit() {
             title: '提示訊息',
             text: '會員資料已更新!',
             icon: 'success',
-          })
+          }).then(() => window.location.reload())
           console.log('Success:', response)
         })
     } else {

@@ -145,7 +145,7 @@ function Enroll(props) {
           </Alert>
         )}
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} style={{ paddingBottom: '1vh' }}>
           <Form.Group controlId="formBasicAccount">
             <Form.Label>帳號</Form.Label>
             <Form.Control
