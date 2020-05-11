@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken'
 // var bcrypt = dcodeIO.bcrypt
 import Breadcrumb from '../../components/Breadcrumb'
 import LoginValidate from '../../components/LoginValidate'
+import swal from 'sweetalert'
 
 function Entrance(props) {
   // console.log(props)
@@ -116,6 +117,13 @@ function Entrance(props) {
       //     : '/lobby'
       //   window.location.replace(url)
       // })
+      .then(function () {
+        swal({
+          title: '登入成功!',
+          text: '即將前往會員中心',
+          icon: 'success',
+        }).then(() => window.location.reload('/lobby'))
+      })
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)
       })

@@ -267,14 +267,14 @@ function Member(props) {
                               style={{
                                 border: '0.5px solid lightgrey',
                                 // borderRight: 0,
-                                minHeight: '20vh',
+                                height: '100%',
                               }}
                             >
                               <div
                                 className="container"
                                 style={{
                                   borderBottom: '0.5px solid lightgray',
-                                  minHeight: '10vh',
+                                  height: '50%',
                                 }}
                               >
                                 <h2>您好, 會員{name}</h2>
