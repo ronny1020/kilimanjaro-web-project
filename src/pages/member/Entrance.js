@@ -110,12 +110,12 @@ function Entrance(props) {
           console.log(isLogged)
         }
       })
-      .then(function () {
-        const url = localStorage.getItem('siteBeforeLogin')
-          ? localStorage.getItem('siteBeforeLogin')
-          : '/lobby'
-        window.location.replace(url)
-      })
+      // .then(function () {
+      //   const url = localStorage.getItem('siteBeforeLogin')
+      //     ? localStorage.getItem('siteBeforeLogin')
+      //     : '/lobby'
+      //   window.location.replace(url)
+      // })
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)
       })
