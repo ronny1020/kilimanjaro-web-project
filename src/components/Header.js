@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 import { getMemberID } from '../actions/getMemberID'
@@ -47,18 +47,6 @@ function Header(props) {
           <Navbar.Brand href="/" className="brand_mob">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
-          <Nav.Link className="navicon_mob" onClick={login}>
-            {memberID ? (
-              <img src="../images/home.svg" alt="user"></img>
-            ) : (
-              <img src="../images/user.svg" alt="user"></img>
-            )}
-          </Nav.Link>
-          <Nav.Link className="navicon_mob" href="/cart">
-            <Badge badgeContent={cartNum} color="error">
-              <img src="../images/cart.svg" alt="cart"></img>
-            </Badge>
-          </Nav.Link>
           {/* Appear when max-width<=375px.(RWD) */}
 
           <Navbar.Collapse id="basic-navbar-nav">
@@ -81,36 +69,29 @@ function Header(props) {
               </Nav.Link>
               <Nav.Link href="/about">關於我們</Nav.Link>
             </Nav>
-
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <Nav.Link className="search_icon">
-                <img src="../images/search.svg" alt="search"></img>
-              </Nav.Link>
-            </Form>
           </Navbar.Collapse>
 
           {/* Appear when normal. */}
           <Navbar.Brand href="/" className="brand_web">
             <img src="../images/logo.svg" alt="logo"></img>
           </Navbar.Brand>
-
-          <Nav.Link className="navicon_web" onClick={login}>
-            {memberID ? (
-              <img src="../images/home.svg" alt="user"></img>
-            ) : (
-              <img src="../images/user.svg" alt="user"></img>
-            )}
-          </Nav.Link>
-          <Nav.Link className="navicon_web" href="/cart">
-            <Badge badgeContent={cartNum} color="error">
-              <img src="../images/cart.svg" alt="cart"></img>
-            </Badge>
-          </Nav.Link>
+          <div className="iconGroup">
+            <Nav.Link className="navicon_web">
+              <img src="../images/search.svg" alt="search"></img>
+            </Nav.Link>
+            <Nav.Link className="navicon_web" onClick={login}>
+              {memberID ? (
+                <img src="../images/home.svg" alt="user"></img>
+              ) : (
+                <img src="../images/user.svg" alt="user"></img>
+              )}
+            </Nav.Link>
+            <Nav.Link className="navicon_web" href="/cart">
+              <Badge badgeContent={cartNum} color="error">
+                <img src="../images/cart.svg" alt="cart"></img>
+              </Badge>
+            </Nav.Link>
+          </div>
           {/* Appear when normal. */}
         </Navbar>
       </header>
