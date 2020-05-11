@@ -188,7 +188,7 @@
 }
 
 .page-breadcrumb {
-  padding: 250px 0 150px;
+  padding: 80px 0 150px;
   background: url(../img/disc/coffee1.jpg) no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -487,11 +487,11 @@
   display: block;
 }
 
-.tab-content > .tab-label {
+.tab-content>.tab-label {
   display: none;
 }
 
-.tab-nav > .tab-label {
+.tab-nav>.tab-label {
   float: left;
 }
 
@@ -524,7 +524,7 @@ a.tab-label.active-btn {
 }
 
 @media screen and (max-width: 768px) {
-  .tab-nav > .tab-label {
+  .tab-nav>.tab-label {
     margin: 0.5px 0;
     width: 100%;
   }
@@ -614,7 +614,8 @@ a.tab-label.active-btn {
   .aaaaa {
     display: none;
   }
-  .navbar-fixed-bottom{
+
+  .navbar-fixed-bottom {
     height: 10.1vh;
   }
 
