@@ -9,7 +9,7 @@ import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
 
-// import { Player } from 'video-react'
+import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -55,6 +55,7 @@ function Home() {
         poster="/assets/poster.png"
         src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
       /> */}
+
       <HomeCarousel />
 
       <div id="slides" className="cover-slides">
@@ -63,10 +64,46 @@ function Home() {
             <div className="row " align="center">
               <div className="col-md-4 mt-3">
                 <Card style={{ width: '24rem' }}>
-                  <Card.Img
+                  <video
+                    id="my-player"
+                    class="video-js"
+                    // controls
+                    preload="auto"
+                    loop
+                    autoPlay
+                    muted
+                    poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
+                    width="375"
+                    height="300"
+                    data-vscid="zk05vyzcr"
+                  >
+                    <source
+                      src="https://assets.mixkit.co/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-large.mp4"
+                      type="video/mp4"
+                    ></source>
+                    <source
+                      src="https://assets.mixkit.co/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-large.webm"
+                      type="video/webm"
+                    ></source>
+                    <source
+                      src="https://assets.mixkit.co/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-large.ogg"
+                      type="video/ogg"
+                    ></source>
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript, and consider
+                      upgrading to a web browser that
+                      <a
+                        href="http://videojs.com/html5-video-support/"
+                        // target="_blank"
+                      >
+                        supports HTML5 video
+                      </a>
+                    </p>
+                  </video>
+                  {/* <Card.Img
                     variant="top"
                     src={require('../img/disc/coffeehome.jpg')}
-                  />
+                  /> */}
 
                   {/* <Card.Body>
                     <Card.Title></Card.Title>
