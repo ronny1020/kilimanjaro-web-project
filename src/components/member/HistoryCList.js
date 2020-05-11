@@ -3,8 +3,10 @@ import { ListGroup, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 // JS日期格式轉換
 import DateStyle from '../../components/DateStyle'
+import Notice from '../Notice'
 
 function HistoryCList(props) {
+  const isNull = (currentValue) => currentValue === null
   //已取消之訂單: vaild = 0
   //   console.log(props.input)
   const historyArray = props.input
@@ -84,7 +86,9 @@ function HistoryCList(props) {
   return (
     <>
       <ListGroup style={{ marginBottom: '15px' }} variant="flush">
-        {listItems.length === 0 ? null : (
+        {listItems.every(isNull) === true ? (
+          <Notice message={'沒有可顯示的清單。'} />
+        ) : (
           <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
             <Row>
               {/* <Col xs lg="2">

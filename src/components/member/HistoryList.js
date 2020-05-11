@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 // JS日期格式轉換
 import DateStyle from '../../components/DateStyle'
+import Notice from '../Notice'
 
 function HistoryList(props) {
+  const isNull = (currentValue) => currentValue === null
   //未寄送之訂單: shipdate = null && vaild = 1
   //   console.log(props.input)
   const historyArray = props.input
@@ -135,7 +137,9 @@ function HistoryList(props) {
   return (
     <>
       <ListGroup style={{ marginBottom: '15px' }} variant="flush">
-        {listItems.length === 0 ? null : (
+        {listItems.every(isNull) === true ? (
+          <Notice message={'沒有可顯示的清單。'} />
+        ) : (
           <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
             <Row>
               {/* <Col xs lg="2">
