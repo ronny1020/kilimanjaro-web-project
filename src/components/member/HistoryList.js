@@ -135,7 +135,7 @@ function HistoryList(props) {
   return (
     <>
       <ListGroup style={{ marginBottom: '15px' }} variant="flush">
-        {historyArray.length === 0 ? null : (
+        {listItems.length === 0 ? null : (
           <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
             <Row>
               {/* <Col xs lg="2">
