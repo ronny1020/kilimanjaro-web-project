@@ -39,7 +39,7 @@ CREATE TABLE `customers` (
 
 -- add dummy datas:
 INSERT INTO `customers` VALUES
-('C001', '吳16', 'Q3E7T2bDDK', 'H6CuyhBaGi@gmail.com', '$2y$10$7U5o6grWP0hfhhyyZrEPCu7wcDp78DNYU3lahDuOCGzfCxHw2F/Se', 'F', '1997-11-23', 'my_dummy_adrs86', '0900-005-007', 10 ),
+('C001', '吳16', 'customer001', 'H6CuyhBaGi@gmail.com', '$2y$10$7U5o6grWP0hfhhyyZrEPCu7wcDp78DNYU3lahDuOCGzfCxHw2F/Se', 'F', '1997-11-23', 'my_dummy_adrs86', '0900-005-007', 10 ),
 ('C002', '周11', 'cttYDSZvag', 'qlA3yunucJ@gmail.com', '$2y$10$NexiWuecoXOe7zICkDmCmO2BqD5yaFRc/q/oTh26.LjD3Od51u2Du', 'M', '1997-05-25', 'my_dummy_adrs29', '0900-006-007', 10 ),
 ('C003', '鄭87', 'Rz4NPZ12Fy', '7DSZRiEXLW@gmail.com', '$2y$10$9bVoVTajHzrzIaVqAM3vnO9G7KqvM8MvB3OYuzXrIFcphbV4b7TEO', 'M', '1997-01-14', 'my_dummy_adrs59', '0900-001-007', 10 ),
 ('C004', '李25', '0k02bIwQ1q', '7iaXLktydy@gmail.com', '$2y$10$DP2TXGpr3uUy6rVbevMNZOkH6aWU4zAAdbJ.ua9w/tRdLyb7l9Cve', 'M', '1997-05-01', 'my_dummy_adrs40', '0900-007-001', 10 ),
