@@ -18,15 +18,11 @@ var favicon = new Favico({
 function Header(props) {
   const memberID = getMemberID()
 
-  const { getCartNum, cartNum, product, products, Cart } = props
+  const { cartNum, getCartNum } = props
 
   useEffect(() => {
-    if (window.location.pathname === '/cart') {
-      if (Cart) getCartNum(memberID)
-    } else {
-      getCartNum(memberID)
-    }
-  }, [getCartNum, memberID, product, products, Cart])
+    getCartNum(memberID)
+  }, [getCartNum, memberID])
 
   useEffect(() => {
     favicon.badge(cartNum)
@@ -123,9 +119,6 @@ function Header(props) {
 const mapStateToProps = (state) => {
   return {
     cartNum: state.CartNumReducer.cartNum,
-    product: state.ProductReducer.item,
-    products: state.ProductListReducer.items.ProductList,
-    Cart: state.CartReducer.items.cart,
   }
 }
 

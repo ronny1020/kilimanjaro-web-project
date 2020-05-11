@@ -7,6 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCart } from '../actions/CartAction'
 import { getMemberID } from '../actions/getMemberID'
+import { getCartNum } from '../actions/CartAction'
 
 import PurchaseStepper from '../components/purchase/PurchaseStepper'
 
@@ -37,6 +38,7 @@ function Cart(props) {
     removeProductFromCart,
     updateProductNumToCart,
     getMemberInfo,
+    getCartNum,
     Member,
   } = props
 
@@ -114,8 +116,8 @@ function Cart(props) {
                 </div>
 
                 <div className="col-4">
+                  <label htmlFor={product.productID}>數量：</label>
                   <div className="form-inline">
-                    <label htmlFor={product.productID}>數量：</label>
                     <input
                       type="number"
                       className="form-control w-50"
@@ -146,7 +148,6 @@ function Cart(props) {
                               memberID,
                               num
                             )
-                            await getCart(memberID)
                           }
                           update()
                         }}
@@ -175,6 +176,7 @@ function Cart(props) {
                     async function remove() {
                       await removeProductFromCart(product.productID, memberID)
                       await getCart(memberID)
+                      await getCartNum(memberID)
                     }
                     remove()
                   }}
@@ -215,6 +217,7 @@ function Cart(props) {
             async function remove() {
               await removeProductFromCart('all', memberID)
               await getCart(memberID)
+              await getCartNum(memberID)
             }
             remove()
           }}
@@ -274,4 +277,5 @@ export default connect(mapStateToProps, {
   removeProductFromCart,
   updateProductNumToCart,
   getMemberInfo,
+  getCartNum,
 })(Cart)

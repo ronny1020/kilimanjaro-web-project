@@ -13,6 +13,7 @@ import {
 import { getMemberID } from '../actions/getMemberID'
 
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
+import { getCartNum } from '../actions/CartAction'
 
 import {
   AddProductToFavourite,
@@ -64,7 +65,8 @@ function ProductList(props) {
   const [orderBy, setOrderBy] = React.useState('')
   const [period, setPeriod] = React.useState('all')
   const [rate, setRate] = React.useState(0)
-  const [showZoom, setShowZoom] = React.useState(false)
+  // eslint-disable-next-line no-unused-vars
+  const [showZoom, setShowZoom] = React.useState(true)
 
   const [view, setView] = React.useState('list')
 
@@ -90,9 +92,14 @@ function ProductList(props) {
     keyword,
     column,
     category,
+    getCartNum,
   } = props
 
   const memberID = getMemberID()
+
+  useEffect(() => {
+    if (query) getProductList(page, memberID, query)
+  }, [getProductList, page, memberID, query])
 
   useEffect(() => {
     let condition = ''
@@ -111,7 +118,7 @@ function ProductList(props) {
         priceRange[1] +
         '&'
       : condition
-    condition = rate ? condition + 'rate=' + rate + '&' : condition
+    condition = advanceSearch ? condition + 'rate=' + rate + '&' : condition
 
     if (keyword || category || orderBy || advanceSearch) {
       setQuery(condition)
@@ -132,12 +139,8 @@ function ProductList(props) {
   ])
 
   useEffect(() => {
-    getProductList(page, memberID, query)
-  }, [getProductList, page, memberID, query])
-
-  useEffect(() => {
-    let pageList = []
     if (range) {
+      let pageList = []
       for (let i = 1; i <= 3 && i <= range.totalPages; i++) {
         pageList.push(i)
       }
@@ -183,12 +186,6 @@ function ProductList(props) {
       )
     }
   }, [range])
-
-  useEffect(() => {
-    if (products) {
-      setShowZoom(true)
-    }
-  }, [products, query])
 
   if (products === undefined) {
     return (
@@ -334,6 +331,7 @@ function ProductList(props) {
                                 memberID
                               )
                               await getProductList(page, memberID, query)
+                              await getCartNum(memberID)
                             }
                             add()
                           }}
@@ -353,6 +351,7 @@ function ProductList(props) {
                                 memberID
                               )
                               await getProductList(page, memberID, query)
+                              await getCartNum(memberID)
                             }
                             remove()
                           }}
@@ -789,6 +788,7 @@ export default connect(mapStateToProps, {
   setKeyword,
   setColumn,
   setCategory,
+  getCartNum,
   AddProductToCart,
   removeProductFromCart,
   AddProductToFavourite,

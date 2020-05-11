@@ -71,8 +71,7 @@ router.get('/:pid/:cid', (req, res, next) => {
   console.log(
     'Product get request where id = ' + req.params.pid + ' ' + req.params.cid
   )
-  console.log(req.query.keyword)
-  executeSQL(
+    executeSQL(
     Product.getProduct(),
     res,
     req.params.pid,

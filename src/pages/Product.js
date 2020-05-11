@@ -5,6 +5,7 @@ import { useHistory, Link, useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
 
 import { getMemberID } from '../actions/getMemberID'
+import { getCartNum } from '../actions/CartAction'
 
 import { connect } from 'react-redux'
 
@@ -70,6 +71,7 @@ function Product(props) {
     AddProductToFavourite,
     removeProductFromFavourite,
     setCategory,
+    getCartNum,
   } = props
 
   const memberID = getMemberID()
@@ -264,7 +266,7 @@ function Product(props) {
                   Update()
                 }}
               >
-                edit
+                編輯
               </button>
 
               <button
@@ -368,6 +370,8 @@ function Product(props) {
             <Link
               to="../productList"
               onClick={() => {
+                setKeyword('')
+                setColumn('')
                 setCategory(0)
               }}
             >
@@ -378,6 +382,8 @@ function Product(props) {
             <Link
               to="../productList"
               onClick={() => {
+                setKeyword('')
+                setColumn('')
                 setCategory(product.CategoryID)
               }}
             >
@@ -433,6 +439,7 @@ function Product(props) {
                       async function add() {
                         await AddProductToCart(product.productID, memberID, num)
                         await getProduct(id, memberID)
+                        await getCartNum(memberID)
                       }
                       add()
                     }}
@@ -481,6 +488,7 @@ function Product(props) {
                                 memberID
                               )
                               await getProduct(id, memberID)
+                              await getCartNum(memberID)
                             }
                             remove()
                             document.getElementById('order_num').value = 1
@@ -638,4 +646,5 @@ export default connect(mapStateToProps, {
   setKeyword,
   setColumn,
   setCategory,
+  getCartNum,
 })(Product)
