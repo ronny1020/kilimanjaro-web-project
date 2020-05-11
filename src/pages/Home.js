@@ -9,7 +9,7 @@ import Typed from 'react-typed'
 import { Link } from 'react-router-dom'
 import '../../node_modules/video-react/dist/video-react.css'
 
-// import { Player } from 'video-react'
+import { Player } from 'video-react'
 
 // import img002 from '../img/home/carousel/002.jpg'
 import ProductListItem from '../components/ProductList/productListItem'
@@ -71,10 +71,11 @@ function Home() {
                     preload="auto"
                     loop
                     autoPlay
+                    muted
                     poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
-                    data-setup="{}"
                     width="375"
                     height="300"
+                    data-vscid="zk05vyzcr"
                   >
                     <source
                       src="https://assets.mixkit.co/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-large.mp4"
