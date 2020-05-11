@@ -7,6 +7,9 @@ import img004 from '../../img/home/carousel/004.jpg'
 import img005 from '../../img/home/carousel/005.jpg'
 import img006 from '../../img/home/carousel/006.jpg'
 
+//測試gif & mp4
+// import gif001 from '../../img/home/carousel/001.mp4'
+
 import '../../styles/my.scss'
 
 function HomeCarousel() {
@@ -19,6 +22,11 @@ function HomeCarousel() {
             src={img001}
             alt="slide 001"
           />
+          {/* <iframe
+            title="null"
+            className="d-block w-100 carouselImage"
+            src={gif001}
+          ></iframe> */}
           <Carousel.Caption> </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
