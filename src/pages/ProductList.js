@@ -93,12 +93,20 @@ function ProductList(props) {
     column,
     category,
     getCartNum,
+    fromOtherPages,
   } = props
 
   const memberID = getMemberID()
 
   useEffect(() => {
-    if (query) getProductList(page, memberID, query)
+    if (!fromOtherPages) {
+      getProductList(page, memberID)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    getProductList(page, memberID, query)
   }, [getProductList, page, memberID, query])
 
   useEffect(() => {
@@ -779,6 +787,7 @@ const mapStateToProps = (state) => {
     keyword: state.ProductListReducer.keyword,
     column: state.ProductListReducer.column,
     category: state.ProductListReducer.category,
+    fromOtherPages: state.ProductListReducer.fromOtherPages,
   }
 }
 

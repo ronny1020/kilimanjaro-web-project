@@ -3,6 +3,7 @@ export const SET_QUERY = 'SET_QUERY'
 export const SET_KEYWORD = 'SET_KEYWORD'
 export const SET_COLUMN = 'SET_COLUMN'
 export const SET_CATEGORY = 'SET_CATEGORY'
+export const SET_FROMOTHERPAGES = 'SET_FROMOTHERPAGES'
 
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL'
 export const GET_CART = 'GET_CART'
