@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
@@ -9,8 +10,7 @@ import { connect } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import Popover from '@material-ui/core/Popover'
 
-import SearchIcon from '@material-ui/icons/Search'
-
+import { setKeyword, setColumn } from '../actions/getProductList'
 // http://lab.ejci.net/favico.js/
 import Favico from 'favico.js'
 var favicon = new Favico({
@@ -20,6 +20,7 @@ var favicon = new Favico({
 })
 
 function Header(props) {
+  let history = useHistory()
   const memberID = getMemberID()
 
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -35,7 +36,7 @@ function Header(props) {
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
 
-  const { cartNum, getCartNum } = props
+  const { cartNum, getCartNum, setKeyword, setColumn } = props
 
   useEffect(() => {
     getCartNum(memberID)
@@ -49,6 +50,14 @@ function Header(props) {
   function login() {
     localStorage.setItem('siteBeforeLogin', window.location.pathname)
     window.location.replace('/login')
+  }
+
+  const handleSearch = () => {
+    const headerSearchKeyword = document.getElementById('searchInputInHeader')
+    setKeyword(headerSearchKeyword.value)
+    setColumn('ProductName')
+    document.documentElement.scrollTop = 0
+    history.push('/productList')
   }
 
   return (
@@ -96,6 +105,7 @@ function Header(props) {
               <img src="../images/search.svg" alt="search"></img>
             </Nav.Link>
             <Popover
+              disableScrollLock
               id={id}
               open={open}
               anchorEl={anchorEl}
@@ -109,15 +119,21 @@ function Header(props) {
                 horizontal: 'center',
               }}
             >
-              <div class="input-group">
+              <div class="input-group p-2  bg-black">
                 <input
                   type="text"
+                  id="searchInputInHeader"
                   className="form-control"
                   placeholder="Search"
+                  onKeyUp={(event) => {
+                    if (event.keyCode === 13) {
+                      handleSearch()
+                    }
+                  }}
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-success" type="submit">
-                    <SearchIcon />
+                  <button className="btn btn-success" onClick={handleSearch}>
+                    搜尋
                   </button>
                 </div>
               </div>
@@ -149,4 +165,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getCartNum })(Header)
+export default connect(mapStateToProps, { getCartNum, setKeyword, setColumn })(
+  Header
+)
