@@ -67,9 +67,10 @@ function Home() {
                   <video
                     id="my-player"
                     class="video-js"
-                    controls
+                    // controls
                     preload="auto"
-                    autoPlay="true"
+                    loop
+                    autoPlay
                     poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
                     data-setup="{}"
                     width="375"
@@ -92,7 +93,7 @@ function Home() {
                       upgrading to a web browser that
                       <a
                         href="http://videojs.com/html5-video-support/"
-                        target="_blank"
+                        // target="_blank"
                       >
                         supports HTML5 video
                       </a>
