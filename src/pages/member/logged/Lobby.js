@@ -342,8 +342,8 @@ function Member(props) {
                             img="FaUserEdit"
                           />
                           <LobbyCard
-                            title="同好會"
-                            content="查看您加入的同好會並進行管理。"
+                            title="連絡客服"
+                            content="您的寶貴意見將徹底反映給我們"
                             to="/about#mm5"
                             img="IoMdMail"
                           />
