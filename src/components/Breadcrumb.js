@@ -35,7 +35,7 @@ function Breadcrumb(props) {
         path = '交易紀錄'
         break
       case 'edit':
-        path = '個人資料修改'
+        path = '資料修改'
         break
       case 'coupon':
         path = '折扣券'

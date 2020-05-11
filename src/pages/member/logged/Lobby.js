@@ -348,10 +348,10 @@ function Member(props) {
                             img="IoMdMail"
                           />
                           <LobbyCard
-                            title="折扣券"
-                            content="確認目前擁有可以使用的折扣。"
-                            to="/lobby/coupon"
-                            img="GiTicket"
+                            title="查看購物車"
+                            content="查看您準備購買的商品。"
+                            to="/cart"
+                            img="FaCartArrowDown"
                           />
                         </CardGroup>
 
@@ -369,10 +369,10 @@ function Member(props) {
                             img="MdFavorite"
                           />
                           <LobbyCard
-                            title="查看購物車"
-                            content="查看您準備購買的商品。"
-                            to="/cart"
-                            img="FaCartArrowDown"
+                            title="折扣券"
+                            content="確認目前擁有可以使用的折扣。"
+                            to="/lobby/coupon"
+                            img="GiTicket"
                           />
                         </CardGroup>
                       </div>

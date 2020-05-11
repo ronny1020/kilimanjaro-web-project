@@ -34,7 +34,7 @@ function FavList(props) {
             : item.product.UnitsInStock}
         </Col>
 
-        <Col sm={2}>
+        <Col sm={2} style={{ borderLeft: '0.5px solid lightgrey' }}>
           <Button
             style={{ width: '100%', fontWeight: 'bolder' }}
             variant="danger"

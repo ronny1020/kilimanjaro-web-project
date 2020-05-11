@@ -152,7 +152,7 @@ function Edit() {
             title: '提示訊息',
             text: '會員資料已更新!',
             icon: 'success',
-          })
+          }).then(() => window.location.reload())
           console.log('Success:', response)
         })
     } else {
@@ -208,7 +208,7 @@ function Edit() {
   ]
   return (
     <>
-      <LobbyTitle string={'個人資料修改'} />
+      <LobbyTitle string={'資料修改'} />
       <div className="container bg-secondary" style={{ overflow: 'auto' }}>
         <div className="row" style={{ minHeight: '100vh' }}>
           <div className="col-3 lobbyR">

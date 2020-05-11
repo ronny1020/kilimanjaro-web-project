@@ -3,6 +3,8 @@ import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 // import CancelIcon from '@material-ui/icons/Cancel'
 import swal from 'sweetalert'
+// JS日期格式轉換
+import DateStyle from '../../components/DateStyle'
 
 function HistoryList(props) {
   //未寄送之訂單: shipdate = null && vaild = 1
@@ -10,16 +12,24 @@ function HistoryList(props) {
   const historyArray = props.input
   const listItems = historyArray.Orders.map((item) =>
     item.ShippedDate === null && item.valid === 1 ? (
-      <ListGroup.Item action key={item.OrderID.toString()}>
+      <ListGroup.Item
+        action
+        key={item.OrderID.toString()}
+        style={{ textAlign: 'center' }}
+      >
         <Row>
           <Col onClick={showDetails} id={item.OrderID.toString()}>
-            訂單編號：{item.OrderID.toString()}
-            <br />
-            收件人：{item.RecipientName}
-            <br />
-            下單日期：{new Date(item.OrderDate).toString()}
+            {item.OrderID.toString()}
           </Col>
-          <Col sm={2}>
+          <Col onClick={showDetails} id={item.OrderID.toString()}>
+            {item.RecipientName}
+          </Col>
+          <Col onClick={showDetails} id={item.OrderID.toString()}>
+            {/* {new Date(item.OrderDate).toString()} */}
+            {DateStyle(new Date(item.OrderDate).toString())}
+          </Col>
+
+          <Col xs lg="2" style={{ borderLeft: '0.5px solid lightgrey' }}>
             {/* 按鈕內的元件點擊時會讀不到按鈕id值 */}
             <Button
               id={'cancel' + item.OrderID.toString()}
@@ -48,6 +58,7 @@ function HistoryList(props) {
               <Col>品名</Col>
               <Col>數量</Col>
               <Col>單價</Col>
+              <Col xs lg="2"></Col>
             </Row>
           </ListGroup.Item>
           {item.products.map((pitem) => (
@@ -124,6 +135,20 @@ function HistoryList(props) {
   return (
     <>
       <ListGroup style={{ marginBottom: '15px' }} variant="flush">
+        {historyArray.length === 0 ? null : (
+          <ListGroup.Item style={{ textAlign: 'center', fontWeight: 'bolder' }}>
+            <Row>
+              {/* <Col xs lg="2">
+                圖示
+              </Col> */}
+              <Col>訂單編號：</Col>
+              <Col>收件人：</Col>
+              <Col>結帳日期：</Col>
+              <Col xs lg="2"></Col>
+              {/* <Col>出貨日期：</Col> */}
+            </Row>
+          </ListGroup.Item>
+        )}
         {listItems}
       </ListGroup>
     </>

@@ -223,7 +223,7 @@ function ForgetPwd() {
             無效或不存在之信箱
           </Alert>
         )}
-        <Form>
+        <Form style={{ paddingBottom: '1vh' }}>
           {/* 寄信前應先檢查信箱存在與否 */}
           <Form.Group controlId="formBasicEmail">
             <Form.Label>信箱</Form.Label>
