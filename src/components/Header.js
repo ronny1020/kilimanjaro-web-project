@@ -6,6 +6,7 @@ import { getMemberID } from '../actions/getMemberID'
 import { getCartNum } from '../actions/CartAction'
 
 import { connect } from 'react-redux'
+import Badge from '@material-ui/core/Badge'
 
 // http://lab.ejci.net/favico.js/
 import Favico from 'favico.js'
@@ -54,8 +55,9 @@ function Header(props) {
             )}
           </Nav.Link>
           <Nav.Link className="navicon_mob" href="/cart">
-            <img src="../images/cart.svg" alt="cart"></img>
-            {cartNum ? <div className="cartDot">{cartNum}</div> : ''}
+            <Badge badgeContent={cartNum} color="error">
+              <img src="../images/cart.svg" alt="cart"></img>
+            </Badge>
           </Nav.Link>
           {/* Appear when max-width<=375px.(RWD) */}
 
@@ -105,8 +107,9 @@ function Header(props) {
             )}
           </Nav.Link>
           <Nav.Link className="navicon_web" href="/cart">
-            <img src="../images/cart.svg" alt="cart"></img>
-            {cartNum ? <div className="cartDot">{cartNum}</div> : ''}
+            <Badge badgeContent={cartNum} color="error">
+              <img src="../images/cart.svg" alt="cart"></img>
+            </Badge>
           </Nav.Link>
           {/* Appear when normal. */}
         </Navbar>
