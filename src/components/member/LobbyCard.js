@@ -3,10 +3,17 @@ import { Card } from 'react-bootstrap'
 // import { Link } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 
-import { FaUserEdit, FaCartArrowDown, FaCreditCard } from 'react-icons/fa'
-import { MdFavorite } from 'react-icons/md'
+// import { FaUserEdit,  FaCreditCard } from 'react-icons/fa'
+// import { MdFavorite } from 'react-icons/md'
 import { IoMdMail } from 'react-icons/io'
-import { GiTicket } from 'react-icons/gi'
+// import { GiTicket } from 'react-icons/gi'
+import {
+  FaUserEdit,
+  FaTicketAlt,
+  FaHistory,
+  FaHeart,
+  FaCartArrowDown,
+} from 'react-icons/fa'
 
 function LobbyCard(props) {
   let cardImg = <></>
@@ -34,14 +41,14 @@ function LobbyCard(props) {
     case 'FaCreditCard':
       cardImg = (
         <>
-          <FaCreditCard style={svgStyle} className="card-img-top" />
+          <FaHistory style={svgStyle} className="card-img-top" />
         </>
       )
       break
     case 'MdFavorite':
       cardImg = (
         <>
-          <MdFavorite style={svgStyle} className="card-img-top" />
+          <FaHeart style={svgStyle} className="card-img-top" />
         </>
       )
       break
@@ -55,7 +62,7 @@ function LobbyCard(props) {
     case 'GiTicket':
       cardImg = (
         <>
-          <GiTicket style={svgStyle} className="card-img-top" />
+          <FaTicketAlt style={svgStyle} className="card-img-top" />
         </>
       )
       break
