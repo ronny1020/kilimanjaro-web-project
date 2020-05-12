@@ -49,7 +49,6 @@
 }
 
 @media screen and(max-width:420px) {
-
   .col span,
   .LinkA {
     display: none;
@@ -97,7 +96,7 @@
   cursor: pointer;
 }
 
-.profile:hover+.profileEdit,
+.profile:hover + .profileEdit,
 .profileEdit:hover {
   cursor: pointer;
   opacity: 0.8;

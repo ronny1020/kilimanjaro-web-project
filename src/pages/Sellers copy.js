@@ -144,7 +144,7 @@ function Sellers() {
 
       <div className="all-page-title page-breadcrumb">
         {/* <div id="nn0"></div> */}
-        <div className="container text-center">
+        <div className="container text-center ">
           <div className="row">
             <div className="col-lg-12 " align="center">
               {/* <h1>賣家介紹</h1> */}
@@ -679,6 +679,14 @@ function Sellers() {
                         </ProductListItem>
                       </div> */}
                     </div>
+                    <Button
+                      className=" btn-success text-white m-3"
+                      variant="secondary"
+                      data-scroll
+                      href="#nn0"
+                    >
+                      謝了，我想回上面
+                    </Button>
                   </div>
                 </div>
                 {/* <div className=" card-deck">

@@ -129,6 +129,7 @@ function OnSale() {
         <div className="container text-center">
           <div className="row">
             <div className="col-lg-12 " align="center">
+              <div id="mm0"></div>
               {/* <h1>賣家介紹</h1> */}
               <p className="text-white">~關於我們網站，與常見的問題~</p>
             </div>
@@ -634,6 +635,14 @@ function OnSale() {
                         />
                       </Form.Group>
                       <Button type="submit">送出意見</Button>
+                      <Button
+                        className=" btn-success text-white m-3"
+                        variant="secondary"
+                        data-scroll
+                        href="#mm0"
+                      >
+                        謝了，我想回上面
+                      </Button>
                     </Form>
                   </Card.Body>
                 </Card>
