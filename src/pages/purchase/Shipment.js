@@ -21,7 +21,6 @@ function Shipment(props) {
 
   Cart || window.location.replace('./Cart')
   Cart.length || window.location.replace('./Cart')
-  Member || window.location.replace('./Cart')
 
   let totalPrice = Cart
     ? Cart.reduce((a, product) => {
@@ -36,6 +35,10 @@ function Shipment(props) {
   const [shippingMethodValue, setShippingMethodValue] = React.useState('1')
 
   const [Freight, setFreight] = React.useState('0')
+
+  const [nameWritten, setNameWritten] = React.useState(true)
+  const [mobileWritten, setMobileWritten] = React.useState(true)
+  const [addressWritten, setAddressWritten] = React.useState(true)
 
   const shippingMethodVChange = (event) => {
     localStorage.setItem('siteBeforeLogin', './cart')
@@ -93,48 +96,77 @@ function Shipment(props) {
             />
           </div>
         </label>
-        <form className=".was-validated">
-          <label htmlFor="RecipientName" className="row  my-3">
-            <div className="col-md-3 d-flex align-items-center">
-              訂購人姓名：
+
+        <label htmlFor="RecipientName" className="row  my-3">
+          <div className="col-md-3 d-flex align-items-center">訂購人姓名：</div>
+          <div className="col-md-9 d-flex align-items-center">
+            <input
+              type="text"
+              className="form-control"
+              name="RecipientName"
+              id="RecipientName"
+              required
+            />
+          </div>
+        </label>
+        {nameWritten ? (
+          <></>
+        ) : (
+          <>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <div className="text-danger">姓名欄為必填</div>
+              </div>
             </div>
-            <div className="col-md-9 d-flex align-items-center">
-              <input
-                type="text"
-                className="form-control"
-                name="RecipientName"
-                id="RecipientName"
-                required
-              />
+          </>
+        )}
+        <label htmlFor="RecipientMobile" className="row  my-3">
+          <div className="col-md-3 d-flex align-items-center">訂購人電話：</div>
+          <div className="col-md-9 d-flex align-items-center">
+            <input
+              type="text"
+              className="form-control"
+              id="RecipientMobile"
+              required
+            />
+          </div>
+        </label>
+        {mobileWritten ? (
+          <></>
+        ) : (
+          <>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <div className="text-danger">電話欄為必填</div>
+              </div>
             </div>
-          </label>
-          <label htmlFor="RecipientMobile" className="row  my-3">
-            <div className="col-md-3 d-flex align-items-center">
-              訂購人電話：
+          </>
+        )}
+        <label htmlFor="RecipientAddress" className="row my-3">
+          <div className="col-md-3 d-flex align-items-center">訂購人地址：</div>
+          <div className="col-md-9 d-flex align-items-center">
+            <input
+              type="text"
+              className="form-control"
+              id="RecipientAddress"
+              required
+            />
+          </div>
+        </label>
+        {addressWritten ? (
+          <></>
+        ) : (
+          <>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <div className="text-danger">住址欄為必填</div>
+              </div>
             </div>
-            <div className="col-md-9 d-flex align-items-center">
-              <input
-                type="text"
-                className="form-control"
-                id="RecipientMobile"
-                required
-              />
-            </div>
-          </label>
-          <label htmlFor="RecipientAddress" className="row my-3">
-            <div className="col-md-3 d-flex align-items-center">
-              訂購人地址：
-            </div>
-            <div className="col-md-9 d-flex align-items-center">
-              <input
-                type="text"
-                className="form-control"
-                id="RecipientAddress"
-                required
-              />
-            </div>
-          </label>
-        </form>
+          </>
+        )}
       </CardSecondary>
 
       <div className="container p-0">
@@ -194,14 +226,38 @@ function Shipment(props) {
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
-            shipmentInfoStorage(
-              document.getElementById('RecipientName').value,
-              document.getElementById('RecipientMobile').value,
-              document.getElementById('RecipientAddress').value,
-              shippingMethodValue,
-              Freight
-            )
-            history.push('/payment')
+
+            let check = true
+
+            if (!document.getElementById('RecipientName').value) {
+              check = false
+              setNameWritten(false)
+            } else {
+              setNameWritten(true)
+            }
+            if (!document.getElementById('RecipientMobile').value) {
+              check = false
+              setMobileWritten(false)
+            } else {
+              setMobileWritten(true)
+            }
+            if (!document.getElementById('RecipientAddress').value) {
+              check = false
+              setAddressWritten(false)
+            } else {
+              setAddressWritten(true)
+            }
+
+            if (check) {
+              shipmentInfoStorage(
+                document.getElementById('RecipientName').value,
+                document.getElementById('RecipientMobile').value,
+                document.getElementById('RecipientAddress').value,
+                shippingMethodValue,
+                Freight
+              )
+              history.push('/payment')
+            }
             document.body.scrollTop = 0 // For Safari
             document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
           }}

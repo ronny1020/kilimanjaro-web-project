@@ -44,7 +44,6 @@ function PopularProducts(props) {
   const page = props.page
   const id = props.id
 
-  console.log(id)
   useEffect(() => {
     getPopularProducts(memberID)
   }, [getPopularProducts, memberID])

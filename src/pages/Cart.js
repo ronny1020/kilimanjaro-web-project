@@ -61,10 +61,10 @@ function Cart(props) {
   useEffect(() => {
     async function start() {
       await getCart(memberID)
-      if (!Member) await getMemberInfo(memberID)
+      await getMemberInfo(memberID)
     }
     start()
-  }, [Member, getCart, getMemberInfo, memberID, popularProducts])
+  }, [getCart, getMemberInfo, memberID, popularProducts])
 
   if (Cart === undefined) {
     return (
