@@ -236,12 +236,95 @@ function Product(props) {
         <div key={i}>
           <CardSecondary>
             <div className="row">
-              <p className="col-auto">{comment.cAccount}</p>
-              <p className="col-auto ml-auto">
-                {DateStyle(new Date(comment.addTime).toString())}
-              </p>
-            </div>
+              <div className="col-md-3 d-flex justify-content-center align-self-center">
+                <img
+                  src={'http://localhost:6001/api/image/' + comment.customerID}
+                  alt="NoImage"
+                  className="commentsImage"
+                  onError={(event) => {
+                    event.target.src = '../../images/interface.svg'
+                  }}
+                ></img>
+              </div>
+              <div className="col-md-9">
+                <div className="row">
+                  <p className="col-auto">{comment.cAccount}</p>
+                  <p className="col-auto ml-auto">
+                    {DateStyle(new Date(comment.addTime).toString())}
+                  </p>
+                </div>
+                <div className="form-group">
+                  <Rating
+                    name="simple-controlled"
+                    id="rateInput"
+                    value={rate ? Number(rate) : 0}
+                    onChange={(event, newValue) => {
+                      setRate(newValue)
+                    }}
+                  />
+                  <br />
+                  <label htmlFor="commentInput">評論:</label>
+                  <textarea
+                    className="form-control"
+                    rows="5"
+                    id="commentInput"
+                    defaultValue={comment.commentText}
+                  ></textarea>
+                </div>
+                <div className="form-inline">
+                  <button
+                    className="btn btn-success m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const comment = document.getElementById('commentInput')
+                        .value
+                      async function Update() {
+                        await UpdateComment(
+                          product.productID,
+                          memberID,
+                          rate,
+                          comment
+                        )
+                        await getProduct(id, memberID)
+                        handleEditAlertClick()
+                      }
+                      Update()
+                    }}
+                  >
+                    編輯
+                  </button>
 
+                  <button
+                    className="btn btn-danger m-1"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document.getElementById('commentInput').value = 0
+                      setRate()
+                      async function Remove() {
+                        await RemoveComment(product.productID, memberID)
+                        await getProduct(id, memberID)
+                        handleDeleteAlertClick()
+                      }
+                      Remove()
+                    }}
+                  >
+                    刪除
+                  </button>
+                </div>
+              </div>
+            </div>
+          </CardSecondary>
+        </div>
+      ) : (
+        <div key={i}></div>
+      )
+    })
+  ) : (
+    <div>
+      <CardSecondary>
+        <div className="row">
+          <div className="col-md-3"></div>
+          <div className="col-md-9">
             <div className="form-group">
               <Rating
                 name="simple-controlled"
@@ -257,126 +340,85 @@ function Product(props) {
                 className="form-control"
                 rows="5"
                 id="commentInput"
-                defaultValue={comment.commentText}
               ></textarea>
             </div>
             <div className="form-inline">
               <button
-                className="btn btn-success m-1"
+                className="btn btn-primary m-1"
                 onClick={(e) => {
                   e.preventDefault()
                   const comment = document.getElementById('commentInput').value
-                  async function Update() {
-                    await UpdateComment(
-                      product.productID,
-                      memberID,
-                      rate,
-                      comment
-                    )
+                  async function add() {
+                    await AddComment(product.productID, memberID, rate, comment)
                     await getProduct(id, memberID)
-                    handleEditAlertClick()
+                    handleAddAlertClick()
                   }
-                  Update()
+                  if (rate && comment) {
+                    add()
+                  } else {
+                    handleErrorAlertClick()
+                  }
                 }}
               >
-                編輯
-              </button>
-
-              <button
-                className="btn btn-danger m-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('commentInput').value = 0
-                  setRate()
-                  async function Remove() {
-                    await RemoveComment(product.productID, memberID)
-                    await getProduct(id, memberID)
-                    handleDeleteAlertClick()
-                  }
-                  Remove()
-                }}
-              >
-                刪除
+                新增
               </button>
             </div>
-          </CardSecondary>
-        </div>
-      ) : (
-        <div key={i}></div>
-      )
-    })
-  ) : (
-    <div>
-      <CardSecondary>
-        <div className="form-group">
-          <Rating
-            name="simple-controlled"
-            id="rateInput"
-            value={rate ? Number(rate) : 0}
-            onChange={(event, newValue) => {
-              setRate(newValue)
-            }}
-          />
-          <br />
-          <label htmlFor="commentInput">評論:</label>
-          <textarea
-            className="form-control"
-            rows="5"
-            id="commentInput"
-          ></textarea>
-        </div>
-        <div className="form-inline">
-          <button
-            className="btn btn-primary m-1"
-            onClick={(e) => {
-              e.preventDefault()
-              const comment = document.getElementById('commentInput').value
-              async function add() {
-                await AddComment(product.productID, memberID, rate, comment)
-                await getProduct(id, memberID)
-                handleAddAlertClick()
-              }
-              if (rate && comment) {
-                add()
-              } else {
-                handleErrorAlertClick()
-              }
-            }}
-          >
-            新增
-          </button>
+          </div>
         </div>
       </CardSecondary>
     </div>
   )
+  // remove logged id
+  const productOtherComments = product.comments.filter(
+    (comment) => comment.customerID !== memberID
+  )
 
-  const otherComments = product.comments.map((comment, i) => {
-    return i <= numOfCommentShowed && comment.customerID !== memberID ? (
+  console.log(productOtherComments)
+
+  const otherComments = productOtherComments.map((comment, i) => {
+    return i <= numOfCommentShowed ? (
       <div key={i}>
         <CardSecondary>
           <div className="row">
-            <p className="col-auto">{comment.cAccount}</p>
-            <p className="col-auto ml-auto">
-              {DateStyle(new Date(comment.addTime).toString())}
-            </p>
+            <div className="col-md-3 d-flex justify-content-center align-self-center">
+              <img
+                src={'http://localhost:6001/api/image/' + comment.customerID}
+                alt="NoImage"
+                className="commentsImage"
+                onError={(event) => {
+                  event.target.src = '../../images/interface.svg'
+                }}
+              ></img>
+            </div>
+            <div className="col-md-9">
+              <div className="row">
+                <p className="col-auto">{comment.cAccount}</p>
+                <p className="col-auto ml-auto">
+                  {DateStyle(new Date(comment.addTime).toString())}
+                </p>
+              </div>
+              {comment.rate ? (
+                <Rating
+                  defaultValue={Number(comment.rate)}
+                  size="small"
+                  readOnly
+                />
+              ) : (
+                <></>
+              )}
+              <p>{comment.commentText}</p>
+            </div>
           </div>
-          {comment.rate ? (
-            <Rating defaultValue={Number(comment.rate)} size="small" readOnly />
-          ) : (
-            <></>
-          )}
-          <p>{comment.commentText}</p>
         </CardSecondary>
       </div>
     ) : (
-      <></>
+      <div key={i}></div>
     )
   })
 
   return (
     <>
       <div className="topSpace"></div>
-
       <nav aria-label="breadcrumb" className="container px-0">
         <ol className="breadcrumb">
           <li className="breadcrumb-item active" aria-current="page">
@@ -596,7 +638,7 @@ function Product(props) {
 
       {commentOfLoggedID}
       {otherComments}
-      {numOfCommentShowed + 1 < product.comments.length ? (
+      {numOfCommentShowed < otherComments.length ? (
         <div className="d-flex justify-content-center">
           <button
             className=" btn btn-primary m-3"
@@ -609,7 +651,7 @@ function Product(props) {
           <button
             className=" btn btn-primary m-3"
             onClick={() => {
-              setNumOfCommentShowed(product.comments.length)
+              setNumOfCommentShowed(otherComments.length)
             }}
           >
             顯示全部
