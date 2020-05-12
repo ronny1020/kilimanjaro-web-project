@@ -187,6 +187,14 @@ function ProductList(props) {
     }
   }, [range])
 
+  useEffect(() => {
+    if (products !== undefined) {
+      setTimeout(() => {
+        setShowZoom(true)
+      }, 0)
+    }
+  }, [products])
+
   if (products === undefined) {
     return (
       <>
@@ -492,6 +500,7 @@ function ProductList(props) {
                     }}
                     onInputChange={(event, newInputValue) => {
                       setKeyword(newInputValue)
+                      setShowZoom(false)
                     }}
                     renderInput={(params) => (
                       <TextField

@@ -9,6 +9,8 @@ import { getCart } from '../actions/CartAction'
 import { getMemberID } from '../actions/getMemberID'
 import { getCartNum } from '../actions/CartAction'
 
+import { getPopularProducts } from '../actions/PopularProductsAction'
+
 import PurchaseStepper from '../components/purchase/PurchaseStepper'
 
 import {
@@ -42,6 +44,7 @@ function Cart(props) {
     getCartNum,
     Member,
     popularProducts,
+    getPopularProducts,
   } = props
 
   let totalPrice = Cart
@@ -187,6 +190,7 @@ function Cart(props) {
                           )
                           await getCart(memberID)
                           await getCartNum(memberID)
+                          await getPopularProducts(memberID)
                         }
                         remove()
                       }}
@@ -236,6 +240,7 @@ function Cart(props) {
                   await removeProductFromCart('all', memberID)
                   await getCart(memberID)
                   await getCartNum(memberID)
+                  await getPopularProducts(memberID)
                 }
                 remove()
               }}
@@ -284,7 +289,7 @@ function Cart(props) {
         </div>
       </div>
       <div className="container p-0">
-        <PopularProducts />
+        <PopularProducts page="cart" />
       </div>
     </>
   )
@@ -304,4 +309,5 @@ export default connect(mapStateToProps, {
   updateProductNumToCart,
   getMemberInfo,
   getCartNum,
+  getPopularProducts,
 })(Cart)

@@ -2,10 +2,13 @@ import React, { useEffect } from 'react'
 
 import { setCategory } from '../actions/getProductList'
 import { useHistory, Link, useParams } from 'react-router-dom'
+
 import Loading from '../components/Loading'
 
 import { getMemberID } from '../actions/getMemberID'
 import { getCartNum } from '../actions/CartAction'
+
+import { getPopularProducts } from '../actions/PopularProductsAction'
 
 import { connect } from 'react-redux'
 
@@ -73,7 +76,7 @@ function Product(props) {
     removeProductFromFavourite,
     setCategory,
     getCartNum,
-    popularProducts,
+    getPopularProducts,
   } = props
 
   const memberID = getMemberID()
@@ -117,11 +120,6 @@ function Product(props) {
   const handleErrorAlertClose = (event, reason) => {
     setErrorAlertOpen(false)
   }
-
-  useEffect(() => {
-    if (product.length !== 0) getProduct(id, memberID)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [popularProducts])
 
   useEffect(() => {
     async function start() {
@@ -447,6 +445,7 @@ function Product(props) {
                         await AddProductToCart(product.productID, memberID, num)
                         await getProduct(id, memberID)
                         await getCartNum(memberID)
+                        await getPopularProducts(memberID)
                       }
                       add()
                     }}
@@ -468,6 +467,7 @@ function Product(props) {
                           num
                         )
                         await getProduct(id, memberID)
+                        await getPopularProducts(memberID)
                       }
                       update()
                     }}
@@ -496,6 +496,7 @@ function Product(props) {
                               )
                               await getProduct(id, memberID)
                               await getCartNum(memberID)
+                              await getPopularProducts(memberID)
                             }
                             remove()
                             document.getElementById('order_num').value = 1
@@ -520,6 +521,7 @@ function Product(props) {
                       async function add() {
                         await AddProductToFavourite(product.productID, memberID)
                         await getProduct(id, memberID)
+                        await getPopularProducts(memberID)
                       }
                       add()
                     }}
@@ -539,6 +541,7 @@ function Product(props) {
                           memberID
                         )
                         await getProduct(id, memberID)
+                        await getPopularProducts(memberID)
                       }
 
                       remove()
@@ -599,7 +602,7 @@ function Product(props) {
         </div>
       </div>
       <div className="container p-0">
-        <PopularProducts />
+        <PopularProducts page="product" id={id} />
       </div>
 
       {/* alert snackbar */}
@@ -665,4 +668,5 @@ export default connect(mapStateToProps, {
   setColumn,
   setCategory,
   getCartNum,
+  getPopularProducts,
 })(Product)

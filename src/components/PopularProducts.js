@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { getMemberID } from '../actions/getMemberID'
 import { AddProductToCart, removeProductFromCart } from '../actions/CartAction'
 import { getCartNum } from '../actions/CartAction'
-
+import { getCart } from '../actions/CartAction'
 import {
   AddProductToFavourite,
   removeProductFromFavourite,
@@ -25,6 +25,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 import Tooltip from '@material-ui/core/Tooltip'
 import Loading from './Loading'
+import { getProduct } from '../actions/getProduct'
 
 function PopularProducts(props) {
   const {
@@ -35,14 +36,18 @@ function PopularProducts(props) {
     AddProductToCart,
     removeProductFromCart,
     getCartNum,
-    productDetail,
-    Cart,
+    getProduct,
+    getCart,
   } = props
   const memberID = getMemberID()
 
+  const page = props.page
+  const id = props.id
+
+  console.log(id)
   useEffect(() => {
     getPopularProducts(memberID)
-  }, [getPopularProducts, memberID, productDetail, Cart])
+  }, [getPopularProducts, memberID])
 
   if (popularProducts === undefined) {
     return (
@@ -53,7 +58,7 @@ function PopularProducts(props) {
       </>
     )
   }
-  console.log(popularProducts)
+
   const popularProductsMain = popularProducts.map((product, i) => {
     return (
       <div key={i}>
@@ -142,6 +147,11 @@ function PopularProducts(props) {
                               )
                               await getPopularProducts(memberID)
                               await getCartNum(memberID)
+                              if (page === 'product') {
+                                await getProduct(id, memberID)
+                              } else {
+                                await getCart(memberID)
+                              }
                             }
                             add()
                           }}
@@ -162,6 +172,11 @@ function PopularProducts(props) {
                               )
                               await getPopularProducts(memberID)
                               await getCartNum(memberID)
+                              if (page === 'product') {
+                                await getProduct(id, memberID)
+                              } else {
+                                await getCart(memberID)
+                              }
                             }
                             remove()
                           }}
@@ -183,6 +198,11 @@ function PopularProducts(props) {
                                 memberID
                               )
                               await getPopularProducts(memberID)
+                              if (page === 'product') {
+                                await getProduct(id, memberID)
+                              } else {
+                                await getCart(memberID)
+                              }
                             }
                             add()
                           }}
@@ -202,6 +222,11 @@ function PopularProducts(props) {
                                 memberID
                               )
                               await getPopularProducts(memberID)
+                              if (page === 'product') {
+                                await getProduct(id, memberID)
+                              } else {
+                                await getCart(memberID)
+                              }
                             }
                             remove()
                           }}
@@ -229,8 +254,6 @@ function PopularProducts(props) {
 
 const mapStateToProps = (state) => {
   return {
-    productDetail: state.ProductReducer.item,
-    Cart: state.CartReducer.items.cart,
     popularProducts: state.PopularProductsReducer.items.ProductList,
   }
 }
@@ -242,4 +265,6 @@ export default connect(mapStateToProps, {
   AddProductToCart,
   removeProductFromCart,
   getCartNum,
+  getProduct,
+  getCart,
 })(PopularProducts)

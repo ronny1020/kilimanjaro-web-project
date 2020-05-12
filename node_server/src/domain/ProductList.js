@@ -76,9 +76,11 @@ class ProductList {
         ' and '
       : condition.main
 
-    condition.main = query.rate
-      ? condition.main + `avgRate > '${query.rate}'` + ' and '
-      : condition.main
+    console.log(query.rate)
+    condition.main =
+      query.rate && query.rate !== 'null'
+        ? condition.main + `avgRate > '${query.rate}'` + ' and '
+        : condition.main
 
     if (condition.main === 'Where ') {
       condition.main = ''
