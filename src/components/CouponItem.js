@@ -71,7 +71,7 @@ function CouponItem(props) {
               color: 'info',
               position: 'absolute',
               top: '25%',
-              left: '10%',
+              left: '12%',
               fontWeight: 'bold',
             }}
           >
@@ -82,7 +82,7 @@ function CouponItem(props) {
                 padding: '0',
               }}
             >
-              <p6>折扣券名稱：{couponArray.couponName}</p6>
+              <p6>折扣：{couponArray.couponName}</p6>
             </ListGroup.Item>
             <ListGroup.Item
               style={{
