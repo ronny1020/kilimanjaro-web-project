@@ -2,7 +2,7 @@
   background-image: url('titlebg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.7;
+  opacity: 0.9;
   // background-color: white;
   text-align: center;
   border-radius: 5px 5px 0 0;
@@ -12,6 +12,7 @@
   //   position: absolute;
   //   top:200px;
 }
+
 .lobbytitle {
   padding-top: 20vh;
   padding-bottom: 3.5vh;
@@ -31,27 +32,34 @@
   right: 3vw;
   font-size: 18px;
 }
+
 .title_link a {
   color: #1f71b8;
   font-weight: 800;
   //   position: absolute;
 }
+
 .title_link span {
   top: 5px;
   margin: 5px;
 }
+
 .LinkB {
   display: none;
 }
+
 @media screen and(max-width:420px) {
+
   .col span,
   .LinkA {
     display: none;
   }
+
   .LinkB {
     display: unset;
     text-align: center;
   }
+
   .title_link {
     right: unset;
     right: 5.8vw;
@@ -68,12 +76,14 @@
 .profileDiv {
   text-align: center;
 }
+
 .profile {
   width: 150px;
   height: 150px;
   margin: 10px;
   border: 5px solid lightgrey;
 }
+
 .profileEdit {
   font-size: 2em;
   opacity: 0.2;
@@ -82,10 +92,12 @@
   left: 49%;
   transform: translate(-50%, -50%);
 }
+
 .profile:hover {
   cursor: pointer;
 }
-.profile:hover + .profileEdit,
+
+.profile:hover+.profileEdit,
 .profileEdit:hover {
   cursor: pointer;
   opacity: 0.8;
@@ -97,9 +109,11 @@
   cursor: pointer;
   background-color: #fab5b5;
 }
+
 .passwordBody {
   background-color: #f7f7f7;
 }
+
 //Password styling
 input[type='password'] {
   font: small-caption;
