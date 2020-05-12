@@ -21,15 +21,15 @@ import '../styles/animate.scss'
 
 function Home() {
   const [i, seti] = useState(1)
-  const [sName, setsName] = useState('新產品上市')
-  const [sCountry, setsCountry] = useState('深烘培咖啡粉')
+  const [sName, setsName] = useState('新品上市')
+  const [sCountry, setsCountry] = useState('深烘培咖啡豆')
   const [sAddress, setsAddress] = useState('售價:NT.80')
-  const [sName2, setsName2] = useState('新產品上市')
-  const [sCountry2, setsCountry2] = useState('深烘培咖啡粉')
-  const [sAddress2, setsAddress2] = useState('售價:NT.80')
-  const [sName3, setsName3] = useState('新產品上市')
-  const [sCountry3, setsCountry3] = useState('深烘培咖啡粉')
-  const [sAddress3, setsAddress3] = useState('售價:NT.80')
+  const [sName2, setsName2] = useState('新品上市')
+  const [sCountry2, setsCountry2] = useState('吉利馬札羅特調咖啡')
+  const [sAddress2, setsAddress2] = useState('售價:NT.65')
+  const [sName3, setsName3] = useState('新品上市')
+  const [sCountry3, setsCountry3] = useState('三合一咖啡組')
+  const [sAddress3, setsAddress3] = useState('售價:NT.45')
 
   useEffect(() => {
     fetch('http://localhost:6001/sellersApi')
