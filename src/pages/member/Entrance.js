@@ -105,6 +105,11 @@ function Entrance(props) {
 
           // localStorage.setItem('MemberId', customerID)
           // localStorage.setItem('LoginValidate', true)
+          swal({
+            title: '登入成功!',
+            text: '即將前往會員中心',
+            icon: 'success',
+          }).then(() => window.location.reload('/lobby'))
         } else {
           //登入失敗
           setBSAlert(true)
@@ -117,13 +122,7 @@ function Entrance(props) {
       //     : '/lobby'
       //   window.location.replace(url)
       // })
-      .then(function () {
-        swal({
-          title: '登入成功!',
-          text: '即將前往會員中心',
-          icon: 'success',
-        }).then(() => window.location.reload('/lobby'))
-      })
+      // .then(function () {})
       .catch(function (error) {
         console.log('Cannot fetch member data. ', error.message)
       })

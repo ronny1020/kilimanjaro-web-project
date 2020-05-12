@@ -16,6 +16,7 @@ import ProductListItem from '../components/ProductList/productListItem'
 import { Form, Button, Row, Col, Card } from 'react-bootstrap'
 import LoginValidate from '../components/LoginValidate'
 import SmoothScroll from 'smooth-scroll'
+import swal from 'sweetalert'
 import { GoStar } from 'react-icons/go'
 
 /* 聯絡我們:客服表單 import */
@@ -77,7 +78,13 @@ function OnSale() {
     })
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
-      .then((res) => console.log('Success:', res))
+      .then((res) => {
+        swal({
+          title: '謝謝您的意見!',
+          text: '我們將在最短的時間內回覆您的訊息!',
+          icon: 'success',
+        }).then(() => console.log('Success:', res))
+      })
 
     //寄出罐頭回覆 mail api:
     fetch('http://localhost:6001/api/mail/reply', {
