@@ -144,6 +144,8 @@ function OnSale() {
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
 
                 <div className="row ccccc ">
                   <div className="col-12 " align="center">
