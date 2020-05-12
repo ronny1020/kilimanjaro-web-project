@@ -47,7 +47,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import EditIcon from '@material-ui/icons/Edit'
 
 import Tooltip from '@material-ui/core/Tooltip'
-import PopularProducts from './PopularProducts'
+import PopularProducts from '../components/PopularProducts'
 
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
@@ -73,6 +73,7 @@ function Product(props) {
     removeProductFromFavourite,
     setCategory,
     getCartNum,
+    popularProducts,
   } = props
 
   const memberID = getMemberID()
@@ -116,6 +117,11 @@ function Product(props) {
   const handleErrorAlertClose = (event, reason) => {
     setErrorAlertOpen(false)
   }
+
+  useEffect(() => {
+    if (product.length !== 0) getProduct(id, memberID)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [popularProducts])
 
   useEffect(() => {
     async function start() {
@@ -640,6 +646,7 @@ function Product(props) {
 const mapStateToProps = (state) => {
   return {
     product: state.ProductReducer.item,
+    popularProducts: state.PopularProductsReducer.items.ProductList,
   }
 }
 

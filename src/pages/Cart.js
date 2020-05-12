@@ -22,7 +22,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import EditIcon from '@material-ui/icons/Edit'
 
 import Tooltip from '@material-ui/core/Tooltip'
-import PopularProducts from './PopularProducts'
+import PopularProducts from '../components/PopularProducts'
 
 function Cart(props) {
   let history = useHistory()
@@ -41,6 +41,7 @@ function Cart(props) {
     getMemberInfo,
     getCartNum,
     Member,
+    popularProducts,
   } = props
 
   let totalPrice = Cart
@@ -57,10 +58,10 @@ function Cart(props) {
   useEffect(() => {
     async function start() {
       await getCart(memberID)
-      await getMemberInfo(memberID)
+      if (!Member) await getMemberInfo(memberID)
     }
     start()
-  }, [getCart, getMemberInfo, memberID])
+  }, [Member, getCart, getMemberInfo, memberID, popularProducts])
 
   if (Cart === undefined) {
     return (
@@ -293,6 +294,7 @@ const mapStateToProps = (state) => {
   return {
     Cart: state.CartReducer.items.cart,
     Member: state.MemberInfoReducer.member,
+    popularProducts: state.PopularProductsReducer.items.ProductList,
   }
 }
 

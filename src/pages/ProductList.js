@@ -277,47 +277,6 @@ function ProductList(props) {
                   </div>
 
                   <div className="form-inline favouriteAndCartButton">
-                    {/* favourite button */}
-
-                    {product.favouriteID === null ? (
-                      <Tooltip title="加到我的最愛">
-                        <button
-                          className="btn btn-sm btn-primary m-1"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            async function add() {
-                              await AddProductToFavourite(
-                                product.productID,
-                                memberID
-                              )
-                              await getProductList(page, memberID, query)
-                            }
-                            add()
-                          }}
-                        >
-                          <FavoriteIcon fontSize="small" />
-                        </button>
-                      </Tooltip>
-                    ) : (
-                      <Tooltip title="從我的最愛移除">
-                        <button
-                          className="btn btn-sm btn-danger m-1"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            async function remove() {
-                              await removeProductFromFavourite(
-                                product.productID,
-                                memberID
-                              )
-                              await getProductList(page, memberID, query)
-                            }
-                            remove()
-                          }}
-                        >
-                          <FavoriteBorderIcon fontSize="small" />
-                        </button>
-                      </Tooltip>
-                    )}
                     {/* cart button */}
                     {product.num == null ? (
                       <Tooltip title="加入購物車">
@@ -358,6 +317,47 @@ function ProductList(props) {
                         >
                           <RemoveShoppingCartIcon fontSize="small" />(
                           {product.num})
+                        </button>
+                      </Tooltip>
+                    )}
+                    {/* favourite button */}
+
+                    {product.favouriteID === null ? (
+                      <Tooltip title="加到我的最愛">
+                        <button
+                          className="btn btn-sm btn-primary m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function add() {
+                              await AddProductToFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getProductList(page, memberID, query)
+                            }
+                            add()
+                          }}
+                        >
+                          <FavoriteIcon fontSize="small" />
+                        </button>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="從我的最愛移除">
+                        <button
+                          className="btn btn-sm btn-danger m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function remove() {
+                              await removeProductFromFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getProductList(page, memberID, query)
+                            }
+                            remove()
+                          }}
+                        >
+                          <FavoriteBorderIcon fontSize="small" />
                         </button>
                       </Tooltip>
                     )}

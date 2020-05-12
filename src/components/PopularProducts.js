@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getPopularProducts } from '../actions/PopularProductsAction'
 
-import ProductListItem from '../components/ProductList/productListItem'
+import ProductListItem from './ProductList/productListItem'
 
 import { Link } from 'react-router-dom'
 import { getMemberID } from '../actions/getMemberID'
@@ -24,15 +24,25 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 import Tooltip from '@material-ui/core/Tooltip'
-import Loading from '../components/Loading'
+import Loading from './Loading'
 
 function PopularProducts(props) {
-  const { getPopularProducts, popularProducts } = props
+  const {
+    getPopularProducts,
+    popularProducts,
+    AddProductToFavourite,
+    removeProductFromFavourite,
+    AddProductToCart,
+    removeProductFromCart,
+    getCartNum,
+    productDetail,
+    Cart,
+  } = props
   const memberID = getMemberID()
 
   useEffect(() => {
-    getPopularProducts()
-  }, [getPopularProducts])
+    getPopularProducts(memberID)
+  }, [getPopularProducts, memberID, productDetail, Cart])
 
   if (popularProducts === undefined) {
     return (
@@ -118,45 +128,6 @@ function PopularProducts(props) {
                   <div className="form-inline favouriteAndCartButton">
                     {/* favourite button */}
 
-                    {product.favouriteID === null ? (
-                      <Tooltip title="加到我的最愛">
-                        <button
-                          className="btn btn-sm btn-primary m-1"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            async function add() {
-                              await AddProductToFavourite(
-                                product.productID,
-                                memberID
-                              )
-                              await getPopularProducts()
-                            }
-                            add()
-                          }}
-                        >
-                          <FavoriteIcon fontSize="small" />
-                        </button>
-                      </Tooltip>
-                    ) : (
-                      <Tooltip title="從我的最愛移除">
-                        <button
-                          className="btn btn-sm btn-danger m-1"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            async function remove() {
-                              await removeProductFromFavourite(
-                                product.productID,
-                                memberID
-                              )
-                              await getPopularProducts()
-                            }
-                            remove()
-                          }}
-                        >
-                          <FavoriteBorderIcon fontSize="small" />
-                        </button>
-                      </Tooltip>
-                    )}
                     {/* cart button */}
                     {product.num == null ? (
                       <Tooltip title="加入購物車">
@@ -169,7 +140,7 @@ function PopularProducts(props) {
                                 product.productID,
                                 memberID
                               )
-                              await getPopularProducts()
+                              await getPopularProducts(memberID)
                               await getCartNum(memberID)
                             }
                             add()
@@ -189,7 +160,7 @@ function PopularProducts(props) {
                                 product.productID,
                                 memberID
                               )
-                              await getPopularProducts()
+                              await getPopularProducts(memberID)
                               await getCartNum(memberID)
                             }
                             remove()
@@ -197,6 +168,45 @@ function PopularProducts(props) {
                         >
                           <RemoveShoppingCartIcon fontSize="small" />(
                           {product.num})
+                        </button>
+                      </Tooltip>
+                    )}
+                    {product.favouriteID === null ? (
+                      <Tooltip title="加到我的最愛">
+                        <button
+                          className="btn btn-sm btn-primary m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function add() {
+                              await AddProductToFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getPopularProducts(memberID)
+                            }
+                            add()
+                          }}
+                        >
+                          <FavoriteIcon fontSize="small" />
+                        </button>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="從我的最愛移除">
+                        <button
+                          className="btn btn-sm btn-danger m-1"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            async function remove() {
+                              await removeProductFromFavourite(
+                                product.productID,
+                                memberID
+                              )
+                              await getPopularProducts(memberID)
+                            }
+                            remove()
+                          }}
+                        >
+                          <FavoriteBorderIcon fontSize="small" />
                         </button>
                       </Tooltip>
                     )}
@@ -219,8 +229,17 @@ function PopularProducts(props) {
 
 const mapStateToProps = (state) => {
   return {
+    productDetail: state.ProductReducer.item,
+    Cart: state.CartReducer.items.cart,
     popularProducts: state.PopularProductsReducer.items.ProductList,
   }
 }
 
-export default connect(mapStateToProps, { getPopularProducts })(PopularProducts)
+export default connect(mapStateToProps, {
+  getPopularProducts,
+  AddProductToFavourite,
+  removeProductFromFavourite,
+  AddProductToCart,
+  removeProductFromCart,
+  getCartNum,
+})(PopularProducts)
