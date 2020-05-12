@@ -76,7 +76,6 @@ class ProductList {
         ' and '
       : condition.main
 
-    console.log(query.rate)
     condition.main =
       query.rate && query.rate !== 'null'
         ? condition.main + `avgRate > '${query.rate}'` + ' and '

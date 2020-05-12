@@ -52,6 +52,8 @@ import EditIcon from '@material-ui/icons/Edit'
 import Tooltip from '@material-ui/core/Tooltip'
 import PopularProducts from '../components/PopularProducts'
 
+import DateStyle from '../components/DateStyle'
+
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
 }
@@ -85,6 +87,7 @@ function Product(props) {
 
   const [dataArray, setDataArray] = React.useState([0, 0, 0, 0, 0])
 
+  const [numOfCommentShowed, setNumOfCommentShowed] = React.useState(2)
   // Control Alert
   const [editAlertOpen, setEditAlertOpen] = React.useState(false)
   const handleEditAlertClick = () => {
@@ -232,7 +235,12 @@ function Product(props) {
       return comment.customerID === memberID ? (
         <div key={i}>
           <CardSecondary>
-            <p>ID:{comment.customerID}</p>
+            <div className="row">
+              <p className="col-auto">{comment.cAccount}</p>
+              <p className="col-auto ml-auto">
+                {DateStyle(new Date(comment.addTime).toString())}
+              </p>
+            </div>
 
             <div className="form-group">
               <Rating
@@ -244,7 +252,7 @@ function Product(props) {
                 }}
               />
               <br />
-              <label htmlFor="commentInput">Comment:</label>
+              <label htmlFor="commentInput">評論:</label>
               <textarea
                 className="form-control"
                 rows="5"
@@ -291,7 +299,6 @@ function Product(props) {
                 刪除
               </button>
             </div>
-            <p>{comment.addTime.substring(0, 10)}</p>
           </CardSecondary>
         </div>
       ) : (
@@ -311,7 +318,7 @@ function Product(props) {
             }}
           />
           <br />
-          <label htmlFor="commentInput">Comment:</label>
+          <label htmlFor="commentInput">評論:</label>
           <textarea
             className="form-control"
             rows="5"
@@ -344,21 +351,25 @@ function Product(props) {
   )
 
   const otherComments = product.comments.map((comment, i) => {
-    return comment.customerID !== memberID ? (
+    return i <= numOfCommentShowed && comment.customerID !== memberID ? (
       <div key={i}>
         <CardSecondary>
-          <p>ID:{comment.customerID}</p>
+          <div className="row">
+            <p className="col-auto">{comment.cAccount}</p>
+            <p className="col-auto ml-auto">
+              {DateStyle(new Date(comment.addTime).toString())}
+            </p>
+          </div>
           {comment.rate ? (
             <Rating defaultValue={Number(comment.rate)} size="small" readOnly />
           ) : (
             <></>
           )}
-          <p>comment:{comment.commentText}</p>
-          <p>{comment.addTime.substring(0, 10)}</p>
+          <p>{comment.commentText}</p>
         </CardSecondary>
       </div>
     ) : (
-      <div key={i}></div>
+      <></>
     )
   })
 
@@ -566,7 +577,9 @@ function Product(props) {
             ) : (
               <div className="d-flex flex-column align-items-center justify-content-center">
                 <p className="averagedRate">
-                  {Math.round(product.avgRate * 10) / 10}
+                  {product.avgRate % 1 === 0
+                    ? Number(product.avgRate) + '.0'
+                    : Math.round(product.avgRate * 10) / 10}
                 </p>
 
                 <Rating
@@ -583,6 +596,28 @@ function Product(props) {
 
       {commentOfLoggedID}
       {otherComments}
+      {numOfCommentShowed + 1 < product.comments.length ? (
+        <div className="d-flex justify-content-center">
+          <button
+            className=" btn btn-primary m-3"
+            onClick={() => {
+              setNumOfCommentShowed(numOfCommentShowed + 3)
+            }}
+          >
+            顯示更多
+          </button>
+          <button
+            className=" btn btn-primary m-3"
+            onClick={() => {
+              setNumOfCommentShowed(product.comments.length)
+            }}
+          >
+            顯示全部
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">商品規格</h4>

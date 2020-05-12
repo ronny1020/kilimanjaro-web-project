@@ -1,6 +1,8 @@
 class Comments {
   static getComments() {
-    let sql = `SELECT * FROM coffee.comments where productID = ? ;`
+    let sql = `SELECT * FROM coffee.comments
+    join customers on comments.customerID = customers.customerID
+    where productID = ? order by addTime desc;`
     return sql
   }
 
