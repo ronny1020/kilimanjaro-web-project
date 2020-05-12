@@ -144,6 +144,8 @@ function OnSale() {
                 <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
                 <br />
                 <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                <br />
 
                 <div className="row ccccc ">
                   <div className="col-12 " align="center">
@@ -245,6 +247,19 @@ function OnSale() {
                         <p className="text-white">123</p>
                       </div>
                     </div>
+                    <div className="row">
+                      <div className="col-12" align="center">
+                        <Button
+                          className=" btn-success text-white"
+                          variant="secondary"
+                          data-scroll
+                          href="#nn0"
+                        >
+                          謝了，我想回上面
+                        </Button>
+                      </div>
+                      <p className="text-white">123</p>
+                    </div>
                     <div className="row mt-3">
                       <div className="col-lg-12">
                         <div className="heading-title text-center container bg-white pt-3 m-6 ">
@@ -274,6 +289,19 @@ function OnSale() {
                         <p className="text-white">123</p>
                       </div>
                     </div>
+                    <div className="row">
+                      <div className="col-12" align="center">
+                        <Button
+                          className=" btn-success text-white"
+                          variant="secondary"
+                          data-scroll
+                          href="#nn0"
+                        >
+                          謝了，我想回上面
+                        </Button>
+                      </div>
+                      <p className="text-white">123</p>
+                    </div>
                     <div className="row mt-3">
                       <div className="col-lg-12">
                         <div className="heading-title text-center container bg-white pt-3 m-6 ">
@@ -300,6 +328,7 @@ function OnSale() {
                           <CouponItem input={coupons[6]} />
                           <CouponItem input={coupons[7]} />
                         </Row>
+
                         <p className="text-white">123</p>
                       </div>
                     </div>
