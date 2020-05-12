@@ -20,6 +20,7 @@ function Shipment(props) {
   const { shipmentInfoStorage, Member, Cart } = props
 
   Cart || window.location.replace('./Cart')
+  Cart.length || window.location.replace('./Cart')
   Member || window.location.replace('./Cart')
 
   let totalPrice = Cart

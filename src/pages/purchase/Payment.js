@@ -38,6 +38,7 @@ function Payment(props) {
     : 0
 
   Cart || window.location.replace('./Cart')
+  Cart.length || window.location.replace('./Cart')
   ShipmentInfo || window.location.replace('./Cart')
 
   const [paymentMethodValue, setPaymentMethodValue] = React.useState('2')
@@ -106,6 +107,8 @@ function Payment(props) {
                 if (event.target.value < 0) event.target.value = 0
                 if (event.target.value > Member.rewardsPoints)
                   event.target.value = Member.rewardsPoints
+                if (event.target.value > totalPrice)
+                  event.target.value = totalPrice
                 event.target.value = Math.round(event.target.value)
               }}
             />

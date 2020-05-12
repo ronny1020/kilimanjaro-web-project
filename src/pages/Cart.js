@@ -71,125 +71,138 @@ function Cart(props) {
     )
   }
 
-  const productList = Cart.map((product, i) => (
-    <div key={i}>
-      <Link to={'../product/' + product.productID} className="linkNoUnderline">
-        <ProductListItem>
-          <div className="row">
-            <div className="col-md-3">
-              {' '}
-              <img
-                alt=""
-                src={'../images/products/' + product.productID + '/0.jpg'}
-                className="productListImage"
-                onError={(event) =>
-                  (event.target.src = '../images/products/default.jpg')
-                }
-              />
-            </div>
-
-            <div className="col-md-9 p-3">
-              <h3>{product.ProductName}</h3>
-              <div className="row mb-3 pd-5">
-                <div className="col-4">
-                  {product.discount !== null ? (
-                    <>
-                      <p>
-                        原價:
-                        <span className="originalPrice">
-                          {' ' + product.UnitPrice}
-                        </span>
-                      </p>
-                      <p>
-                        特價:
-                        <span className="specialPrice">
-                          {' ' + product.finalPrice}
-                        </span>
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p>售價：</p>
-                      <p>{product.UnitPrice}</p>
-                    </>
-                  )}
+  const productList =
+    Cart.length !== 0 ? (
+      Cart.map((product, i) => (
+        <div key={i}>
+          <Link
+            to={'../product/' + product.productID}
+            className="linkNoUnderline"
+          >
+            <ProductListItem>
+              <div className="row">
+                <div className="col-md-3">
+                  {' '}
+                  <img
+                    alt=""
+                    src={'../images/products/' + product.productID + '/0.jpg'}
+                    className="productListImage"
+                    onError={(event) =>
+                      (event.target.src = '../images/products/default.jpg')
+                    }
+                  />
                 </div>
 
-                <div className="col-4">
-                  <label htmlFor={product.productID}>數量：</label>
-                  <div className="form-inline">
-                    <input
-                      type="number"
-                      className="form-control w-50"
-                      placeholder="Enter Number"
-                      id={product.productID}
-                      defaultValue={product.num}
-                      onClick={(e) => {
-                        e.preventDefault()
-                      }}
-                      onChange={(event) => {
-                        event.target.value = Math.round(event.target.value)
-                        if (event.target.value < 1) event.target.value = 1
-                        if (event.target.value > product.UnitsInStock)
-                          event.target.value = product.UnitsInStock
-                      }}
-                    />
-                    <Tooltip title="修改訂購數量">
-                      <button
-                        className="btn btn-sm btn-success m-1"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          async function update() {
-                            const num = document.getElementById(
-                              product.productID
-                            ).value
-                            await updateProductNumToCart(
-                              product.productID,
-                              memberID,
-                              num
-                            )
-                          }
-                          update()
-                        }}
-                      >
-                        <EditIcon fontSize="small" />
-                      </button>
-                    </Tooltip>
+                <div className="col-md-9 p-3">
+                  <h3>{product.ProductName}</h3>
+                  <div className="row mb-3 pd-5">
+                    <div className="col-4">
+                      {product.discount !== null ? (
+                        <>
+                          <p>
+                            原價:
+                            <span className="originalPrice">
+                              {' ' + product.UnitPrice}
+                            </span>
+                          </p>
+                          <p>
+                            特價:
+                            <span className="specialPrice">
+                              {' ' + product.finalPrice}
+                            </span>
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p>售價：</p>
+                          <p>{product.UnitPrice}</p>
+                        </>
+                      )}
+                    </div>
+
+                    <div className="col-4">
+                      <label htmlFor={product.productID}>數量：</label>
+                      <div className="form-inline">
+                        <input
+                          type="number"
+                          className="form-control w-50"
+                          placeholder="Enter Number"
+                          id={product.productID}
+                          defaultValue={product.num}
+                          onClick={(e) => {
+                            e.preventDefault()
+                          }}
+                          onChange={(event) => {
+                            event.target.value = Math.round(event.target.value)
+                            if (event.target.value < 1) event.target.value = 1
+                            if (event.target.value > product.UnitsInStock)
+                              event.target.value = product.UnitsInStock
+                          }}
+                        />
+                        <Tooltip title="修改訂購數量">
+                          <button
+                            className="btn btn-sm btn-success m-1"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              async function update() {
+                                const num = document.getElementById(
+                                  product.productID
+                                ).value
+                                await updateProductNumToCart(
+                                  product.productID,
+                                  memberID,
+                                  num
+                                )
+                              }
+                              update()
+                            }}
+                          >
+                            <EditIcon fontSize="small" />
+                          </button>
+                        </Tooltip>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <p>總價：</p>
+                      <p>
+                        {new Intl.NumberFormat('en-IN').format(
+                          product.UnitPrice * product.num
+                        )}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="col-4">
-                  <p>總價：</p>
-                  <p>
-                    {new Intl.NumberFormat('en-IN').format(
-                      product.UnitPrice * product.num
-                    )}
-                  </p>
+                <div className="form-inline favouriteAndCartButton">
+                  <Tooltip title="從購物車中移除">
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        async function remove() {
+                          await removeProductFromCart(
+                            product.productID,
+                            memberID
+                          )
+                          await getCart(memberID)
+                          await getCartNum(memberID)
+                        }
+                        remove()
+                      }}
+                    >
+                      <RemoveShoppingCartIcon fontSize="small" />({product.num})
+                    </button>
+                  </Tooltip>
                 </div>
               </div>
-            </div>
-            <div className="form-inline favouriteAndCartButton">
-              <Tooltip title="從購物車中移除">
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    async function remove() {
-                      await removeProductFromCart(product.productID, memberID)
-                      await getCart(memberID)
-                      await getCartNum(memberID)
-                    }
-                    remove()
-                  }}
-                >
-                  <RemoveShoppingCartIcon fontSize="small" />({product.num})
-                </button>
-              </Tooltip>
-            </div>
-          </div>
-        </ProductListItem>
-      </Link>
-    </div>
-  ))
+            </ProductListItem>
+          </Link>
+        </div>
+      ))
+    ) : (
+      <CardSecondary>
+        <p>您購物車內目前沒有任何商品</p>
+      </CardSecondary>
+    )
 
   return (
     <>
@@ -204,40 +217,45 @@ function Cart(props) {
       <div className="container p-0">
         <div>{productList}</div>
       </div>
-      <CardSecondary>
-        <span>
-          共 {Cart.length} 款商品，總價 {totalPrice} 元
-        </span>
-      </CardSecondary>
-      <div className="container">
-        <button
-          className="btn btn-danger m-1"
-          onClick={(e) => {
-            e.preventDefault()
-            async function remove() {
-              await removeProductFromCart('all', memberID)
-              await getCart(memberID)
-              await getCartNum(memberID)
-            }
-            remove()
-          }}
-        >
-          清除購物車
-        </button>
 
-        <button
-          className="btn btn-success m-1"
-          onClick={(e) => {
-            e.preventDefault()
-            localStorage.setItem('Cart', JSON.stringify(Cart))
-            history.push('/shipment')
-            document.body.scrollTop = 0 // For Safari
-            document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
-          }}
-        >
-          下一步
-        </button>
-      </div>
+      {Cart.length !== 0 ? (
+        <>
+          <CardSecondary>
+            <span>
+              共 {Cart.length} 款商品，總價 {totalPrice} 元
+            </span>
+          </CardSecondary>
+          <div className="container">
+            <button
+              className="btn btn-danger m-1"
+              onClick={(e) => {
+                e.preventDefault()
+                async function remove() {
+                  await removeProductFromCart('all', memberID)
+                  await getCart(memberID)
+                  await getCartNum(memberID)
+                }
+                remove()
+              }}
+            >
+              清除購物車
+            </button>
+
+            <button
+              className="btn btn-success m-1"
+              onClick={(e) => {
+                e.preventDefault()
+                localStorage.setItem('Cart', JSON.stringify(Cart))
+                history.push('/shipment')
+                document.body.scrollTop = 0 // For Safari
+                document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+              }}
+            >
+              下一步
+            </button>
+          </div>
+        </>
+      ) : null}
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">重要訊息</h4>

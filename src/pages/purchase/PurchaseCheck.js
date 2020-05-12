@@ -19,6 +19,7 @@ function PurchaseCheck(props) {
   const { Cart, ShipmentInfo, createOrder, Member } = props
 
   Cart || window.location.replace('./Cart')
+  Cart.length || window.location.replace('./Cart')
   ShipmentInfo || window.location.replace('./Cart')
 
   let totalPrice = Cart
