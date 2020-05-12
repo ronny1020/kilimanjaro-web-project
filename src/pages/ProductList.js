@@ -117,6 +117,7 @@ function ProductList(props) {
         '&'
       : condition
     condition = advanceSearch ? condition + 'rate=' + rate + '&' : condition
+    console.log(condition)
     async function start() {
       await getProductList(page, memberID, condition)
       await setQuery(condition)

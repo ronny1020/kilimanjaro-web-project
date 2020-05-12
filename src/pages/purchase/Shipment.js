@@ -93,39 +93,48 @@ function Shipment(props) {
             />
           </div>
         </label>
-        <label htmlFor="RecipientName" className="row  my-3">
-          <div className="col-md-3 d-flex align-items-center">訂購人姓名：</div>
-          <div className="col-md-9 d-flex align-items-center">
-            <input
-              type="text"
-              className="form-control"
-              id="RecipientName"
-              required
-            />
-          </div>
-        </label>
-        <label htmlFor="RecipientMobile" className="row  my-3">
-          <div className="col-md-3 d-flex align-items-center">訂購人電話：</div>
-          <div className="col-md-9 d-flex align-items-center">
-            <input
-              type="text"
-              className="form-control"
-              id="RecipientMobile"
-              required
-            />
-          </div>
-        </label>
-        <label htmlFor="RecipientAddress" className="row my-3">
-          <div className="col-md-3 d-flex align-items-center">訂購人地址：</div>
-          <div className="col-md-9 d-flex align-items-center">
-            <input
-              type="text"
-              className="form-control"
-              id="RecipientAddress"
-              required
-            />
-          </div>
-        </label>
+        <form className=".was-validated">
+          <label htmlFor="RecipientName" className="row  my-3">
+            <div className="col-md-3 d-flex align-items-center">
+              訂購人姓名：
+            </div>
+            <div className="col-md-9 d-flex align-items-center">
+              <input
+                type="text"
+                className="form-control"
+                name="RecipientName"
+                id="RecipientName"
+                required
+              />
+            </div>
+          </label>
+          <label htmlFor="RecipientMobile" className="row  my-3">
+            <div className="col-md-3 d-flex align-items-center">
+              訂購人電話：
+            </div>
+            <div className="col-md-9 d-flex align-items-center">
+              <input
+                type="text"
+                className="form-control"
+                id="RecipientMobile"
+                required
+              />
+            </div>
+          </label>
+          <label htmlFor="RecipientAddress" className="row my-3">
+            <div className="col-md-3 d-flex align-items-center">
+              訂購人地址：
+            </div>
+            <div className="col-md-9 d-flex align-items-center">
+              <input
+                type="text"
+                className="form-control"
+                id="RecipientAddress"
+                required
+              />
+            </div>
+          </label>
+        </form>
       </CardSecondary>
 
       <div className="container p-0">

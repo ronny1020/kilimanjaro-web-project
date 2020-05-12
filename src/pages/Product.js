@@ -47,6 +47,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import EditIcon from '@material-ui/icons/Edit'
 
 import Tooltip from '@material-ui/core/Tooltip'
+import PopularProducts from './PopularProducts'
 
 function Alert(props) {
   return <MuiAlert elevation={6} {...props} />
@@ -585,6 +586,16 @@ function Product(props) {
         </div>
       </div>
       <CardSecondary>{product.description}</CardSecondary>
+
+      <div className="container p-0">
+        <div className=" bg-primary titleLabel mt-5">
+          <h4 className="text-secondary">人氣商品</h4>
+        </div>
+      </div>
+      <div className="container p-0">
+        <PopularProducts />
+      </div>
+
       {/* alert snackbar */}
       <Snackbar
         open={editAlertOpen}

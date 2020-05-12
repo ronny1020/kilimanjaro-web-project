@@ -22,6 +22,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import EditIcon from '@material-ui/icons/Edit'
 
 import Tooltip from '@material-ui/core/Tooltip'
+import PopularProducts from './PopularProducts'
 
 function Cart(props) {
   let history = useHistory()
@@ -273,12 +274,17 @@ function Cart(props) {
           <li>海外郵資運費計算。</li>
         </ul>
       </CardSecondary>
-      {/* <hr className="my-5" />
+      <div className="container p-0">
+        <hr className="my-5" />
+      </div>
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
-          <h4 className="text-secondary">推薦商品</h4>
+          <h4 className="text-secondary">人氣商品</h4>
         </div>
-      </div> */}
+      </div>
+      <div className="container p-0">
+        <PopularProducts />
+      </div>
     </>
   )
 }
