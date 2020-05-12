@@ -54,8 +54,26 @@ function Header(props) {
 
   const handleSearch = () => {
     const headerSearchKeyword = document.getElementById('searchInputInHeader')
-    setKeyword(headerSearchKeyword.value)
+      .value
+    setKeyword(headerSearchKeyword)
     setColumn('ProductName')
+
+    let check = true
+    let searchRecord = localStorage.getItem('searchRecord')
+      ? JSON.parse(localStorage.getItem('searchRecord'))
+      : []
+    searchRecord.forEach((keyValue) => {
+      if (keyValue.keyword === headerSearchKeyword) {
+        check = false
+      }
+    })
+    if (check) {
+      localStorage.setItem(
+        'searchRecord',
+        JSON.stringify([...searchRecord, { keyword: headerSearchKeyword }])
+      )
+    }
+
     document.documentElement.scrollTop = 0
     history.push('/productList')
   }

@@ -68,7 +68,9 @@ function ProductList(props) {
   // eslint-disable-next-line no-unused-vars
   const [showZoom, setShowZoom] = React.useState(true)
 
-  const [view, setView] = React.useState('list')
+  const [view, setView] = React.useState(
+    localStorage.getItem('view') ? localStorage.getItem('view') : 'list'
+  )
 
   const [searchRecord, setSearchRecord] = React.useState(
     localStorage.getItem('searchRecord')
@@ -481,11 +483,11 @@ function ProductList(props) {
                           ...searchRecord,
                           { keyword: newValue },
                         ])
+                        localStorage.setItem(
+                          'searchRecord',
+                          JSON.stringify(searchRecord)
+                        )
                       }
-                      localStorage.setItem(
-                        'searchRecord',
-                        JSON.stringify(searchRecord)
-                      )
                     }}
                     onInputChange={(event, newInputValue) => {
                       setKeyword(newInputValue)
@@ -706,6 +708,7 @@ function ProductList(props) {
                   <Button
                     onClick={() => {
                       setView('list')
+                      localStorage.setItem('view', 'list')
                     }}
                   >
                     <ViewListIcon />
@@ -713,6 +716,7 @@ function ProductList(props) {
                   <Button
                     onClick={() => {
                       setView('block')
+                      localStorage.setItem('view', 'block')
                     }}
                   >
                     <ViewModuleIcon />
