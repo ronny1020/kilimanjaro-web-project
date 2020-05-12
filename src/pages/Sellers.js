@@ -144,7 +144,7 @@ function Sellers() {
 
       <div className="all-page-title page-breadcrumb">
         {/* <div id="nn0"></div> */}
-        <div className="container text-center">
+        <div className="container text-center ">
           <div className="row">
             <div className="col-lg-12 " align="center">
               {/* <h1>賣家介紹</h1> */}
