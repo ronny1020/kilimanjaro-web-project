@@ -274,7 +274,7 @@ function Member(props) {
                                 className="container"
                                 style={{
                                   borderBottom: '0.5px solid lightgray',
-                                  height: '50%',
+                                  height: 'auto',
                                 }}
                               >
                                 <h2>您好, 會員{name}</h2>

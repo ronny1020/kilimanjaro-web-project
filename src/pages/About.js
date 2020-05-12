@@ -83,7 +83,7 @@ function OnSale() {
           title: '謝謝您的意見!',
           text: '我們將在最短的時間內回覆您的訊息!',
           icon: 'success',
-        }).then(() => console.log('Success:', res))
+        }).then(() => window.location.reload('/about#mm5'))
       })
 
     //寄出罐頭回覆 mail api:
