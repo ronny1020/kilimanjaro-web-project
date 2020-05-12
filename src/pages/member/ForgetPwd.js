@@ -71,7 +71,13 @@ function ForgetPwd() {
         // window.location.reload()
       } else {
         max -= 1
-        setTime('驗證碼有效期限：　　剩餘' + max + '秒')
+        setTime(
+          <>
+            <span>驗證碼有效期限：</span>
+            <br />
+            剩餘{max}秒
+          </>
+        )
       }
     }, 1000)
     //若完成驗證則停下計時
@@ -264,7 +270,7 @@ function ForgetPwd() {
                   </Button>
                 )}
               </Col>
-              <Col>{time}</Col>
+              <Col style={{ paddingLeft: '0', paddingRight: '0' }}>{time}</Col>
             </Row>
           </Form.Group>
 
