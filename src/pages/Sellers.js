@@ -126,6 +126,7 @@ function Sellers() {
     var scroll = new SmoothScroll('a[href*="#"]')
     console.log(scroll)
   }, [])
+
   return (
     <>
       <JqueryComClass />
@@ -471,6 +472,7 @@ function Sellers() {
                       src={img004}
                       alt="slide 004"
                     /> */}
+
                         <div
                           class="team-thumb wow fadeInUp"
                           data-wow-delay="0.2s"

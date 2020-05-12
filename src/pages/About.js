@@ -334,7 +334,7 @@ function OnSale() {
                           class="section-title wow fadeInUp"
                           data-wow-delay="0.2s"
                         >
-                          <h2>~喝一口的美好~</h2>
+                          {/* <h2>~喝一口的美好~</h2> */}
                         </div>
 
                         <div class="wow fadeInUp" data-wow-delay="0.4s">
