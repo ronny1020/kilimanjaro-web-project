@@ -59,9 +59,9 @@ function Home() {
       <div class="cvb">
         <HomeCarousel />
       </div>
-      {/* <div class="cvb2">
+      <div class="cvb2">
         <HomeCarousel2 />
-      </div> */}
+      </div>
       <div id="slides" className="cover-slides">
         <div className="text-center mt-3">
           <div className="container">

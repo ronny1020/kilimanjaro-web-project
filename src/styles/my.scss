@@ -604,6 +604,10 @@ a.tab-label.active-btn {
   .tyu2 {
     display: none;
   }
+
+  .cvb2 {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -620,6 +624,10 @@ a.tab-label.active-btn {
   }
 
   .tyu {
+    display: none;
+  }
+
+  .cvb {
     display: none;
   }
 
@@ -778,10 +786,6 @@ a.tab-label.active-btn {
     display: -webkit-box;
   }
 
-  // .cvb {
-  //   display: none;
-  // }
-
   // .sidebar {
   //   width: 100%;
   //   height: auto;
@@ -804,9 +808,7 @@ a.tab-label.active-btn {
     display: -webkit-box;
   }
 
-  // .cvb2 {
-  //   display: none;
-  // }
+
 
   // .side_title{
   //   display: none;
