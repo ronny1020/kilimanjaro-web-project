@@ -73,15 +73,17 @@ function Home() {
                   <Card style={{ width: '24rem' }}>
                     <video
                       id="my-player"
-                      class="video-js"
+                      class="video-js "
                       // controls
                       preload="auto"
                       loop
                       autoPlay
                       muted
                       poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
-                      width="375"
-                      height="300"
+                      width="400"
+                      height="360"
+                      // width="375"
+                      // height="300"
                       data-vscid="zk05vyzcr"
                     >
                       <source
