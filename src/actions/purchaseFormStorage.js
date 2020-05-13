@@ -21,6 +21,7 @@ export const shipmentInfoStorage = (
 
 export const paymentInfoStorage = (
   couponValue = null,
+  couponPrice = 0,
   rewardPointValue = 0,
   paymentMethodValue,
   invoiceValue
@@ -29,6 +30,7 @@ export const paymentInfoStorage = (
     type: STORE_PAYMENT_FORM,
     payload: {
       coupon: couponValue,
+      couponPrice: couponPrice,
       rewardsPoints: rewardPointValue,
       paymentMethod: paymentMethodValue,
       InvoiceMethod: invoiceValue,

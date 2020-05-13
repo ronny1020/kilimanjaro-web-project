@@ -158,6 +158,7 @@ function Cart(props) {
                                   memberID,
                                   num
                                 )
+                                await getCart(memberID)
                               }
                               update()
                             }}
@@ -171,7 +172,9 @@ function Cart(props) {
                       <p>總價：</p>
                       <p>
                         {new Intl.NumberFormat('en-IN').format(
-                          product.UnitPrice * product.num
+                          product.finalPrice !== '0'
+                            ? product.finalPrice * product.num
+                            : product.UnitPrice * product.num
                         )}
                       </p>
                     </div>

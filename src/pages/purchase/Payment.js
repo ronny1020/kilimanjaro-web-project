@@ -59,7 +59,9 @@ function Payment(props) {
     Coupon.valid &&
     Date.parse(Coupon.coupon.cpendDate) > Date.now() &&
     totalPrice > Coupon.coupon.limitation ? (
-      <option value={Coupon.couponMapId}>{Coupon.coupon.couponName}</option>
+      <option value={Coupon.couponMapId + '-' + Coupon.coupon.minus}>
+        {Coupon.coupon.couponName}
+      </option>
     ) : (
       <></>
     )
@@ -254,7 +256,8 @@ function Payment(props) {
           onClick={(e) => {
             e.preventDefault()
             paymentInfoStorage(
-              document.getElementById('coupon').value,
+              document.getElementById('coupon').value.split('-')[0],
+              document.getElementById('coupon').value.split('-')[1],
               document.getElementById('rewardPoint').value,
               paymentMethodValue,
               invoiceValue

@@ -32,7 +32,7 @@ function PurchaseCheck(props) {
         return a + price * product.num
       }, 0)
     : 0
-  totalPrice = new Intl.NumberFormat('en-IN').format(totalPrice)
+  // totalPrice = new Intl.NumberFormat('en-IN').format(totalPrice)
 
   const productList = Cart.map((product, i) => (
     <div key={i}>
@@ -83,7 +83,9 @@ function PurchaseCheck(props) {
                 <p>總價：</p>
                 <p>
                   {new Intl.NumberFormat('en-IN').format(
-                    product.UnitPrice * product.num
+                    product.finalPrice !== '0'
+                      ? product.finalPrice * product.num
+                      : product.UnitPrice * product.num
                   )}
                 </p>
               </div>
@@ -103,7 +105,18 @@ function PurchaseCheck(props) {
       </div>
       <CardSecondary>
         <span>
-          共 {Cart.length} 項商品，總價 {totalPrice} 元
+          共 {Cart.length} 項商品，
+          {ShipmentInfo.couponPrice
+            ? '折扣券折抵 ' + ShipmentInfo.couponPrice + ' 元，'
+            : ''}
+          {Number(ShipmentInfo.rewardsPoints)
+            ? '紅利折抵 ' + ShipmentInfo.rewardsPoints + ' 元，'
+            : ''}
+          總價
+          {new Intl.NumberFormat('en-IN').format(
+            totalPrice - ShipmentInfo.couponPrice - ShipmentInfo.rewardsPoints
+          )}
+          元
         </span>
       </CardSecondary>
 
