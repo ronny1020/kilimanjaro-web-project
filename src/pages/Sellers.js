@@ -129,8 +129,8 @@ function Sellers() {
       })
   }, [sellerID])
 
-  // console.log(sellerList)
-  // console.log(sellerList2)
+  console.log(sellerList)
+  console.log(sellerList2)
   // console.log(sellerID)
   // console.log(ProductName1)
   // console.log(ProductName2)
@@ -194,7 +194,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      {(getList === true) === 0 ? null : storeNames[0]}
+                      {getList === true ? null : storeNames[0]}
                     </a>
                     <a
                       class="nav-item"
@@ -204,7 +204,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      {(getList === true) === 0 ? null : storeNames[1]}
+                      {getList === true ? null : storeNames[1]}
                     </a>
                     <a
                       class="nav-item"
@@ -214,7 +214,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      {(getList === true) === 0 ? null : storeNames[2]}
+                      {getList === true ? null : storeNames[2]}
                     </a>
                     <a
                       class="nav-item"
@@ -224,7 +224,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      {(getList === true) === 0 ? null : storeNames[3]}
+                      {getList === true ? null : storeNames[3]}
                     </a>
                     <a
                       class="nav-item"
@@ -270,7 +270,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            {getList === false ? storeNames[0] : null}
+                            {getList === true ? null : storeNames[0]}
                           </a>
                           <a
                             class="nav-item"
@@ -280,7 +280,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            {getList === false ? storeNames[0] : null}
+                            {getList === true ? null : storeNames[1]}
                           </a>
                           <a
                             class="nav-item"
@@ -290,7 +290,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            {storeNames[0]}
+                            {getList === true ? null : storeNames[2]}
                           </a>
                           <a
                             class="nav-item"
@@ -300,7 +300,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            {storeNames[0]}
+                            {getList === true ? null : storeNames[3]}
                           </a>
                           <a
                             class="nav-item"
@@ -310,7 +310,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            {storeNames[0]}
+                            {getList === true ? null : storeNames[4]}
                             <p />
                           </a>
                         </div>
