@@ -14,6 +14,7 @@ import JqueryComClass from '../components/seller/JqueryComClass'
 import Typed from 'react-typed'
 import SmoothScroll from 'smooth-scroll'
 import Breadcrumb from '../components/Breadcrumb'
+import FadeIn from 'react-fade-in'
 
 // import Sidebar from '../components/Sidebar'
 import '../styles/my.scss'
@@ -154,369 +155,392 @@ function Sellers() {
               </p>
             </div>
           </div>
-          <LobbyTitle string={'店家介紹'} />
+          <FadeIn>
+            <LobbyTitle string={'店家介紹'} />
 
-          <div className="row"></div>
+            <div className="row"></div>
 
-          <div className="container bg-secondary">
-            <br />
-            <div className="row ">
-              <div className="col-md-4 col-xs-0 qweqwe" align="center">
-                {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
-                <div class=" sidebar2">
-                  <div class=" side_title2 ">請選擇賣家</div>
-                  <a
-                    class="nav-item"
-                    onClick={() => {
-                      seti(0)
-                    }}
-                  >
-                    <br />
-                    <GoStar />
-                    非洲人咖啡
-                  </a>
-                  <a
-                    class="nav-item"
-                    onClick={() => {
-                      seti(1)
-                    }}
-                  >
-                    <br />
-                    <GoStar />
-                    瑪麗亞咖啡
-                  </a>
-                  <a
-                    class="nav-item"
-                    onClick={() => {
-                      seti(2)
-                    }}
-                  >
-                    <br />
-                    <GoStar />
-                    古坑樹咖啡
-                  </a>
-                  <a
-                    class="nav-item"
-                    onClick={() => {
-                      seti(3)
-                    }}
-                  >
-                    <br />
-                    <GoStar />
-                    上島咖啡
-                  </a>
-                  <a
-                    class="nav-item"
-                    onClick={() => {
-                      seti(4)
-                    }}
-                  >
-                    <br />
-                    <GoStar />
-                    小樽咖啡
-                    <p />
-                  </a>
-                </div>
-                {/* 改過的sidebar 只能這樣改了 (end) */}
+            <div className="container bg-secondary">
+              <br />
+              <div className="row ">
+                <div className="col-md-4 col-xs-0 qweqwe" align="center">
+                  {/* 改過的sidebar 只能這樣改了 :hover沒變箭頭可能要自己改一下*/}
+                  <div class=" sidebar2">
+                    <div class=" side_title2 ">請選擇賣家</div>
+                    <a
+                      class="nav-item"
+                      onClick={() => {
+                        seti(0)
+                      }}
+                    >
+                      <br />
+                      <GoStar />
+                      非洲人咖啡
+                    </a>
+                    <a
+                      class="nav-item"
+                      onClick={() => {
+                        seti(1)
+                      }}
+                    >
+                      <br />
+                      <GoStar />
+                      瑪麗亞咖啡
+                    </a>
+                    <a
+                      class="nav-item"
+                      onClick={() => {
+                        seti(2)
+                      }}
+                    >
+                      <br />
+                      <GoStar />
+                      古坑樹咖啡
+                    </a>
+                    <a
+                      class="nav-item"
+                      onClick={() => {
+                        seti(3)
+                      }}
+                    >
+                      <br />
+                      <GoStar />
+                      上島咖啡
+                    </a>
+                    <a
+                      class="nav-item"
+                      onClick={() => {
+                        seti(4)
+                      }}
+                    >
+                      <br />
+                      <GoStar />
+                      小樽咖啡
+                      <p />
+                    </a>
+                  </div>
+                  {/* 改過的sidebar 只能這樣改了 (end) */}
 
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <br />
-                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-                <br />
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <br />
-                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-                <br />
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <br />
-                <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
-                <br />
-                <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
-                <div className="row ccccc ">
-                  <div className="col-12 " align="center">
-                    <div class="tyu2">
-                      <Breadcrumb />
-                    </div>
-                    <div className="container bg-white pt-3 m-6 ">
-                      {' '}
-                      <div class=" sidebar3 ">
-                        <div class=" side_title3 ">請選擇賣家</div>
-                        <a
-                          class="nav-item"
-                          onClick={() => {
-                            seti(0)
-                          }}
-                        >
-                          <br />
-                          <GoStar />
-                          非洲人咖啡
-                        </a>
-                        <a
-                          class="nav-item"
-                          onClick={() => {
-                            seti(1)
-                          }}
-                        >
-                          <br />
-                          <GoStar />
-                          瑪麗亞咖啡
-                        </a>
-                        <a
-                          class="nav-item"
-                          onClick={() => {
-                            seti(2)
-                          }}
-                        >
-                          <br />
-                          <GoStar />
-                          古坑樹咖啡
-                        </a>
-                        <a
-                          class="nav-item"
-                          onClick={() => {
-                            seti(3)
-                          }}
-                        >
-                          <br />
-                          <GoStar />
-                          上島咖啡
-                        </a>
-                        <a
-                          class="nav-item"
-                          onClick={() => {
-                            seti(4)
-                          }}
-                        >
-                          <br />
-                          <GoStar />
-                          小樽咖啡
-                          <p />
-                        </a>
+                  <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad2.png" alt="ad2" width="80%"></img>
+                  <br />
+                  <img src="../../images/ad1.png" alt="ad1" width="80%"></img>
+                  <div className="row ccccc ">
+                    <div className="col-12 " align="center">
+                      <div class="tyu2">
+                        <Breadcrumb />
+                      </div>
+                      <div className="container bg-white pt-3 m-6 ">
+                        {' '}
+                        <div class=" sidebar3 ">
+                          <div class=" side_title3 ">請選擇賣家</div>
+                          <a
+                            class="nav-item"
+                            onClick={() => {
+                              seti(0)
+                            }}
+                          >
+                            <br />
+                            <GoStar />
+                            非洲人咖啡
+                          </a>
+                          <a
+                            class="nav-item"
+                            onClick={() => {
+                              seti(1)
+                            }}
+                          >
+                            <br />
+                            <GoStar />
+                            瑪麗亞咖啡
+                          </a>
+                          <a
+                            class="nav-item"
+                            onClick={() => {
+                              seti(2)
+                            }}
+                          >
+                            <br />
+                            <GoStar />
+                            古坑樹咖啡
+                          </a>
+                          <a
+                            class="nav-item"
+                            onClick={() => {
+                              seti(3)
+                            }}
+                          >
+                            <br />
+                            <GoStar />
+                            上島咖啡
+                          </a>
+                          <a
+                            class="nav-item"
+                            onClick={() => {
+                              seti(4)
+                            }}
+                          >
+                            <br />
+                            <GoStar />
+                            小樽咖啡
+                            <p />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-md-8 col-xs-12 asdasd">
-                <div class="tyu">
-                  <Breadcrumb />
-                </div>
-                <div className="row">
-                  <div className="col-12 " align="center">
-                    <div className="container bg-white pt-3 m-6 ">
-                      <h1>
-                        <strong>{sName}</strong>
-                      </h1>
-                      <h3 className="m-b-20 ">
-                        <strong>
-                          <Typed
-                            strings={[
-                              '來自各國優質賣家',
-                              '精心栽種的咖啡飲品',
-                              '就為了喝下那一刻的幸福',
-                            ]}
-                            typeSpeed={60}
-                            backSpeed={70}
-                            loop
-                          />
-                          <br />
-                        </strong>
-                      </h3>
+                <div className="col-md-8 col-xs-12 asdasd">
+                  <div class="tyu">
+                    <Breadcrumb />
+                  </div>
+                  <div className="row">
+                    <div className="col-12 " align="center">
+                      <div className="container bg-white pt-3 m-6 ">
+                        <h1>
+                          <strong>{sName}</strong>
+                        </h1>
+                        <h3 className="m-b-20 ">
+                          <strong>
+                            <Typed
+                              strings={[
+                                '來自各國優質賣家',
+                                '精心栽種的咖啡飲品',
+                                '就為了喝下那一刻的幸福',
+                              ]}
+                              typeSpeed={60}
+                              backSpeed={70}
+                              loop
+                            />
+                            <br />
+                          </strong>
+                        </h3>
 
-                      <Carousel>
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={require('../img/disc/seller_0' + a + '1.jpg')}
-                            alt="slide 001"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={require('../img/disc/seller_0' + a + '2.jpg')}
-                            alt="slide 002"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>{' '}
-                        <Carousel.Item>
-                          <img
-                            className="d-block w-100 carouselImage"
-                            src={require('../img/disc/seller_0' + a + '3.jpg')}
-                            alt="slide 003"
-                          />
-                          <Carousel.Caption>{/* text */}</Carousel.Caption>
-                        </Carousel.Item>{' '}
-                      </Carousel>
-                    </div>
-                    <div id="nn0"></div>
-                    <div className="row mt-3">
-                      <div className="col-lg-12">
-                        <div className="heading-title text-center container bg-white pt-3 m-6 ">
-                          <h2>賣家資訊</h2>
-                          <p>
-                            根據您的需求，能在此了解關於賣家的相關資訊，如基本資料與聯絡方式
-                          </p>
-                          <ButtonGroup aria-label="Basic example">
-                            {/* <Button variant="secondary" href="#">
+                        <Carousel>
+                          <Carousel.Item>
+                            <img
+                              className="d-block w-100 carouselImage"
+                              src={require('../img/disc/seller_0' +
+                                a +
+                                '1.jpg')}
+                              alt="slide 001"
+                            />
+                            <Carousel.Caption>{/* text */}</Carousel.Caption>
+                          </Carousel.Item>
+                          <Carousel.Item>
+                            <img
+                              className="d-block w-100 carouselImage"
+                              src={require('../img/disc/seller_0' +
+                                a +
+                                '2.jpg')}
+                              alt="slide 002"
+                            />
+                            <Carousel.Caption>{/* text */}</Carousel.Caption>
+                          </Carousel.Item>{' '}
+                          <Carousel.Item>
+                            <img
+                              className="d-block w-100 carouselImage"
+                              src={require('../img/disc/seller_0' +
+                                a +
+                                '3.jpg')}
+                              alt="slide 003"
+                            />
+                            <Carousel.Caption>{/* text */}</Carousel.Caption>
+                          </Carousel.Item>{' '}
+                        </Carousel>
+                      </div>
+                      <div id="nn0"></div>
+                      <div className="row mt-3">
+                        <div className="col-lg-12">
+                          <div className="heading-title text-center container bg-white pt-3 m-6 ">
+                            <h2>賣家資訊</h2>
+                            <p>
+                              根據您的需求，能在此了解關於賣家的相關資訊，如基本資料與聯絡方式
+                            </p>
+                            <ButtonGroup aria-label="Basic example">
+                              {/* <Button variant="secondary" href="#">
                       全部消息
                     </Button> */}
-                            <Button id="photo" variant="secondary">
-                              打開特色商品
-                            </Button>
-                            <Button id="shop2" variant="secondary">
-                              打開聯絡方式與基本資訊
-                            </Button>
+                              <Button id="photo" variant="secondary">
+                                打開特色商品
+                              </Button>
+                              <Button id="shop2" variant="secondary">
+                                打開聯絡方式與基本資訊
+                              </Button>
 
-                            <Button id="giri2" variant="secondary">
-                              打開店家剪影
-                            </Button>
+                              <Button id="giri2" variant="secondary">
+                                打開店家剪影
+                              </Button>
 
-                            <Button variant="secondary" id="nothank">
-                              謝了，我不想知道
-                            </Button>
-                          </ButtonGroup>
+                              <Button variant="secondary" id="nothank">
+                                謝了，我不想知道
+                              </Button>
+                            </ButtonGroup>
 
-                          <ButtonGroup
-                            aria-label="Basic example"
-                            className="mt-1"
-                          >
-                            {/* <Button variant="secondary" href="#">
+                            <ButtonGroup
+                              aria-label="Basic example"
+                              className="mt-1"
+                            >
+                              {/* <Button variant="secondary" href="#">
                       全部消息
                     </Button> */}
-                            <Button variant="secondary" data-scroll href="#nn1">
-                              跳轉特色商品
-                            </Button>
-                            <Button variant="secondary" data-scroll href="#nn2">
-                              跳轉聯絡方式與基本資訊
-                            </Button>
+                              <Button
+                                variant="secondary"
+                                data-scroll
+                                href="#nn1"
+                              >
+                                跳轉特色商品
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                data-scroll
+                                href="#nn2"
+                              >
+                                跳轉聯絡方式與基本資訊
+                              </Button>
 
-                            <Button variant="secondary" data-scroll href="#nn3">
-                              跳轉店家剪影
-                            </Button>
-                            {/* 
+                              <Button
+                                variant="secondary"
+                                data-scroll
+                                href="#nn3"
+                              >
+                                跳轉店家剪影
+                              </Button>
+                              {/* 
                             <Button variant="secondary" data-scroll href="#nn0">
                               謝了，我想回上面
                             </Button> */}
-                          </ButtonGroup>
+                            </ButtonGroup>
 
-                          <p className="text-white">123</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="nn3"></div>
-                <div className="row mt-3 " id="nothank3">
-                  <div className="col-12 " align="center">
-                    <div className="container bg-white pt-3 m-6 ">
-                      <div className="qt-background mt-3" id="giri2">
-                        <div className="text-white " align="center">
-                          <h3>"店家剪影"</h3>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="col-lg-4 col-md-6 special-grid drinks">
-                    <div className="gallery-single fix">
-                      <ProductListItem>
-                        <img
-                          className="d-block h-100 w-100 "
-                          src={disc1}
-                          alt="slide 004"
-                        />
-                      </ProductListItem>
-                      <div className="why-text" align="center">
-                        <p>深烘培咖啡粉</p>
-                        <h5> 售價:NT.80</h5>
-                      </div>
-                    </div>
-                  </div> */}
-                  <div className="col-12 container bg-white pt-3 m-6 ">
-                    <div className="row">
-                      <div className="col-6 ">
-                        {/* <img
-                      className="d-block h-40 w-100 "
-                      src={img004}
-                      alt="slide 004"
-                    /> */}
-
-                        <div
-                          class="team-thumb wow fadeInUp"
-                          data-wow-delay="0.2s"
-                          id="shop2"
-                        >
-                          <img
-                            className="d-block h-100 w-100  "
-                            src={require('../img/disc/seller_1' + a + '1.jpg')}
-                            alt="slide 004"
-                          />
-                          <div class="team-hover">
-                            <div class="team-item text-white">
-                              <h4>最棒的咖啡</h4>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        {/* <img
-                      className="d-block h-40 w-100 "
-                      src={img004}
-                      alt="slide 004"
-                    /> */}
-                        <div
-                          class="team-thumb wow fadeInUp"
-                          data-wow-delay="0.2s"
-                        >
-                          <img
-                            className="d-block h-100 w-100 "
-                            src={require('../img/disc/seller_1' + a + '2.jpg')}
-                            alt="slide 004"
-                          />
-                          <div class="team-hover">
-                            <div class="team-item text-white">
-                              <h4>最佳的氣氛</h4>
-                            </div>
+                            <p className="text-white">123</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                  <div id="nn3"></div>
+                  <div className="row mt-3 " id="nothank3">
+                    <div className="col-12 " align="center">
+                      <div className="container bg-white pt-3 m-6 ">
+                        <div className="qt-background mt-3" id="giri2">
+                          <div className="text-white " align="center">
+                            <h3>"店家剪影"</h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                    {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                    {/* <div className="col-lg-4 col-md-6 special-grid drinks">
+                    <div className="gallery-single fix">
+                      <ProductListItem>
+                        <img
+                          className="d-block h-100 w-100 "
+                          src={disc1}
+                          alt="slide 004"
+                        />
+                      </ProductListItem>
+                      <div className="why-text" align="center">
+                        <p>深烘培咖啡粉</p>
+                        <h5> 售價:NT.80</h5>
+                      </div>
+                    </div>
+                  </div> */}
+                    <div className="col-12 container bg-white pt-3 m-6 ">
+                      <div className="row">
+                        <div className="col-6 ">
+                          {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
 
-                {/* <div className="row mt-3">
+                          <div
+                            class="team-thumb wow fadeInUp"
+                            data-wow-delay="0.2s"
+                            id="shop2"
+                          >
+                            <img
+                              className="d-block h-100 w-100  "
+                              src={require('../img/disc/seller_1' +
+                                a +
+                                '1.jpg')}
+                              alt="slide 004"
+                            />
+                            <div class="team-hover">
+                              <div class="team-item text-white">
+                                <h4>最棒的咖啡</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-6">
+                          {/* <img
+                      className="d-block h-40 w-100 "
+                      src={img004}
+                      alt="slide 004"
+                    /> */}
+                          <div
+                            class="team-thumb wow fadeInUp"
+                            data-wow-delay="0.2s"
+                          >
+                            <img
+                              className="d-block h-100 w-100 "
+                              src={require('../img/disc/seller_1' +
+                                a +
+                                '2.jpg')}
+                              alt="slide 004"
+                            />
+                            <div class="team-hover">
+                              <div class="team-item text-white">
+                                <h4>最佳的氣氛</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>簡介</h1>
@@ -524,7 +548,7 @@ function Sellers() {
                   </div>
                 </div> */}
 
-                {/* <div className=" card-deck ">
+                  {/* <div className=" card-deck ">
                   <ProductListItem>
                     <p>編 號:</p>
                     <p>{selID}</p>
@@ -538,80 +562,80 @@ function Sellers() {
                     <p>{sAddress}</p>
                   </ProductListItem>
                 </div> */}
-                <div id="nn2"></div>
-                <div className="row mt-3 " id="nothank4">
-                  <div className="col-12 " align="center">
-                    <div className="container bg-white pt-3 m-6 ">
-                      <div className=" card-deck">
-                        <ProductListItem>
-                          <p />
+                  <div id="nn2"></div>
+                  <div className="row mt-3 " id="nothank4">
+                    <div className="col-12 " align="center">
+                      <div className="container bg-white pt-3 m-6 ">
+                        <div className=" card-deck">
+                          <ProductListItem>
+                            <p />
 
-                          <div className="qt-background2 mt-3" id="giri2">
-                            <div className="text-white " align="center">
-                              <h3 onClick={handleShow}>
-                                <strong>"聯絡方式與基本資訊"</strong>
-                              </h3>
+                            <div className="qt-background2 mt-3" id="giri2">
+                              <div className="text-white " align="center">
+                                <h3 onClick={handleShow}>
+                                  <strong>"聯絡方式與基本資訊"</strong>
+                                </h3>
+                              </div>
                             </div>
-                          </div>
-                          <Accordion className="mt-3">
-                            <Card>
-                              <Card.Header>
-                                <Accordion.Toggle
-                                  as={Button}
-                                  variant="link"
-                                  eventKey="0"
-                                >
-                                  電 話
-                                </Accordion.Toggle>
-                              </Card.Header>
-                              <Accordion.Collapse eventKey="0">
-                                <Card.Body>{sPhone}</Card.Body>
-                              </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                              <Card.Header>
-                                <Accordion.Toggle
-                                  as={Button}
-                                  variant="link"
-                                  eventKey="1"
-                                >
-                                  信 箱
-                                </Accordion.Toggle>
-                              </Card.Header>
-                              <Accordion.Collapse eventKey="1">
-                                <Card.Body>{sMail}</Card.Body>
-                              </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                              <Card.Header>
-                                <Accordion.Toggle
-                                  as={Button}
-                                  variant="link"
-                                  eventKey="2"
-                                >
-                                  國 家
-                                </Accordion.Toggle>
-                              </Card.Header>
-                              <Accordion.Collapse eventKey="2">
-                                <Card.Body>{sCountry}</Card.Body>
-                              </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                              <Card.Header>
-                                <Accordion.Toggle
-                                  as={Button}
-                                  variant="link"
-                                  eventKey="3"
-                                >
-                                  地 址
-                                </Accordion.Toggle>
-                              </Card.Header>
-                              <Accordion.Collapse eventKey="3">
-                                <Card.Body>{sAddress}</Card.Body>
-                              </Accordion.Collapse>
-                            </Card>
-                          </Accordion>
-                          {/* <button
+                            <Accordion className="mt-3">
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle
+                                    as={Button}
+                                    variant="link"
+                                    eventKey="0"
+                                  >
+                                    電 話
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                  <Card.Body>{sPhone}</Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle
+                                    as={Button}
+                                    variant="link"
+                                    eventKey="1"
+                                  >
+                                    信 箱
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="1">
+                                  <Card.Body>{sMail}</Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle
+                                    as={Button}
+                                    variant="link"
+                                    eventKey="2"
+                                  >
+                                    國 家
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="2">
+                                  <Card.Body>{sCountry}</Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle
+                                    as={Button}
+                                    variant="link"
+                                    eventKey="3"
+                                  >
+                                    地 址
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="3">
+                                  <Card.Body>{sAddress}</Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                            </Accordion>
+                            {/* <button
                       type="button"
                       className="btn btn-danger text-white"
                       onClick={handleShow}
@@ -619,21 +643,21 @@ function Sellers() {
                       想看更多
                     </button> */}
 
-                          <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                              <Modal.Title>{sName}</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              <p>電 話:{sPhone}</p>
-                              <p>信 箱:{sMail}</p>
-                              <p>國 家:{sCountry}</p>
-                              <p>地 址:{sAddress}</p>
-                            </Modal.Body>
-                            <Modal.Footer></Modal.Footer>
-                          </Modal>
-                        </ProductListItem>
-                      </div>
-                      {/* <div className=" card-deck">
+                            <Modal show={show} onHide={handleClose}>
+                              <Modal.Header closeButton>
+                                <Modal.Title>{sName}</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                <p>電 話:{sPhone}</p>
+                                <p>信 箱:{sMail}</p>
+                                <p>國 家:{sCountry}</p>
+                                <p>地 址:{sAddress}</p>
+                              </Modal.Body>
+                              <Modal.Footer></Modal.Footer>
+                            </Modal>
+                          </ProductListItem>
+                        </div>
+                        {/* <div className=" card-deck">
                         <ProductListItem>
                           <p />
                           <h3 onClick={handleShow2}>基 本 資 料 </h3>
@@ -680,18 +704,18 @@ function Sellers() {
                           </Modal>
                         </ProductListItem>
                       </div> */}
+                      </div>
+                      <Button
+                        className=" btn-success text-white m-3"
+                        variant="secondary"
+                        data-scroll
+                        href="#nn0"
+                      >
+                        謝了，我想回上面
+                      </Button>
                     </div>
-                    <Button
-                      className=" btn-success text-white m-3"
-                      variant="secondary"
-                      data-scroll
-                      href="#nn0"
-                    >
-                      謝了，我想回上面
-                    </Button>
                   </div>
-                </div>
-                {/* <div className=" card-deck">
+                  {/* <div className=" card-deck">
                   <ProductListItem>
                     <p>國 家:</p>
                     <p>{sCountry}</p>
@@ -701,14 +725,14 @@ function Sellers() {
                     <p>{sAddress}</p>
                   </ProductListItem>
                 </div> */}
-                {/* <div className="row mt-3">
+                  {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>賣家故事</h1>
                     </div>
                   </div>
                 </div> */}
-                {/* <div className="row mt-3">
+                  {/* <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -738,7 +762,7 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
-                {/* <div className="row mt-3">
+                  {/* <div className="row mt-3">
                   <div className="col-4">
                     <div className="container bg-white pt-3 m-6 ">
                       <h4>
@@ -772,136 +796,137 @@ function Sellers() {
                     </div>
                   </div>
                 </div> */}
-                <div id="nn1"></div>
-                <div className="row mt-3 " id="nothank5">
-                  <div className="col-12 " align="center">
-                    <div className="container bg-white pt-3 m-6 ">
-                      <div className="qt-background3 mt-3">
-                        <div className="text-white " align="center">
-                          <h3>"特色商品，了解商品相關資訊"</h3>
+                  <div id="nn1"></div>
+                  <div className="row mt-3 " id="nothank5">
+                    <div className="col-12 " align="center">
+                      <div className="container bg-white pt-3 m-6 ">
+                        <div className="qt-background3 mt-3">
+                          <div className="text-white " align="center">
+                            <h3>"特色商品，了解商品相關資訊"</h3>
+                          </div>
                         </div>
-                      </div>
-                      {/* <div className="row mt-3">
+                        {/* <div className="row mt-3">
                   <div className="col-12" align="center">
                     <div className="container bg-white pt-3 m-6 ">
                       <h1>特色商品</h1>
                     </div>
                   </div>
                 </div> */}
-                      <div className="row mt-3 ">
-                        <div className="col-lg-4 col-md-6 special-grid drinks">
-                          <div className="gallery-single fix">
-                            <ProductListItem>
-                              <img
-                                className="d-block h-100 w-100 "
-                                src={require('../img/disc/p' + a + '1.jpg')}
-                                alt="slide 004"
-                              />
-                            </ProductListItem>
-                            <div>
-                              <h4 align="center">{ProductName1}</h4>
-                            </div>
-                            <div className="why-text" align="center">
-                              <p>
-                                {sName}:<br />
-                                {ProductName1}
-                              </p>
-                              <h5> 售價:NT.{UnitPrice1}</h5>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6 special-grid drinks">
-                          <div className="gallery-single fix">
-                            <ProductListItem>
-                              <img
-                                className="d-block h-100 w-100 "
-                                src={require('../img/disc/p' + a + '2.jpg')}
-                                alt="slide 004"
-                              />
-                            </ProductListItem>
-                            <div>
-                              <h4 align="center">{ProductName2}</h4>
-                            </div>
-                            <div className="why-text" align="center">
-                              <p>
-                                {sName}:<br />
-                                {ProductName2}
-                              </p>
-                              <h5> 售價:NT.{UnitPrice2}</h5>
+                        <div className="row mt-3 ">
+                          <div className="col-lg-4 col-md-6 special-grid drinks">
+                            <div className="gallery-single fix">
+                              <ProductListItem>
+                                <img
+                                  className="d-block h-100 w-100 "
+                                  src={require('../img/disc/p' + a + '1.jpg')}
+                                  alt="slide 004"
+                                />
+                              </ProductListItem>
+                              <div>
+                                <h4 align="center">{ProductName1}</h4>
+                              </div>
+                              <div className="why-text" align="center">
+                                <p>
+                                  {sName}:<br />
+                                  {ProductName1}
+                                </p>
+                                <h5> 售價:NT.{UnitPrice1}</h5>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6 special-grid drinks">
-                          <div className="gallery-single fix">
-                            <ProductListItem>
-                              <img
-                                className="d-block h-100 w-100 "
-                                src={require('../img/disc/p' + a + '3.jpg')}
-                                alt="slide 004"
-                              />
-                            </ProductListItem>
-                            <div>
-                              <h4 align="center">{ProductName3}</h4>
-                            </div>
-                            <div className="why-text" align="center">
-                              <p>
-                                {sName}:<br />
-                                {ProductName3}
-                              </p>
-                              <h5> 售價:NT.{UnitPrice3}</h5>
+                          <div className="col-lg-4 col-md-6 special-grid drinks">
+                            <div className="gallery-single fix">
+                              <ProductListItem>
+                                <img
+                                  className="d-block h-100 w-100 "
+                                  src={require('../img/disc/p' + a + '2.jpg')}
+                                  alt="slide 004"
+                                />
+                              </ProductListItem>
+                              <div>
+                                <h4 align="center">{ProductName2}</h4>
+                              </div>
+                              <div className="why-text" align="center">
+                                <p>
+                                  {sName}:<br />
+                                  {ProductName2}
+                                </p>
+                                <h5> 售價:NT.{UnitPrice2}</h5>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        {/* <div className="col-4">
+                          <div className="col-lg-4 col-md-6 special-grid drinks">
+                            <div className="gallery-single fix">
+                              <ProductListItem>
+                                <img
+                                  className="d-block h-100 w-100 "
+                                  src={require('../img/disc/p' + a + '3.jpg')}
+                                  alt="slide 004"
+                                />
+                              </ProductListItem>
+                              <div>
+                                <h4 align="center">{ProductName3}</h4>
+                              </div>
+                              <div className="why-text" align="center">
+                                <p>
+                                  {sName}:<br />
+                                  {ProductName3}
+                                </p>
+                                <h5> 售價:NT.{UnitPrice3}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          {/* <div className="col-4">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                        {/* <div className="col-4 ">
+                          {/* <div className="col-4 ">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                        {/* <div className="col-4">
+                          {/* <div className="col-4">
                     <img
                       className="d-block h-40 w-100 "
                       src={img004}
                       alt="slide 004"
                     />
                   </div> */}
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-12" align="center">
-                          <button
-                            type="button"
-                            className="btn btn-danger text-white"
-                          >
-                            <Link className="text-white" to="/productList">
-                              想看更多
-                            </Link>
-                          </button>
-                          <Button
-                            className=" btn-success text-white m-3"
-                            variant="secondary"
-                            data-scroll
-                            href="#nn0"
-                          >
-                            謝了，我想回上面
-                          </Button>
                         </div>
-                        <p className="text-white">123</p>
+                        <div className="row mt-3">
+                          <div className="col-12" align="center">
+                            <button
+                              type="button"
+                              className="btn btn-danger text-white"
+                            >
+                              <Link className="text-white" to="/productList">
+                                想看更多
+                              </Link>
+                            </button>
+                            <Button
+                              className=" btn-success text-white m-3"
+                              variant="secondary"
+                              data-scroll
+                              href="#nn0"
+                            >
+                              謝了，我想回上面
+                            </Button>
+                          </div>
+                          <p className="text-white">123</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <br />
             </div>
-            <br />
-          </div>
+          </FadeIn>
         </div>
       </div>
     </>

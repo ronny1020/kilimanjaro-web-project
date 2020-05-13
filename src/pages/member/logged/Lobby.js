@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ReactCrop from 'react-image-crop'
 import swal from 'sweetalert'
+import FadeIn from 'react-fade-in'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import Edit from './Edit'
@@ -248,153 +249,154 @@ function Member(props) {
                       <p className="text-white">~歡迎來到最棒的會員中心！~</p>
                     </div>
                   </div>
-                  <LobbyTitle
-                    string={'會員中心'}
-                    isAuth={props.isAuth}
-                    setIsAuth={props.setIsAuth}
-                  />
-                  <div
-                    className="container bg-secondary"
-                    style={{ overflow: 'auto' }}
-                  >
-                    <div className="row" style={{ minHeight: '100vh' }}>
-                      <div className="col-8 lobbyL">
-                        <Breadcrumb />
-                        <Row style={{ marginBottom: '1em' }}>
-                          <Col lg={8} className="pr-0 lobbyBannerL">
-                            <div
-                              className="bg-white"
-                              style={{
-                                border: '0.5px solid lightgrey',
-                                // borderRight: 0,
-                                height: '100%',
-                              }}
-                            >
+                  <FadeIn>
+                    <LobbyTitle
+                      string={'會員中心'}
+                      isAuth={props.isAuth}
+                      setIsAuth={props.setIsAuth}
+                    />
+                    <div
+                      className="container bg-secondary"
+                      style={{ overflow: 'auto' }}
+                    >
+                      <div className="row" style={{ minHeight: '100vh' }}>
+                        <div className="col-8 lobbyL">
+                          <Breadcrumb />
+                          <Row style={{ marginBottom: '1em' }}>
+                            <Col lg={8} className="pr-0 lobbyBannerL">
                               <div
-                                className="container"
+                                className="bg-white"
                                 style={{
-                                  borderBottom: '0.5px solid lightgray',
-                                  height: 'auto',
+                                  border: '0.5px solid lightgrey',
+                                  // borderRight: 0,
+                                  height: '100%',
                                 }}
                               >
-                                <h2>您好, 會員{name}</h2>
-                                <h6>您登入的時間為：{loginTime}</h6>
-                              </div>
-                              <div className="container">
-                                <h4>
-                                  您目前累積的紅利點數：
-                                  <code
-                                    style={{
-                                      fontSize: '1.5em',
-                                      color: '#fab5b5',
-                                    }}
-                                  >
-                                    {point}
-                                  </code>
-                                </h4>
-                              </div>
-                            </div>
-                          </Col>
-
-                          {/* 上傳頭像: 表單 */}
-                          <Col lg={4} className="pl-0 lobbyBannerR">
-                            <div
-                              className="bg-white changeBorder"
-                              style={{
-                                border: '0.5px solid lightgrey',
-                                borderLeft: 0,
-                                minHeight: '20vh',
-                              }}
-                            >
-                              <Form encType="multipart/form-data">
-                                <input
-                                  id="upload_img"
-                                  type="file"
-                                  name="avatar"
-                                  // 預設只接受圖檔
-                                  accept="image/*"
-                                  hidden
-                                  onChange={handleOpen}
-                                />
-                                <div className="container profileDiv">
-                                  <Image
-                                    className="profile"
-                                    src={uploadImg}
-                                    roundedCircle
-                                    onClick={handleClick}
-                                    onError={addDefaultSRC} //Image fallback
-                                  />
-                                  <FaEdit
-                                    className="profileEdit"
-                                    onClick={handleClick}
-                                  />
+                                <div
+                                  className="container"
+                                  style={{
+                                    borderBottom: '0.5px solid lightgray',
+                                    height: 'auto',
+                                  }}
+                                >
+                                  <h2>您好, 會員{name}</h2>
+                                  <h6>您登入的時間為：{loginTime}</h6>
                                 </div>
-                              </Form>
-                            </div>
-                          </Col>
-                          {/* 上傳頭像: 表單(end) */}
-                        </Row>
-                        <CardGroup>
-                          <LobbyCard
-                            title="修改會員資料"
-                            content="修改信箱、住址、姓名等註冊資料。"
-                            to="/lobby/edit"
-                            img="FaUserEdit"
-                          />
-                          <LobbyCard
-                            title="連絡客服"
-                            content="您的寶貴意見將徹底反映給我們"
-                            to="/about#mm5"
-                            img="IoMdMail"
-                          />
-                          <LobbyCard
-                            title="查看購物車"
-                            content="查看您準備購買的商品。"
-                            to="/cart"
-                            img="FaCartArrowDown"
-                          />
-                        </CardGroup>
+                                <div className="container">
+                                  <h4>
+                                    您目前累積的紅利點數：
+                                    <code
+                                      style={{
+                                        fontSize: '1.5em',
+                                        color: '#fab5b5',
+                                      }}
+                                    >
+                                      {point}
+                                    </code>
+                                  </h4>
+                                </div>
+                              </div>
+                            </Col>
 
-                        <CardGroup>
-                          <LobbyCard
-                            title="交易紀錄"
-                            content="觀看過去在吉利馬札羅的消費紀錄。"
-                            to="/lobby/history"
-                            img="FaCreditCard"
-                          />
-                          <LobbyCard
-                            title="喜好清單"
-                            content="過去引起您注目，並可能進行購買的商品。"
-                            to="/lobby/favorite"
-                            img="MdFavorite"
-                          />
-                          <LobbyCard
-                            title="折扣券"
-                            content="確認目前擁有可以使用的折扣。"
-                            to="/lobby/coupon"
-                            img="GiTicket"
-                          />
-                        </CardGroup>
+                            {/* 上傳頭像: 表單 */}
+                            <Col lg={4} className="pl-0 lobbyBannerR">
+                              <div
+                                className="bg-white changeBorder"
+                                style={{
+                                  border: '0.5px solid lightgrey',
+                                  borderLeft: 0,
+                                  minHeight: '20vh',
+                                }}
+                              >
+                                <Form encType="multipart/form-data">
+                                  <input
+                                    id="upload_img"
+                                    type="file"
+                                    name="avatar"
+                                    // 預設只接受圖檔
+                                    accept="image/*"
+                                    hidden
+                                    onChange={handleOpen}
+                                  />
+                                  <div className="container profileDiv">
+                                    <Image
+                                      className="profile"
+                                      src={uploadImg}
+                                      roundedCircle
+                                      onClick={handleClick}
+                                      onError={addDefaultSRC} //Image fallback
+                                    />
+                                    <FaEdit
+                                      className="profileEdit"
+                                      onClick={handleClick}
+                                    />
+                                  </div>
+                                </Form>
+                              </div>
+                            </Col>
+                            {/* 上傳頭像: 表單(end) */}
+                          </Row>
+                          <CardGroup>
+                            <LobbyCard
+                              title="修改會員資料"
+                              content="修改信箱、住址、姓名等註冊資料。"
+                              to="/lobby/edit"
+                              img="FaUserEdit"
+                            />
+                            <LobbyCard
+                              title="連絡客服"
+                              content="您的寶貴意見將徹底反映給我們"
+                              to="/about#mm5"
+                              img="IoMdMail"
+                            />
+                            <LobbyCard
+                              title="查看購物車"
+                              content="查看您準備購買的商品。"
+                              to="/cart"
+                              img="FaCartArrowDown"
+                            />
+                          </CardGroup>
+
+                          <CardGroup>
+                            <LobbyCard
+                              title="交易紀錄"
+                              content="觀看過去在吉利馬札羅的消費紀錄。"
+                              to="/lobby/history"
+                              img="FaCreditCard"
+                            />
+                            <LobbyCard
+                              title="喜好清單"
+                              content="過去引起您注目，並可能進行購買的商品。"
+                              to="/lobby/favorite"
+                              img="MdFavorite"
+                            />
+                            <LobbyCard
+                              title="折扣券"
+                              content="確認目前擁有可以使用的折扣。"
+                              to="/lobby/coupon"
+                              img="GiTicket"
+                            />
+                          </CardGroup>
+                        </div>
+                        <div className="col-4 lobbyR" align="center">
+                          <br />
+                          <img
+                            src="../../images/ad1.png"
+                            alt="ad1"
+                            width="80%"
+                          ></img>
+                          <br />
+                          <img
+                            src="../../images/ad2.png"
+                            alt="ad2"
+                            width="80%"
+                          ></img>
+                        </div>
                       </div>
-                      <div className="col-4 lobbyR" align="center">
-                        <br />
-                        <img
-                          src="../../images/ad1.png"
-                          alt="ad1"
-                          width="80%"
-                        ></img>
-                        <br />
-                        <img
-                          src="../../images/ad2.png"
-                          alt="ad2"
-                          width="80%"
-                        ></img>
-                      </div>
+                      <br />
                     </div>
-                    <br />
-                  </div>
-                  {/* 裁剪大頭貼之modal😜 */}
-
+                    {/* 裁剪大頭貼之modal😜 */}
+                  </FadeIn>
                   <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
