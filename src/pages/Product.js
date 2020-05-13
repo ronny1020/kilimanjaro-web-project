@@ -360,7 +360,7 @@ function Product(props) {
                   async function add() {
                     await AddComment(product.productID, memberID, rate, comment)
                     await getProduct(id, memberID)
-                    handleAddAlertClick()
+                    if (memberID) handleAddAlertClick()
                   }
                   if (rate && comment) {
                     add()
@@ -469,8 +469,10 @@ function Product(props) {
             <ProductImageStepper productID={product.productID} />
           </div>
           <div className="col-md-6">
-            {' '}
-            <h2>產品名稱：{product.ProductName}</h2>
+            <h2>{product.ProductName}</h2>
+            <br />
+            <p>廠商：{product.sName}</p>
+            <p>類別：{product.categoryName}</p>
             <p>價格：{product.UnitPrice}</p>
             {product.discount !== null ? (
               <p>special price:{product.UnitPrice - product.discount}</p>
