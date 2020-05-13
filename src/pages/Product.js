@@ -240,7 +240,7 @@ function Product(props) {
                 <img
                   src={'http://localhost:6001/api/image/' + comment.customerID}
                   alt="NoImage"
-                  className="commentsImage"
+                  className="commentsImage rounded-circle img-thumbnail"
                   onError={(event) => {
                     event.target.src = '../../images/interface.svg'
                   }}
@@ -323,7 +323,16 @@ function Product(props) {
     <div>
       <CardSecondary>
         <div className="row">
-          <div className="col-md-3"></div>
+          <div className="col-md-3 d-flex justify-content-center align-self-center">
+            <img
+              src={'http://localhost:6001/api/image/' + memberID}
+              alt="NoImage"
+              className="commentsImage rounded-circle img-thumbnail"
+              onError={(event) => {
+                event.target.src = '../../images/interface.svg'
+              }}
+            ></img>
+          </div>
           <div className="col-md-9">
             <div className="form-group">
               <Rating
@@ -384,7 +393,7 @@ function Product(props) {
               <img
                 src={'http://localhost:6001/api/image/' + comment.customerID}
                 alt="NoImage"
-                className="commentsImage"
+                className="commentsImage rounded-circle img-thumbnail"
                 onError={(event) => {
                   event.target.src = '../../images/interface.svg'
                 }}
