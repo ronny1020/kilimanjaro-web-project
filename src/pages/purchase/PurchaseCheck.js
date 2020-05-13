@@ -7,6 +7,7 @@ import { getMemberID } from '../../actions/getMemberID'
 import CardSecondary from '../../components/CardSecondary'
 
 import { createOrder } from '../../actions/purchaseFormStorage'
+import { getCartNum } from '../../actions/CartAction'
 
 function PurchaseCheck(props) {
   const memberID = getMemberID()
@@ -16,7 +17,7 @@ function PurchaseCheck(props) {
   }
 
   let history = useHistory()
-  const { Cart, ShipmentInfo, createOrder, Member } = props
+  const { Cart, ShipmentInfo, createOrder, Member, getCartNum } = props
 
   Cart || window.location.replace('./Cart')
   Cart.length || window.location.replace('./Cart')
@@ -120,7 +121,11 @@ function PurchaseCheck(props) {
           className="btn btn-success mt-5"
           onClick={(e) => {
             e.preventDefault()
-            createOrder(memberID, ShipmentInfo)
+            async function order() {
+              await createOrder(memberID, ShipmentInfo)
+              await getCartNum(memberID)
+            }
+            order()
             history.push('/purchaseComplied')
           }}
         >
@@ -139,4 +144,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { createOrder })(PurchaseCheck)
+export default connect(mapStateToProps, { createOrder, getCartNum })(
+  PurchaseCheck
+)
