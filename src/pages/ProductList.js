@@ -64,7 +64,8 @@ function ProductList(props) {
 
   const [orderBy, setOrderBy] = React.useState('')
   const [period, setPeriod] = React.useState('all')
-  const [rate, setRate] = React.useState(0)
+  const [rate, setRate] = React.useState(null)
+
   // eslint-disable-next-line no-unused-vars
   const [showZoom, setShowZoom] = React.useState(true)
 
