@@ -43,8 +43,13 @@ h6 {
   height: 70px;
 }
 
-@media screen and(max-width:800px){
-  body{
+@media screen and(max-width:800px) {
+  body {
     padding-bottom: 10vh;
   }
+}
+
+::selection {
+  background: $primary;
+  color: white;
 }
