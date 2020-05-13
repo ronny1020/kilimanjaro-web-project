@@ -55,7 +55,7 @@ function HomeCarousel() {
             alt="slide 002"
           />
           <Carousel.Caption>
-            <h1>
+            <h4>
               {' '}
               <strong>
                 <Typed
@@ -69,7 +69,7 @@ function HomeCarousel() {
                 />
                 <br />
               </strong>
-            </h1>
+            </h4>
           </Carousel.Caption>
         </Carousel.Item>{' '}
         <Carousel.Item>
@@ -79,7 +79,7 @@ function HomeCarousel() {
             alt="slide 003"
           />
           <Carousel.Caption>
-            <h1>
+            <h4>
               {' '}
               <strong>
                 <Typed
@@ -93,7 +93,7 @@ function HomeCarousel() {
                 />
                 <br />
               </strong>
-            </h1>
+            </h4>
           </Carousel.Caption>
         </Carousel.Item>{' '}
         <Carousel.Item>
@@ -127,7 +127,7 @@ function HomeCarousel() {
             alt="slide 005"
           />
           <Carousel.Caption>
-            <h1>
+            <h4>
               {' '}
               <strong>
                 <Typed
@@ -141,7 +141,7 @@ function HomeCarousel() {
                 />
                 <br />
               </strong>
-            </h1>
+            </h4>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -151,7 +151,7 @@ function HomeCarousel() {
             alt="slide 006"
           />
           <Carousel.Caption>
-            <h1>
+            <h4>
               {' '}
               <strong>
                 <Typed
@@ -165,7 +165,7 @@ function HomeCarousel() {
                 />
                 <br />
               </strong>
-            </h1>
+            </h4>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
