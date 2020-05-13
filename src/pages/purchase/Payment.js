@@ -93,7 +93,10 @@ function Payment(props) {
       </div>
       <CardSecondary>
         <div className="row ml-5">
-          <p>您還可折抵 {Member.rewardsPoints} 點</p>
+          <div className="col-md-3 "></div>
+          <div className="col-md-9 d-flex align-items-center">
+            <p>您還可折抵 {Member.rewardsPoints} 點</p>
+          </div>
         </div>
         <label htmlFor="rewardPoint" className="row m-3">
           <div className="col-md-3 d-flex align-items-center">點數折抵數量</div>
@@ -215,7 +218,7 @@ function Payment(props) {
             <Radio
               checked={invoiceValue === '3'}
               onChange={invoiceChange}
-              value="2"
+              value="3"
               color="primary"
               name="invoice"
               id="triplicateUniform"
@@ -224,6 +227,16 @@ function Payment(props) {
           </div>
           <div className="col-9 d-flex align-items-center">三聯電子發票</div>
         </label>
+        {invoiceValue === '3' ? (
+          <label htmlFor="BusinessNumber" className="row">
+            <div className="col-3 d-flex justify-content-center">
+              <p>統一編號</p>
+            </div>
+            <div className="col-9 d-flex justify-content-start">
+              <input type="text" id="BusinessNumber" className="form-control" />
+            </div>
+          </label>
+        ) : null}
       </CardSecondary>
 
       <div className="container p-0">
