@@ -51,6 +51,24 @@ function Sellers() {
   // const handleShow2 = () => setShow2(true)
   // const [total, setTotal] = useState([])
 
+  //五個店家名稱存放於此
+  const [storeNames, setStoreNames] = useState([])
+  const [getList, setGetList] = useState(true)
+  if (getList === true) {
+    fetch('http://localhost:6001/sellersApi')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (myJson) {
+        for (let i = 0; i < 5; i++) {
+          setStoreNames(
+            (storeNames) => storeNames.concat(myJson.MemberList[i].sName)
+            // [...storeNames, myJson.MemberList[i].sName]
+          )
+        }
+      })
+      .then(() => setGetList(false))
+  }
   // async function getTotalFromServer() {
   //   const request = new Request('http://localhost:6001/sellers_introListApi', {
   //     method: 'GET',
@@ -111,12 +129,13 @@ function Sellers() {
       })
   }, [sellerID])
 
-  console.log(sellerList)
-  console.log(sellerList2)
-  console.log(sellerID)
-  console.log(ProductName1)
-  console.log(ProductName2)
-  console.log(ProductName3)
+  // console.log(sellerList)
+  // console.log(sellerList2)
+  // console.log(sellerID)
+  // console.log(ProductName1)
+  // console.log(ProductName2)
+  // console.log(ProductName3)
+  // console.log(storeNames[1])
 
   var a = String(i)
   // var a = total.MemberList
@@ -175,7 +194,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      非洲人咖啡
+                      {(getList === true) === 0 ? null : storeNames[0]}
                     </a>
                     <a
                       class="nav-item"
@@ -185,7 +204,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      瑪麗亞咖啡
+                      {(getList === true) === 0 ? null : storeNames[1]}
                     </a>
                     <a
                       class="nav-item"
@@ -195,7 +214,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      古坑樹咖啡
+                      {(getList === true) === 0 ? null : storeNames[2]}
                     </a>
                     <a
                       class="nav-item"
@@ -205,7 +224,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      上島咖啡
+                      {(getList === true) === 0 ? null : storeNames[3]}
                     </a>
                     <a
                       class="nav-item"
@@ -215,7 +234,7 @@ function Sellers() {
                     >
                       <br />
                       <GoStar />
-                      小樽咖啡
+                      {getList === true ? null : storeNames[4]}
                       <p />
                     </a>
                   </div>
@@ -251,7 +270,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            非洲人咖啡
+                            {getList === false ? storeNames[0] : null}
                           </a>
                           <a
                             class="nav-item"
@@ -261,7 +280,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            瑪麗亞咖啡
+                            {getList === false ? storeNames[0] : null}
                           </a>
                           <a
                             class="nav-item"
@@ -271,7 +290,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            古坑樹咖啡
+                            {storeNames[0]}
                           </a>
                           <a
                             class="nav-item"
@@ -281,7 +300,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            上島咖啡
+                            {storeNames[0]}
                           </a>
                           <a
                             class="nav-item"
@@ -291,7 +310,7 @@ function Sellers() {
                           >
                             <br />
                             <GoStar />
-                            小樽咖啡
+                            {storeNames[0]}
                             <p />
                           </a>
                         </div>
