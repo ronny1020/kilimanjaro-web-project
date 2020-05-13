@@ -46,7 +46,7 @@ function LeftDiv() {
 
   return (
     <>
-      <div className="col-sm-6 bg-success" style={{ height: '70vh' }}>
+      <div className="col-sm-6 bg-success" style={{ height: '80vh' }}>
         <Card
           style={{
             top: '8vh',
