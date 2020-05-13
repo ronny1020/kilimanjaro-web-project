@@ -60,7 +60,7 @@ function HistoryList(props) {
               <Col>品名</Col>
               <Col>數量</Col>
               <Col>單價</Col>
-              <Col xs lg="2"></Col>
+              {/* <Col xs lg="2"></Col> */}
             </Row>
           </ListGroup.Item>
           {item.products.map((pitem) => (
