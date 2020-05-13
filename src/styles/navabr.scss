@@ -5,14 +5,21 @@ header {
   opacity: 0.8;
 }
 
+header .navbar {
+  min-height: 60px;
+}
+
 .pushBody {
   height: 70px;
 }
 
 /*Navbar CSS:*/
-.iconGroup{
+.iconGroup {
+  position: absolute;
   width: 175px;
   padding: 0;
+  right: 5px;
+  top: 0;
 }
 
 .navicon_web {
@@ -40,8 +47,9 @@ header {
 }
 
 .brand_web {
-  width: 300px;
+  width: 250px;
   position: absolute;
+  top: 0;
   left: 42%;
 }
 
@@ -69,19 +77,39 @@ header {
 //   }
 //   /*Navbar CSS:*/
 // }
+@media only screen and(max-width:768px) {
+  .brand_web {
+    width: 150px;
+    top: 10px;
+    left: 70px;
+  }
+}
+
+@media only screen and(max-width:576px) {
+  .brand_web {
+    width: 100px;
+    left: 75px;
+  }
+}
+
+@media only screen and(max-width:350px) {
+  .brand_web {
+    display: none;
+  }
+}
 
 @media only screen and(max-width:1200px) {
   .divider {
     display: none;
   }
-  .brand_web {
-    display: none;
-  }
-  .brand_mob {
-    display: unset;
-    width: 170px;
-    float: left;
-  }
+  // .brand_web {
+  //   display: none;
+  // }
+  // .brand_mob {
+  //   display: unset;
+  //   width: 170px;
+  //   float: left;
+  // }
 }
 
 // @media only screen and(max-width:360px) {

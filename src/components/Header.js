@@ -87,9 +87,9 @@ function Header(props) {
           </Navbar.Toggle>
 
           {/* Appear when max-width<=375px.(RWD) */}
-          <Navbar.Brand href="/" className="brand_mob">
+          {/* <Navbar.Brand href="/" className="brand_mob">
             <img src="../images/logo.svg" alt="logo"></img>
-          </Navbar.Brand>
+          </Navbar.Brand> */}
           {/* Appear when max-width<=375px.(RWD) */}
 
           <Navbar.Collapse id="basic-navbar-nav">
