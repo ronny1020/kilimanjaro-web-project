@@ -81,7 +81,7 @@ function Home() {
                       muted
                       poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
                       width="400"
-                      height="360"
+                      height="300"
                       // width="375"
                       // height="300"
                       data-vscid="zk05vyzcr"
