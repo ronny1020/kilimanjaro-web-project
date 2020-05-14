@@ -66,7 +66,6 @@ function ProductList(props) {
   const [period, setPeriod] = React.useState('all')
   const [rate, setRate] = React.useState(null)
 
-  // eslint-disable-next-line no-unused-vars
   const [showZoom, setShowZoom] = React.useState(true)
 
   const [view, setView] = React.useState(
@@ -137,6 +136,7 @@ function ProductList(props) {
     priceRange,
     rate,
     setQuery,
+    view,
   ])
 
   useEffect(() => {
@@ -220,7 +220,11 @@ function ProductList(props) {
           <div>
             <Link
               to={'../product/' + product.productID}
-              className="linkNoUnderline"
+              className="linkNoUnderline text-dark"
+              onClick={() => {
+                document.body.scrollTop = 0 // For Safari
+                document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+              }}
             >
               <ProductListItem>
                 <div
@@ -398,6 +402,7 @@ function ProductList(props) {
             key={i}
             onClick={() => {
               setPage(page)
+              setShowZoom(false)
               document.documentElement.scrollTop = 0
             }}
           >
@@ -527,6 +532,7 @@ function ProductList(props) {
                       value={column}
                       onChange={(event) => {
                         setColumn(event.target.value)
+                        setShowZoom(false)
                       }}
                       label="搜尋欄位"
                     >
@@ -553,6 +559,7 @@ function ProductList(props) {
                         aria-labelledby="priceRange"
                         onChange={(event, newValue) => {
                           setPriceRange(newValue)
+                          setShowZoom(false)
                         }}
                         valueLabelDisplay="auto"
                       />
@@ -572,8 +579,10 @@ function ProductList(props) {
                             if (inputValue > 1000) inputValue = 1000
                             if (inputValue < priceRange[1]) {
                               setPriceRange([inputValue, priceRange[1]])
+                              setShowZoom(false)
                             } else {
                               setPriceRange([priceRange[1], inputValue])
+                              setShowZoom(false)
                             }
                           }}
                           inputProps={{
@@ -599,8 +608,10 @@ function ProductList(props) {
                             if (inputValue > 1000) inputValue = 1000
                             if (inputValue > priceRange[0]) {
                               setPriceRange([priceRange[0], inputValue])
+                              setShowZoom(false)
                             } else {
                               setPriceRange([inputValue, priceRange[0]])
+                              setShowZoom(false)
                             }
                           }}
                           inputProps={{
@@ -620,6 +631,7 @@ function ProductList(props) {
                         value={rate}
                         onChange={(event, newValue) => {
                           setRate(newValue)
+                          setShowZoom(false)
                         }}
                       />
                     </div>
@@ -635,9 +647,10 @@ function ProductList(props) {
                     <Switch
                       checked={advanceSearch}
                       color="primary"
-                      onChange={(event) =>
+                      onChange={(event) => {
                         setAdvanceSearch(event.target.checked)
-                      }
+                        setShowZoom(false)
+                      }}
                     />
                   }
                   label="進階搜尋"
@@ -657,6 +670,7 @@ function ProductList(props) {
                       value={orderBy}
                       onChange={(event) => {
                         setOrderBy(event.target.value)
+                        setShowZoom(false)
                         if (
                           orderBy === 'visitedTimes DESC' ||
                           orderBy === 'sellingVolume DESC' ||
@@ -691,6 +705,7 @@ function ProductList(props) {
                         value={period}
                         onChange={(event) => {
                           setPeriod(event.target.value)
+                          setShowZoom(false)
                         }}
                         inputProps={{
                           id: 'period',
@@ -720,6 +735,7 @@ function ProductList(props) {
                     onClick={() => {
                       setView('list')
                       localStorage.setItem('view', 'list')
+                      setShowZoom(false)
                     }}
                   >
                     <ViewListIcon />
@@ -728,6 +744,7 @@ function ProductList(props) {
                     onClick={() => {
                       setView('block')
                       localStorage.setItem('view', 'block')
+                      setShowZoom(false)
                     }}
                   >
                     <ViewModuleIcon />
@@ -748,12 +765,14 @@ function ProductList(props) {
                 <Pagination.First
                   onClick={() => {
                     setPage(1)
+                    setShowZoom(false)
                     document.documentElement.scrollTop = 0
                   }}
                 />
                 <Pagination.Prev
                   onClick={() => {
                     setPage(range.page > 1 ? range.page - 1 : 1)
+                    setShowZoom(false)
                     document.documentElement.scrollTop = 0
                   }}
                 />
@@ -765,12 +784,14 @@ function ProductList(props) {
                         ? range.page + 1
                         : range.totalPages
                     )
+                    setShowZoom(false)
                     document.documentElement.scrollTop = 0
                   }}
                 />
                 <Pagination.Last
                   onClick={() => {
                     setPage(range.totalPages)
+                    setShowZoom(false)
                     document.documentElement.scrollTop = 0
                   }}
                 />

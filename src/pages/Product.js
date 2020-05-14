@@ -415,7 +415,7 @@ function Product(props) {
               ) : (
                 <></>
               )}
-              <p>{comment.commentText}</p>
+              <div className="white-space-pre">{comment.commentText}</div>
             </div>
           </div>
         </CardSecondary>
@@ -676,13 +676,17 @@ function Product(props) {
           <h4 className="text-secondary">商品規格</h4>
         </div>
       </div>
-      <CardSecondary>{product.specification}</CardSecondary>
+      <CardSecondary>
+        <div className="white-space-pre">{product.specification}</div>
+      </CardSecondary>
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
           <h4 className="text-secondary">商品介紹</h4>
         </div>
       </div>
-      <CardSecondary>{product.description}</CardSecondary>
+      <CardSecondary className="white-space-pre">
+        <div className="white-space-pre">{product.description}</div>
+      </CardSecondary>
 
       <div className="container p-0">
         <div className=" bg-primary titleLabel mt-5">
