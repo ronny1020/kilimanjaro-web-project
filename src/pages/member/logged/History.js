@@ -8,7 +8,7 @@ import HistoryList from '../../../components/member/HistoryList'
 import HistoryCList from '../../../components/member/HistoryCList'
 import HistorySList from '../../../components/member/HistorySList'
 
-import Notice from '../../../components/Notice'
+// import Notice from '../../../components/Notice'
 
 import LoginValidate from '../../../components/LoginValidate'
 import { Redirect } from 'react-router-dom'
@@ -106,10 +106,10 @@ function History() {
             {genList && DisplayList === 'cancelled' ? (
               <HistoryCList input={orderDetails} />
             ) : null}
-            {Array.isArray(orderDetails.Orders) &&
+            {/* {Array.isArray(orderDetails.Orders) &&
             orderDetails.Orders.length ? null : (
               <Notice message={'沒有可顯示的交易紀錄。'} />
-            )}
+            )} */}
           </div>
         </div>
       </div>

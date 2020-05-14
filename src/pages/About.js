@@ -58,7 +58,8 @@ function OnSale() {
   }
 
   //送出客訴:
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault()
     // alert(cramEmail + cramContent)
     //如果為外部訪客or更換email: customerID儲存其電子信箱
     const cramJson = {
