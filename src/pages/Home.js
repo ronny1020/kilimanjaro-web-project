@@ -80,7 +80,7 @@ function Home() {
                       autoPlay
                       muted
                       poster="https://mixkit.imgix.net/videos/preview/mixkit-person-making-a-v60-pour-over-coffee-from-above-88005-0.jpg"
-                      width="400"
+                      width="382"
                       height="300"
                       // width="375"
                       // height="300"
@@ -124,6 +124,7 @@ function Home() {
 
                 <div className="col-md-8 mt-3 bg-secondary">
                   <h1 className="m-b-20 ">
+                    <p className="text-secondary">123</p>
                     <strong>
                       <Typed
                         strings={[
