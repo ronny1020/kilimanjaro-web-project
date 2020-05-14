@@ -337,7 +337,7 @@ function OnSale() {
                       </div>
                       <div className="col-3"></div>
 
-                      <div className="col-12 mt-3">
+                      <div className="col-12 mt-3" align="center">
                         <div class="about-info">
                           <div
                             class="section-title wow fadeInUp"
@@ -354,6 +354,18 @@ function OnSale() {
                               ~走進咖啡店無數次，盯著價目表許久，最後還是會決定點杯咖啡~
                             </p>
                             <p>~因為咖啡香氣令人迷戀，且絲毫不厭倦~</p>
+                            <div className="col-lg-6 col-md-6 special-grid drinks">
+                              <div className="gallery-single fix">
+                                <ProductListItem>
+                                  <img
+                                    className="d-block h-100 w-100 "
+                                    src={require('../img/disc/001.gif')}
+                                    alt="slide 004"
+                                  />
+                                </ProductListItem>
+                              </div>
+                            </div>
+
                             <p>
                               ~本站將盡所能蒐羅最棒的咖啡，讓您開啟美好的一天~
                             </p>
