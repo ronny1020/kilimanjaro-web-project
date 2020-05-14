@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 
+import Magnifier from 'react-magnifier'
+
 export default function ProductImageStepper(props) {
   const [activeStep, setActiveStep] = React.useState(0)
   const [maxSteps, setMaxSteps] = React.useState(1)
@@ -18,6 +20,10 @@ export default function ProductImageStepper(props) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
+  useEffect(() => {
+    SetCheck1(true)
+    SetCheck2(true)
+  }, [props])
 
   useEffect(() => {
     setMaxSteps(1)
@@ -25,15 +31,18 @@ export default function ProductImageStepper(props) {
     if (check2) setMaxSteps(3)
   }, [check1, check2])
 
+  console.log(maxSteps)
   return (
     <div>
-      <img
+      <Magnifier
         src={
-          '../images/products/' + props.productID + '/' + activeStep + '.jpg'
-        }
-        alt=""
-        onError={(event) =>
-          (event.target.src = '../images/products/default.jpg')
+          maxSteps === 1
+            ? '../images/products/default.jpg'
+            : '../images/products/' +
+              props.productID +
+              '/' +
+              activeStep +
+              '.jpg'
         }
         className="w-100 productImage mb-1"
       />

@@ -382,8 +382,6 @@ function Product(props) {
     (comment) => comment.customerID !== memberID
   )
 
-  console.log(productOtherComments)
-
   const otherComments = productOtherComments.map((comment, i) => {
     return i <= numOfCommentShowed ? (
       <div key={i}>
