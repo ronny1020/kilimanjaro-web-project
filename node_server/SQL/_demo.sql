@@ -814,7 +814,7 @@ RecipientName, RecipientAddress, RecipientMobile, couponMapId, rewardsPoints, va
 ('C001', '2020-04-29 17:00:00', '2020-04-30 17:00:00',  1, 0, 1, 1, 'Tom', 'Taipei','0937200000',null ,0 ,true ),
 ('C001', '2020-04-30 17:00:00', '2020-05-01 17:00:00',  1, 0, 2, 1, 'John', 'Taipei','0937200000',null ,0 ,true ),
 ('C001', '2020-04-29 17:00:00', null,  1, 0, 1, 2, 'John', 'Taipei','0937200000',null ,0 ,true ),
-('C001', '2020-05-02 17:00:00', '2020-05-01 17:00:00',  1, 0, 1, 2, 'John', 'Taipei','0937200000',null ,0 ,false );
+('C001', '2020-05-02 17:00:00', null,  1, 0, 1, 2, 'John', 'Taipei','0937200000',null ,0 ,false );
 
 
 
@@ -872,7 +872,10 @@ INSERT INTO coffee.orders_detail (orderID, productID, Quantity, OrderPrice) VALU
 (2, 0000164817, 35, 97),
 (1, 0000164448, 25, 42),
 (3, 0000164564, 3, 95),
-(2, 0000165412, 30, 56);
+(2, 0000165412, 30, 56),
+(4, 0000164817, 11, 97),
+(4, 0000164448, 8, 42),
+(4, 0000164564, 2, 95);
 
 -- table商品: products
 -- 刪除已存在之重複table
