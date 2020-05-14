@@ -66,7 +66,13 @@ function HistoryCList(props) {
           ))}
           <ListGroup.Item style={{ textAlign: 'right' }}>
             <Row>
-              <Col>總計：{item.totalPrice}元整</Col>
+              <Col>
+                紅利點數折抵
+                {item.rewardsPoints === null ? 0 : item.rewardsPoints}
+                元，折扣券折抵
+                {item.minus === null ? 0 : item.minus}
+                元，總計：{item.totalPrice}元整
+              </Col>
             </Row>
           </ListGroup.Item>
         </ListGroup>
