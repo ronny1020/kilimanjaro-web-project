@@ -82,7 +82,7 @@ function Cart(props) {
         <div key={i}>
           <Link
             to={'../product/' + product.productID}
-            className="linkNoUnderline"
+            className="linkNoUnderline text-dark"
           >
             <ProductListItem>
               <div className="row">
