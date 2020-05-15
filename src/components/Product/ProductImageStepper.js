@@ -20,10 +20,6 @@ export default function ProductImageStepper(props) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
-  useEffect(() => {
-    SetCheck1(true)
-    SetCheck2(true)
-  }, [props])
 
   useEffect(() => {
     setMaxSteps(1)
