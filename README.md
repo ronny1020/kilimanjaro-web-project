@@ -4,6 +4,14 @@
 
 使用 REACT 作為前端框架，並以 node.js 作為後台系統，資料庫使用 mySQL
 
+資料庫帳號密碼為
+
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  
+可至/node_server/src/db/database.js 修改
+
 若瀏覽頁面，請依照下列步驟
 
 1. 開啟資料庫管理系統，執行/node_server/SQL/\_demo.sql 建立 sql 資料庫。
